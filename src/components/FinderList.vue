@@ -1,32 +1,38 @@
 <template>
   <div class="list">
     <component
-      v-for="item in items"
       :is="itemComponent"
+      v-for="item in items"
+      :key="item.id"
       :selected="item.id === selectedId"
-      v-on:click.native="selectItem(item.id)">{{item.label}}</component>
+      @click.native="selectItem(item.id)"
+    >
+      {{ item.label }}
+    </component>
   </div>
 </template>
 
 <script>
-import FinderItem from "./FinderItem.vue";
+import FinderItem from "./FinderItem";
 
 export default {
   name: "FinderList",
+  components: {
+    FinderItem
+  },
   props: {
     items: {
       type: Array,
       default: () => []
     },
     itemComponent: {
+      type: Object,
       default: () => FinderItem
     },
     selectedId: {
-      type: String
+      type: String,
+      default: ""
     }
-  },
-  components: {
-    FinderItem
   },
   methods: {
     selectItem(id) {
@@ -36,7 +42,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .list {
   display: flex;
   flex-direction: column;

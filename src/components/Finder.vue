@@ -1,6 +1,6 @@
 <script>
 import { contains } from "@/utils/tree-utils";
-import FinderList from "./FinderList.vue";
+import FinderList from "./FinderList";
 
 /**
  * Render the tree of an item and its selected children.
@@ -37,29 +37,29 @@ export default {
   components: {
     FinderList
   },
-  data() {
-    return {
-      selected: ""
-    };
-  },
   props: {
     tree: {
       type: Object,
       default: () => ({})
     }
   },
-  render(h) {
-    return renderTree(h, this, this.tree, this.selected);
+  data() {
+    return {
+      selected: ""
+    };
   },
   methods: {
     selectItem(id) {
       this.selected = id;
     }
+  },
+  render(h) {
+    return renderTree(h, this, this.tree, this.selected);
   }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .list-container {
   display: flex;
 }

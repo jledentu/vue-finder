@@ -1,6 +1,6 @@
 <template>
   <div class="item" :class="{ selected: selected }">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .item {
   padding: 10px;
   width: 250px;
