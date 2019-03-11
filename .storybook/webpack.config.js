@@ -1,18 +1,18 @@
 const path = require("path");
 
-module.exports = (baseConfig, env, defaultConfig) => {
+module.exports = ({ config, mode }) => {
   // Add js, json and vue extension support
-  defaultConfig.resolve.extensions.push(".js", ".vue", ".json");
+  config.resolve.extensions.push(".js", ".vue", ".json");
 
   // Add alias for @ pointing to src
-  defaultConfig.resolve.alias["@"] = path.resolve("src");
+  config.resolve.alias["@"] = path.resolve("src");
 
   // Add SCSS preprocessing
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.scss$/,
     loaders: ["style-loader", "css-loader", "sass-loader"],
     include: path.resolve(__dirname, "../src/")
   });
 
-  return defaultConfig;
+  return config;
 };
