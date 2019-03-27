@@ -1,11 +1,11 @@
-<template>
+<template functional>
   <div class="list">
     <component
-      :is="itemComponent"
-      v-for="item in items"
+      :is="props.itemComponent"
+      v-for="item in props.items"
       :key="item.id"
-      :expanded="expanded.includes(item.id)"
-      @click.native="selectItem(item.id)"
+      :expanded="props.expanded.includes(item.id)"
+      @click.native="listeners['item-selected'](item.id) || (() => {})"
     >
       {{ item.label }}
     </component>
