@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree Utils should match snapshot 1`] = `
+<div
+  class="item"
+/>
+`;
+
+exports[`Tree Utils should match snapshot if expanded 1`] = `
+<div
+  class="item expanded"
+/>
+`;
