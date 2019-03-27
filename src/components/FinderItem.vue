@@ -1,5 +1,5 @@
 <template>
-  <div class="item" :class="{ selected: selected }">
+  <div class="item" :class="{ expanded: expanded }">
     <slot />
   </div>
 </template>
@@ -8,7 +8,7 @@
 export default {
   name: "FinderItem",
   props: {
-    selected: {
+    expanded: {
       type: Boolean,
       default: false
     }
@@ -21,7 +21,7 @@ export default {
   padding: 10px;
   width: 250px;
 
-  &.selected {
+  &.expanded {
     background-color: lightgray;
   }
 }

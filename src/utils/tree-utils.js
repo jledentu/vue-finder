@@ -11,3 +11,39 @@ export function contains(item, id) {
     (item.children ? item.children.some(child => contains(child, id)) : false)
   );
 }
+
+export function path(id, nodesMap) {
+  function parentPath(id) {
+    const node = nodesMap[id];
+
+    if (!node) {
+      return [];
+    }
+
+    return [...parentPath(node.parent), id];
+  }
+
+  return parentPath(id, []);
+}
+
+export function buildNodesMap(tree) {
+  const nodesMap = {};
+
+  function buildChildrenMap(node, parentId) {
+    if (!node) {
+      return;
+    }
+
+    nodesMap[node.id] = {
+      ...node,
+      ...(parentId ? { parent: parentId } : {})
+    };
+
+    if (node.children && node.children.length) {
+      node.children.forEach(child => buildChildrenMap(child, node.id));
+    }
+  }
+
+  buildChildrenMap(tree);
+  return nodesMap;
+}

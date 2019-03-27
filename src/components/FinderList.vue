@@ -4,7 +4,7 @@
       :is="itemComponent"
       v-for="item in items"
       :key="item.id"
-      :selected="item.id === selectedId"
+      :expanded="expanded.includes(item.id)"
       @click.native="selectItem(item.id)"
     >
       {{ item.label }}
@@ -29,9 +29,9 @@ export default {
       type: Object,
       default: () => FinderItem
     },
-    selectedId: {
-      type: String,
-      default: ""
+    expanded: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {

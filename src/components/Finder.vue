@@ -1,5 +1,5 @@
 <script>
-import { contains } from "@/utils/tree-utils";
+import { path, buildNodesMap } from "@/utils/tree-utils";
 import FinderList from "./FinderList";
 
 /**
@@ -11,23 +11,27 @@ import FinderList from "./FinderList";
  * @param {String} selectedId ID of the selected item in the tree
  * @return Rendering object
  */
-function renderTree(h, context, item, selectedId) {
-  const selectedChild = item.children
-    ? item.children.find(child => contains(child, selectedId))
-    : null;
+function renderTree(h, context, item, expanded) {
+  if (!item.children || !item.children.length) {
+    return null;
+  }
+
+  const expandedChild = item.children.find(child =>
+    expanded.includes(child.id)
+  );
 
   const itemList = (
     <FinderList
-      selected-id={selectedChild ? selectedChild.id : ""}
+      expanded={expanded}
       items={item.children}
-      on-item-selected={context.selectItem}
+      on-item-selected={context.expandItem}
     />
   );
 
   return (
     <div class="list-container">
       {itemList}
-      {selectedChild && renderTree(h, context, selectedChild, selectedId)}
+      {expandedChild && renderTree(h, context, expandedChild, expanded)}
     </div>
   );
 }
@@ -45,16 +49,19 @@ export default {
   },
   data() {
     return {
-      selected: ""
+      expanded: []
     };
   },
+  created() {
+    this.nodesMap = buildNodesMap(this.tree);
+  },
   methods: {
-    selectItem(id) {
-      this.selected = id;
+    expandItem(id) {
+      this.expanded = path(id, this.nodesMap);
     }
   },
   render(h) {
-    return renderTree(h, this, this.tree, this.selected);
+    return renderTree(h, this, this.tree, this.expanded);
   }
 };
 </script>
