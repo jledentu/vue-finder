@@ -12,25 +12,17 @@ export function contains(item, id) {
   );
 }
 
-export function path(id, nodesMap) {
-  function parentPath(id) {
-    const node = nodesMap[id];
-
-    if (!node) {
-      return [];
-    }
-
-    return [...parentPath(node.parent), id];
-  }
-
-  return parentPath(id, []);
-}
-
+/**
+ * Build a map between IDs and matching nodes from a tree.
+ *
+ * @param {Object} tree Root node
+ * @return {Object} Built map
+ */
 export function buildNodesMap(tree) {
   const nodesMap = {};
 
   function buildChildrenMap(node, parentId) {
-    if (!node) {
+    if (!node || !node.id) {
       return;
     }
 
@@ -46,4 +38,25 @@ export function buildNodesMap(tree) {
 
   buildChildrenMap(tree);
   return nodesMap;
+}
+
+/**
+ * Get a path to a node.
+ *
+ * @param {string} id       ID (key) of the node
+ * @param {Object} nodesMap Map of keys -> nodes
+ * @return {Array<string>} List of node IDs composing a path to a given node
+ */
+export function path(id, nodesMap) {
+  function parentPath(id) {
+    const node = nodesMap[id];
+
+    if (!node) {
+      return [];
+    }
+
+    return [...parentPath(node.parent), id];
+  }
+
+  return parentPath(id, []);
 }
