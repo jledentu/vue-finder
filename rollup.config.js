@@ -3,9 +3,10 @@ import commonjs from "rollup-plugin-commonjs";
 import filesize from "rollup-plugin-filesize";
 import json from "rollup-plugin-json";
 import license from "rollup-plugin-license";
+import alias from "rollup-plugin-alias";
 import resolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
-import uglify from "rollup-plugin-uglify";
+import { uglify } from "rollup-plugin-uglify";
 import vue from "rollup-plugin-vue";
 import { minify } from "uglify-es";
 import path from "path";
@@ -48,19 +49,24 @@ function genConfig(name) {
     input: opts.entry,
     external: opts.external,
     plugins: [
+      vue({ compileTemplate: true, css: true }),
+      alias({
+        "@": path.resolve("src")
+      }),
       resolve({
         browser: true,
         jsnext: true,
         preferBuiltins: false,
         extensions: [".js", ".json", ".vue"]
       }),
-      commonjs(),
-      vue({ compileTemplate: true, css: true }),
       json(),
       babel({
         exclude: "node_modules/**",
-        runtimeHelpers: true
+        sourceMap: true,
+        runtimeHelpers: true,
+        extensions: [".js", ".jsx", ".vue"]
       }),
+      commonjs(),
       filesize()
     ].concat(opts.plugins || []),
     output: {
@@ -87,7 +93,7 @@ function genConfig(name) {
   // output a license to builds
   config.plugins.push(
     license({
-      sourceMap: true,
+      sourcemap: true,
       banner: {
         file: path.resolve("LICENSE.md")
       }
