@@ -1,6 +1,6 @@
 <script>
-import { contains } from "@/utils/tree-utils";
-import FinderList from "./FinderList.vue";
+import { path, buildNodesMap } from "@/utils/tree-utils";
+import FinderList from "./FinderList";
 
 /**
  * Render the tree of an item and its selected children.
@@ -11,23 +11,27 @@ import FinderList from "./FinderList.vue";
  * @param {String} selectedId ID of the selected item in the tree
  * @return Rendering object
  */
-function renderTree(h, context, item, selectedId) {
-  const selectedChild = item.children
-    ? item.children.find(child => contains(child, selectedId))
-    : null;
+function renderTree(h, context, item, expanded) {
+  if (!item.children || !item.children.length) {
+    return null;
+  }
+
+  const expandedChild = item.children.find(child =>
+    expanded.includes(child.id)
+  );
 
   const itemList = (
     <FinderList
-      selected-id={selectedChild ? selectedChild.id : ""}
+      expanded={expanded}
       items={item.children}
-      on-item-selected={context.selectItem}
+      on-item-selected={context.expandItem}
     />
   );
 
   return (
     <div class="list-container">
       {itemList}
-      {selectedChild && renderTree(h, context, selectedChild, selectedId)}
+      {expandedChild && renderTree(h, context, expandedChild, expanded)}
     </div>
   );
 }
@@ -37,30 +41,48 @@ export default {
   components: {
     FinderList
   },
-  data() {
-    return {
-      selected: ""
-    };
-  },
   props: {
     tree: {
       type: Object,
       default: () => ({})
     }
   },
-  render(h) {
-    return renderTree(h, this, this.tree, this.selected);
+  data() {
+    return {
+      expanded: []
+    };
+  },
+  beforeCreate() {
+    Object.defineProperty(this.$options.propsData, "tree", {
+      configurable: false
+    });
+  },
+  created() {
+    this.nodesMap = buildNodesMap(this.tree);
   },
   methods: {
-    selectItem(id) {
-      this.selected = id;
+    expandItem(id) {
+      this.expanded = path(id, this.nodesMap);
     }
+  },
+  render(h) {
+    return (
+      <div class="tree-container">
+        {renderTree(h, this, this.tree, this.expanded)}
+      </div>
+    );
   }
 };
 </script>
 
-<style lang="less" scoped>
-.list-container {
-  display: flex;
+<style lang="scss" scoped>
+.tree-container {
+  overflow-x: auto;
+  height: 100%;
+
+  .list-container {
+    display: flex;
+    height: 100%;
+  }
 }
 </style>

@@ -11,3 +11,58 @@ export function contains(item, id) {
     (item.children ? item.children.some(child => contains(child, id)) : false)
   );
 }
+
+/**
+ * Build a map between IDs and matching nodes from a tree.
+ *
+ * @param {Object} tree Root node
+ * @return {Object} Built map
+ */
+export function buildNodesMap(tree) {
+  const nodesMap = {};
+
+  function buildChildrenMap(node, parentId) {
+    if (!node || !node.id) {
+      return;
+    }
+
+    nodesMap[node.id] = {
+      ...node,
+      ...(parentId ? { parent: parentId } : {})
+    };
+
+    if (node.children) {
+      for (
+        let index = 0, length = node.children.length;
+        index < length;
+        ++index
+      ) {
+        buildChildrenMap(node.children[index], node.id);
+      }
+    }
+  }
+
+  buildChildrenMap(tree);
+  return nodesMap;
+}
+
+/**
+ * Get a path to a node.
+ *
+ * @param {string} id       ID (key) of the node
+ * @param {Object} nodesMap Map of keys -> nodes
+ * @return {Array<string>} List of node IDs composing a path to a given node
+ */
+export function path(id, nodesMap) {
+  function parentPath(id) {
+    const node = nodesMap[id];
+
+    if (!node) {
+      return [];
+    }
+
+    return [...parentPath(node.parent), id];
+  }
+
+  return parentPath(id, []);
+}
