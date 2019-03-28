@@ -31,8 +31,14 @@ export function buildNodesMap(tree) {
       ...(parentId ? { parent: parentId } : {})
     };
 
-    if (node.children && node.children.length) {
-      node.children.forEach(child => buildChildrenMap(child, node.id));
+    if (node.children) {
+      for (
+        let index = 0, length = node.children.length;
+        index < length;
+        ++index
+      ) {
+        buildChildrenMap(node.children[index], node.id);
+      }
     }
   }
 

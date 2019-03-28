@@ -52,6 +52,11 @@ export default {
       expanded: []
     };
   },
+  beforeCreate() {
+    Object.defineProperty(this.$options.propsData, "tree", {
+      configurable: false
+    });
+  },
   created() {
     this.nodesMap = buildNodesMap(this.tree);
   },
