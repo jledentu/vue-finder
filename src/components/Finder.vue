@@ -66,13 +66,23 @@ export default {
     }
   },
   render(h) {
-    return renderTree(h, this, this.tree, this.expanded);
+    return (
+      <div class="tree-container">
+        {renderTree(h, this, this.tree, this.expanded)}
+      </div>
+    );
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.list-container {
-  display: flex;
+.tree-container {
+  overflow-x: auto;
+  height: 100%;
+
+  .list-container {
+    display: flex;
+    height: 100%;
+  }
 }
 </style>

@@ -48,7 +48,8 @@ export default {
   flex-direction: column;
   min-width: 250px;
   height: 100%;
-  border-right: solid 1px gray;
+  border-right: solid 1px #ccc;
   overflow: auto;
+  flex-shrink: 0;
 }
 </style>
