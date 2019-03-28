@@ -3,3 +3,14 @@ node_js:
   - "lts"
 
 cache: yarn
+
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - yarn semantic-release
