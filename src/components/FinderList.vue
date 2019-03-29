@@ -5,7 +5,9 @@
       v-for="item in props.items"
       :key="item.id"
       :expanded="props.expanded.includes(item.id)"
-      @click.native="listeners['item-selected'](item.id) || (() => {})"
+      :selectable="props.selectable"
+      @click.native="listeners['item-expanded'](item.id) || (() => {})"
+      @select="listeners['item-selected'](item.id, $event) || (() => {})"
     >
       {{ item.label }}
     </component>
@@ -32,11 +34,10 @@ export default {
     expanded: {
       type: Array,
       default: () => []
-    }
-  },
-  methods: {
-    selectItem(id) {
-      this.$emit("item-selected", id);
+    },
+    selectable: {
+      type: Boolean,
+      default: false
     }
   }
 };

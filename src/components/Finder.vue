@@ -1,4 +1,5 @@
 <script>
+import { union, difference } from "lodash";
 import { path, buildNodesMap } from "@/utils/tree-utils";
 import FinderList from "./FinderList";
 
@@ -24,7 +25,9 @@ function renderTree(h, context, item, expanded) {
     <FinderList
       expanded={expanded}
       items={item.children}
-      on-item-selected={context.expandItem}
+      selectable={context.selectable}
+      on-item-expanded={context.expandItem}
+      on-item-selected={context.onSelected}
     />
   );
 
@@ -45,11 +48,16 @@ export default {
     tree: {
       type: Object,
       default: () => ({})
+    },
+    selectable: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      expanded: []
+      expanded: [],
+      selected: []
     };
   },
   beforeCreate() {
@@ -63,6 +71,9 @@ export default {
   methods: {
     expandItem(id) {
       this.expanded = path(id, this.nodesMap);
+    },
+    onSelected(id, isSelected) {
+      this.selected = (isSelected ? union : difference)(this.selected, [id]);
     }
   },
   render(h) {

@@ -27,13 +27,24 @@ function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
 const children = createChildren("test", "Test", 0, 0);
 
 // Add more stories here to live develop your components
-storiesOf("Finder", module).add("story as a template", () => ({
-  template: `<Finder :tree="tree" style="height: 100%"></Finder>`,
-  created() {
-    this.tree = {
-      id: "test",
-      label: "Test",
-      children
-    };
-  }
-}));
+storiesOf("Finder", module)
+  .add("With a lot of items", () => ({
+    template: `<Finder :tree="tree" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = {
+        id: "test",
+        label: "Test",
+        children
+      };
+    }
+  }))
+  .add("Selectable items", () => ({
+    template: `<Finder :tree="tree" :selectable="true" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = {
+        id: "test",
+        label: "Test",
+        children
+      };
+    }
+  }));

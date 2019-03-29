@@ -1,5 +1,12 @@
 <template>
   <div class="item" :class="{ expanded: expanded }">
+    <input
+      v-if="selectable"
+      type="checkbox"
+      :checked="selected"
+      @click.stop
+      @change="$emit('select', $event.target.checked)"
+    />
     <slot />
   </div>
 </template>
@@ -11,6 +18,14 @@ export default {
     expanded: {
       type: Boolean,
       default: false
+    },
+    selectable: {
+      type: Boolean,
+      default: false
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -20,6 +35,8 @@ export default {
 .item {
   padding: 10px;
   width: 250px;
+  display: flex;
+  align-items: center;
 
   &.expanded {
     background-color: lightgray;
