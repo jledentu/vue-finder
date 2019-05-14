@@ -4,6 +4,7 @@
       v-if="selectable"
       type="checkbox"
       :checked="selected"
+      :disabled="selectionDisabled"
       @click.stop
       @change="$emit('select', $event.target.checked)"
     />
@@ -23,6 +24,10 @@ export default {
       default: false
     },
     selectable: {
+      type: Boolean,
+      default: false
+    },
+    selectionDisabled: {
       type: Boolean,
       default: false
     },

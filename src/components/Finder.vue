@@ -67,6 +67,7 @@ export default {
   },
   created() {
     this.nodesMap = buildNodesMap(this.tree);
+    this.selected = Object.values(this.nodesMap).filter(node => node.selected);
   },
   methods: {
     expandItem(id) {
