@@ -7,7 +7,10 @@
       @click.stop
       @change="$emit('select', $event.target.checked)"
     />
-    <slot />
+    <div class="inner-item">
+      <slot />
+    </div>
+    <div v-if="!isLeaf" class="arrow" />
   </div>
 </template>
 
@@ -26,6 +29,10 @@ export default {
     selected: {
       type: Boolean,
       default: false
+    },
+    isLeaf: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -34,12 +41,25 @@ export default {
 <style lang="scss" scoped>
 .item {
   padding: 10px;
-  width: 250px;
   display: flex;
   align-items: center;
 
   &.expanded {
     background-color: lightgray;
+  }
+
+  .inner-item {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .arrow {
+    display: inline-block;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    width: 6px;
+    height: 6px;
+    transform: rotate(-45deg);
   }
 }
 </style>

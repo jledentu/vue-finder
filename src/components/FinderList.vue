@@ -6,6 +6,7 @@
       :key="item.id"
       :expanded="props.expanded.includes(item.id)"
       :selectable="props.selectable"
+      :is-leaf="!item.children || !item.children.length"
       @click.native="listeners['item-expanded'](item.id) || (() => {})"
       @select="listeners['item-selected'](item.id, $event) || (() => {})"
     >
