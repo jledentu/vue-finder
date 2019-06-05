@@ -38,6 +38,7 @@ module.exports = {
     // allow debugger during development
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "vue/html-indent": "off",
+    "vue/html-self-closing": "off",
     "vue/max-attributes-per-line": "off"
   },
   settings: {

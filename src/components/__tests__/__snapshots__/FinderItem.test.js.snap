@@ -3,11 +3,31 @@
 exports[`Tree Utils should match snapshot 1`] = `
 <div
   class="item"
-/>
+>
+  <!---->
+   
+  <div
+    class="inner-item"
+  />
+   
+  <div
+    class="arrow"
+  />
+</div>
 `;
 
 exports[`Tree Utils should match snapshot if expanded 1`] = `
 <div
   class="item expanded"
-/>
+>
+  <!---->
+   
+  <div
+    class="inner-item"
+  />
+   
+  <div
+    class="arrow"
+  />
+</div>
 `;
