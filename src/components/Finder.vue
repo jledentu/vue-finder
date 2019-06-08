@@ -1,5 +1,5 @@
 <script>
-import { union, difference } from "lodash";
+import { union, difference } from "lodash-es";
 import { path, buildNodesMap } from "@/utils/tree-utils";
 import FinderList from "./FinderList";
 
