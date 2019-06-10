@@ -24,6 +24,72 @@ function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
   return children;
 }
 
+const data = {
+  id: "test",
+  label: "Test",
+  children: [
+    {
+      id: "fruits",
+      label: "Fruits",
+      children: [
+        {
+          id: "apple",
+          label: "Apple",
+          selectable: false
+        },
+        {
+          id: "banana",
+          label: "Banana"
+        },
+        {
+          id: "grape",
+          label: "Grape",
+          selected: true
+        },
+        {
+          id: "lemon",
+          label: "Lemon",
+          selectable: false
+        },
+        {
+          id: "orange",
+          label: "Orange",
+          selected: true
+        }
+      ]
+    },
+    {
+      id: "vegetables",
+      label: "Vegetables",
+      children: [
+        {
+          id: "bean",
+          label: "Beans"
+        },
+        {
+          id: "carrot",
+          label: "Carrot",
+          selected: true
+        },
+        {
+          id: "eggplant",
+          label: "Eggplant",
+          selectable: false
+        },
+        {
+          id: "parsnip",
+          label: "Parsnip"
+        },
+        {
+          id: "tomato",
+          label: "Tomato",
+          selectable: false
+        }
+      ]
+    }
+  ]
+};
+
 // Add more stories here to live develop your components
 storiesOf("Finder", module)
   .add("With a lot of items", () => ({
@@ -39,70 +105,12 @@ storiesOf("Finder", module)
   .add("Selectable items", () => ({
     template: `<Finder :tree="tree" :selectable="true" style="height: 100%"></Finder>`,
     created() {
-      this.tree = {
-        id: "test",
-        label: "Test",
-        children: [
-          {
-            id: "fruits",
-            label: "Fruits",
-            children: [
-              {
-                id: "apple",
-                label: "Apple",
-                selectable: false
-              },
-              {
-                id: "banana",
-                label: "Banana"
-              },
-              {
-                id: "grape",
-                label: "Grape",
-                selected: true
-              },
-              {
-                id: "lemon",
-                label: "Lemon",
-                selectable: false
-              },
-              {
-                id: "orange",
-                label: "Orange",
-                selected: true
-              }
-            ]
-          },
-          {
-            id: "vegetables",
-            label: "Vegetables",
-            children: [
-              {
-                id: "bean",
-                label: "Beans"
-              },
-              {
-                id: "carrot",
-                label: "Carrot",
-                selected: true
-              },
-              {
-                id: "eggplant",
-                label: "Eggplant",
-                selectable: false
-              },
-              {
-                id: "parsnip",
-                label: "Parsnip"
-              },
-              {
-                id: "tomato",
-                label: "Tomato",
-                selectable: false
-              }
-            ]
-          }
-        ]
-      };
+      this.tree = data;
+    }
+  }))
+  .add("Drag and drop", () => ({
+    template: `<Finder :tree="tree" :drag-enabled="true" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
     }
   }));

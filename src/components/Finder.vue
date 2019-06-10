@@ -26,6 +26,7 @@ function renderTree(h, context, item, expanded) {
       expanded={expanded}
       items={item.children}
       selectable={context.selectable}
+      drag-enabled={context.dragEnabled}
       on-item-expanded={context.expandItem}
       on-item-selected={context.onSelected}
     />
@@ -50,6 +51,10 @@ export default {
       default: () => ({})
     },
     selectable: {
+      type: Boolean,
+      default: false
+    },
+    dragEnabled: {
       type: Boolean,
       default: false
     }

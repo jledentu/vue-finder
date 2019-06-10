@@ -1,29 +1,36 @@
 <template functional>
   <div class="list">
-    <component
-      :is="props.itemComponent"
-      v-for="item in props.items"
-      :key="item.id"
-      :expanded="props.expanded.includes(item.id)"
-      :selectable="props.selectable"
-      :selection-disabled="item.selectable === false"
-      :selected="item.selected"
-      :is-leaf="!item.children || !item.children.length"
-      @click.native="listeners['item-expanded'](item.id) || (() => {})"
-      @select="listeners['item-selected'](item.id, $event) || (() => {})"
-    >
-      {{ item.label }}
-    </component>
+    <template v-for="item in props.items">
+      <component :is="props.dropZoneComponent" :key="`drop-zone-${item.id}`" />
+      <component
+        :is="props.itemComponent"
+        :key="`item-${item.id}`"
+        :expanded="props.expanded.includes(item.id)"
+        :selectable="props.selectable"
+        :selection-disabled="item.selectable === false"
+        :selected="item.selected"
+        :is-leaf="!item.children || !item.children.length"
+        :draggable="props.dragEnabled"
+        @click.native="listeners['item-expanded'](item.id) || (() => {})"
+        @dragover.native="listeners['item-expanded'](item.id) || (() => {})"
+        @select="listeners['item-selected'](item.id, $event) || (() => {})"
+      >
+        {{ item.label }}
+      </component>
+    </template>
+    <component :is="props.dropZoneComponent" class="last" />
   </div>
 </template>
 
 <script>
 import FinderItem from "./FinderItem";
+import FinderListDropZone from "./FinderListDropZone";
 
 export default {
   name: "FinderList",
   components: {
-    FinderItem
+    FinderItem,
+    FinderListDropZone
   },
   props: {
     items: {
@@ -34,6 +41,10 @@ export default {
       type: Object,
       default: () => FinderItem
     },
+    dropZoneComponent: {
+      type: Object,
+      default: () => FinderListDropZone
+    },
     expanded: {
       type: Array,
       default: () => []
@@ -41,6 +52,10 @@ export default {
     selectable: {
       type: Boolean,
       default: false
+    },
+    dragEnabled: {
+      type: Boolean,
+      default: Boolean
     }
   }
 };
@@ -55,5 +70,9 @@ export default {
   border-right: solid 1px #ccc;
   overflow: auto;
   flex-shrink: 0;
+}
+
+.last {
+  flex-grow: 1;
 }
 </style>
