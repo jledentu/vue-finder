@@ -1,24 +1,34 @@
 <template functional>
   <div class="list">
     <template v-for="item in props.items">
-      <component :is="props.dropZoneComponent" :key="`drop-zone-${item.id}`" />
+      <component
+        :is="props.dropZoneComponent"
+        v-if="props.dragEnabled"
+        :key="`drop-zone-${item.id}`"
+      />
       <component
         :is="props.itemComponent"
         :key="`item-${item.id}`"
+        :class="{ draggable: props.dragEnabled }"
         :expanded="props.expanded.includes(item.id)"
         :selectable="props.selectable"
         :selection-disabled="item.selectable === false"
         :selected="item.selected"
         :is-leaf="!item.children || !item.children.length"
         :draggable="props.dragEnabled"
-        @click.native="listeners['item-expanded'](item.id) || (() => {})"
-        @dragover.native="listeners['item-expanded'](item.id) || (() => {})"
-        @select="listeners['item-selected'](item.id, $event) || (() => {})"
+        @click.native="listeners['item-expanded'](item.id)"
+        @drag.native="listeners['item-dragged'](item.id)"
+        @dragover.native="listeners['item-expanded'](item.id)"
+        @select="listeners['item-selected'](item.id, $event)"
       >
         {{ item.label }}
       </component>
     </template>
-    <component :is="props.dropZoneComponent" class="last" />
+    <component
+      :is="props.dropZoneComponent"
+      v-if="props.dragEnabled"
+      class="last"
+    />
   </div>
 </template>
 
@@ -56,6 +66,10 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: Boolean
+    },
+    draggedItem: {
+      type: Object,
+      default: () => ({})
     }
   }
 };
@@ -70,6 +84,11 @@ export default {
   border-right: solid 1px #ccc;
   overflow: auto;
   flex-shrink: 0;
+
+  .draggable {
+    cursor: move;
+    cursor: grab;
+  }
 }
 
 .last {

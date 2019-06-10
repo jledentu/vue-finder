@@ -26,11 +26,15 @@ export default {
 
 <style lang="scss" scoped>
 .drop-zone {
-  height: 1em;
   transition: height 0.1s ease;
+  height: 1em;
+  margin-bottom: -0.5em;
+  overflow: hidden;
 
   &.drop-active {
     background-color: lightgray;
+    opacity: 0.5;
+    margin-bottom: 0;
     height: 2em;
   }
 }

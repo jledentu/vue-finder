@@ -27,8 +27,10 @@ function renderTree(h, context, item, expanded) {
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
+      dragged-item={context.draggedItem}
       on-item-expanded={context.expandItem}
       on-item-selected={context.onSelected}
+      on-item-dragged={context.onDragged}
     />
   );
 
@@ -62,7 +64,8 @@ export default {
   data() {
     return {
       expanded: [],
-      selected: []
+      selected: [],
+      draggedItem: {}
     };
   },
   beforeCreate() {
@@ -80,6 +83,9 @@ export default {
     },
     onSelected(id, isSelected) {
       this.selected = (isSelected ? union : difference)(this.selected, [id]);
+    },
+    onDragged(id) {
+      this.draggedItem = this.nodesMap[id];
     }
   },
   render(h) {
