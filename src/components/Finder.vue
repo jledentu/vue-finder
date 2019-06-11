@@ -31,6 +31,8 @@ function renderTree(h, context, item, expanded) {
       on-item-expanded={context.expandItem}
       on-item-selected={context.onSelected}
       on-item-dragged={context.onDragged}
+      on-drop={context.onDrop}
+      on-dragend={context.onDragEnd}
     />
   );
 
@@ -86,6 +88,10 @@ export default {
     },
     onDragged(id) {
       this.draggedItem = this.nodesMap[id];
+    },
+    onDrop() {},
+    onDragEnd() {
+      this.draggedItem = undefined;
     }
   },
   render(h) {

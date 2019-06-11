@@ -1,8 +1,8 @@
 <template>
   <div
     class="drop-zone"
-    :class="{ 'drop-active': dragOver }"
-    @dragover="onDragOver"
+    :class="{ 'drag-over': dragOver }"
+    @dragenter="onDragEnter"
     @dragleave="onDragLeave"
   />
 </template>
@@ -11,31 +11,41 @@
 export default {
   name: "FinderListDropZone",
   data: () => ({
-    dragOver: false
+    dragCounter: 0
   }),
+  computed: {
+    dragOver() {
+      return this.dragCounter > 0;
+    }
+  },
   methods: {
-    onDragOver() {
-      this.dragOver = true;
+    onDragEnter(event) {
+      event.preventDefault();
+      this.dragCounter++;
     },
     onDragLeave() {
-      this.dragOver = false;
+      event.preventDefault();
+      this.dragCounter--;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../style/colors";
+
 .drop-zone {
   transition: height 0.1s ease;
   height: 1em;
   margin-bottom: -0.5em;
   overflow: hidden;
 
-  &.drop-active {
-    background-color: lightgray;
+  &.drag-over {
     opacity: 0.5;
     margin-bottom: 0;
     height: 2em;
+    border: dashed 3px $primaryColor;
+    background-color: change-color($primaryColor, $alpha: 0.2);
   }
 }
 </style>

@@ -16,9 +16,12 @@
         :selected="item.selected"
         :is-leaf="!item.children || !item.children.length"
         :draggable="props.dragEnabled"
+        :dragged="props.draggedItem.id === item.id"
         @click.native="listeners['item-expanded'](item.id)"
         @drag.native="listeners['item-dragged'](item.id)"
         @dragover.native="listeners['item-expanded'](item.id)"
+        @drop.native="listeners['drop'](item.id)"
+        @dragend.native="listeners['dragend']"
         @select="listeners['item-selected'](item.id, $event)"
       >
         {{ item.label }}

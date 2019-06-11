@@ -1,5 +1,10 @@
 <template>
-  <div class="item" :class="{ expanded: expanded }">
+  <div
+    class="item"
+    :class="{ expanded, dragged, 'drag-over': dragOver }"
+    @dragenter="onDragEnter"
+    @dragleave="onDragLeave"
+  >
     <input
       v-if="selectable"
       type="checkbox"
@@ -16,8 +21,11 @@
 </template>
 
 <script>
+import FinderListDropZone from "./FinderListDropZone";
+
 export default {
   name: "FinderItem",
+  mixins: [FinderListDropZone],
   props: {
     expanded: {
       type: Boolean,
@@ -38,19 +46,39 @@ export default {
     isLeaf: {
       type: Boolean,
       default: false
+    },
+    dragged: {
+      type: Boolean,
+      default: false
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../style/colors";
+
 .item {
   padding: 10px;
   display: flex;
   align-items: center;
 
   &.expanded {
-    background-color: lightgray;
+    background-color: $primaryColor;
+    color: white;
+
+    .arrow {
+      border-color: white;
+    }
+  }
+
+  &.dragged {
+    background-color: change-color($primaryColor, $alpha: 0.5);
+  }
+
+  &.drag-over {
+    border: dashed 3px $primaryColor;
+    background-color: change-color($primaryColor, $alpha: 0.2);
   }
 
   .inner-item {
