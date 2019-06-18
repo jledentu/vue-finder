@@ -34,6 +34,8 @@
     "build:es": "rollup -c --environment TARGET:esm",
     "build:umd:dev": "rollup -c --environment TARGET:umd-dev",
     "build:umd:prod": "rollup -c --environment TARGET:umd-prod",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o docs/dist/stories",
     "precommit": "lint-staged",
@@ -112,6 +114,7 @@
     "vue-jest": "^3.0.4",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.0.1",
     "webpack": "^4.33.0"
   },
   "config": {
