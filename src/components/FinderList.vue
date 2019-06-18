@@ -18,8 +18,12 @@
         :draggable="props.dragEnabled"
         :dragged="props.draggedItem.id === item.id"
         @click.native="listeners['item-expanded'](item.id)"
-        @drag.native="listeners['item-dragged'](item.id)"
-        @dragover.native="listeners['item-expanded'](item.id)"
+        @dragstart.native="listeners['item-dragged'](item.id, $event)"
+        @dragover.native="
+          item.children &&
+            item.children.length &&
+            listeners['item-expanded'](item.id)
+        "
         @drop.native="listeners['drop'](item.id)"
         @dragend.native="listeners['dragend']"
         @select="listeners['item-selected'](item.id, $event)"
@@ -41,10 +45,6 @@ import FinderListDropZone from "./FinderListDropZone";
 
 export default {
   name: "FinderList",
-  components: {
-    FinderItem,
-    FinderListDropZone
-  },
   props: {
     items: {
       type: Array,

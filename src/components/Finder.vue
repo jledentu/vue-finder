@@ -86,7 +86,8 @@ export default {
     onSelected(id, isSelected) {
       this.selected = (isSelected ? union : difference)(this.selected, [id]);
     },
-    onDragged(id) {
+    onDragged(id, event) {
+      event.dataTransfer.setData("id", id);
       this.draggedItem = this.nodesMap[id];
     },
     onDrop() {},
