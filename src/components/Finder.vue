@@ -1,6 +1,5 @@
 <script>
-import { union, difference } from "lodash-es";
-import { path, buildNodesMap } from "@/utils/tree-utils";
+import TreeModel from "@/utils/tree-model";
 import FinderList from "./FinderList";
 
 /**
@@ -12,24 +11,22 @@ import FinderList from "./FinderList";
  * @param {String} selectedId ID of the selected item in the tree
  * @return Rendering object
  */
-function renderTree(h, context, item, expanded) {
+function renderTree(h, context, item, model) {
   if (!item.children || !item.children.length) {
     return null;
   }
 
   const expandedChild = item.children.find(child =>
-    expanded.includes(child.id)
+    model.isNodeExpanded(child.id)
   );
 
   const itemList = (
     <FinderList
-      expanded={expanded}
+      tree-model={model}
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
       dragged-item={context.draggedItem}
-      on-item-expanded={context.expandItem}
-      on-item-selected={context.onSelected}
       on-item-dragged={context.onDragged}
       on-drop={context.onDrop}
       on-dragend={context.onDragEnd}
@@ -39,7 +36,7 @@ function renderTree(h, context, item, expanded) {
   return (
     <div class="list-container">
       {itemList}
-      {expandedChild && renderTree(h, context, expandedChild, expanded)}
+      {expandedChild && renderTree(h, context, expandedChild, model)}
     </div>
   );
 }
@@ -65,9 +62,7 @@ export default {
   },
   data() {
     return {
-      expanded: [],
-      selected: [],
-      draggedItem: {}
+      treeModel: {}
     };
   },
   beforeCreate() {
@@ -76,29 +71,21 @@ export default {
     });
   },
   created() {
-    this.nodesMap = buildNodesMap(this.tree);
-    this.selected = Object.values(this.nodesMap).filter(node => node.selected);
+    this.treeModel = new TreeModel(this.tree);
   },
   methods: {
-    expandItem(id) {
-      this.expanded = path(id, this.nodesMap);
-    },
-    onSelected(id, isSelected) {
-      this.selected = (isSelected ? union : difference)(this.selected, [id]);
-    },
-    onDragged(id, event) {
-      event.dataTransfer.setData("id", id);
-      this.draggedItem = this.nodesMap[id];
+    onDragged(id) {
+      this.treeModel.startDrag(id);
     },
     onDrop() {},
     onDragEnd() {
-      this.draggedItem = undefined;
+      this.treeModel.stopDrag();
     }
   },
   render(h) {
     return (
       <div class="tree-container">
-        {renderTree(h, this, this.tree, this.expanded)}
+        {this.treeModel && renderTree(h, this, this.tree, this.treeModel)}
       </div>
     );
   }

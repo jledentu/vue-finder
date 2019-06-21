@@ -4,14 +4,15 @@
     :class="{ expanded, dragged, 'drag-over': dragOver }"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
+    @click="onClick"
   >
     <input
       v-if="selectable"
       type="checkbox"
       :checked="selected"
-      :disabled="selectionDisabled"
+      :disabled="node.selectable === false"
       @click.stop
-      @change="$emit('select', $event.target.checked)"
+      @change="onSelect"
     />
     <div class="inner-item">
       <slot />
@@ -27,29 +28,40 @@ export default {
   name: "FinderItem",
   mixins: [FinderListDropZone],
   props: {
-    expanded: {
-      type: Boolean,
-      default: false
+    node: {
+      type: Object,
+      required: true
     },
     selectable: {
       type: Boolean,
       default: false
     },
-    selectionDisabled: {
-      type: Boolean,
-      default: false
-    },
-    selected: {
-      type: Boolean,
-      default: false
-    },
-    isLeaf: {
-      type: Boolean,
-      default: false
+    treeModel: {
+      type: Object,
+      required: true
     },
     dragged: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    isLeaf() {
+      return !this.node.children || !this.node.children.length;
+    },
+    expanded() {
+      return this.treeModel.isNodeExpanded(this.node.id);
+    },
+    selected() {
+      return this.treeModel.isNodeSelected(this.node.id);
+    }
+  },
+  methods: {
+    onClick() {
+      this.treeModel.expandNode(this.node.id);
+    },
+    onSelect(event) {
+      this.treeModel.selectNode(this.node.id, event.target.checked);
     }
   }
 };
