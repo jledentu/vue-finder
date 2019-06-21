@@ -2,30 +2,8 @@
 import FinderItem from "./FinderItem";
 import FinderListDropZone from "./FinderListDropZone";
 
-function renderItems(h, { props, listeners }) {
+function renderItems(h, { props }) {
   const DropZoneComponent = props.dropZoneComponent;
-
-  function onItemEvent(eventName, itemId) {
-    return event => {
-      listeners[eventName](itemId, event);
-    };
-  }
-
-  function onDragStart(item) {
-    return event => {
-      event.dataTransfer.setData("id", item.id);
-      listeners["item-dragged"](item.id, event);
-    };
-  }
-
-  function onDragOver(item) {
-    return event => {
-      if (item.children && item.children.length) {
-        listeners["item-expanded"](item.id, event);
-      }
-    };
-  }
-
   return props.items.map(item => [
     ...[
       props.dragEnabled && <DropZoneComponent key={`drop-zone-${item.id}`} />
@@ -38,11 +16,6 @@ function renderItems(h, { props, listeners }) {
       class={{ draggable: props.dragEnabled }}
       selectable={props.selectable}
       enabled={props.dragEnabled}
-      dragged={props.draggedItem.id === item.id}
-      vOn:start={onDragStart(item)}
-      vOn:dragover_native={onDragOver(item)}
-      vOn:drop_native={onItemEvent("drop", item.id)}
-      vOn:dragend_native={onItemEvent("dragend", item.id)}
     >
       {item.label}
     </FinderItem>

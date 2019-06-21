@@ -2,7 +2,7 @@ import { union, difference } from "lodash";
 import { path, buildNodesMap } from "@/utils/tree-utils";
 
 export default class {
-  constructor(treeData) {
+  constructor(treeData, refreshData) {
     Object.defineProperty(this, "nodesMap", {
       value: buildNodesMap(treeData),
       configurable: false
@@ -10,6 +10,7 @@ export default class {
     this.selected = Object.values(this.nodesMap).filter(node => node.selected);
     this.expanded = [];
     this.draggedItem = undefined;
+    this.refreshData = refreshData;
   }
 
   expandNode(nodeId) {
@@ -34,5 +35,13 @@ export default class {
 
   stopDrag() {
     this.draggedNode = undefined;
+  }
+
+  dropOnNode(nodeId) {
+    if (this.draggedNode) {
+      this.nodesMap[this.draggedNode].parent = nodeId;
+      this.draggedNode = undefined;
+      this.refreshData();
+    }
   }
 }

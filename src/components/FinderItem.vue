@@ -2,8 +2,13 @@
   <div
     class="item"
     :class="{ expanded, dragged, 'drag-over': dragOver }"
+    :draggable="true"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
+    @dragstart="onDragStart"
+    @dragover="onDragOver"
+    @drop="onDrop"
+    @dragend="onDragEnd"
     @click="onClick"
   >
     <input
@@ -62,6 +67,19 @@ export default {
     },
     onSelect(event) {
       this.treeModel.selectNode(this.node.id, event.target.checked);
+    },
+    onDragStart(event) {
+      event.dataTransfer.setData("text", this.node.id);
+      this.treeModel.startDrag(this.node.id);
+    },
+    onDragOver(event) {
+      event.preventDefault();
+    },
+    onDrop() {
+      this.treeModel.dropOnNode(this.node.id);
+    },
+    onDragEnd() {
+      this.treeModel.stopDrag();
     }
   }
 };

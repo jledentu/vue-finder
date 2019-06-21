@@ -26,10 +26,6 @@ function renderTree(h, context, item, model) {
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
-      dragged-item={context.draggedItem}
-      on-item-dragged={context.onDragged}
-      on-drop={context.onDrop}
-      on-dragend={context.onDragEnd}
     />
   );
 
@@ -71,15 +67,11 @@ export default {
     });
   },
   created() {
-    this.treeModel = new TreeModel(this.tree);
+    this.treeModel = new TreeModel(this.tree, this.refreshData);
   },
   methods: {
-    onDragged(id) {
-      this.treeModel.startDrag(id);
-    },
-    onDrop() {},
-    onDragEnd() {
-      this.treeModel.stopDrag();
+    refreshData() {
+      this.treeModel = new TreeModel(this.tree, this.refreshData);
     }
   },
   render(h) {
