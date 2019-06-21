@@ -3,7 +3,10 @@ import { path, buildNodesMap } from "@/utils/tree-utils";
 
 export default class {
   constructor(treeData) {
-    this.nodesMap = buildNodesMap(treeData);
+    Object.defineProperty(this, "nodesMap", {
+      value: buildNodesMap(treeData),
+      configurable: false
+    });
     this.selected = Object.values(this.nodesMap).filter(node => node.selected);
     this.expanded = [];
     this.draggedItem = undefined;
