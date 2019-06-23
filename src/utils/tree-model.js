@@ -1,20 +1,69 @@
-import { union, difference } from "lodash";
+import { union, unionBy, difference, differenceBy } from "lodash";
 import { path, buildNodesMap } from "@/utils/tree-utils";
+import EventManager from "./event-manager";
 
-export default class {
-  constructor(treeData, refreshData) {
-    Object.defineProperty(this, "nodesMap", {
-      value: buildNodesMap(treeData),
+export default class extends EventManager {
+  constructor(root) {
+    super();
+    Object.defineProperty(this, "root", {
+      value: root,
       configurable: false
     });
+    Object.defineProperty(this, "nodesMap", {
+      value: buildNodesMap(root),
+      configurable: false
+    });
+    this.expanded = [this.root.id];
     this.selected = Object.values(this.nodesMap).filter(node => node.selected);
-    this.expanded = [];
+    this._updateVisibleTree();
     this.draggedItem = undefined;
-    this.refreshData = refreshData;
+  }
+
+  _updateVisibleTree() {
+    this.visibleTree = this._computeVisibleTree(this.root.id, this.expanded);
+  }
+
+  _detachNodeFromParent(node) {
+    const parent = this.nodesMap[node.parent];
+    node.parent = undefined;
+    if (parent) {
+      parent.children = differenceBy(
+        parent.children || [],
+        [node],
+        ({ id }) => id
+      );
+    }
+  }
+
+  _attachNodeToParent(node, parentId) {
+    this._detachNodeFromParent(node);
+    const parent = this.nodesMap[parentId];
+    if (parent) {
+      node.parent = parent.id;
+      parent.children = unionBy(
+        parent.children || [],
+        [{ ...node }],
+        ({ id }) => id
+      );
+    }
+  }
+
+  _computeVisibleTree(nodeId, expanded) {
+    const node = this.nodesMap[nodeId] || {};
+    const children = node.children || [];
+    return {
+      ...node,
+      children: expanded.includes(node.id)
+        ? children.map(child => this._computeVisibleTree(child.id, expanded))
+        : [],
+      isLeaf: children.length === 0
+    };
   }
 
   expandNode(nodeId) {
     this.expanded = path(nodeId, this.nodesMap);
+    this._updateVisibleTree();
+    this.trigger("expand", this.expanded);
   }
 
   isNodeExpanded(nodeId) {
@@ -23,6 +72,7 @@ export default class {
 
   selectNode(nodeId, isSelected) {
     this.selected = (isSelected ? union : difference)(this.selected, [nodeId]);
+    this.trigger("select", this.selected);
   }
 
   isNodeSelected(nodeId) {
@@ -30,18 +80,25 @@ export default class {
   }
 
   startDrag(nodeId) {
-    this.draggedNode = nodeId;
+    this.draggedNodeId = nodeId;
   }
 
   stopDrag() {
-    this.draggedNode = undefined;
+    this.draggedNodeId = undefined;
   }
 
   dropOnNode(nodeId) {
-    if (this.draggedNode) {
-      this.nodesMap[this.draggedNode].parent = nodeId;
-      this.draggedNode = undefined;
-      this.refreshData();
+    if (this.draggedNodeId === undefined) {
+      return;
     }
+    if (this.draggedNodeId === nodeId) {
+      return;
+    }
+
+    const draggedNode = this.nodesMap[this.draggedNodeId];
+    this._attachNodeToParent(draggedNode, nodeId);
+    this.draggedNodeId = undefined;
+    this._updateVisibleTree();
+    this.trigger("move");
   }
 }

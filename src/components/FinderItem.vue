@@ -22,7 +22,7 @@
     <div class="inner-item">
       <slot />
     </div>
-    <div v-if="!isLeaf" class="arrow" />
+    <div v-if="!node.isLeaf" class="arrow" />
   </div>
 </template>
 
@@ -51,9 +51,6 @@ export default {
     }
   },
   computed: {
-    isLeaf() {
-      return !this.node.children || !this.node.children.length;
-    },
     expanded() {
       return this.treeModel.isNodeExpanded(this.node.id);
     },

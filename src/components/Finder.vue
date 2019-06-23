@@ -8,21 +8,20 @@ import FinderList from "./FinderList";
  * @param {Object} h          `createElement` object
  * @param {Object} context    Context component
  * @param {Object} item       Item to render
- * @param {String} selectedId ID of the selected item in the tree
  * @return Rendering object
  */
-function renderTree(h, context, item, model) {
+function renderTree(h, context, item) {
   if (!item.children || !item.children.length) {
     return null;
   }
 
   const expandedChild = item.children.find(child =>
-    model.isNodeExpanded(child.id)
+    context.treeModel.isNodeExpanded(child.id)
   );
 
   const itemList = (
     <FinderList
-      tree-model={model}
+      tree-model={context.treeModel}
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
@@ -32,7 +31,7 @@ function renderTree(h, context, item, model) {
   return (
     <div class="list-container">
       {itemList}
-      {expandedChild && renderTree(h, context, expandedChild, model)}
+      {expandedChild && renderTree(h, context, expandedChild)}
     </div>
   );
 }
@@ -67,17 +66,17 @@ export default {
     });
   },
   created() {
-    this.treeModel = new TreeModel(this.tree, this.refreshData);
+    this.treeModel = new TreeModel(this.tree);
   },
   methods: {
-    refreshData() {
-      this.treeModel = new TreeModel(this.tree, this.refreshData);
+    updateSelected() {
+      this.selected = this.treeModel.selected;
     }
   },
   render(h) {
     return (
       <div class="tree-container">
-        {this.treeModel && renderTree(h, this, this.tree, this.treeModel)}
+        {this.treeModel && renderTree(h, this, this.treeModel.visibleTree)}
       </div>
     );
   }
