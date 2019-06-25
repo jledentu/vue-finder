@@ -48,9 +48,6 @@ export default {
       }
     },
     onDragOver(event) {
-      if (!this.dragEnabled) {
-        return;
-      }
       event.preventDefault();
     },
     onDrop(event) {

@@ -1,5 +1,5 @@
 import { union, unionBy, difference, differenceBy } from "lodash";
-import { path, buildNodesMap } from "@/utils/tree-utils";
+import { buildNodesMap, contains, path } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
@@ -93,6 +93,11 @@ export default class extends EventManager {
     }
 
     const draggedNode = this.nodesMap[this.draggedNodeId];
+
+    if (contains(draggedNode, nodeId)) {
+      return;
+    }
+
     this._attachNodeToParent(draggedNode, nodeId);
 
     // Expand the dragged node
