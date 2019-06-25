@@ -76,6 +76,14 @@ export default {
       event.dataTransfer.setData("finder", "test");
       this.treeModel.startDrag(this.node.id);
     },
+    onDragOver(event) {
+      event.preventDefault();
+
+      if (!this.dragEnabled) {
+        return;
+      }
+      this.treeModel.expandNode(this.node.id);
+    },
     onDragEnd() {
       if (!this.dragEnabled) {
         return;
