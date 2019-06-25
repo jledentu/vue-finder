@@ -11,7 +11,7 @@ import FinderList from "./FinderList";
  * @return Rendering object
  */
 function renderTree(h, context, item) {
-  if (!item.children || !item.children.length) {
+  if (item.children.length === 0) {
     return null;
   }
 
@@ -45,7 +45,7 @@ export default {
   props: {
     tree: {
       type: Object,
-      default: () => ({})
+      required: true
     },
     selectable: {
       type: Boolean,
@@ -68,11 +68,6 @@ export default {
   },
   created() {
     this.treeModel = new TreeModel(this.tree);
-  },
-  methods: {
-    updateSelected() {
-      this.selected = this.treeModel.selected;
-    }
   },
   render(h) {
     return (

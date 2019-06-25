@@ -15,6 +15,7 @@ module.exports = {
   coverageDirectory: "<rootDir>/coverage",
   collectCoverageFrom: [
     "src/**/*.{js,vue}",
+    "!src/index.js",
     "!src/index.umd.js",
     "!**/node_modules/**"
   ]

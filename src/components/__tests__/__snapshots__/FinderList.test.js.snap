@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FinderList should match snapshot 1`] = `
+<div class="list">
+  <div draggable="false" class="item">
+    <!---->
+    <div class="inner-item">Test 11</div>
+    <div class="arrow"></div>
+  </div>
+  <div draggable="false" class="item">
+    <!---->
+    <div class="inner-item">Test 12</div>
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`FinderList should match snapshot if \`dragEnabled\` is true 1`] = `
+<div class="list">
+  <div class="drop-zone"></div>
+  <div draggable="true" class="item draggable">
+    <!---->
+    <div class="inner-item">Test 11</div>
+    <div class="arrow"></div>
+  </div>
+  <div class="drop-zone"></div>
+  <div draggable="true" class="item draggable">
+    <!---->
+    <div class="inner-item">Test 12</div>
+    <!---->
+  </div>
+  <div class="drop-zone last"></div>
+</div>
+`;
+
+exports[`FinderList should match snapshot if \`selectable\` is true 1`] = `
+<div class="list">
+  <div draggable="false" class="item"><input type="checkbox">
+    <div class="inner-item">Test 11</div>
+    <div class="arrow"></div>
+  </div>
+  <div draggable="false" class="item"><input type="checkbox">
+    <div class="inner-item">Test 12</div>
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`FinderList should match snapshot if no item 1`] = `<div class="list"></div>`;

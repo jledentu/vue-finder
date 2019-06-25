@@ -2,10 +2,10 @@
   <div
     class="drop-zone"
     :class="{ 'drag-over': dragOver }"
-    @dragenter="onDragEnter"
-    @dragleave="onDragLeave"
-    @dragover="onDragOver"
-    @drop="onDrop"
+    @dragenter.prevent="onDragEnter"
+    @dragleave.prevent="onDragLeave"
+    @dragover.prevent
+    @drop.prevent="onDrop"
   />
 </template>
 
@@ -35,28 +35,22 @@ export default {
     }
   },
   methods: {
-    onDragEnter(event) {
-      event.preventDefault();
+    onDragEnter() {
       if (this.treeModel.isDragging()) {
         this.dragCounter++;
       }
     },
-    onDragLeave(event) {
-      event.preventDefault();
+    onDragLeave() {
       if (this.treeModel.isDragging()) {
         this.dragCounter--;
       }
     },
-    onDragOver(event) {
-      event.preventDefault();
-    },
     onDrop(event) {
-      if (!this.dragEnabled || !this.treeModel.isDragging()) {
+      if (!this.treeModel.isDragging()) {
         return;
       }
       this.dragCounter = 0;
       this.treeModel.dropOnNode(this.node.id);
-      event.preventDefault();
       event.dataTransfer.clearData();
     }
   }

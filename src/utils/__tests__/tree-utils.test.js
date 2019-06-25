@@ -42,7 +42,8 @@ describe("Tree Utils", () => {
           id: "test1",
           children: [
             {
-              id: "test11"
+              id: "test11",
+              selected: true
             },
             {
               id: "test12"
@@ -54,7 +55,8 @@ describe("Tree Utils", () => {
           id: "test1",
           children: [
             {
-              id: "test11"
+              id: "test11",
+              selected: true
             },
             {
               id: "test12"
@@ -63,7 +65,8 @@ describe("Tree Utils", () => {
         },
         test11: {
           parent: "test1",
-          id: "test11"
+          id: "test11",
+          selected: true
         },
         test12: {
           parent: "test1",

@@ -14,7 +14,9 @@ export default class extends EventManager {
       configurable: false
     });
     this.expanded = [this.root.id];
-    this.selected = Object.values(this.nodesMap).filter(node => node.selected);
+    this.selected = Object.values(this.nodesMap)
+      .filter(({ selected }) => selected)
+      .map(({ id }) => id);
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
@@ -49,7 +51,7 @@ export default class extends EventManager {
   }
 
   _computeVisibleTree(nodeId, expanded) {
-    const node = this.nodesMap[nodeId] || {};
+    const node = this.nodesMap[nodeId];
     const children = node.children || [];
     return {
       ...node,
@@ -80,7 +82,9 @@ export default class extends EventManager {
   }
 
   startDrag(nodeId) {
-    this.draggedNodeId = nodeId;
+    if (this.nodesMap.hasOwnProperty(nodeId)) {
+      this.draggedNodeId = nodeId;
+    }
   }
 
   stopDrag() {
@@ -88,7 +92,7 @@ export default class extends EventManager {
   }
 
   dropOnNode(nodeId) {
-    if (!this.isDragging || this.isNodeDragged(nodeId)) {
+    if (!this.isDragging() || this.isNodeDragged(nodeId)) {
       return;
     }
 

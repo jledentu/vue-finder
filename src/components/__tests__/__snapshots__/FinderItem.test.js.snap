@@ -1,33 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tree Utils should match snapshot 1`] = `
-<div
-  class="item"
->
+exports[`FinderItem Drag & drop should match snapshot if dragEnabled is \`true\` 1`] = `
+<div draggable="true" class="item draggable">
   <!---->
-   
-  <div
-    class="inner-item"
-  />
-   
-  <div
-    class="arrow"
-  />
+  <div class="inner-item"></div>
+  <div class="arrow"></div>
 </div>
 `;
 
-exports[`Tree Utils should match snapshot if expanded 1`] = `
-<div
-  class="item expanded"
->
+exports[`FinderItem Expand should match snapshot if expanded 1`] = `
+<div draggable="false" class="item expanded">
   <!---->
-   
-  <div
-    class="inner-item"
-  />
-   
-  <div
-    class="arrow"
-  />
+  <div class="inner-item"></div>
+  <div class="arrow"></div>
+</div>
+`;
+
+exports[`FinderItem Selection should match snapshot if selectable 1`] = `
+<div draggable="false" class="item"><input type="checkbox">
+  <div class="inner-item"></div>
+  <div class="arrow"></div>
+</div>
+`;
+
+exports[`FinderItem should match snapshot 1`] = `
+<div draggable="false" class="item">
+  <!---->
+  <div class="inner-item"></div>
+  <div class="arrow"></div>
 </div>
 `;
