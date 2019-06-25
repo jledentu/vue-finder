@@ -22,6 +22,7 @@ function renderTree(h, context, item) {
   const itemList = (
     <FinderList
       tree-model={context.treeModel}
+      parent={item}
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}

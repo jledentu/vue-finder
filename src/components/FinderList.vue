@@ -6,16 +6,22 @@ function renderItems(h, { props }) {
   const DropZoneComponent = props.dropZoneComponent;
   return props.items.map(item => [
     ...[
-      props.dragEnabled && <DropZoneComponent key={`drop-zone-${item.id}`} />
+      props.dragEnabled && (
+        <DropZoneComponent
+          key={`drop-zone-${item.id}`}
+          node={props.parent}
+          treeModel={props.treeModel}
+          dragEnabled={props.dragEnabled}
+        />
+      )
     ],
 
     <FinderItem
       key={`item-${item.id}`}
       node={item}
       treeModel={props.treeModel}
-      class={{ draggable: props.dragEnabled }}
       selectable={props.selectable}
-      enabled={props.dragEnabled}
+      dragEnabled={props.dragEnabled}
     >
       {item.label}
     </FinderItem>
@@ -26,6 +32,10 @@ export default {
   name: "FinderList",
   functional: true,
   props: {
+    parent: {
+      type: Object,
+      default: () => ({})
+    },
     items: {
       type: Array,
       default: () => []
@@ -49,10 +59,6 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: Boolean
-    },
-    draggedItem: {
-      type: Object,
-      default: () => ({})
     }
   },
   render(h, { props, listeners }) {
@@ -62,7 +68,16 @@ export default {
       <div class="list">
         {[
           ...renderItems(h, { props, listeners }),
-          ...[props.dragEnabled && <DropZoneComponent class="last" />]
+          ...[
+            props.dragEnabled && (
+              <DropZoneComponent
+                class="last"
+                treeModel={props.treeModel}
+                node={props.parent}
+                dragEnabled={props.dragEnabled}
+              />
+            )
+          ]
         ]}
       </div>
     ];

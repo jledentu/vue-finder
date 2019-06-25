@@ -16,7 +16,7 @@ export default class extends EventManager {
     this.expanded = [this.root.id];
     this.selected = Object.values(this.nodesMap).filter(node => node.selected);
     this._updateVisibleTree();
-    this.draggedItem = undefined;
+    this.draggedNodeId = undefined;
   }
 
   _updateVisibleTree() {
@@ -88,17 +88,26 @@ export default class extends EventManager {
   }
 
   dropOnNode(nodeId) {
-    if (this.draggedNodeId === undefined) {
-      return;
-    }
-    if (this.draggedNodeId === nodeId) {
+    if (!this.isDragging || this.isNodeDragged(nodeId)) {
       return;
     }
 
     const draggedNode = this.nodesMap[this.draggedNodeId];
     this._attachNodeToParent(draggedNode, nodeId);
+
+    // Expand the dragged node
+    this.expandNode(this.draggedNodeId);
+
     this.draggedNodeId = undefined;
     this._updateVisibleTree();
     this.trigger("move");
+  }
+
+  isNodeDragged(nodeId) {
+    return this.draggedNodeId === nodeId;
+  }
+
+  isDragging() {
+    return this.draggedNodeId !== undefined;
   }
 }

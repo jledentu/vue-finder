@@ -4,12 +4,28 @@
     :class="{ 'drag-over': dragOver }"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
+    @dragover="onDragOver"
+    @drop="onDrop"
   />
 </template>
 
 <script>
 export default {
   name: "FinderListDropZone",
+  props: {
+    treeModel: {
+      type: Object,
+      required: true
+    },
+    node: {
+      type: Object,
+      required: true
+    },
+    dragEnabled: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
     dragCounter: 0
   }),
@@ -21,11 +37,30 @@ export default {
   methods: {
     onDragEnter(event) {
       event.preventDefault();
-      this.dragCounter++;
+      if (this.treeModel.isDragging()) {
+        this.dragCounter++;
+      }
     },
-    onDragLeave() {
+    onDragLeave(event) {
       event.preventDefault();
-      this.dragCounter--;
+      if (this.treeModel.isDragging()) {
+        this.dragCounter--;
+      }
+    },
+    onDragOver(event) {
+      if (!this.dragEnabled) {
+        return;
+      }
+      event.preventDefault();
+    },
+    onDrop(event) {
+      if (!this.dragEnabled || !this.treeModel.isDragging()) {
+        return;
+      }
+      this.dragCounter = 0;
+      this.treeModel.dropOnNode(this.node.id);
+      event.preventDefault();
+      event.dataTransfer.clearData();
     }
   }
 };

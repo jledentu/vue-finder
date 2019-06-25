@@ -1,8 +1,13 @@
 <template>
   <div
     class="item"
-    :class="{ expanded, dragged, 'drag-over': dragOver }"
-    :draggable="true"
+    :class="{
+      expanded,
+      draggable: dragEnabled,
+      dragged,
+      'drag-over': dragOver
+    }"
+    :draggable="dragEnabled"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
     @dragstart="onDragStart"
@@ -37,15 +42,11 @@ export default {
       type: Object,
       required: true
     },
-    selectable: {
-      type: Boolean,
-      default: false
-    },
     treeModel: {
       type: Object,
       required: true
     },
-    dragged: {
+    selectable: {
       type: Boolean,
       default: false
     }
@@ -56,6 +57,9 @@ export default {
     },
     selected() {
       return this.treeModel.isNodeSelected(this.node.id);
+    },
+    dragged() {
+      return this.treeModel.isNodeDragged(this.node.id);
     }
   },
   methods: {
@@ -66,16 +70,16 @@ export default {
       this.treeModel.selectNode(this.node.id, event.target.checked);
     },
     onDragStart(event) {
-      event.dataTransfer.setData("text", this.node.id);
+      if (!this.dragEnabled) {
+        return;
+      }
+      event.dataTransfer.setData("finder", "test");
       this.treeModel.startDrag(this.node.id);
     },
-    onDragOver(event) {
-      event.preventDefault();
-    },
-    onDrop() {
-      this.treeModel.dropOnNode(this.node.id);
-    },
     onDragEnd() {
+      if (!this.dragEnabled) {
+        return;
+      }
       this.treeModel.stopDrag();
     }
   }
