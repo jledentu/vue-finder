@@ -136,5 +136,8 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.11"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
