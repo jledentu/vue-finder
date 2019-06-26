@@ -4,6 +4,13 @@ node_js:
 
 cache: yarn
 
+install:
+  - yarn global add codecov
+
+script:
+  - yarn test
+  - codecov
+
 jobs:
   include:
     # Define the release stage that runs semantic-release
