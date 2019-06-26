@@ -1,15 +1,16 @@
-# vue-finder
+<div align="center" markdown="1">
+
+![Vue Finder](./logo.svg)
+
+**A Vue.js component to display hierarchical data (like the MacOS X finder)**
 
 [![Build Status](https://travis-ci.org/jledentu/vue-finder.svg?branch=master)](https://travis-ci.org/jledentu/vue-finder)
-[![CodeFactor](https://www.codefactor.io/repository/github/jledentu/vue-finder/badge/master)](https://www.codefactor.io/repository/github/jledentu/vue-finder/overview/master)
-![Vue](https://img.shields.io/badge/Vue-^2.5.13-brightgreen.svg)
-![Commitizen](https://img.shields.io/badge/Commitizen-enabled-brightgreen.svg)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Greenkeeper badge](https://badges.greenkeeper.io/jledentu/vue-finder.svg)](https://greenkeeper.io/)
 ![Npm badge](https://img.shields.io/npm/v/jledentu/vue-finder.svg)
+![Codecov](https://img.shields.io/codecov/c/github/jledentu/vue-finder.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/jledentu/vue-finder/badge/master)](https://www.codefactor.io/repository/github/jledentu/vue-finder/overview/master)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
----
-
-A Vue.js component to display hierarchical data (like the MacOS X finder).
+</div>
 
 ## Installation
 
