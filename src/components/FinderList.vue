@@ -1,31 +1,41 @@
-<template functional>
-  <div class="list">
-    <component
-      :is="props.itemComponent"
-      v-for="item in props.items"
-      :key="item.id"
-      :expanded="props.expanded.includes(item.id)"
-      :selectable="props.selectable"
-      :selection-disabled="item.selectable === false"
-      :selected="item.selected"
-      :is-leaf="!item.children || !item.children.length"
-      @click.native="listeners['item-expanded'](item.id) || (() => {})"
-      @select="listeners['item-selected'](item.id, $event) || (() => {})"
-    >
-      {{ item.label }}
-    </component>
-  </div>
-</template>
-
 <script>
 import FinderItem from "./FinderItem";
+import FinderListDropZone from "./FinderListDropZone";
+
+function renderItems(h, { props }) {
+  const DropZoneComponent = props.dropZoneComponent;
+  return props.items.map(item => [
+    ...[
+      props.dragEnabled && (
+        <DropZoneComponent
+          key={`drop-zone-${item.id}`}
+          node={props.parent}
+          treeModel={props.treeModel}
+          dragEnabled={props.dragEnabled}
+        />
+      )
+    ],
+
+    <FinderItem
+      key={`item-${item.id}`}
+      node={item}
+      treeModel={props.treeModel}
+      selectable={props.selectable}
+      dragEnabled={props.dragEnabled}
+    >
+      {item.label}
+    </FinderItem>
+  ]);
+}
 
 export default {
   name: "FinderList",
-  components: {
-    FinderItem
-  },
+  functional: true,
   props: {
+    parent: {
+      type: Object,
+      default: () => ({})
+    },
     items: {
       type: Array,
       default: () => []
@@ -34,14 +44,43 @@ export default {
       type: Object,
       default: () => FinderItem
     },
-    expanded: {
-      type: Array,
-      default: () => []
+    dropZoneComponent: {
+      type: Object,
+      default: () => FinderListDropZone
+    },
+    treeModel: {
+      type: Object,
+      required: true
     },
     selectable: {
       type: Boolean,
       default: false
+    },
+    dragEnabled: {
+      type: Boolean,
+      default: Boolean
     }
+  },
+  render(h, { props, listeners }) {
+    const DropZoneComponent = props.dropZoneComponent;
+
+    return [
+      <div class="list">
+        {[
+          ...renderItems(h, { props, listeners }),
+          ...[
+            props.dragEnabled && (
+              <DropZoneComponent
+                class="last"
+                treeModel={props.treeModel}
+                node={props.parent}
+                dragEnabled={props.dragEnabled}
+              />
+            )
+          ]
+        ]}
+      </div>
+    ];
   }
 };
 </script>
@@ -55,5 +94,14 @@ export default {
   border-right: solid 1px #ccc;
   overflow: auto;
   flex-shrink: 0;
+
+  .draggable {
+    cursor: move;
+    cursor: grab;
+  }
+}
+
+.last {
+  flex-grow: 1;
 }
 </style>

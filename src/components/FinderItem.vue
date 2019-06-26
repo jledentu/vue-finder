@@ -1,56 +1,123 @@
 <template>
-  <div class="item" :class="{ expanded: expanded }">
+  <div
+    class="item"
+    :class="{
+      expanded,
+      draggable: dragEnabled,
+      dragged,
+      'drag-over': dragOver
+    }"
+    :draggable="dragEnabled"
+    @dragenter="onDragEnter"
+    @dragleave="onDragLeave"
+    @dragstart="onDragStart"
+    @dragover="onDragOver"
+    @drop="onDrop"
+    @dragend="onDragEnd"
+    @click="onClick"
+  >
     <input
       v-if="selectable"
       type="checkbox"
       :checked="selected"
-      :disabled="selectionDisabled"
+      :disabled="node.selectable === false"
       @click.stop
-      @change="$emit('select', $event.target.checked)"
+      @change="onSelect"
     />
     <div class="inner-item">
       <slot />
     </div>
-    <div v-if="!isLeaf" class="arrow" />
+    <div v-if="!node.isLeaf" class="arrow" />
   </div>
 </template>
 
 <script>
+import FinderListDropZone from "./FinderListDropZone";
+
 export default {
   name: "FinderItem",
+  mixins: [FinderListDropZone],
   props: {
-    expanded: {
-      type: Boolean,
-      default: false
+    node: {
+      type: Object,
+      required: true
+    },
+    treeModel: {
+      type: Object,
+      required: true
     },
     selectable: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    expanded() {
+      return this.treeModel.isNodeExpanded(this.node.id);
     },
-    selectionDisabled: {
-      type: Boolean,
-      default: false
+    selected() {
+      return this.treeModel.isNodeSelected(this.node.id);
     },
-    selected: {
-      type: Boolean,
-      default: false
+    dragged() {
+      return this.treeModel.isNodeDragged(this.node.id);
+    }
+  },
+  methods: {
+    onClick() {
+      this.treeModel.expandNode(this.node.id);
     },
-    isLeaf: {
-      type: Boolean,
-      default: false
+    onSelect(event) {
+      this.treeModel.selectNode(this.node.id, event.target.checked);
+    },
+    onDragStart(event) {
+      if (!this.dragEnabled) {
+        return;
+      }
+      event.dataTransfer.setData("text/plain", this.node.id);
+      this.treeModel.startDrag(this.node.id);
+    },
+    onDragOver(event) {
+      event.preventDefault();
+
+      if (!this.dragEnabled) {
+        return;
+      }
+      this.treeModel.expandNode(this.node.id);
+    },
+    onDragEnd() {
+      if (!this.dragEnabled) {
+        return;
+      }
+      this.treeModel.stopDrag();
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../style/colors";
+
 .item {
   padding: 10px;
   display: flex;
   align-items: center;
 
   &.expanded {
-    background-color: lightgray;
+    background-color: $primaryColor;
+    color: white;
+
+    .arrow {
+      border-color: white;
+    }
+  }
+
+  &.dragged {
+    background-color: change-color($primaryColor, $alpha: 0.5);
+  }
+
+  &.drag-over {
+    border: dashed 3px $primaryColor;
+    background-color: change-color($primaryColor, $alpha: 0.2);
   }
 
   .inner-item {

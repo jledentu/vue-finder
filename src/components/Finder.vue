@@ -1,6 +1,5 @@
 <script>
-import { union, difference } from "lodash-es";
-import { path, buildNodesMap } from "@/utils/tree-utils";
+import TreeModel from "@/utils/tree-model";
 import FinderList from "./FinderList";
 
 /**
@@ -9,32 +8,31 @@ import FinderList from "./FinderList";
  * @param {Object} h          `createElement` object
  * @param {Object} context    Context component
  * @param {Object} item       Item to render
- * @param {String} selectedId ID of the selected item in the tree
  * @return Rendering object
  */
-function renderTree(h, context, item, expanded) {
-  if (!item.children || !item.children.length) {
+function renderTree(h, context, item) {
+  if (item.children.length === 0) {
     return null;
   }
 
   const expandedChild = item.children.find(child =>
-    expanded.includes(child.id)
+    context.treeModel.isNodeExpanded(child.id)
   );
 
   const itemList = (
     <FinderList
-      expanded={expanded}
+      tree-model={context.treeModel}
+      parent={item}
       items={item.children}
       selectable={context.selectable}
-      on-item-expanded={context.expandItem}
-      on-item-selected={context.onSelected}
+      drag-enabled={context.dragEnabled}
     />
   );
 
   return (
     <div class="list-container">
       {itemList}
-      {expandedChild && renderTree(h, context, expandedChild, expanded)}
+      {expandedChild && renderTree(h, context, expandedChild)}
     </div>
   );
 }
@@ -47,17 +45,20 @@ export default {
   props: {
     tree: {
       type: Object,
-      default: () => ({})
+      required: true
     },
     selectable: {
+      type: Boolean,
+      default: false
+    },
+    dragEnabled: {
       type: Boolean,
       default: false
     }
   },
   data() {
     return {
-      expanded: [],
-      selected: []
+      treeModel: {}
     };
   },
   beforeCreate() {
@@ -66,21 +67,12 @@ export default {
     });
   },
   created() {
-    this.nodesMap = buildNodesMap(this.tree);
-    this.selected = Object.values(this.nodesMap).filter(node => node.selected);
-  },
-  methods: {
-    expandItem(id) {
-      this.expanded = path(id, this.nodesMap);
-    },
-    onSelected(id, isSelected) {
-      this.selected = (isSelected ? union : difference)(this.selected, [id]);
-    }
+    this.treeModel = new TreeModel(this.tree);
   },
   render(h) {
     return (
       <div class="tree-container">
-        {renderTree(h, this, this.tree, this.expanded)}
+        {this.treeModel && renderTree(h, this, this.treeModel.visibleTree)}
       </div>
     );
   }
