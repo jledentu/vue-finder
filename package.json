@@ -1,7 +1,7 @@
 {
   "name": "@jledentu/vue-finder",
   "description": "A Vue.js 2.0 library project",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "MIT",
   "main": "dist/vue-finder.common.js",
   "module": "dist/vue-finder.esm.js",
