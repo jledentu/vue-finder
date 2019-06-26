@@ -4,11 +4,12 @@ node_js:
 
 cache: yarn
 
-install:
+before_install:
   - yarn global add codecov
 
 script:
   - yarn test
+  - yarn build
   - codecov
 
 jobs:
