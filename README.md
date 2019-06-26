@@ -5,7 +5,7 @@
 ![Vue](https://img.shields.io/badge/Vue-^2.5.13-brightgreen.svg)
 ![Commitizen](https://img.shields.io/badge/Commitizen-enabled-brightgreen.svg)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Greenkeeper badge](https://badges.greenkeeper.io/jledentu/vue-finder.svg)](https://greenkeeper.io/)
-![Npm badge](https://img.shields.io/npm/v/vue-finder.svg)
+![Npm badge](https://img.shields.io/npm/v/jledentu/vue-finder.svg)
 
 ---
 
@@ -14,7 +14,7 @@ A Vue.js component to display hierarchical data (like the MacOS X finder).
 ## Installation
 
 ```
-npm install --save vue-finder
+npm install --save @jledentu/vue-finder
 ```
 
 vue-finder can be used as a module in both CommonJS and ES module environments.
@@ -23,7 +23,7 @@ When in non-modular environment, vue-finder will register all the components to 
 ### ES6
 
 ```js
-import { Finder } from 'vue-finder';
+import { Finder } from '@jledentu/vue-finder';
 
 export default {
   ...
@@ -41,7 +41,7 @@ export default {
 // You can register a component manually
 //
 var Vue = require('vue');
-var VueFinder = require('vue-finder');
+var VueFinder = require('@jledentu/vue-finder');
 
 var YourComponent = Vue.extend({
   ...
@@ -56,7 +56,7 @@ var YourComponent = Vue.extend({
 
 ```html
 <script src="path/to/vue/vue.min.js"></script>
-<script src="path/to/vue-finder/dist/vue-finder.min.js"></script>
+<script src="path/to/@jledentu/vue-finder/dist/vue-finder.min.js"></script>
 <!-- Components are registered globally -->
 ```
 
