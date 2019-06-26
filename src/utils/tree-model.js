@@ -1,4 +1,4 @@
-import { union, unionBy, difference, differenceBy } from "lodash";
+import { union, unionBy, difference, differenceBy } from "lodash-es";
 import { buildNodesMap, contains, path } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
