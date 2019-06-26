@@ -68,6 +68,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-vue-jsx": "^3.5.1",
     "babel-preset-vue": "^2.0.2",
     "commitizen": "^3.1.1",

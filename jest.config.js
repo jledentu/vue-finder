@@ -7,10 +7,11 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1"
   },
   transform: {
-    ".*\\.js$": "<rootDir>/node_modules/babel-jest",
-    ".*\\.vue$": "<rootDir>/node_modules/vue-jest"
+    ".*\\.js$": require.resolve("babel-jest"),
+    ".*\\.vue$": require.resolve("vue-jest")
   },
-  snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
+  transformIgnorePatterns: ["/node_modules/(?!lodash-es)/"],
+  snapshotSerializers: [require.resolve("jest-serializer-vue")],
   setupFiles: ["<rootDir>/jest.setup"],
   coverageDirectory: "<rootDir>/coverage",
   collectCoverageFrom: [
