@@ -66,3 +66,25 @@ export function path(id, nodesMap) {
 
   return parentPath(id, []);
 }
+
+export function filterTree(filterFunction, tree = {}) {
+  function filter(node) {
+    const filteredChildren = node.children
+      .map(filter)
+      .filter(({ toRemove }) => !toRemove);
+
+    if (filteredChildren.length === 0 && !filterFunction(node)) {
+      return {
+        ...node,
+        toRemove: true
+      };
+    } else {
+      return {
+        ...node,
+        children: filteredChildren
+      };
+    }
+  }
+
+  return filter(tree);
+}

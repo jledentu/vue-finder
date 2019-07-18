@@ -1,4 +1,4 @@
-import { contains, buildNodesMap, path } from "../tree-utils";
+import { contains, buildNodesMap, path, filterTree } from "../tree-utils";
 
 describe("Tree Utils", () => {
   describe("#contains", () => {
@@ -95,6 +95,79 @@ describe("Tree Utils", () => {
       expect(path("test1", nodesMap)).toEqual(["test1"]);
       expect(path("test11", nodesMap)).toEqual(["test1", "test11"]);
       expect(path("test12", nodesMap)).toEqual(["test1", "test12"]);
+    });
+  });
+
+  describe("#filterTree", () => {
+    const tree = {
+      id: "test1",
+      children: [
+        {
+          id: "test11",
+          children: [
+            {
+              id: "test111",
+              children: [
+                {
+                  id: "test1111",
+                  keep: true,
+                  children: []
+                },
+                {
+                  id: "test1112",
+                  children: []
+                }
+              ]
+            },
+            {
+              id: "test112",
+              keep: true,
+              children: [
+                {
+                  id: "test1121",
+                  children: []
+                },
+                {
+                  id: "test1122",
+                  children: []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: "test12",
+          children: []
+        }
+      ]
+    };
+
+    it("should return the tree with filtered nodes", () => {
+      expect(filterTree(node => node.keep, tree)).toEqual({
+        id: "test1",
+        children: [
+          {
+            id: "test11",
+            children: [
+              {
+                id: "test111",
+                children: [
+                  {
+                    id: "test1111",
+                    keep: true,
+                    children: []
+                  }
+                ]
+              },
+              {
+                id: "test112",
+                keep: true,
+                children: []
+              }
+            ]
+          }
+        ]
+      });
     });
   });
 });

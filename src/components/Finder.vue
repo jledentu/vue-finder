@@ -54,12 +54,24 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: false
+    },
+    filter: {
+      type: Function,
+      default: undefined
     }
   },
   data() {
     return {
       treeModel: {}
     };
+  },
+  watch: {
+    filter: {
+      handler(newFilter) {
+        this.treeModel.filter = newFilter;
+      },
+      immediate: true
+    }
   },
   beforeCreate() {
     Object.defineProperty(this.$options.propsData, "tree", {

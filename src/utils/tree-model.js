@@ -1,5 +1,5 @@
 import { union, unionBy, difference, differenceBy } from "lodash-es";
-import { buildNodesMap, contains, path } from "@/utils/tree-utils";
+import { buildNodesMap, contains, path, filterTree } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
@@ -17,12 +17,18 @@ export default class extends EventManager {
     this.selected = Object.values(this.nodesMap)
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
+    this.filtered = [];
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
 
   _updateVisibleTree() {
-    this.visibleTree = this._computeVisibleTree(this.root.id, this.expanded);
+    let visibleTree = this._computeVisibleTree(this.root.id, this.expanded);
+
+    if (this._filter) {
+      visibleTree = filterTree(this._filter, visibleTree);
+    }
+    this.visibleTree = visibleTree;
   }
 
   _detachNodeFromParent(node) {
@@ -52,7 +58,8 @@ export default class extends EventManager {
 
   _computeVisibleTree(nodeId, expanded) {
     const node = this.nodesMap[nodeId];
-    const children = node.children || [];
+    let children = node.children || [];
+
     return {
       ...node,
       children: expanded.includes(node.id)
@@ -118,5 +125,15 @@ export default class extends EventManager {
 
   isDragging() {
     return this.draggedNodeId !== undefined;
+  }
+
+  /**
+   * Function used to filter displayed items of the tree.
+   *
+   * @param {Function} newFilter
+   */
+  set filter(newFilter) {
+    this._filter = newFilter;
+    this._updateVisibleTree();
   }
 }
