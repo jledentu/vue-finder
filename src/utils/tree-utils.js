@@ -67,9 +67,15 @@ export function path(id, nodesMap) {
   return parentPath(id, []);
 }
 
-export function filterTree(filterFunction, tree = {}) {
+/**
+ * Return a tree with only its filtered nodes.
+ *
+ * @param {Function} filterFunction Function used to filter nodes
+ * @param {Object}   tree           Tree to filter
+ */
+export function filterTree(filterFunction, tree) {
   function filter(node) {
-    const filteredChildren = node.children
+    const filteredChildren = (node.children || [])
       .map(filter)
       .filter(({ toRemove }) => !toRemove);
 
@@ -86,5 +92,7 @@ export function filterTree(filterFunction, tree = {}) {
     }
   }
 
-  return filter(tree);
+  const filteredTree = filter(tree);
+
+  return filteredTree.toRemove ? {} : filteredTree;
 }

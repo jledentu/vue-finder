@@ -169,5 +169,9 @@ describe("Tree Utils", () => {
         ]
       });
     });
+
+    it("should return an empty tree if no node matches", () => {
+      expect(filterTree(node => node.id === "notfound", tree)).toEqual({});
+    });
   });
 });

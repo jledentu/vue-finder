@@ -11,7 +11,7 @@ import FinderList from "./FinderList";
  * @return Rendering object
  */
 function renderTree(h, context, item) {
-  if (item.children.length === 0) {
+  if (!item || !item.children || item.children.length === 0) {
     return null;
   }
 
@@ -69,8 +69,7 @@ export default {
     filter: {
       handler(newFilter) {
         this.treeModel.filter = newFilter;
-      },
-      immediate: true
+      }
     }
   },
   beforeCreate() {
@@ -79,7 +78,7 @@ export default {
     });
   },
   created() {
-    this.treeModel = new TreeModel(this.tree);
+    this.treeModel = new TreeModel(this.tree, this.filter);
   },
   render(h) {
     return (

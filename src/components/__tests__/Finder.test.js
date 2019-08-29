@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import Finder from "../Finder";
 
-describe("FinderList", () => {
+describe("Finder", () => {
   const tree = {
     id: "test1",
     children: [
@@ -18,13 +18,11 @@ describe("FinderList", () => {
             id: "test112",
             label: "Test 112"
           }
-        ],
-        isLeaf: false
+        ]
       },
       {
         id: "test12",
-        label: "Test 12",
-        isLeaf: true
+        label: "Test 12"
       }
     ]
   };
@@ -57,6 +55,32 @@ describe("FinderList", () => {
     });
 
     wrapper.find(".item").trigger("click");
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should match snapshot with initial filter", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree,
+        filter() {
+          return ({ id }) => id === "test12";
+        }
+      }
+    });
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should match snapshot with filter", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree
+      }
+    });
+
+    wrapper.setProps({
+      filter: ({ id }) => id === "test12"
+    });
     expect(wrapper).toMatchSnapshot();
   });
 });

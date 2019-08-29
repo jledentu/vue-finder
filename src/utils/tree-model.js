@@ -3,7 +3,7 @@ import { buildNodesMap, contains, path, filterTree } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
-  constructor(root) {
+  constructor(root, filter) {
     super();
     Object.defineProperty(this, "root", {
       value: root,
@@ -14,25 +14,30 @@ export default class extends EventManager {
       configurable: false
     });
     this.expanded = [this.root.id];
+    this.expandedWithoutFilter = this.expanded;
     this.selected = Object.values(this.nodesMap)
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
+
+    this._filter = filter;
     this.filtered = [];
+
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
 
   _updateVisibleTree() {
-    let visibleTree = this._computeVisibleTree(this.root.id, this.expanded);
+    let visibleTree = this.root;
 
     if (this._filter) {
-      visibleTree = filterTree(this._filter, visibleTree);
+      visibleTree = filterTree(this._filter, this.root);
     }
-    this.visibleTree = visibleTree;
+
+    this.visibleTree = this._computeVisibleTree(visibleTree, this.expanded);
   }
 
   _detachNodeFromParent(node) {
-    const parent = this.nodesMap[node.parent];
+    const parent = this._getNode(node.parent);
     node.parent = undefined;
     if (parent) {
       parent.children = differenceBy(
@@ -45,7 +50,7 @@ export default class extends EventManager {
 
   _attachNodeToParent(node, parentId) {
     this._detachNodeFromParent(node);
-    const parent = this.nodesMap[parentId];
+    const parent = this._getNode(parentId);
     if (parent) {
       node.parent = parent.id;
       parent.children = unionBy(
@@ -56,21 +61,25 @@ export default class extends EventManager {
     }
   }
 
-  _computeVisibleTree(nodeId, expanded) {
-    const node = this.nodesMap[nodeId];
+  _computeVisibleTree(node, expanded) {
     let children = node.children || [];
 
     return {
       ...node,
       children: expanded.includes(node.id)
-        ? children.map(child => this._computeVisibleTree(child.id, expanded))
+        ? children.map(child => this._computeVisibleTree(child, expanded))
         : [],
       isLeaf: children.length === 0
     };
   }
 
+  _getNode(nodeId) {
+    return this.nodesMap[nodeId];
+  }
+
   expandNode(nodeId) {
     this.expanded = path(nodeId, this.nodesMap);
+    this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
     this.trigger("expand", this.expanded);
   }
@@ -103,7 +112,7 @@ export default class extends EventManager {
       return;
     }
 
-    const draggedNode = this.nodesMap[this.draggedNodeId];
+    const draggedNode = this._getNode(this.draggedNodeId);
 
     if (contains(draggedNode, nodeId)) {
       return;
@@ -134,6 +143,23 @@ export default class extends EventManager {
    */
   set filter(newFilter) {
     this._filter = newFilter;
+
+    if (
+      !this.expandedWithoutFilter.some(nodeId => {
+        const node = this._getNode(nodeId);
+        return (
+          this._filter(node) ||
+          (node.children && node.children.some(this._filter))
+        );
+      })
+    ) {
+      // If the expanded nodes do not match the filter,
+      // Expand the first node matching
+      this.expanded = [this.root.id];
+    } else {
+      // The previously expanded nodes match, re-expanded
+      this.expanded = this.expandedWithoutFilter;
+    }
     this._updateVisibleTree();
   }
 }
