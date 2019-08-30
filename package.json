@@ -104,7 +104,7 @@
     "rollup-plugin-vue": "^5.0.0",
     "sass-loader": "^8.0.0",
     "semantic-release": "^15.13.12",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "uglify-es": "^3.3.4",
