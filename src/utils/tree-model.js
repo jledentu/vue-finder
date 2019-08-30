@@ -1,5 +1,10 @@
 import { union, unionBy, difference, differenceBy } from "lodash-es";
-import { buildNodesMap, contains, path, filterTree } from "@/utils/tree-utils";
+import {
+  buildNodesMap,
+  contains,
+  path,
+  getFilteredNodes
+} from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
@@ -19,21 +24,19 @@ export default class extends EventManager {
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
 
-    this._filter = filter;
     this.filtered = [];
+    if (filter) {
+      this.filter = filter;
+    }
 
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
 
   _updateVisibleTree() {
-    let visibleTree = this.root;
-
-    if (this._filter) {
-      visibleTree = filterTree(this._filter, this.root);
-    }
-
-    this.visibleTree = this._computeVisibleTree(visibleTree, this.expanded);
+    this.visibleTree = this._computeVisibleTree(this.root.id, {
+      expanded: this.expanded
+    });
   }
 
   _detachNodeFromParent(node) {
@@ -61,13 +64,19 @@ export default class extends EventManager {
     }
   }
 
-  _computeVisibleTree(node, expanded) {
-    let children = node.children || [];
-
+  _computeVisibleTree(nodeId, { expanded }) {
+    const node = this._getNode(nodeId);
+    const children = node.children || [];
     return {
       ...node,
       children: expanded.includes(node.id)
-        ? children.map(child => this._computeVisibleTree(child, expanded))
+        ? children
+            .filter(child => this.isNodeFiltered(child.id))
+            .map(child =>
+              this._computeVisibleTree(child.id, {
+                expanded
+              })
+            )
         : [],
       isLeaf: children.length === 0
     };
@@ -95,6 +104,10 @@ export default class extends EventManager {
 
   isNodeSelected(nodeId) {
     return this.selected.includes(nodeId);
+  }
+
+  isNodeFiltered(nodeId) {
+    return !this._filter || this.filtered.includes(nodeId);
   }
 
   startDrag(nodeId) {
@@ -160,6 +173,8 @@ export default class extends EventManager {
       // The previously expanded nodes match, re-expanded
       this.expanded = this.expandedWithoutFilter;
     }
+
+    this.filtered = getFilteredNodes(this._filter, this.root.id, this.nodesMap);
     this._updateVisibleTree();
   }
 }

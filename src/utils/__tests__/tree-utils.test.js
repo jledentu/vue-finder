@@ -1,4 +1,5 @@
-import { contains, buildNodesMap, path, filterTree } from "../tree-utils";
+import { sortBy } from "lodash-es";
+import { contains, buildNodesMap, path, getFilteredNodes } from "../tree-utils";
 
 describe("Tree Utils", () => {
   describe("#contains", () => {
@@ -98,80 +99,57 @@ describe("Tree Utils", () => {
     });
   });
 
-  describe("#filterTree", () => {
-    const tree = {
-      id: "test1",
-      children: [
-        {
-          id: "test11",
-          children: [
-            {
-              id: "test111",
-              children: [
-                {
-                  id: "test1111",
-                  keep: true,
-                  children: []
-                },
-                {
-                  id: "test1112",
-                  children: []
-                }
-              ]
-            },
-            {
-              id: "test112",
-              keep: true,
-              children: [
-                {
-                  id: "test1121",
-                  children: []
-                },
-                {
-                  id: "test1122",
-                  children: []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: "test12",
-          children: []
-        }
-      ]
-    };
-
-    it("should return the tree with filtered nodes", () => {
-      expect(filterTree(node => node.keep, tree)).toEqual({
+  describe("#getFilteredNodes", () => {
+    const nodesMap = {
+      test1: {
         id: "test1",
         children: [
           {
-            id: "test11",
-            children: [
-              {
-                id: "test111",
-                children: [
-                  {
-                    id: "test1111",
-                    keep: true,
-                    children: []
-                  }
-                ]
-              },
-              {
-                id: "test112",
-                keep: true,
-                children: []
-              }
-            ]
+            id: "test11"
+          },
+          {
+            id: "test12"
           }
         ]
-      });
+      },
+      test11: {
+        parent: "test1",
+        id: "test11",
+        children: [
+          {
+            id: "test111"
+          },
+          {
+            id: "test112"
+          }
+        ]
+      },
+      test12: {
+        parent: "test1",
+        id: "test12",
+        keep: true
+      },
+      test111: {
+        parent: "test11",
+        id: "test11"
+      },
+      test112: {
+        parent: "test11",
+        id: "test112",
+        keep: true
+      }
+    };
+
+    it("should return the filtered nodes", () => {
+      expect(
+        sortBy(getFilteredNodes(node => node.keep, "test1", nodesMap))
+      ).toEqual(["test1", "test11", "test112", "test12"]);
     });
 
-    it("should return an empty tree if no node matches", () => {
-      expect(filterTree(node => node.id === "notfound", tree)).toEqual({});
+    it("should return [] if no node matches", () => {
+      expect(
+        getFilteredNodes(node => node.id === "notfound", "test1", nodesMap)
+      ).toEqual([]);
     });
   });
 });

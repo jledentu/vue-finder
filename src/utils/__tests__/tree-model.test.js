@@ -48,12 +48,14 @@ describe("TreeModel", () => {
             id: "test11",
             selected: true,
             children: [],
-            isLeaf: false
+            isLeaf: false,
+            parent: "test1"
           },
           {
             id: "test12",
             children: [],
-            isLeaf: true
+            isLeaf: true,
+            parent: "test1"
           }
         ],
         isLeaf: false
@@ -76,20 +78,24 @@ describe("TreeModel", () => {
               {
                 id: "test111",
                 children: [],
-                isLeaf: true
+                isLeaf: true,
+                parent: "test11"
               },
               {
                 id: "test112",
                 children: [],
-                isLeaf: true
+                isLeaf: true,
+                parent: "test11"
               }
             ],
-            isLeaf: false
+            isLeaf: false,
+            parent: "test1"
           },
           {
             id: "test12",
             children: [],
-            isLeaf: true
+            isLeaf: true,
+            parent: "test1"
           }
         ],
         isLeaf: false
@@ -182,12 +188,14 @@ describe("TreeModel", () => {
               id: "test11",
               selected: true,
               children: [],
-              isLeaf: false
+              isLeaf: false,
+              parent: "test1"
             },
             {
               id: "test12",
               children: [],
-              isLeaf: true
+              isLeaf: true,
+              parent: "test1"
             }
           ],
           isLeaf: false
@@ -205,12 +213,14 @@ describe("TreeModel", () => {
               id: "test11",
               selected: true,
               children: [],
-              isLeaf: false
+              isLeaf: false,
+              parent: "test1"
             },
             {
               id: "test12",
               children: [],
-              isLeaf: true
+              isLeaf: true,
+              parent: "test1"
             }
           ],
           isLeaf: false
@@ -228,12 +238,14 @@ describe("TreeModel", () => {
               id: "test11",
               selected: true,
               children: [],
-              isLeaf: false
+              isLeaf: false,
+              parent: "test1"
             },
             {
               id: "test12",
               children: [],
-              isLeaf: true
+              isLeaf: true,
+              parent: "test1"
             }
           ],
           isLeaf: false
@@ -254,7 +266,8 @@ describe("TreeModel", () => {
                 {
                   id: "test111",
                   children: [],
-                  isLeaf: true
+                  isLeaf: true,
+                  parent: "test11"
                 },
                 {
                   id: "test112",
@@ -262,13 +275,16 @@ describe("TreeModel", () => {
                     {
                       id: "test12",
                       children: [],
-                      isLeaf: true
+                      isLeaf: true,
+                      parent: "test112"
                     }
                   ],
-                  isLeaf: false
+                  isLeaf: false,
+                  parent: "test11"
                 }
               ],
-              isLeaf: false
+              isLeaf: false,
+              parent: "test1"
             }
           ],
           isLeaf: false

@@ -68,23 +68,28 @@ export function path(id, nodesMap) {
 }
 
 /**
- * Return a tree with only its filtered nodes.
+ * Return nodes matched by a filtered function, and their parents.
  *
  * @param {Function} filterFunction Function used to filter nodes
- * @param {Object}   tree           Tree to filter
+ * @param {Object}   nodesMap       Map of keys -> nodes
+ * @return {Array<string>} List of node IDs composing a path to a given node
  */
-export function filterTree(filterFunction, tree) {
-  function filter(node) {
+export function getFilteredNodes(filterFunction, rootNodeId, nodesMap) {
+  const filteredNodes = [];
+
+  function filter(nodeId) {
+    const node = nodesMap[nodeId];
     const filteredChildren = (node.children || [])
-      .map(filter)
-      .filter(({ toRemove }) => !toRemove);
+      .map(child => filter(child.id))
+      .filter(({ toHide }) => !toHide);
 
     if (filteredChildren.length === 0 && !filterFunction(node)) {
       return {
         ...node,
-        toRemove: true
+        toHide: true
       };
     } else {
+      filteredNodes.push(nodeId);
       return {
         ...node,
         children: filteredChildren
@@ -92,7 +97,7 @@ export function filterTree(filterFunction, tree) {
     }
   }
 
-  const filteredTree = filter(tree);
+  filter(rootNodeId);
 
-  return filteredTree.toRemove ? {} : filteredTree;
+  return filteredNodes;
 }
