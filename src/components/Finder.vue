@@ -11,7 +11,7 @@ import FinderList from "./FinderList";
  * @return Rendering object
  */
 function renderTree(h, context, item) {
-  if (item.children.length === 0) {
+  if (!item || !item.children || item.children.length === 0) {
     return null;
   }
 
@@ -54,6 +54,10 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: false
+    },
+    filter: {
+      type: Function,
+      default: undefined
     }
   },
   data() {
@@ -61,13 +65,20 @@ export default {
       treeModel: {}
     };
   },
+  watch: {
+    filter: {
+      handler(newFilter) {
+        this.treeModel.filter = newFilter;
+      }
+    }
+  },
   beforeCreate() {
     Object.defineProperty(this.$options.propsData, "tree", {
       configurable: false
     });
   },
   created() {
-    this.treeModel = new TreeModel(this.tree);
+    this.treeModel = new TreeModel(this.tree, this.filter);
   },
   render(h) {
     return (

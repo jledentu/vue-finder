@@ -66,3 +66,38 @@ export function path(id, nodesMap) {
 
   return parentPath(id, []);
 }
+
+/**
+ * Return nodes matched by a filtered function, and their parents.
+ *
+ * @param {Function} filterFunction Function used to filter nodes
+ * @param {Object}   nodesMap       Map of keys -> nodes
+ * @return {Array<string>} List of node IDs composing a path to a given node
+ */
+export function getFilteredNodes(filterFunction, rootNodeId, nodesMap) {
+  const filteredNodes = [];
+
+  function filter(nodeId) {
+    const node = nodesMap[nodeId];
+    const filteredChildren = (node.children || [])
+      .map(child => filter(child.id))
+      .filter(({ toHide }) => !toHide);
+
+    if (filteredChildren.length === 0 && !filterFunction(node)) {
+      return {
+        ...node,
+        toHide: true
+      };
+    } else {
+      filteredNodes.push(nodeId);
+      return {
+        ...node,
+        children: filteredChildren
+      };
+    }
+  }
+
+  filter(rootNodeId);
+
+  return filteredNodes;
+}

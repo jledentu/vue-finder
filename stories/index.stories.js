@@ -1,4 +1,5 @@
 import { storiesOf } from "@storybook/vue";
+import { withKnobs, text } from "@storybook/addon-knobs";
 
 const MAX_DEPTH = 4;
 const CHILDREN_NUMBER = 10;
@@ -90,10 +91,24 @@ const data = {
   ]
 };
 
+const filterMixin = {};
+
 // Add more stories here to live develop your components
 storiesOf("Finder", module)
+  .addDecorator(withKnobs)
   .add("With a lot of items", () => ({
-    template: `<Finder :tree="tree" style="height: 100%"></Finder>`,
+    props: {
+      filter: {
+        default: text("Filter", "")
+      }
+    },
+    computed: {
+      filterFunction() {
+        const filterString = this.filter;
+        return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
+      }
+    },
+    template: `<Finder :tree="tree" style="height: 100%" :filter="filterFunction"></Finder>`,
     created() {
       this.tree = {
         id: "test",
@@ -103,12 +118,24 @@ storiesOf("Finder", module)
     }
   }))
   .add("Selectable items", () => ({
-    template: `<Finder :tree="tree" :selectable="true" style="height: 100%"></Finder>`,
+    props: {
+      filter: {
+        default: text("Filter", "")
+      }
+    },
+    computed: {
+      filterFunction() {
+        const filterString = this.filter;
+        return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
+      }
+    },
+    template: `<Finder :tree="tree" :selectable="true" style="height: 100%" :filter="filterFunction"></Finder>`,
     created() {
       this.tree = data;
     }
   }))
   .add("Drag and drop", () => ({
+    mixins: [filterMixin],
     template: `<Finder :tree="tree" :drag-enabled="true" style="height: 100%"></Finder>`,
     created() {
       this.tree = data;

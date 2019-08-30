@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FinderList should match snapshot 1`] = `
+exports[`Finder should match snapshot 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
@@ -19,7 +19,7 @@ exports[`FinderList should match snapshot 1`] = `
 </div>
 `;
 
-exports[`FinderList should match snapshot with expanded item 1`] = `
+exports[`Finder should match snapshot with expanded item 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
@@ -38,4 +38,37 @@ exports[`FinderList should match snapshot with expanded item 1`] = `
 </div>
 `;
 
-exports[`FinderList should match snapshot with no children 1`] = `<div class="tree-container"></div>`;
+exports[`Finder should match snapshot with filter 1`] = `
+<div class="tree-container">
+  <div class="list-container">
+    <div class="list">
+      <div draggable="false" class="item">
+        <!---->
+        <div class="inner-item">Test 12</div>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Finder should match snapshot with initial filter 1`] = `
+<div class="tree-container">
+  <div class="list-container">
+    <div class="list">
+      <div draggable="false" class="item">
+        <!---->
+        <div class="inner-item">Test 11</div>
+        <div class="arrow"></div>
+      </div>
+      <div draggable="false" class="item">
+        <!---->
+        <div class="inner-item">Test 12</div>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Finder should match snapshot with no children 1`] = `<div class="tree-container"></div>`;

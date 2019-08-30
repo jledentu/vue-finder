@@ -1,9 +1,14 @@
 import { union, unionBy, difference, differenceBy } from "lodash-es";
-import { buildNodesMap, contains, path } from "@/utils/tree-utils";
+import {
+  buildNodesMap,
+  contains,
+  path,
+  getFilteredNodes
+} from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
-  constructor(root) {
+  constructor(root, filter) {
     super();
     Object.defineProperty(this, "root", {
       value: root,
@@ -14,19 +19,28 @@ export default class extends EventManager {
       configurable: false
     });
     this.expanded = [this.root.id];
+    this.expandedWithoutFilter = this.expanded;
     this.selected = Object.values(this.nodesMap)
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
+
+    this.filtered = [];
+    if (filter) {
+      this.filter = filter;
+    }
+
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
 
   _updateVisibleTree() {
-    this.visibleTree = this._computeVisibleTree(this.root.id, this.expanded);
+    this.visibleTree = this._computeVisibleTree(this.root.id, {
+      expanded: this.expanded
+    });
   }
 
   _detachNodeFromParent(node) {
-    const parent = this.nodesMap[node.parent];
+    const parent = this._getNode(node.parent);
     node.parent = undefined;
     if (parent) {
       parent.children = differenceBy(
@@ -39,7 +53,7 @@ export default class extends EventManager {
 
   _attachNodeToParent(node, parentId) {
     this._detachNodeFromParent(node);
-    const parent = this.nodesMap[parentId];
+    const parent = this._getNode(parentId);
     if (parent) {
       node.parent = parent.id;
       parent.children = unionBy(
@@ -50,20 +64,31 @@ export default class extends EventManager {
     }
   }
 
-  _computeVisibleTree(nodeId, expanded) {
-    const node = this.nodesMap[nodeId];
+  _computeVisibleTree(nodeId, { expanded }) {
+    const node = this._getNode(nodeId);
     const children = node.children || [];
     return {
       ...node,
       children: expanded.includes(node.id)
-        ? children.map(child => this._computeVisibleTree(child.id, expanded))
+        ? children
+            .filter(child => this.isNodeFiltered(child.id))
+            .map(child =>
+              this._computeVisibleTree(child.id, {
+                expanded
+              })
+            )
         : [],
       isLeaf: children.length === 0
     };
   }
 
+  _getNode(nodeId) {
+    return this.nodesMap[nodeId];
+  }
+
   expandNode(nodeId) {
     this.expanded = path(nodeId, this.nodesMap);
+    this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
     this.trigger("expand", this.expanded);
   }
@@ -81,6 +106,10 @@ export default class extends EventManager {
     return this.selected.includes(nodeId);
   }
 
+  isNodeFiltered(nodeId) {
+    return !this._filter || this.filtered.includes(nodeId);
+  }
+
   startDrag(nodeId) {
     if (this.nodesMap.hasOwnProperty(nodeId)) {
       this.draggedNodeId = nodeId;
@@ -96,7 +125,7 @@ export default class extends EventManager {
       return;
     }
 
-    const draggedNode = this.nodesMap[this.draggedNodeId];
+    const draggedNode = this._getNode(this.draggedNodeId);
 
     if (contains(draggedNode, nodeId)) {
       return;
@@ -118,5 +147,34 @@ export default class extends EventManager {
 
   isDragging() {
     return this.draggedNodeId !== undefined;
+  }
+
+  /**
+   * Function used to filter displayed items of the tree.
+   *
+   * @param {Function} newFilter
+   */
+  set filter(newFilter) {
+    this._filter = newFilter;
+
+    if (
+      !this.expandedWithoutFilter.some(nodeId => {
+        const node = this._getNode(nodeId);
+        return (
+          this._filter(node) ||
+          (node.children && node.children.some(this._filter))
+        );
+      })
+    ) {
+      // If the expanded nodes do not match the filter,
+      // Expand the first node matching
+      this.expanded = [this.root.id];
+    } else {
+      // The previously expanded nodes match, re-expanded
+      this.expanded = this.expandedWithoutFilter;
+    }
+
+    this.filtered = getFilteredNodes(this._filter, this.root.id, this.nodesMap);
+    this._updateVisibleTree();
   }
 }
