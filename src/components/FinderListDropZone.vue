@@ -45,13 +45,12 @@ export default {
         this.dragCounter--;
       }
     },
-    onDrop(event) {
+    onDrop() {
       if (!this.treeModel.isDragging()) {
         return;
       }
       this.dragCounter = 0;
       this.treeModel.dropOnNode(this.node.id);
-      event.dataTransfer.clearData();
     }
   }
 };

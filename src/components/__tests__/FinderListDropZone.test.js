@@ -106,11 +106,7 @@ describe("FinderListDropZone", () => {
           dragEnabled: true
         }
       });
-      wrapper.trigger("drop", {
-        dataTransfer: {
-          clearData: jest.fn()
-        }
-      });
+      wrapper.trigger("drop");
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111");
     });
 
