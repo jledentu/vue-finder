@@ -43,18 +43,30 @@ export default {
     FinderList
   },
   props: {
+    /**
+     * Data of the tree.
+     */
     tree: {
       type: Object,
       required: true
     },
+    /**
+     * Enable the selection of items.
+     */
     selectable: {
       type: Boolean,
       default: false
     },
+    /**
+     * Enable the drag & drop of items.
+     */
     dragEnabled: {
       type: Boolean,
       default: false
     },
+    /**
+     * Function to filter displayed items.
+     */
     filter: {
       type: Function,
       default: undefined

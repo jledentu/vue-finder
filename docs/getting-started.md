@@ -15,13 +15,40 @@ npm install --save vue-finder
 
 Then, import and use the component:
 
-```js
-import { Finder } from "vue-finder";
-export default {
-  components: {
-    Finder
-  }
-};
+```html
+<!-- Vue component (.vue) -->
+
+<template>
+  <div>
+    <Finder :tree="tree"></Finder>
+  </div>
+</template>
+
+<script>
+  import { Finder } from "vue-finder";
+  export default {
+    components: {
+      Finder
+    },
+    data() {
+      return {
+        tree: {
+          id: "root",
+          children: [
+            {
+              id: "child1",
+              label: "Child 1"
+            },
+            {
+              id: "child2",
+              label: "Child 2"
+            }
+          ]
+        }
+      };
+    }
+  };
+</script>
 ```
 
 The component itself does not include any CSS. You'll need to include it separately:

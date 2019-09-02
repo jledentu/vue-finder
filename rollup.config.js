@@ -8,6 +8,7 @@ import resolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
 import { uglify } from "rollup-plugin-uglify";
 import vue from "rollup-plugin-vue";
+import css from "rollup-plugin-css-only";
 import { minify } from "uglify-es";
 import path from "path";
 
@@ -49,9 +50,17 @@ function genConfig(name) {
     input: opts.entry,
     external: opts.external,
     plugins: [
-      vue({ compileTemplate: true, css: true }),
+      css({
+        output: "dist/vue-finder.css"
+      }),
+      vue({ compileTemplate: true, css: false }),
       alias({
-        "@": path.resolve("src")
+        entries: [
+          {
+            find: "@",
+            replacement: path.resolve("src")
+          }
+        ]
       }),
       resolve({
         browser: true,
