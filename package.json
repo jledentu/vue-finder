@@ -83,7 +83,7 @@
     "cz-conventional-changelog": "^3.0.0",
     "dot": "^1.1.2",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^5.0.0",
+    "eslint-config-prettier": "^6.2.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.17.3",
