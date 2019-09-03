@@ -22,6 +22,7 @@ function renderItems(h, { props }) {
       treeModel={props.treeModel}
       selectable={props.selectable}
       dragEnabled={props.dragEnabled}
+      options={props.options}
     >
       {item.label}
     </FinderItem>
@@ -40,10 +41,6 @@ export default {
       type: Array,
       default: () => []
     },
-    itemComponent: {
-      type: Object,
-      default: () => FinderItem
-    },
     dropZoneComponent: {
       type: Object,
       default: () => FinderListDropZone
@@ -59,6 +56,10 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: Boolean
+    },
+    options: {
+      type: Object,
+      default: () => ({})
     }
   },
   render(h, { props, listeners }) {

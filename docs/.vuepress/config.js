@@ -1,11 +1,10 @@
 const path = require("path");
-console.log(path.join(__dirname, "..", "..", "src"));
 module.exports = {
   title: "Vue Finder",
   description: "A Vue.js component to display hierarchical data",
   themeConfig: {
     nav: [{ text: "GitHub", link: "https://github.com/jledentu/vue-finder" }],
-    sidebar: ["/getting-started", "/examples", "/api"],
+    sidebar: ["/getting-started", "/examples", "/customization", "/api"],
     displayAllHeaders: true,
     logo: "/logo.svg"
   },
@@ -16,6 +15,8 @@ module.exports = {
       );
       const exclude = babelRule.exclude;
       babelRule.exclude.push(/node_modules/);
+
+      config.resolve.alias.vue = "vue/dist/vue.common.js";
     }
   }
 };

@@ -24,9 +24,9 @@
       @click.stop
       @change="onSelect"
     />
-    <div class="inner-item">
+    <component :is="itemComponent" class="inner-item" :item="node">
       <slot />
-    </div>
+    </component>
     <div v-if="!node.isLeaf" class="arrow" />
   </div>
 </template>
@@ -49,6 +49,10 @@ export default {
     selectable: {
       type: Boolean,
       default: false
+    },
+    options: {
+      type: Object,
+      default: () => ({})
     }
   },
   computed: {
@@ -60,6 +64,9 @@ export default {
     },
     dragged() {
       return this.treeModel.isNodeDragged(this.node.id);
+    },
+    itemComponent() {
+      return this.options.itemComponent || "div";
     }
   },
   methods: {

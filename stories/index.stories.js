@@ -140,4 +140,16 @@ storiesOf("Finder", module)
     created() {
       this.tree = data;
     }
+  }))
+  .add("Custom item component", () => ({
+    mixins: [filterMixin],
+    template: `<Finder :tree="tree" :item-component="itemComponent" :selectable="true" :drag-enabled="true" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
+      this.itemComponent = {
+        props: ["item"],
+        template:
+          '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+      };
+    }
   }));
