@@ -106,10 +106,12 @@ export default {
 .tree-container {
   overflow-x: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 
   .list-container {
     display: flex;
-    height: 100%;
+    flex: 1;
   }
 }
 </style>

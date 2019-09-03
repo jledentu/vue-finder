@@ -86,6 +86,6 @@ export default {
 <style lang="scss" scoped>
 .tree-container {
   margin: 20px 0;
-  min-height: 200px;
+  min-height: 250px;
 }
 </style>
