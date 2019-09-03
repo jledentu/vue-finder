@@ -1,0 +1,19 @@
+## Events
+
+{{~Object.keys(it.events) :eventName}}
+
+{{ const { description, properties = [] } = it.events[eventName]; }}
+
+### `{{= eventName}}`
+
+{{= description}}
+
+{{? properties.length > 0}}
+**Properties:**
+
+{{~ properties :property}}{{ const t = property.type.names ? property.type.names.join(" ") : ""; }}- **{{= property.name}}**{{? t}} - `{{= t}}`{{?}}: {{= property.description}}
+{{~}}
+
+{{?}}
+
+{{~}}

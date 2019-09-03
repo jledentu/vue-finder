@@ -1,0 +1,10 @@
+# API
+
+{{? it.doc.description }}
+   {{= it.doc.description }}
+{{?}}
+
+{{= it.renderedUsage.props }}
+{{= it.renderedUsage.methods }}
+{{= it.renderedUsage.events }}
+{{= it.renderedUsage.slots }}

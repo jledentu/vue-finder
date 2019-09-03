@@ -91,6 +91,82 @@ export default {
   },
   created() {
     this.treeModel = new TreeModel(this.tree, this.filter);
+
+    this.treeModel.on("expand", expanded => {
+      /**
+       * This event is triggered when an item has been expanded.
+       *
+       * ```html
+       * <Finder :tree="tree" @expand="onExpand"/>
+       * ```
+       *
+       * ```js
+       * onExpand({ expanded }) {
+       *   console.log(
+       *     `Items with ${expanded.join()} IDs are now expanded`
+       *   );
+       * }
+       * ```
+       *
+       * @event expand
+       * @type {object}
+       * @property {Array<string>} expanded IDs of expanded items
+       */
+      this.$emit("expand", {
+        expanded
+      });
+    });
+    this.treeModel.on("select", selected => {
+      /**
+       * This event is triggered when an item has been selected.
+       *
+       * ```html
+       * <Finder :tree="tree" @select="onSelect"/>
+       * ```
+       *
+       * ```js
+       * onSelect({ selected }) {
+       *   console.log(
+       *     `Items with ${selected.join()} IDs are now selected`
+       *   );
+       * }
+       * ```
+       *
+       * @event select
+       * @type {object}
+       * @property {Array<string>} selected IDs of selected items
+       */
+      this.$emit("select", {
+        selected
+      });
+    });
+    this.treeModel.on("move", ({ moved, to }) => {
+      /**
+       * This event is triggered when an item has been moved by drag and drop.
+       *
+       * ```html
+       * <Finder :tree="tree" @move="onMove"/>
+       * ```
+       *
+       * ```js
+       * onMove({ moved, to }) {
+       *   console.log(
+       *     `Item with ${moved} ID has been moved
+       *     to its new parent with ${to} ID`
+       *   );
+       * }
+       * ```
+       *
+       * @event move
+       * @type {object}
+       * @property {string} moved ID of the moved item
+       * @property {string} to    ID of the parent on which the item has been moved to
+       */
+      this.$emit("move", {
+        moved,
+        to
+      });
+    });
   },
   render(h) {
     return (
@@ -106,12 +182,10 @@ export default {
 .tree-container {
   overflow-x: auto;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 
   .list-container {
     display: flex;
-    flex: 1;
+    height: 100%;
   }
 }
 </style>
