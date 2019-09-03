@@ -81,6 +81,7 @@
     "core-js": "^2",
     "css-loader": "^2.1.1",
     "cz-conventional-changelog": "^3.0.0",
+    "dot": "^1.1.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-import-resolver-webpack": "^0.11.1",

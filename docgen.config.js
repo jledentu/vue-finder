@@ -1,4 +1,7 @@
 const path = require("path");
+const doT = require("dot");
+doT.templateSettings.strip = false;
+const templates = doT.process({ path: "./docs/templates" });
 
 module.exports = {
   componentsRoot: "src/components",
@@ -9,6 +12,8 @@ module.exports = {
   },
   getDestFile: (file, config) => path.join(config.outDir, "api.md"),
   templates: {
-    component: require("./docs/templates/component")
+    component: (renderedUsage, doc) =>
+      templates.component({ renderedUsage, doc }),
+    events: events => templates.events({ events })
   }
 };

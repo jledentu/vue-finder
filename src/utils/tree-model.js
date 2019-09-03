@@ -138,7 +138,10 @@ export default class extends EventManager {
 
     this.draggedNodeId = undefined;
     this._updateVisibleTree();
-    this.trigger("move");
+    this.trigger("move", {
+      moved: draggedNode.id,
+      to: nodeId
+    });
   }
 
   isNodeDragged(nodeId) {

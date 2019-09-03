@@ -47,14 +47,20 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match snapshot with expanded item", () => {
+  it("should match snapshot with expanded item and emit event", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree
       }
     });
 
-    wrapper.find(".item").trigger("click");
+    wrapper
+      .findAll(".item")
+      .at(0)
+      .trigger("click");
+    expect(wrapper.emitted().expand).toEqual([
+      [{ expanded: ["test1", "test11"] }]
+    ]);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -82,5 +88,75 @@ describe("Finder", () => {
       filter: ({ id }) => id === "test12"
     });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe("Selection", () => {
+    it("should match snapshot", () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          selectable: true
+        }
+      });
+
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should emit a `select` event", () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          selectable: true
+        }
+      });
+
+      wrapper
+        .findAll(".item > input[type=checkbox]")
+        .at(1)
+        .trigger("click");
+
+      expect(wrapper.emitted().select).toEqual([
+        [{ selected: ["test11", "test12"] }]
+      ]);
+    });
+  });
+
+  describe("Drag & Drop", () => {
+    it("should match snapshot", () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          dragEnabled: true
+        }
+      });
+
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should emit a `move` event", () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          dragEnabled: true
+        }
+      });
+
+      wrapper
+        .findAll(".item")
+        .at(0)
+        .trigger("dragstart", {
+          dataTransfer: {
+            setData() {}
+          }
+        });
+      wrapper
+        .findAll(".item")
+        .at(1)
+        .trigger("drop");
+
+      expect(wrapper.emitted().move).toEqual([
+        [{ moved: "test11", to: "test12" }]
+      ]);
+    });
   });
 });
