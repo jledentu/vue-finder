@@ -5,10 +5,10 @@
 Install this package with Yarn:
 
 ```sh
-yarn add vue-finder
+yarn add @jledentu/vue-finder
 
 # Or, using npm
-npm install --save vue-finder
+npm install --save @jledentu/vue-finder
 ```
 
 ## Basic usage
@@ -25,7 +25,7 @@ Then, import and use the component:
 </template>
 
 <script>
-  import { Finder } from "vue-finder";
+  import { Finder } from "@jledentu/vue-finder";
   export default {
     components: {
       Finder
@@ -54,11 +54,5 @@ Then, import and use the component:
 The component itself does not include any CSS. You'll need to include it separately:
 
 ```js
-import "vue-finder/dist/vue-finder.css";
-```
-
-Alternatively, you can import the scss for complete control of the component styles:
-
-```scss
-@import "vue-select/src/scss/vue-select.scss";
+import "@jledentu/vue-finder/dist/vue-finder.css";
 ```
