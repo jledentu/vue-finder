@@ -19,6 +19,10 @@ function renderTree(h, context, item) {
     context.treeModel.isNodeExpanded(child.id)
   );
 
+  const options = {
+    itemComponent: context.itemComponent
+  };
+
   const itemList = (
     <FinderList
       tree-model={context.treeModel}
@@ -26,6 +30,7 @@ function renderTree(h, context, item) {
       items={item.children}
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
+      options={options}
     />
   );
 
@@ -68,6 +73,13 @@ export default {
      * Function to filter displayed items.
      */
     filter: {
+      type: Function,
+      default: undefined
+    },
+    /**
+     * Custom component to render items.
+     */
+    itemComponent: {
       type: Function,
       default: undefined
     }

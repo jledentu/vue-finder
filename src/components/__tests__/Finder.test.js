@@ -47,6 +47,16 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot with a custom item component", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree,
+        itemComponent: "span"
+      }
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should match snapshot with expanded item and emit event", () => {
     const wrapper = mount(Finder, {
       propsData: {

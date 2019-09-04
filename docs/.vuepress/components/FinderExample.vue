@@ -1,5 +1,5 @@
 <template>
-  <Finder :tree="tree" v-bind="$props" />
+  <Finder :tree="tree" :itemComponent="itemComponent" v-bind="$props" />
 </template>
 <script>
 import { Finder } from "../../../dist/vue-finder.esm.js";
@@ -9,7 +9,7 @@ export default {
   components: {
     Finder
   },
-  props: ["selectable", "filter", "dragEnabled"],
+  props: ["selectable", "filter", "dragEnabled", "useCustomItemComponent"],
   data() {
     return {
       tree: {
@@ -77,6 +77,19 @@ export default {
         ]
       }
     };
+  },
+  computed: {
+    itemComponent() {
+      if (this.useCustomItemComponent) {
+        return {
+          props: ["item"],
+          template:
+            '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+        };
+      } else {
+        return undefined;
+      }
+    }
   }
 };
 </script>
