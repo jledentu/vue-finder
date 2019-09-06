@@ -75,6 +75,20 @@ exports[`Finder should match snapshot with a custom item component 1`] = `
 </div>
 `;
 
+exports[`Finder should match snapshot with an updated tree 1`] = `
+<div class="tree-container">
+  <div class="list-container">
+    <div class="list">
+      <div draggable="false" class="item">
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 31</div>
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Finder should match snapshot with expanded item and emit event 1`] = `
 <div class="tree-container">
   <div class="list-container">

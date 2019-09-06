@@ -61,6 +61,12 @@ describe("TreeModel", () => {
         isLeaf: false
       });
     });
+
+    it("should initialize the TreeModel instance with an undefined root", () => {
+      const treeModelWithNoRoot = new TreeModel();
+      expect(treeModelWithNoRoot.expanded).toEqual([]);
+      expect(treeModelWithNoRoot.visibleTree).toEqual({});
+    });
   });
 
   describe("#expandNode", () => {

@@ -100,6 +100,37 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot with an updated tree", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree
+      }
+    });
+    wrapper.setProps({
+      tree: {
+        id: "test3",
+        children: [
+          {
+            id: "test31",
+            label: "Test 31",
+            children: [
+              {
+                id: "test311",
+                label: "Test 311"
+              },
+              {
+                id: "test312",
+                label: "Test 312",
+                selected: true
+              }
+            ]
+          }
+        ]
+      }
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   describe("Selection", () => {
     it("should match snapshot", () => {
       const wrapper = mount(Finder, {
