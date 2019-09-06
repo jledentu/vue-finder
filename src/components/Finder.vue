@@ -90,10 +90,11 @@ export default {
     };
   },
   watch: {
-    filter: {
-      handler(newFilter) {
-        this.treeModel.filter = newFilter;
-      }
+    tree(newTree) {
+      this.treeModel.root = newTree;
+    },
+    filter(newFilter) {
+      this.treeModel.filter = newFilter;
     }
   },
   beforeCreate() {

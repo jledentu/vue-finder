@@ -8,18 +8,21 @@ import {
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
-  constructor(root, filter) {
+  constructor(root = {}, filter) {
     super();
-    Object.defineProperty(this, "root", {
+    Object.defineProperty(this, "_root", {
       value: root,
-      configurable: false
+      configurable: false,
+      writable: true
     });
     Object.defineProperty(this, "nodesMap", {
       value: buildNodesMap(root),
-      configurable: false
+      configurable: false,
+      writable: true
     });
-    this.expanded = [this.root.id];
-    this.expandedWithoutFilter = this.expanded;
+
+    this._initExpanded();
+
     this.selected = Object.values(this.nodesMap)
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
@@ -31,6 +34,16 @@ export default class extends EventManager {
 
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
+  }
+
+  _initExpanded() {
+    if (this.root && this.root.id) {
+      this.expanded = [this.root.id];
+      this.expandedWithoutFilter = this.expanded;
+    } else {
+      this.expanded = [];
+      this.expandedWithoutFilter = [];
+    }
   }
 
   _updateVisibleTree() {
@@ -66,6 +79,10 @@ export default class extends EventManager {
 
   _computeVisibleTree(nodeId, { expanded }) {
     const node = this._getNode(nodeId);
+
+    if (!node) {
+      return {};
+    }
     const children = node.children || [];
     return {
       ...node,
@@ -150,6 +167,25 @@ export default class extends EventManager {
 
   isDragging() {
     return this.draggedNodeId !== undefined;
+  }
+
+  get root() {
+    return this._root;
+  }
+
+  set root(newRoot = {}) {
+    this._root = newRoot;
+    this.nodesMap = buildNodesMap(newRoot);
+
+    if (
+      !this.expanded.length ||
+      this.expanded.some(({ id }) => !this.nodesMap[id])
+    ) {
+      // Initialize the expanded since not compatible with the new tree
+      this._initExpanded();
+    }
+
+    this._updateVisibleTree();
   }
 
   /**
