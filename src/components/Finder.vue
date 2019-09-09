@@ -25,6 +25,7 @@ function renderTree(h, context, item) {
 
   const itemList = (
     <FinderList
+      ref="rootList"
       tree-model={context.treeModel}
       parent={item}
       items={item.children}
@@ -40,6 +41,13 @@ function renderTree(h, context, item) {
       {expandedChild && renderTree(h, context, expandedChild)}
     </div>
   );
+}
+
+/**
+ * Get a value animated by a ease out Bezier curve.
+ */
+function easeOutQuad(elapsedTime, start, end, duration) {
+  return -end * (elapsedTime /= duration) * (elapsedTime - 2) + start;
 }
 
 export default {
@@ -82,6 +90,17 @@ export default {
     itemComponent: {
       type: Function,
       default: undefined
+    },
+    /**
+     * Duration of the scroll animation (in milliseconds).
+     * When an item is expanded, the finder is scrolled to the right,
+     * using an animation. This parameter defines the duration of this animation.
+     *
+     * Set `0` for no animation.
+     */
+    scrollAnimationDuration: {
+      type: Number,
+      default: 200
     }
   },
   data() {
@@ -106,6 +125,10 @@ export default {
     this.treeModel = new TreeModel(this.tree, this.filter);
 
     this.treeModel.on("expand", expanded => {
+      this.$nextTick(() => {
+        this._scrollToRight(this.scrollAnimationDuration);
+      });
+
       /**
        * This event is triggered when an item has been expanded.
        *
@@ -199,6 +222,42 @@ export default {
      */
     expand(itemId) {
       this.treeModel.expandNode(itemId);
+    },
+    _scrollToRight(scrollDuration) {
+      const { scrollLeft, scrollWidth, offsetWidth } = this.$el;
+
+      if (scrollDuration === 0) {
+        this.$el.scrollLeft = scrollWidth;
+        return;
+      }
+
+      const scrollDistance = scrollWidth - offsetWidth - scrollLeft;
+      if (scrollDistance <= 0) {
+        return;
+      }
+
+      let oldTimestamp = performance.now();
+      let duration = 0;
+      const step = newTimestamp => {
+        const stepDuration = newTimestamp - oldTimestamp;
+        duration += stepDuration;
+
+        if (duration >= scrollDuration) {
+          this.$el.scrollLeft = this.$el.scrollWidth;
+          return;
+        }
+
+        oldTimestamp = newTimestamp;
+
+        this.$el.scrollLeft = easeOutQuad(
+          duration,
+          scrollLeft,
+          scrollDistance,
+          scrollDuration
+        );
+        window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
     }
   },
   render(h) {
