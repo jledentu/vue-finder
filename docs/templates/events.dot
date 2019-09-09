@@ -4,14 +4,16 @@
 
 {{ const { description, properties = [] } = it.events[eventName]; }}
 
-### `{{= eventName}}`
+### {{= eventName}}
 
 {{= description}}
 
 {{? properties.length > 0}}
-**Properties:**
+#### Properties
 
-{{~ properties :property}}{{ const t = property.type.names ? property.type.names.join(" ") : ""; }}- **{{= property.name}}**{{? t}} - `{{= t}}`{{?}}: {{= property.description}}
+| Name | Type | Description |
+|------|------|-------------|
+{{~ properties :property}}| `{{= property.name}}` | {{ const t = property.type.names ? property.type.names.join(" ") : ""; }} {{? t}} `{{= t}}`{{?}} | {{= property.description}} |
 {{~}}
 
 {{?}}

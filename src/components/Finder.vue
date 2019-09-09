@@ -181,6 +181,26 @@ export default {
       });
     });
   },
+  methods: {
+    /**
+     * Set a given item expanded.
+     *
+     * ```html
+     * <Finder :tree="tree" ref="myFinder" />
+     * ```
+     *
+     * ```js
+     * this.$refs.myFinder.expand('item111');
+     * ```
+     *
+     *
+     * @param {string} itemId ID of the item to expand
+     * @public
+     */
+    expand(itemId) {
+      this.treeModel.expandNode(itemId);
+    }
+  },
   render(h) {
     return (
       <div class="tree-container">

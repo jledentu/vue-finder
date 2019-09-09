@@ -14,6 +14,7 @@ module.exports = {
   templates: {
     component: (renderedUsage, doc) =>
       templates.component({ renderedUsage, doc }),
-    events: events => templates.events({ events })
+    events: events => templates.events({ events }),
+    methods: methods => templates.methods({ methods })
   }
 };
