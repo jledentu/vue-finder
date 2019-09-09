@@ -25,6 +25,7 @@ function renderTree(h, context, item) {
 
   const itemList = (
     <FinderList
+      ref="rootList"
       tree-model={context.treeModel}
       parent={item}
       items={item.children}
@@ -106,6 +107,33 @@ export default {
     this.treeModel = new TreeModel(this.tree, this.filter);
 
     this.treeModel.on("expand", expanded => {
+      this.$nextTick(() => {
+        const { scrollLeft, scrollWidth, offsetWidth } = this.$el;
+        const scrollDistance = scrollWidth - offsetWidth - scrollLeft;
+
+        if (scrollDistance <= 0) {
+          return;
+        }
+        const scrollDuration = 500;
+
+        let oldTimestamp = performance.now();
+        let duration = 0;
+        const step = newTimestamp => {
+          const stepDuration = newTimestamp - oldTimestamp;
+          duration += stepDuration;
+
+          if (duration >= scrollDuration) {
+            this.$el.scrollLeft = this.$el.scrollWidth;
+            return;
+          }
+
+          this.$el.scrollLeft +=
+            (stepDuration * scrollDistance) / scrollDuration;
+          window.requestAnimationFrame(step);
+        };
+        window.requestAnimationFrame(step);
+      });
+
       /**
        * This event is triggered when an item has been expanded.
        *
