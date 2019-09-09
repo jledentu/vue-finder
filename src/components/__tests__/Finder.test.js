@@ -200,4 +200,28 @@ describe("Finder", () => {
       ]);
     });
   });
+
+  describe("API", () => {
+    describe("#expand", () => {
+      it("should expand the given item and emit the `expand` event", () => {
+        const wrapper = mount(Finder, {
+          propsData: {
+            tree,
+            selectable: true
+          }
+        });
+
+        wrapper.vm.expand("test112");
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.emitted().expand).toEqual([
+          [
+            {
+              expanded: ["test1", "test11", "test112"]
+            }
+          ]
+        ]);
+      });
+    });
+  });
 });
