@@ -3,9 +3,9 @@
 {{~it.methods :method}}
 
 {{ const { name, description, tags, params = [] } = method; }}
+{{ const sinceTag = tags.since && tags.since.length > 0 ? tags.since[0].description : undefined ;}}
 
-
-### {{= name}}
+### {{= name}} {{? sinceTag }}<Badge text="{{= sinceTag}}"/>{{?}}
 
 {{= description}}
 

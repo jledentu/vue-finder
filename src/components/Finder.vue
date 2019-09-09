@@ -193,9 +193,9 @@ export default {
      * this.$refs.myFinder.expand('item111');
      * ```
      *
-     *
      * @param {string} itemId ID of the item to expand
      * @public
+     * @since 1.6.0
      */
     expand(itemId) {
       this.treeModel.expandNode(itemId);
