@@ -64,7 +64,6 @@ function genConfig(name) {
       }),
       resolve({
         browser: true,
-        jsnext: true,
         preferBuiltins: false,
         extensions: [".js", ".json", ".vue"]
       }),
@@ -104,7 +103,9 @@ function genConfig(name) {
     license({
       sourcemap: true,
       banner: {
-        file: path.resolve("LICENSE.md")
+        content: {
+          file: path.resolve("LICENSE")
+        }
       }
     })
   );

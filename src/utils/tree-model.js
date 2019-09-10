@@ -128,7 +128,7 @@ export default class extends EventManager {
   }
 
   startDrag(nodeId) {
-    if (this.nodesMap.hasOwnProperty(nodeId)) {
+    if (Object.prototype.hasOwnProperty.call(this.nodesMap, nodeId)) {
       this.draggedNodeId = nodeId;
     }
   }
