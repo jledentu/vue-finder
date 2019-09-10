@@ -152,4 +152,23 @@ storiesOf("Finder", module)
           '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
       };
     }
+  }))
+  .add("Custom theme", () => ({
+    mixins: [filterMixin],
+    computed: {
+      theme() {
+        return {
+          primaryColor: "#41b883",
+          arrowColor: "#555",
+          separatorColor: "#eee",
+          separatorWidth: "3px",
+          dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
+          draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
+        };
+      }
+    },
+    template: `<Finder :tree="tree" :theme="theme" :selectable="true" :drag-enabled="true" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
+    }
   }));

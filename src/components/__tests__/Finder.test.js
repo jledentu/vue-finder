@@ -131,6 +131,23 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot with custom theme", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree,
+        theme: {
+          primaryColor: "#41b883",
+          arrowColor: "#555",
+          separatorColor: "#eee",
+          separatorWidth: "3px",
+          dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
+          draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
+        }
+      }
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   describe("Selection", () => {
     it("should match snapshot", () => {
       const wrapper = mount(Finder, {

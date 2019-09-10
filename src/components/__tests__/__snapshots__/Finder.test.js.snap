@@ -106,6 +106,25 @@ exports[`Finder should match snapshot with an updated tree 1`] = `
 </div>
 `;
 
+exports[`Finder should match snapshot with custom theme 1`] = `
+<div class="tree-container">
+  <div class="list-container">
+    <div class="list" style="border-color: #eee; border-width: 3px;">
+      <div draggable="false" class="item">
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 11</div>
+        <div class="arrow" style="border-color: #555;"></div>
+      </div>
+      <div draggable="false" class="item">
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 12</div>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Finder should match snapshot with expanded item and emit event 1`] = `
 <div class="tree-container">
   <div class="list-container">
