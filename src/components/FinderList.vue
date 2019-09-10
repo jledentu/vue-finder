@@ -1,4 +1,5 @@
 <script>
+import { get } from "lodash-es";
 import FinderItem from "./FinderItem";
 import FinderListDropZone from "./FinderListDropZone";
 
@@ -12,6 +13,7 @@ function renderItems(h, { props }) {
           node={props.parent}
           treeModel={props.treeModel}
           dragEnabled={props.dragEnabled}
+          options={props.options}
         />
       )
     ],
@@ -64,9 +66,15 @@ export default {
   },
   render(h, { props, listeners }) {
     const DropZoneComponent = props.dropZoneComponent;
+    const separatorColor = get(props, "options.theme.separatorColor", "");
+    const separatorWidth = get(props, "options.theme.separatorWidth", "");
+    const style = {
+      ...(separatorColor && { borderColor: separatorColor }),
+      ...(separatorWidth && { borderWidth: separatorWidth })
+    };
 
     return [
-      <div class="list">
+      <div class="list" style={style}>
         {[
           ...renderItems(h, { props, listeners }),
           ...[
@@ -76,6 +84,7 @@ export default {
                 treeModel={props.treeModel}
                 node={props.parent}
                 dragEnabled={props.dragEnabled}
+                options={props.options}
               />
             )
           ]

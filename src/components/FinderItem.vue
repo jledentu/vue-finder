@@ -7,6 +7,18 @@
       dragged,
       'drag-over': dragOver
     }"
+    :style="{
+      ...(expanded &&
+        theme.primaryColor && { backgroundColor: theme.primaryColor }),
+      ...(dragged &&
+        theme.draggedItemBgColor && {
+          backgroundColor: theme.draggedItemBgColor
+        }),
+      ...(dragOver &&
+        theme.primaryColor && { borderColor: theme.primaryColor }),
+      ...(dragOver &&
+        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
+    }"
     :draggable="dragEnabled"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
@@ -27,7 +39,13 @@
     <component :is="itemComponent" class="inner-item" :item="node">
       <slot />
     </component>
-    <div v-if="!node.isLeaf" class="arrow" />
+    <div
+      v-if="!node.isLeaf"
+      class="arrow"
+      :style="{
+        ...(theme.arrowColor && { borderColor: theme.arrowColor })
+      }"
+    />
   </div>
 </template>
 
@@ -38,21 +56,9 @@ export default {
   name: "FinderItem",
   mixins: [FinderListDropZone],
   props: {
-    node: {
-      type: Object,
-      required: true
-    },
-    treeModel: {
-      type: Object,
-      required: true
-    },
     selectable: {
       type: Boolean,
       default: false
-    },
-    options: {
-      type: Object,
-      default: () => ({})
     }
   },
   computed: {

@@ -20,7 +20,8 @@ function renderTree(h, context, item) {
   );
 
   const options = {
-    itemComponent: context.itemComponent
+    itemComponent: context.itemComponent,
+    theme: context.theme
   };
 
   const itemList = (
@@ -90,6 +91,24 @@ export default {
     itemComponent: {
       type: Function,
       default: undefined
+    },
+    /**
+     * Styling options.
+     *
+     * ```js
+     * const theme = {
+     *   primaryColor: '#2196f3',
+     *   arrowColor: 'black',
+     *   separatorColor: '#ccc',
+     *   separatorWidth: '1px',
+     *   dropZoneBgColor: 'rgba(33, 150, 243, 0.2)',
+     *   draggedItemBgColor: 'rgba(33, 150, 243, 0.5)',
+     * };
+     * ```
+     */
+    theme: {
+      type: Object,
+      default: () => ({})
     },
     /**
      * Duration of the scroll animation (in milliseconds).

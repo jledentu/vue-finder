@@ -2,6 +2,12 @@
   <div
     class="drop-zone"
     :class="{ 'drag-over': dragOver }"
+    :style="{
+      ...(dragOver &&
+        theme.primaryColor && { borderColor: theme.primaryColor }),
+      ...(dragOver &&
+        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
+    }"
     @dragenter.prevent="onDragEnter"
     @dragleave.prevent="onDragLeave"
     @dragover.prevent
@@ -10,6 +16,8 @@
 </template>
 
 <script>
+import { get } from "lodash-es";
+
 export default {
   name: "FinderListDropZone",
   props: {
@@ -24,6 +32,10 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: false
+    },
+    options: {
+      type: Object,
+      default: () => ({})
     }
   },
   data: () => ({
@@ -32,6 +44,9 @@ export default {
   computed: {
     dragOver() {
       return this.dragCounter > 0;
+    },
+    theme() {
+      return get(this, "options.theme", {});
     }
   },
   methods: {
