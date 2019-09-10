@@ -1,3 +1,4 @@
+import { sortBy } from "lodash-es";
 import TreeModel from "../tree-model";
 
 describe("TreeModel", () => {
@@ -131,6 +132,52 @@ describe("TreeModel", () => {
       model.selectNode("test11", false);
       expect(onSelect).toHaveBeenCalledWith([]);
       expect(model.isNodeSelected("test11")).toBe(false);
+    });
+  });
+
+  describe("#filter", () => {
+    it("should filter the visible tree", () => {
+      model.filter = ({ id }) => id === "test11";
+      expect(sortBy(model.filtered)).toEqual(["test1", "test11"]);
+      expect(model.visibleTree).toEqual({
+        id: "test1",
+        children: [
+          {
+            id: "test11",
+            selected: true,
+            children: [],
+            isLeaf: false,
+            parent: "test1"
+          }
+        ],
+        isLeaf: false
+      });
+    });
+
+    it("should unfilter the visible tree if undefined", () => {
+      model.filter = ({ id }) => id === "test11";
+      model.filter = undefined;
+
+      expect(model.filtered).toEqual([]);
+      expect(model.visibleTree).toEqual({
+        id: "test1",
+        children: [
+          {
+            id: "test11",
+            selected: true,
+            children: [],
+            isLeaf: false,
+            parent: "test1"
+          },
+          {
+            id: "test12",
+            children: [],
+            isLeaf: true,
+            parent: "test1"
+          }
+        ],
+        isLeaf: false
+      });
     });
   });
 

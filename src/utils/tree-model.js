@@ -196,24 +196,32 @@ export default class extends EventManager {
   set filter(newFilter) {
     this._filter = newFilter;
 
-    if (
-      !this.expandedWithoutFilter.some(nodeId => {
-        const node = this._getNode(nodeId);
-        return (
-          this._filter(node) ||
-          (node.children && node.children.some(this._filter))
-        );
-      })
-    ) {
-      // If the expanded nodes do not match the filter,
-      // Expand the first node matching
-      this.expanded = [this.root.id];
+    if (!this._filter) {
+      this.filtered = [];
     } else {
-      // The previously expanded nodes match, re-expanded
-      this.expanded = this.expandedWithoutFilter;
-    }
+      if (
+        !this.expandedWithoutFilter.some(nodeId => {
+          const node = this._getNode(nodeId);
+          return (
+            this._filter(node) ||
+            (node.children && node.children.some(this._filter))
+          );
+        })
+      ) {
+        // If the expanded nodes do not match the filter,
+        // Expand the first node matching
+        this.expanded = [this.root.id];
+      } else {
+        // The previously expanded nodes match, re-expanded
+        this.expanded = this.expandedWithoutFilter;
+      }
 
-    this.filtered = getFilteredNodes(this._filter, this.root.id, this.nodesMap);
+      this.filtered = getFilteredNodes(
+        this._filter,
+        this.root.id,
+        this.nodesMap
+      );
+    }
     this._updateVisibleTree();
   }
 }

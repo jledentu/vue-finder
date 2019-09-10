@@ -125,6 +125,9 @@ storiesOf("Finder", module)
     },
     computed: {
       filterFunction() {
+        if (!this.filter) {
+          return undefined;
+        }
         const filterString = this.filter;
         return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
       }
