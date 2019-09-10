@@ -1,7 +1,7 @@
 {
   "name": "@jledentu/vue-finder",
   "description": "A Vue.js component to display hierarchical data",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "license": "MIT",
   "main": "dist/vue-finder.common.js",
   "module": "dist/vue-finder.esm.js",
