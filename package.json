@@ -9,7 +9,7 @@
   "jsdelivr": "dist/vue-finder.js",
   "files": [
     "src",
-    "dist/*.js"
+    "dist/*"
   ],
   "author": "Jérémie Ledentu <jledentu@gmail.com>",
   "repository": {
