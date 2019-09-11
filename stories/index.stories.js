@@ -34,13 +34,14 @@ const data = {
       label: "Fruits",
       children: [
         {
+          id: "orange",
+          label: "Orange",
+          selected: true
+        },
+        {
           id: "apple",
           label: "Apple",
           selectable: false
-        },
-        {
-          id: "banana",
-          label: "Banana"
         },
         {
           id: "grape",
@@ -48,14 +49,13 @@ const data = {
           selected: true
         },
         {
+          id: "banana",
+          label: "Banana"
+        },
+        {
           id: "lemon",
           label: "Lemon",
           selectable: false
-        },
-        {
-          id: "orange",
-          label: "Orange",
-          selected: true
         }
       ]
     },
@@ -63,10 +63,6 @@ const data = {
       id: "vegetables",
       label: "Vegetables",
       children: [
-        {
-          id: "bean",
-          label: "Beans"
-        },
         {
           id: "carrot",
           label: "Carrot",
@@ -85,6 +81,10 @@ const data = {
           id: "tomato",
           label: "Tomato",
           selectable: false
+        },
+        {
+          id: "bean",
+          label: "Beans"
         }
       ]
     }
@@ -130,9 +130,12 @@ storiesOf("Finder", module)
         }
         const filterString = this.filter;
         return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
+      },
+      sortBy() {
+        return (item1, item2) => item1.label.localeCompare(item2.label);
       }
     },
-    template: `<Finder :tree="tree" :selectable="true" style="height: 100%" :filter="filterFunction"></Finder>`,
+    template: `<Finder :tree="tree" :selectable="true" style="height: 100%" :filter="filterFunction" :sortBy="sortBy"></Finder>`,
     created() {
       this.tree = data;
     }
