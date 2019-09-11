@@ -5,7 +5,15 @@ import FinderListDropZone from "./FinderListDropZone";
 
 function renderItems(h, { props }) {
   const DropZoneComponent = props.dropZoneComponent;
-  return props.items.map(item => [
+
+  let { items, options } = props;
+
+  if (options.sortBy) {
+    items = [...items].sort(options.sortBy);
+    console.log(JSON.stringify(items));
+  }
+
+  return items.map(item => [
     ...[
       props.dragEnabled && (
         <DropZoneComponent

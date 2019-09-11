@@ -100,6 +100,18 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot with sort", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree,
+        sortBy: (item1, item2) =>
+          item1.id > item2.id ? -1 : item1.id < item2.id ? 1 : 0
+      }
+    });
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should match snapshot with an updated tree", () => {
     const wrapper = mount(Finder, {
       propsData: {

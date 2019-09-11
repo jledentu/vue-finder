@@ -20,6 +20,7 @@ function renderTree(h, context, item) {
   );
 
   const options = {
+    sortBy: context.sortBy,
     itemComponent: context.itemComponent,
     theme: context.theme
   };
@@ -82,6 +83,13 @@ export default {
      * Function to filter displayed items.
      */
     filter: {
+      type: Function,
+      default: undefined
+    },
+    /**
+     * Function to sort displayed items.
+     */
+    sortBy: {
       type: Function,
       default: undefined
     },
