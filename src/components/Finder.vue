@@ -94,6 +94,13 @@ export default {
       default: undefined
     },
     /**
+     * ID of the item expanded when loaded.
+     */
+    defaultExpanded: {
+      type: String,
+      default: undefined
+    },
+    /**
      * Custom component to render items.
      */
     itemComponent: {
@@ -149,7 +156,10 @@ export default {
     });
   },
   created() {
-    this.treeModel = new TreeModel(this.tree, this.filter);
+    this.treeModel = new TreeModel(this.tree, {
+      filter: this.filter,
+      defaultExpanded: this.defaultExpanded
+    });
 
     this.treeModel.on("expand", expanded => {
       this.$nextTick(() => {

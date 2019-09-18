@@ -8,7 +8,7 @@ import {
 import EventManager from "./event-manager";
 
 export default class extends EventManager {
-  constructor(root = {}, filter) {
+  constructor(root = {}, options = {}) {
     super();
     Object.defineProperty(this, "_root", {
       value: root,
@@ -21,23 +21,25 @@ export default class extends EventManager {
       writable: true
     });
 
-    this._initExpanded();
+    this._initExpanded(options.defaultExpanded);
 
     this.selected = Object.values(this.nodesMap)
       .filter(({ selected }) => selected)
       .map(({ id }) => id);
 
     this.filtered = [];
-    if (filter) {
-      this.filter = filter;
+    if (options.filter) {
+      this.filter = options.filter;
     }
 
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
 
-  _initExpanded() {
-    if (this.root && this.root.id) {
+  _initExpanded(defaultExpanded) {
+    if (defaultExpanded) {
+      this.expandNode(defaultExpanded);
+    } else if (this.root && this.root.id) {
       this.expanded = [this.root.id];
       this.expandedWithoutFilter = this.expanded;
     } else {

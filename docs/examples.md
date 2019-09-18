@@ -28,7 +28,7 @@ const tree = {
 };
 ```
 
-<FinderExample></FinderExample>
+<FinderExample defaultExpanded="grape"></FinderExample>
 
 ## Selection
 

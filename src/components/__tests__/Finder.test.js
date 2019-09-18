@@ -112,6 +112,17 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should match snapshot with default expanded", () => {
+    const wrapper = mount(Finder, {
+      propsData: {
+        tree,
+        defaultExpanded: "test112"
+      }
+    });
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should match snapshot with an updated tree", () => {
     const wrapper = mount(Finder, {
       propsData: {
