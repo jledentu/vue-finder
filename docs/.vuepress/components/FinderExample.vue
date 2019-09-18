@@ -9,7 +9,13 @@ export default {
   components: {
     Finder
   },
-  props: ["selectable", "filter", "dragEnabled", "useCustomItemComponent"],
+  props: [
+    "selectable",
+    "filter",
+    "dragEnabled",
+    "useCustomItemComponent",
+    "defaultExpanded"
+  ],
   data() {
     return {
       tree: {
