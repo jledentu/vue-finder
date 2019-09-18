@@ -10,7 +10,6 @@ function renderItems(h, { props }) {
 
   if (options.sortBy) {
     items = [...items].sort(options.sortBy);
-    console.log(JSON.stringify(items));
   }
 
   return items.map(item => [
