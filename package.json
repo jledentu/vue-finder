@@ -76,7 +76,7 @@
     "babel-preset-vue": "^2.0.2",
     "commitizen": "^4.0.0",
     "concurrently": "^5.0.0",
-    "core-js": "^2",
+    "core-js": "^3.3.0",
     "css-loader": "^3.2.0",
     "cz-conventional-changelog": "^3.0.0",
     "dot": "^1.1.2",
