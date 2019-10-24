@@ -60,7 +60,8 @@ export default {
         this.dragCounter--;
       }
     },
-    onDrop() {
+    onDrop(event) {
+      event.preventDefault();
       if (!this.treeModel.isDragging()) {
         return;
       }
