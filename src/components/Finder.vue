@@ -104,7 +104,7 @@ export default {
      * Custom component to render items.
      */
     itemComponent: {
-      type: Function,
+      type: [String, Object],
       default: undefined
     },
     /**
