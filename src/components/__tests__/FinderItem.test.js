@@ -155,6 +155,7 @@ describe("FinderItem", () => {
 
     describe("dragover", () => {
       it("should call treeModel.expandNode", () => {
+        const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -163,7 +164,49 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover");
+        wrapper.trigger("dragover", {
+          dataTransfer
+        });
+        expect(dataTransfer.dropEffect).toBe("all");
+        expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
+      });
+
+      it("should set dataTransfer.dropEffect = `all` if can drop", () => {
+        const dataTransfer = {};
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              canDrop: () => true
+            }
+          }
+        });
+
+        wrapper.trigger("dragover", {
+          dataTransfer
+        });
+        expect(dataTransfer.dropEffect).toBe("all");
+      });
+
+      it("should set dataTransfer.dropEffect = `none` if can not drop", () => {
+        const dataTransfer = {};
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              canDrop: () => false
+            }
+          }
+        });
+
+        wrapper.trigger("dragover", {
+          dataTransfer
+        });
+        expect(dataTransfer.dropEffect).toBe("none");
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
 
@@ -206,6 +249,25 @@ describe("FinderItem", () => {
 
         wrapper.trigger("dragend");
         expect(treeModel.stopDrag).not.toHaveBeenCalled();
+      });
+
+      it("should set `draggable = false` if `options.hasDragHandle` is true", () => {
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              hasDragHandle: true
+            }
+          }
+        });
+
+        wrapper.find(".drag-handle").trigger("mousedown");
+        expect(wrapper.vm.draggable).toBe(true);
+
+        wrapper.trigger("dragend");
+        expect(wrapper.vm.draggable).toBe(false);
       });
     });
   });

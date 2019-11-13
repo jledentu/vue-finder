@@ -13,6 +13,7 @@ export default {
     "selectable",
     "filter",
     "dragEnabled",
+    "hasDragHandle",
     "useCustomItemComponent",
     "defaultExpanded"
   ],
