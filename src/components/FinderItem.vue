@@ -51,6 +51,7 @@
       type="checkbox"
       :checked="selected"
       :disabled="node.selectable === false"
+      :aria-label="node.label"
       @click.stop
       @change="onSelect"
     />
