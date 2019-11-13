@@ -132,7 +132,7 @@ export default {
      *
      * ```js
      * const theme = {
-     *   primaryColor: '#2196f3',
+     *   primaryColor: '#0b79d0',
      *   arrowColor: 'black',
      *   separatorColor: '#ccc',
      *   separatorWidth: '1px',
