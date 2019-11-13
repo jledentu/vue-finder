@@ -4,13 +4,13 @@ exports[`Finder API #expand should expand the given item and emit the \`expand\`
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item expanded">
-        <!----> <input type="checkbox">
+      <div role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
+        <!----> <input type="checkbox" aria-label="Test 11">
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
-        <!----> <input type="checkbox">
+      <div role="button" draggable="false" tabindex="-1" class="item">
+        <!----> <input type="checkbox" aria-label="Test 12">
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
@@ -24,14 +24,14 @@ exports[`Finder Drag & Drop should match snapshot 1`] = `
   <div class="list-container">
     <div class="list">
       <div class="drop-zone"></div>
-      <div draggable="true" class="item draggable">
+      <div role="button" draggable="true" tabindex="0" class="item draggable">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
       <div class="drop-zone"></div>
-      <div draggable="true" class="item draggable">
+      <div role="button" draggable="true" tabindex="-1" class="item draggable">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -47,13 +47,13 @@ exports[`Finder Selection should match snapshot 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
-        <!----> <input type="checkbox">
+      <div role="button" draggable="false" tabindex="0" class="item">
+        <!----> <input type="checkbox" aria-label="Test 11">
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
-        <!----> <input type="checkbox">
+      <div role="button" draggable="false" tabindex="-1" class="item">
+        <!----> <input type="checkbox" aria-label="Test 12">
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
@@ -66,13 +66,13 @@ exports[`Finder should match snapshot 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -87,12 +87,12 @@ exports[`Finder should match snapshot with a custom item component 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!----> <span item="[object Object]" class="inner-item">Test 11</span>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!----> <span item="[object Object]" class="inner-item">Test 12</span>
         <!---->
@@ -106,7 +106,7 @@ exports[`Finder should match snapshot with an updated tree 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 31</div>
@@ -121,13 +121,13 @@ exports[`Finder should match snapshot with custom theme 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list" style="border-color: #eee; border-width: 3px;">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow" style="border-color: #555;"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -142,13 +142,13 @@ exports[`Finder should match snapshot with default expanded 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item expanded">
+      <div role="button" draggable="false" aria-expanded="true" tabindex="0" class="item expanded">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -157,13 +157,13 @@ exports[`Finder should match snapshot with default expanded 1`] = `
     </div>
     <div class="list-container">
       <div class="list">
-        <div draggable="false" class="item">
+        <div role="button" draggable="false" tabindex="-1" class="item">
           <!---->
           <!---->
           <div item="[object Object]" class="inner-item">Test 111</div>
           <!---->
         </div>
-        <div draggable="false" class="item expanded">
+        <div role="button" draggable="false" tabindex="0" class="item expanded">
           <!---->
           <!---->
           <div item="[object Object]" class="inner-item">Test 112</div>
@@ -200,7 +200,7 @@ exports[`Finder should match snapshot with filter 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -215,13 +215,13 @@ exports[`Finder should match snapshot with initial filter 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
@@ -238,13 +238,13 @@ exports[`Finder should match snapshot with sort 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="0" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" tabindex="-1" class="item">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>

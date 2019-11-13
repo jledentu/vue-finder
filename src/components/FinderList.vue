@@ -12,7 +12,7 @@ function renderItems(h, { props }) {
     items = [...items].sort(options.sortBy);
   }
 
-  return items.map(item => [
+  return items.map((item, index) => [
     ...[
       props.dragEnabled && (
         <DropZoneComponent
@@ -32,6 +32,7 @@ function renderItems(h, { props }) {
       selectable={props.selectable}
       dragEnabled={props.dragEnabled}
       options={props.options}
+      tabindex={!props.hasExpandedItem && index === 0 ? "0" : "-1"}
     >
       {item.label}
     </FinderItem>
@@ -69,6 +70,10 @@ export default {
     options: {
       type: Object,
       default: () => ({})
+    },
+    hasExpandedItem: {
+      type: Boolean,
+      default: false
     }
   },
   render(h, { props, listeners }) {

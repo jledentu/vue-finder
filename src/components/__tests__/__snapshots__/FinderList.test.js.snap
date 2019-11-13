@@ -2,13 +2,13 @@
 
 exports[`FinderList should match snapshot 1`] = `
 <div class="list">
-  <div draggable="false" class="item">
+  <div role="button" draggable="false" tabindex="0" class="item">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 11</div>
     <div class="arrow"></div>
   </div>
-  <div draggable="false" class="item">
+  <div role="button" draggable="false" tabindex="-1" class="item">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 12</div>
@@ -20,14 +20,14 @@ exports[`FinderList should match snapshot 1`] = `
 exports[`FinderList should match snapshot if \`dragEnabled\` is true 1`] = `
 <div class="list">
   <div class="drop-zone"></div>
-  <div draggable="true" class="item draggable">
+  <div role="button" draggable="true" tabindex="0" class="item draggable">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 11</div>
     <div class="arrow"></div>
   </div>
   <div class="drop-zone"></div>
-  <div draggable="true" class="item draggable">
+  <div role="button" draggable="true" tabindex="-1" class="item draggable">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 12</div>
@@ -39,13 +39,13 @@ exports[`FinderList should match snapshot if \`dragEnabled\` is true 1`] = `
 
 exports[`FinderList should match snapshot if \`selectable\` is true 1`] = `
 <div class="list">
-  <div draggable="false" class="item">
-    <!----> <input type="checkbox">
+  <div role="button" draggable="false" tabindex="0" class="item">
+    <!----> <input type="checkbox" aria-label="Test 11">
     <div item="[object Object]" class="inner-item">Test 11</div>
     <div class="arrow"></div>
   </div>
-  <div draggable="false" class="item">
-    <!----> <input type="checkbox">
+  <div role="button" draggable="false" tabindex="-1" class="item">
+    <!----> <input type="checkbox" aria-label="Test 12">
     <div item="[object Object]" class="inner-item">Test 12</div>
     <!---->
   </div>

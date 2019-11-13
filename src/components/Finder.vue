@@ -36,6 +36,7 @@ function renderTree(h, context, item) {
       selectable={context.selectable}
       drag-enabled={context.dragEnabled}
       options={options}
+      has-expanded-item={!!expandedChild}
     />
   );
 
