@@ -75,3 +75,7 @@ You can enable the drag and drop of items with `dragEnabled`:
 ```
 
 <FinderExample :dragEnabled="true"></FinderExample>
+
+You can show handles to drag items with `hasDragHandle`:
+
+<FinderExample :dragEnabled="true" :has-drag-handle="true"></FinderExample>

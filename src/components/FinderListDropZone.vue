@@ -1,7 +1,10 @@
 <template>
   <div
     class="drop-zone"
-    :class="{ 'drag-over': dragOver }"
+    :class="{
+      'drag-over': dragOver,
+      'no-drop': treeModel.isDragging() && !canDrop
+    }"
     :style="{
       ...(dragOver &&
         theme.primaryColor && { borderColor: theme.primaryColor }),
@@ -47,22 +50,28 @@ export default {
     },
     theme() {
       return get(this, "options.theme", {});
+    },
+    canDrop() {
+      return (
+        !this.options.canDrop ||
+        this.options.canDrop(this.node.id, this.treeModel.draggedNodeId)
+      );
     }
   },
   methods: {
     onDragEnter() {
-      if (this.treeModel.isDragging()) {
+      if (this.canDrop && this.treeModel.isDragging()) {
         this.dragCounter++;
       }
     },
     onDragLeave() {
-      if (this.treeModel.isDragging()) {
+      if (this.canDrop && this.treeModel.isDragging()) {
         this.dragCounter--;
       }
     },
     onDrop(event) {
       event.preventDefault();
-      if (!this.treeModel.isDragging()) {
+      if (!this.canDrop || !this.treeModel.isDragging()) {
         return;
       }
       this.dragCounter = 0;
@@ -87,5 +96,9 @@ export default {
     border: dashed 3px $primaryColor;
     background-color: change-color($primaryColor, $alpha: 0.2);
   }
+}
+
+.no-drop * {
+  cursor: no-drop;
 }
 </style>

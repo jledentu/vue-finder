@@ -22,7 +22,9 @@ function renderTree(h, context, item) {
   const options = {
     sortBy: context.sortBy,
     itemComponent: context.itemComponent,
-    theme: context.theme
+    theme: context.theme,
+    hasDragHandle: context.hasDragHandle,
+    canDrop: context.canDrop
   };
 
   const itemList = (
@@ -78,6 +80,24 @@ export default {
     dragEnabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Whether a drag handle is displayed to drag items.
+     */
+    hasDragHandle: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Function that indicates if a dragged item can be dropped on another.
+     *
+     * @param {string} target ID of the drop target
+     * @param {string} source ID of the dragged item
+     * @return Should return `true` if `source` can be dropped on `target`
+     */
+    canDrop: {
+      type: Function,
+      default: undefined
     },
     /**
      * Function to filter displayed items.

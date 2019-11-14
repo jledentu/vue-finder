@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/vue";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, boolean, text } from "@storybook/addon-knobs";
 
 const MAX_DEPTH = 4;
 const CHILDREN_NUMBER = 10;
@@ -141,10 +141,19 @@ storiesOf("Finder", module)
     }
   }))
   .add("Drag and drop", () => ({
+    props: {
+      hasDragHandle: {
+        type: Boolean,
+        default: boolean("Show drag handle", false)
+      }
+    },
     mixins: [filterMixin],
-    template: `<Finder :tree="tree" :drag-enabled="true" style="height: 100%"></Finder>`,
+    template: `<Finder :tree="tree" :drag-enabled="true" :can-drop="canDrop" :has-drag-handle="hasDragHandle" style="height: 100%"></Finder>`,
     created() {
       this.tree = data;
+      this.canDrop = target => {
+        return target !== "tomato";
+      };
     }
   }))
   .add("Custom item component", () => ({
