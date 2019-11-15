@@ -3,7 +3,7 @@ import { get } from "lodash-es";
 import FinderItem from "./FinderItem";
 import FinderListDropZone from "./FinderListDropZone";
 
-function renderItems(h, { props }) {
+function renderItems(h, { props, expandedItemIndex }) {
   const DropZoneComponent = props.dropZoneComponent;
 
   let { items, options } = props;
@@ -32,11 +32,25 @@ function renderItems(h, { props }) {
       selectable={props.selectable}
       dragEnabled={props.dragEnabled}
       options={props.options}
-      tabindex={!props.hasExpandedItem && index === 0 ? "0" : "-1"}
+      tabindex={index === expandedItemIndex ? "0" : "-1"}
     >
       {item.label}
     </FinderItem>
   ]);
+}
+
+function expandPreviousItem(treeModel, items, currentExpandedIndex) {
+  if (currentExpandedIndex <= 0) {
+    return;
+  }
+  treeModel.expandNode(items[currentExpandedIndex - 1].id);
+}
+
+function expandNextItem(treeModel, items, currentExpandedIndex) {
+  if (currentExpandedIndex >= items.length - 1) {
+    return;
+  }
+  treeModel.expandNode(items[currentExpandedIndex + 1].id);
 }
 
 export default {
@@ -85,10 +99,23 @@ export default {
       ...(separatorWidth && { borderWidth: separatorWidth })
     };
 
+    const expandedItemIndex = Math.max(
+      0,
+      props.items.findIndex(item => props.treeModel.isNodeExpanded(item.id))
+    );
+
+    function navigate(event) {
+      if (event.key === "ArrowDown") {
+        expandNextItem(props.treeModel, props.items, expandedItemIndex);
+      } else if (event.key === "ArrowUp") {
+        expandPreviousItem(props.treeModel, props.items, expandedItemIndex);
+      }
+    }
+
     return [
-      <div class="list" style={style}>
+      <div class="list" style={style} vOn:keydown={navigate}>
         {[
-          ...renderItems(h, { props, listeners }),
+          ...renderItems(h, { props, listeners, expandedItemIndex }),
           ...[
             props.dragEnabled && (
               <DropZoneComponent

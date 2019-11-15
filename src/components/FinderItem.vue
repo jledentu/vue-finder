@@ -28,7 +28,6 @@
     }"
     :draggable="dragEnabled && draggable"
     :aria-expanded="node.isLeaf ? undefined : expanded"
-    :tabindex="expanded ? '0' : tabindex"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
     @dragstart="onDragStart"
@@ -81,10 +80,6 @@ export default {
     selectable: {
       type: Boolean,
       default: false
-    },
-    tabindex: {
-      type: String,
-      default: "-1"
     }
   },
   data() {
