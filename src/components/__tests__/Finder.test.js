@@ -67,7 +67,7 @@ describe("Finder", () => {
     wrapper
       .findAll(".item")
       .at(0)
-      .trigger("click");
+      .trigger("focus");
     expect(wrapper.emitted().expand).toEqual([
       [{ expanded: ["test1", "test11"] }]
     ]);

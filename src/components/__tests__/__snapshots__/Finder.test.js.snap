@@ -179,13 +179,13 @@ exports[`Finder should match snapshot with expanded item and emit event 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div draggable="false" class="item expanded">
+      <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div draggable="false" class="item">
+      <div role="button" draggable="false" class="item" tabindex="-1">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
