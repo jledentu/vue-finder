@@ -113,7 +113,6 @@ export default {
     );
 
     function navigate(event) {
-      console.log(event);
       let sibling;
       if (event.key === "ArrowDown") {
         sibling = getNextItemElement(event.target);

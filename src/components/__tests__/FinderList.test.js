@@ -103,4 +103,32 @@ describe("FinderList", () => {
     secondItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
   });
+
+  it("should handle focus with arrows up/down when drag enabled", () => {
+    const wrapper = mount(FinderList, {
+      propsData: {
+        treeModel,
+        items: tree.children,
+        dragEnabled: true
+      }
+    });
+
+    const firstItem = wrapper.findAll(".item").at(0);
+    const secondItem = wrapper.findAll(".item").at(1);
+
+    firstItem.element.focus();
+    expect(document.activeElement).toBe(firstItem.element);
+
+    // Up doesn't have any effect since the first item is focused
+    firstItem.trigger("keydown", { key: "ArrowUp" });
+    expect(document.activeElement).toBe(firstItem.element);
+
+    // Down navigates to the second item
+    firstItem.trigger("keydown", { key: "ArrowDown" });
+    expect(document.activeElement).toBe(secondItem.element);
+
+    // Up navigates back to the first item
+    secondItem.trigger("keydown", { key: "ArrowUp" });
+    expect(document.activeElement).toBe(firstItem.element);
+  });
 });
