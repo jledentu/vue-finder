@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FinderItem Drag & drop should match snapshot if dragEnabled is \`true\` 1`] = `
-<div role="button" draggable="true" tabindex="-1" class="item draggable">
+<div role="button" draggable="true" class="item draggable">
   <!---->
   <!---->
   <div item="[object Object]" class="inner-item"></div>
@@ -10,7 +10,7 @@ exports[`FinderItem Drag & drop should match snapshot if dragEnabled is \`true\`
 `;
 
 exports[`FinderItem Expand should match snapshot if expanded 1`] = `
-<div role="button" draggable="false" aria-expanded="true" tabindex="0" class="item expanded">
+<div role="button" draggable="false" aria-expanded="true" class="item expanded">
   <!---->
   <!---->
   <div item="[object Object]" class="inner-item"></div>
@@ -19,7 +19,7 @@ exports[`FinderItem Expand should match snapshot if expanded 1`] = `
 `;
 
 exports[`FinderItem Selection should match snapshot if selectable 1`] = `
-<div role="button" draggable="false" tabindex="-1" class="item">
+<div role="button" draggable="false" class="item">
   <!----> <input type="checkbox">
   <div item="[object Object]" class="inner-item"></div>
   <div class="arrow"></div>
@@ -27,7 +27,7 @@ exports[`FinderItem Selection should match snapshot if selectable 1`] = `
 `;
 
 exports[`FinderItem should match snapshot 1`] = `
-<div role="button" draggable="false" tabindex="-1" class="item">
+<div role="button" draggable="false" class="item">
   <!---->
   <!---->
   <div item="[object Object]" class="inner-item"></div>
