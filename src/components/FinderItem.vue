@@ -1,6 +1,7 @@
 <template>
   <div
     class="item"
+    role="button"
     :class="{
       expanded,
       draggable: dragEnabled && draggable,
@@ -26,13 +27,14 @@
         theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
     }"
     :draggable="dragEnabled && draggable"
+    :aria-expanded="node.isLeaf ? undefined : expanded"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
     @dragstart="onDragStart"
     @dragover="onDragOver"
     @drop="onDrop"
     @dragend="onDragEnd"
-    @click="onClick"
+    @focus="onFocus"
   >
     <div
       v-if="dragEnabled && options.hasDragHandle"
@@ -51,6 +53,7 @@
       type="checkbox"
       :checked="selected"
       :disabled="node.selectable === false"
+      :aria-label="node.label"
       @click.stop
       @change="onSelect"
     />
@@ -107,7 +110,7 @@ export default {
     }
   },
   methods: {
-    onClick() {
+    onFocus() {
       this.treeModel.expandNode(this.node.id);
     },
     onSelect(event) {
@@ -199,6 +202,10 @@ export default {
     width: 6px;
     height: 6px;
     transform: rotate(-45deg);
+  }
+
+  &:focus {
+    outline: none;
   }
 
   .drag-handle {

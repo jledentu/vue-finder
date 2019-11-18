@@ -1,8 +1,11 @@
-import { configure } from '@storybook/vue';
-import Vue from 'vue';
+import { configure, addDecorator } from "@storybook/vue";
+import Vue from "vue";
+import { withA11y } from "@storybook/addon-a11y";
+
+addDecorator(withA11y);
 
 // Import your custom components.
-import ModuleLibrary from '@/index';
+import ModuleLibrary from "@/index";
 
 // Install this library
 Vue.use(ModuleLibrary);

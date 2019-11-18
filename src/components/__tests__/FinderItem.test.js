@@ -56,7 +56,7 @@ describe("FinderItem", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should call treeModel.expandNode on click", () => {
+    it("should call treeModel.expandNode on focus", () => {
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -64,7 +64,7 @@ describe("FinderItem", () => {
         }
       });
 
-      wrapper.trigger("click");
+      wrapper.trigger("focus");
       expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
     });
   });

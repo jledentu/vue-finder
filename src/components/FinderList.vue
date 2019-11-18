@@ -3,7 +3,7 @@ import { get } from "lodash-es";
 import FinderItem from "./FinderItem";
 import FinderListDropZone from "./FinderListDropZone";
 
-function renderItems(h, { props }) {
+function renderItems(h, { props, expandedItemIndex }) {
   const DropZoneComponent = props.dropZoneComponent;
 
   let { items, options } = props;
@@ -12,7 +12,7 @@ function renderItems(h, { props }) {
     items = [...items].sort(options.sortBy);
   }
 
-  return items.map(item => [
+  return items.map((item, index) => [
     ...[
       props.dragEnabled && (
         <DropZoneComponent
@@ -32,10 +32,33 @@ function renderItems(h, { props }) {
       selectable={props.selectable}
       dragEnabled={props.dragEnabled}
       options={props.options}
+      tabindex={index === expandedItemIndex ? "0" : "-1"}
     >
       {item.label}
     </FinderItem>
   ]);
+}
+
+function getPreviousItemElement(element) {
+  let sibling = element.previousSibling;
+
+  while (sibling) {
+    if (sibling.classList && sibling.classList.contains("item")) {
+      return sibling;
+    }
+    sibling = sibling.previousSibling;
+  }
+}
+
+function getNextItemElement(element) {
+  let sibling = element.nextSibling;
+
+  while (sibling) {
+    if (sibling.classList && sibling.classList.contains("item")) {
+      return sibling;
+    }
+    sibling = sibling.nextSibling;
+  }
 }
 
 export default {
@@ -69,6 +92,10 @@ export default {
     options: {
       type: Object,
       default: () => ({})
+    },
+    hasExpandedItem: {
+      type: Boolean,
+      default: false
     }
   },
   render(h, { props, listeners }) {
@@ -80,10 +107,28 @@ export default {
       ...(separatorWidth && { borderWidth: separatorWidth })
     };
 
+    const expandedItemIndex = Math.max(
+      0,
+      props.items.findIndex(item => props.treeModel.isNodeExpanded(item.id))
+    );
+
+    function navigate(event) {
+      let sibling;
+      if (event.key === "ArrowDown") {
+        sibling = getNextItemElement(event.target);
+      } else if (event.key === "ArrowUp") {
+        sibling = getPreviousItemElement(event.target);
+      }
+
+      if (sibling) {
+        sibling.focus();
+      }
+    }
+
     return [
-      <div class="list" style={style}>
+      <div class="list" style={style} vOn:keydown={navigate}>
         {[
-          ...renderItems(h, { props, listeners }),
+          ...renderItems(h, { props, listeners, expandedItemIndex }),
           ...[
             props.dragEnabled && (
               <DropZoneComponent
