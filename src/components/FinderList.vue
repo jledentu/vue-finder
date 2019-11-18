@@ -39,16 +39,25 @@ function renderItems(h, { props, expandedItemIndex }) {
   ]);
 }
 
-function navigate(event) {
-  let sibling;
-  if (event.key === "ArrowDown") {
-    sibling = event.target.nextSibling;
-  } else if (event.key === "ArrowUp") {
-    sibling = event.target.previousSibling;
-  }
+function getPreviousItemElement(element) {
+  let sibling = element.previousSibling;
 
-  if (sibling) {
-    sibling.focus();
+  while (sibling) {
+    if (sibling.classList && sibling.classList.contains("item")) {
+      return sibling;
+    }
+    sibling = sibling.previousSibling;
+  }
+}
+
+function getNextItemElement(element) {
+  let sibling = element.nextSibling;
+
+  while (sibling) {
+    if (sibling.classList && sibling.classList.contains("item")) {
+      return sibling;
+    }
+    sibling = sibling.nextSibling;
   }
 }
 
@@ -102,6 +111,20 @@ export default {
       0,
       props.items.findIndex(item => props.treeModel.isNodeExpanded(item.id))
     );
+
+    function navigate(event) {
+      console.log(event);
+      let sibling;
+      if (event.key === "ArrowDown") {
+        sibling = getNextItemElement(event.target);
+      } else if (event.key === "ArrowUp") {
+        sibling = getPreviousItemElement(event.target);
+      }
+
+      if (sibling) {
+        sibling.focus();
+      }
+    }
 
     return [
       <div class="list" style={style} vOn:keydown={navigate}>

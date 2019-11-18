@@ -83,7 +83,6 @@ describe("FinderList", () => {
         treeModel,
         items: tree.children
       }
-      //attachToDocument: true
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
