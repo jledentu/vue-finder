@@ -39,18 +39,17 @@ function renderItems(h, { props, expandedItemIndex }) {
   ]);
 }
 
-function expandPreviousItem(treeModel, items, currentExpandedIndex) {
-  if (currentExpandedIndex <= 0) {
-    return;
+function navigate(event) {
+  let sibling;
+  if (event.key === "ArrowDown") {
+    sibling = event.target.nextSibling;
+  } else if (event.key === "ArrowUp") {
+    sibling = event.target.previousSibling;
   }
-  treeModel.expandNode(items[currentExpandedIndex - 1].id);
-}
 
-function expandNextItem(treeModel, items, currentExpandedIndex) {
-  if (currentExpandedIndex >= items.length - 1) {
-    return;
+  if (sibling) {
+    sibling.focus();
   }
-  treeModel.expandNode(items[currentExpandedIndex + 1].id);
 }
 
 export default {
@@ -103,14 +102,6 @@ export default {
       0,
       props.items.findIndex(item => props.treeModel.isNodeExpanded(item.id))
     );
-
-    function navigate(event) {
-      if (event.key === "ArrowDown") {
-        expandNextItem(props.treeModel, props.items, expandedItemIndex);
-      } else if (event.key === "ArrowUp") {
-        expandPreviousItem(props.treeModel, props.items, expandedItemIndex);
-      }
-    }
 
     return [
       <div class="list" style={style} vOn:keydown={navigate}>
