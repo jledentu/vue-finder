@@ -3,6 +3,7 @@
     class="drop-zone"
     :class="{
       'drag-over': dragOver,
+      dragging: treeModel.isDragging(),
       'no-drop': treeModel.isDragging() && !canDrop
     }"
     :style="{
@@ -52,6 +53,10 @@ export default {
       return get(this, "options.theme", {});
     },
     canDrop() {
+      // Cannot drop on a descendant of itself
+      if (this.treeModel.isParent(this.treeModel.draggedNodeId, this.node.id)) {
+        return false;
+      }
       return (
         !this.options.canDrop ||
         this.options.canDrop(this.node.id, this.treeModel.draggedNodeId)

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FinderListDropZone should match if drag enter and is dragging 1`] = `<div class="drop-zone drag-over"></div>`;
+exports[`FinderListDropZone should match if drag enter and is dragging 1`] = `<div class="drop-zone drag-over dragging"></div>`;
 
 exports[`FinderListDropZone should match if drag enter and not dragging 1`] = `<div class="drop-zone"></div>`;
 
-exports[`FinderListDropZone should match if drag leave and is dragging 1`] = `<div class="drop-zone"></div>`;
+exports[`FinderListDropZone should match if drag leave and is dragging 1`] = `<div class="drop-zone dragging"></div>`;
 
 exports[`FinderListDropZone should match if drag leave and not dragging 1`] = `<div class="drop-zone"></div>`;
 

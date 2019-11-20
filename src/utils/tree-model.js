@@ -139,6 +139,11 @@ export default class extends EventManager {
     this.draggedNodeId = undefined;
   }
 
+  isParent(parentNodeId, nodeId) {
+    const parentNode = this._getNode(parentNodeId);
+    return !!parentNode && contains(parentNode, nodeId);
+  }
+
   dropOnNode(nodeId) {
     if (!this.isDragging() || this.isNodeDragged(nodeId)) {
       return;
