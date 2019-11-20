@@ -87,6 +87,7 @@ export default {
 .drop-zone {
   transition: height 0.1s ease;
   height: 0.5em;
+  flex-shrink: 0;
   overflow: hidden;
 
   &.drag-over {
