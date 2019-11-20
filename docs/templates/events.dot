@@ -1,10 +1,10 @@
 ## Events
 
-{{~Object.keys(it.events) :eventName}}
+{{~it.events :event}}
 
-{{ const { description, properties = [] } = it.events[eventName]; }}
+{{ const { name, description, properties = [] } = event; }}
 
-### {{= eventName}}
+### {{= name}}
 
 {{= description}}
 
