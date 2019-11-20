@@ -14,3 +14,7 @@ jobs:
           node-version: "10.x"
       - run: yarn install
       - run: yarn test
+      - name: Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
