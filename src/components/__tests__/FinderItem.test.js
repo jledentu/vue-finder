@@ -222,6 +222,28 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover");
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
+
+      it("should not call treeModel.expandNode if node is a leaf and cannot drop", () => {
+        const dataTransfer = {};
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node: {
+              ...node,
+              isLeaf: true
+            },
+            dragEnabled: true,
+            options: {
+              canDrop: () => false
+            }
+          }
+        });
+
+        wrapper.trigger("dragover", {
+          dataTransfer
+        });
+        expect(treeModel.expandNode).not.toHaveBeenCalled();
+      });
     });
 
     describe("dragend", () => {

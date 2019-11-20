@@ -137,7 +137,9 @@ export default {
         event.dataTransfer.dropEffect = "none";
       }
 
-      this.treeModel.expandNode(this.node.id);
+      if (this.canDrop || !this.node.isLeaf) {
+        this.treeModel.expandNode(this.node.id);
+      }
     },
     onDragEnd() {
       if (!this.dragEnabled) {
