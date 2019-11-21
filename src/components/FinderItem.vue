@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import { debounce } from "lodash-es";
 import FinderListDropZone from "./FinderListDropZone";
 
 export default {
@@ -108,6 +107,23 @@ export default {
       handler(newValue) {
         this.draggable = !newValue;
       }
+    },
+    dragOver(newValue) {
+      if (newValue && (this.canDrop && !this.node.isLeaf)) {
+        this.dragOverTimeout = setTimeout(
+          () => this.treeModel.expandNode(this.node.id),
+          500
+        );
+      } else {
+        if (this.dragOverTimeout) {
+          clearTimeout(this.dragOverTimeout);
+        }
+      }
+    },
+    node() {
+      if (this.dragOverTimeout) {
+        clearTimeout(this.dragOverTimeout);
+      }
     }
   },
   methods: {
@@ -126,8 +142,6 @@ export default {
       this.treeModel.startDrag(this.node.id);
     },
     onDragOver(event) {
-      event.preventDefault();
-
       if (!this.dragEnabled) {
         return;
       }
@@ -136,10 +150,6 @@ export default {
         event.dataTransfer.dropEffect = "all";
       } else {
         event.dataTransfer.dropEffect = "none";
-      }
-
-      if (this.canDrop || !this.node.isLeaf) {
-        this.expand();
       }
     },
     onDragEnd() {
@@ -152,16 +162,7 @@ export default {
       }
 
       this.treeModel.stopDrag();
-    },
-    expand: debounce(
-      function() {
-        this.treeModel.expandNode(this.node.id);
-      },
-      100,
-      {
-        leading: true
-      }
-    )
+    }
   }
 };
 </script>

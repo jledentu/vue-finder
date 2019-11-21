@@ -154,9 +154,12 @@ describe("FinderItem", () => {
       });
     });
 
-    describe("dragover", () => {
+    describe("dragenter", () => {
+      beforeEach(() => {
+        treeModel.isDragging.mockReturnValue(true);
+      });
+
       it("should call treeModel.expandNode", () => {
-        const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -165,15 +168,86 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover", {
-          dataTransfer
-        });
+        wrapper.trigger("dragenter");
         jest.runAllTimers();
 
-        expect(dataTransfer.dropEffect).toBe("all");
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
 
+      it("should not call treeModel.expandNode if cannot drop", () => {
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              canDrop: () => false
+            }
+          }
+        });
+
+        wrapper.trigger("dragenter");
+        jest.runAllTimers();
+
+        expect(treeModel.expandNode).not.toHaveBeenCalled();
+      });
+
+      it("should not call treeModel.expandNode if node is a leaf", () => {
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node: {
+              ...node,
+              isLeaf: true
+            },
+            dragEnabled: true
+          }
+        });
+
+        wrapper.trigger("dragenter");
+        jest.runAllTimers();
+
+        expect(treeModel.expandNode).not.toHaveBeenCalled();
+      });
+
+      it("should not call treeModel.expandNode if dragleave", () => {
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true
+          }
+        });
+
+        wrapper.trigger("dragenter");
+        wrapper.trigger("dragleave");
+        jest.runAllTimers();
+
+        expect(treeModel.expandNode).not.toHaveBeenCalled();
+      });
+
+      it("should not call treeModel.expandNode if node has changed in the interval", () => {
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true
+          }
+        });
+
+        wrapper.trigger("dragenter");
+        wrapper.setProps({
+          node: {
+            id: "test112"
+          }
+        });
+        jest.runAllTimers();
+
+        expect(treeModel.expandNode).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("dragover", () => {
       it("should set dataTransfer.dropEffect = `all` if can drop", () => {
         const dataTransfer = {};
         const wrapper = mount(FinderItem, {
@@ -190,6 +264,7 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover", {
           dataTransfer
         });
+
         expect(dataTransfer.dropEffect).toBe("all");
       });
 
@@ -209,13 +284,12 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover", {
           dataTransfer
         });
-        jest.runAllTimers();
 
         expect(dataTransfer.dropEffect).toBe("none");
-        expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
 
-      it("should not call treeModel.expandNode if `dragEnabled` is false", () => {
+      it("should do nothing if drag not enabled", () => {
+        const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -224,34 +298,11 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover");
-        jest.runAllTimers();
-
-        expect(treeModel.expandNode).not.toHaveBeenCalled();
-      });
-
-      it("should not call treeModel.expandNode if node is a leaf and cannot drop", () => {
-        const dataTransfer = {};
-        const wrapper = mount(FinderItem, {
-          propsData: {
-            treeModel,
-            node: {
-              ...node,
-              isLeaf: true
-            },
-            dragEnabled: true,
-            options: {
-              canDrop: () => false
-            }
-          }
-        });
-
         wrapper.trigger("dragover", {
           dataTransfer
         });
-        jest.runAllTimers();
 
-        expect(treeModel.expandNode).not.toHaveBeenCalled();
+        expect(dataTransfer.dropEffect).toBeUndefined();
       });
     });
 
