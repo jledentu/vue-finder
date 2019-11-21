@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { css } from "@/utils/dom-utils";
 import FinderListDropZone from "./FinderListDropZone";
 
 export default {
@@ -138,6 +140,11 @@ export default {
         return;
       }
 
+      if (this.options.dragImageComponent) {
+        this.appendGhost();
+        event.dataTransfer.setDragImage(this.ghost, 0, 0);
+      }
+
       event.dataTransfer.setData("text/plain", this.node.id);
       this.treeModel.startDrag(this.node.id);
     },
@@ -147,12 +154,15 @@ export default {
       }
 
       if (this.canDrop) {
-        event.dataTransfer.dropEffect = "all";
+        event.dataTransfer.dropEffect = "move";
       } else {
         event.dataTransfer.dropEffect = "none";
       }
     },
     onDragEnd() {
+      if (this.ghost) {
+        this.ghost.parentNode.removeChild(this.ghost);
+      }
       if (!this.dragEnabled) {
         return;
       }
@@ -162,6 +172,32 @@ export default {
       }
 
       this.treeModel.stopDrag();
+    },
+    appendGhost() {
+      this.ghost = document.createElement("div");
+      const ghostContent = document.createElement("div");
+      const vm = new Vue({
+        render: createElement => {
+          return createElement(this.options.dragImageComponent, {
+            props: {
+              item: this.node
+            }
+          });
+        }
+      }).$mount(ghostContent);
+
+      this.ghost.appendChild(vm.$el);
+      css(vm.$el, {
+        boxShadow: "0 3px 4px rgba(116, 116, 116, 0.3)"
+      });
+      css(this.ghost, {
+        position: "absolute",
+        padding: "10px",
+        top: "-1000px",
+        boxSizing: "border-box",
+        pointerEvents: "none"
+      });
+      this.$el.ownerDocument.body.appendChild(this.ghost);
     }
   }
 };

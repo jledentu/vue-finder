@@ -22,6 +22,7 @@ function renderTree(h, context, item) {
   const options = {
     sortBy: context.sortBy,
     itemComponent: context.itemComponent,
+    dragImageComponent: context.dragImageComponent,
     theme: context.theme,
     hasDragHandle: context.hasDragHandle,
     canDrop: context.canDrop
@@ -125,6 +126,13 @@ export default {
      * Custom component to render items.
      */
     itemComponent: {
+      type: [String, Object],
+      default: undefined
+    },
+    /**
+     * Custom component to render drag image.
+     */
+    dragImageComponent: {
       type: [String, Object],
       default: undefined
     },
