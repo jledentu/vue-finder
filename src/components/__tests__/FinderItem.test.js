@@ -3,6 +3,7 @@ import TreeModel from "@/utils/tree-model";
 import FinderItem from "../FinderItem";
 
 jest.mock("@/utils/tree-model");
+jest.useFakeTimers();
 
 describe("FinderItem", () => {
   let treeModel;
@@ -167,6 +168,8 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover", {
           dataTransfer
         });
+        jest.runAllTimers();
+
         expect(dataTransfer.dropEffect).toBe("all");
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
@@ -206,6 +209,8 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover", {
           dataTransfer
         });
+        jest.runAllTimers();
+
         expect(dataTransfer.dropEffect).toBe("none");
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
@@ -220,6 +225,8 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragover");
+        jest.runAllTimers();
+
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
 
@@ -242,6 +249,8 @@ describe("FinderItem", () => {
         wrapper.trigger("dragover", {
           dataTransfer
         });
+        jest.runAllTimers();
+
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
     });

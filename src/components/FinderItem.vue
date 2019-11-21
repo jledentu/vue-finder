@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { debounce } from "lodash-es";
 import FinderListDropZone from "./FinderListDropZone";
 
 export default {
@@ -138,7 +139,7 @@ export default {
       }
 
       if (this.canDrop || !this.node.isLeaf) {
-        this.treeModel.expandNode(this.node.id);
+        this.expand();
       }
     },
     onDragEnd() {
@@ -151,7 +152,16 @@ export default {
       }
 
       this.treeModel.stopDrag();
-    }
+    },
+    expand: debounce(
+      function() {
+        this.treeModel.expandNode(this.node.id);
+      },
+      100,
+      {
+        leading: true
+      }
+    )
   }
 };
 </script>
