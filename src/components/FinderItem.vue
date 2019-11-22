@@ -153,6 +153,8 @@ export default {
         return;
       }
 
+      event.preventDefault();
+
       if (this.canDrop) {
         event.dataTransfer.dropEffect = "move";
       } else {
