@@ -64,6 +64,29 @@ export default {
   props: {
     /**
      * Data of the tree.
+     *
+     * ```js
+     * const tree = {
+     *   id: "test",
+     *   label: "Test",
+     *   children: [{
+     *      id: "fruits",
+     *      label: "Fruits",
+     *      children: [{
+     *        id: "orange",
+     *        label: "Orange",
+     *        selected: true
+     *      }, {
+     *        id: "apple",
+     *        label: "Apple",
+     *        selectable: false
+     *      }, {
+     *        id: "banana",
+     *        label: "Banana"
+     *      }],
+     *   }]
+     * };
+     * ```
      */
     tree: {
       type: Object,
@@ -71,6 +94,14 @@ export default {
     },
     /**
      * Enable the selection of items.
+     *
+     * ::: tip
+     * You can disable the selection on some items by setting them `selectable: false`.
+     * :::
+     *
+     * ::: tip
+     * You can set some items selected by default by setting them `selected: true`.
+     * :::
      */
     selectable: {
       type: Boolean,
@@ -93,6 +124,12 @@ export default {
     /**
      * Function that indicates if a dragged item can be dropped on another.
      *
+     * ```js
+     * const canDrop = (target, source) => {
+     *   return target.id !== 'a-readonly-item';
+     * };
+     * ```
+     *
      * @param {string} target ID of the drop target
      * @param {string} source ID of the dragged item
      * @return Should return `true` if `source` can be dropped on `target`
@@ -103,6 +140,10 @@ export default {
     },
     /**
      * Function to filter displayed items.
+     *
+     * ```js
+     * const filter = item => /^$myitem/.test(item.label);
+     * ```
      */
     filter: {
       type: Function,
@@ -110,6 +151,10 @@ export default {
     },
     /**
      * Function to sort displayed items.
+     *
+     * ```js
+     * const sortBy = (item1, item2) => item1.id > item2.id ? -1 : item1.id < item2.id ? 1 : 0;
+     * ```
      */
     sortBy: {
       type: Function,

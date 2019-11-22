@@ -1,0 +1,17 @@
+## Props
+
+{{~it.props :prop}}
+
+{{ const { name, description, type, values, defaultValue } = prop; }}
+
+### {{= name}}
+
+- **Type:** `{{= type.name}}`
+
+{{? defaultValue && defaultValue.value !== undefined }}
+- **Default:** `{{= defaultValue.value }}`
+{{?}}
+
+{{= description}}
+
+{{~}}
