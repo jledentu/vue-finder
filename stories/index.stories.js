@@ -156,6 +156,19 @@ storiesOf("Finder", module)
       };
     }
   }))
+  .add("Custom drag image component", () => ({
+    mixins: [filterMixin],
+    template: `<Finder :tree="tree" :drag-enabled="true" :drag-image-component="dragImageComponent" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
+      this.dragImageComponent = {
+        props: ["item"],
+        template: `<div style="background-color: white; display: flex; align-items: center; padding: 10px; border: solid 1px #ddd">
+            Dragging {{ item.label }}
+          </div>`
+      };
+    }
+  }))
   .add("Custom item component", () => ({
     mixins: [filterMixin],
     template: `<Finder :tree="tree" :item-component="itemComponent" :selectable="true" :drag-enabled="true" style="height: 100%"></Finder>`,
