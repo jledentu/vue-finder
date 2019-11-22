@@ -124,6 +124,10 @@ describe("FinderItem", () => {
 
     describe("dragstart", () => {
       it("should call treeModel.startDrag", () => {
+        const dataTransfer = {
+          setDragImage: jest.fn(),
+          setData: jest.fn()
+        };
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -133,10 +137,14 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragstart", {
-          dataTransfer: {
-            setData: jest.fn()
-          }
+          dataTransfer
         });
+
+        expect(dataTransfer.setDragImage).not.toHaveBeenCalled();
+        expect(dataTransfer.setData).toHaveBeenCalledWith(
+          "text/plain",
+          "test111"
+        );
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
 
@@ -151,6 +159,37 @@ describe("FinderItem", () => {
 
         wrapper.trigger("dragstart");
         expect(treeModel.startDrag).not.toHaveBeenCalled();
+      });
+
+      it("should initialize drag image element if `dragImageComponent` is defined", () => {
+        const dataTransfer = {
+          setDragImage: jest.fn(),
+          setData: jest.fn()
+        };
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              dragImageComponent: {
+                render(createElement) {
+                  return createElement("div", "Dragging 1 item...");
+                }
+              }
+            }
+          }
+        });
+
+        wrapper.trigger("dragstart", {
+          dataTransfer
+        });
+
+        const ghost = wrapper.vm.ghost;
+
+        expect(ghost).toBeDefined();
+        expect(document.body.contains(ghost)).toBe(true);
+        expect(dataTransfer.setDragImage).toHaveBeenCalledWith(ghost, 0, 0);
       });
     });
 
@@ -265,7 +304,7 @@ describe("FinderItem", () => {
           dataTransfer
         });
 
-        expect(dataTransfer.dropEffect).toBe("all");
+        expect(dataTransfer.dropEffect).toBe("move");
       });
 
       it("should set dataTransfer.dropEffect = `none` if can not drop", () => {
@@ -350,6 +389,40 @@ describe("FinderItem", () => {
 
         wrapper.trigger("dragend");
         expect(wrapper.vm.draggable).toBe(false);
+      });
+
+      it("should remove ghost element if `dragImageComponent` is defined", () => {
+        const dataTransfer = {
+          setDragImage: jest.fn(),
+          setData: jest.fn()
+        };
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: true,
+            options: {
+              dragImageComponent: {
+                render(createElement) {
+                  return createElement("div", "Dragging 1 item...");
+                }
+              }
+            }
+          }
+        });
+
+        wrapper.trigger("dragstart", {
+          dataTransfer
+        });
+
+        const ghost = wrapper.vm.ghost;
+
+        wrapper.trigger("dragend", {
+          dataTransfer
+        });
+
+        expect(document.body.contains(ghost)).toBe(false);
+        expect(wrapper.vm.ghost).toBeNull();
       });
     });
   });

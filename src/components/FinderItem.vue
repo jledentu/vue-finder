@@ -162,6 +162,7 @@ export default {
     onDragEnd() {
       if (this.ghost) {
         this.ghost.parentNode.removeChild(this.ghost);
+        this.ghost = null;
       }
       if (!this.dragEnabled) {
         return;
