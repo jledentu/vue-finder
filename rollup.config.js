@@ -33,14 +33,20 @@ const builds = {
     entry: "src/index.umd.js",
     dest: `dist/${projectName}.js`,
     format: "umd",
-    env: "development"
+    env: "development",
+    globals: {
+      vue: "Vue"
+    }
   },
   // production build (Browser)
   "umd-prod": {
     entry: "src/index.umd.js",
     dest: `dist/${projectName}.min.js`,
     format: "umd",
-    env: "production"
+    env: "production",
+    globals: {
+      vue: "Vue"
+    }
   }
 };
 
@@ -48,7 +54,7 @@ function genConfig(name) {
   const opts = builds[name];
   const config = {
     input: opts.entry,
-    external: opts.external,
+    external: ["vue"],
     plugins: [
       css({
         output: "dist/vue-finder.css"
@@ -81,7 +87,8 @@ function genConfig(name) {
       exports: "named",
       file: opts.dest,
       format: opts.format,
-      name: opts.moduleName || projectName
+      name: opts.moduleName || projectName,
+      globals: opts.globals
     }
   };
 

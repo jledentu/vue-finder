@@ -147,6 +147,9 @@
   "dependencies": {
     "lodash-es": "^4.17.11"
   },
+  "peerDependencies": {
+    "vue": "2.x"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -155,5 +158,10 @@
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 0.25%",
+    "not dead"
+  ]
 }
