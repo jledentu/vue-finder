@@ -4,8 +4,6 @@ import FinderItem from "./FinderItem";
 import FinderListDropZone from "./FinderListDropZone";
 
 function renderItems(h, { props, expandedItemIndex }) {
-  const DropZoneComponent = props.dropZoneComponent;
-
   let { items, options } = props;
 
   if (options.sortBy) {
@@ -15,7 +13,7 @@ function renderItems(h, { props, expandedItemIndex }) {
   return items.map((item, index) => [
     ...[
       props.dragEnabled && (
-        <DropZoneComponent
+        <FinderListDropZone
           key={`drop-zone-${item.id}`}
           node={props.parent}
           treeModel={props.treeModel}
@@ -73,10 +71,6 @@ export default {
       type: Array,
       default: () => []
     },
-    dropZoneComponent: {
-      type: Object,
-      default: () => FinderListDropZone
-    },
     treeModel: {
       type: Object,
       required: true
@@ -99,7 +93,6 @@ export default {
     }
   },
   render(h, { props, listeners }) {
-    const DropZoneComponent = props.dropZoneComponent;
     const separatorColor = get(props, "options.theme.separatorColor", "");
     const separatorWidth = get(props, "options.theme.separatorWidth", "");
     const style = {
@@ -131,7 +124,7 @@ export default {
           ...renderItems(h, { props, listeners, expandedItemIndex }),
           ...[
             props.dragEnabled && (
-              <DropZoneComponent
+              <FinderListDropZone
                 class="last"
                 treeModel={props.treeModel}
                 node={props.parent}

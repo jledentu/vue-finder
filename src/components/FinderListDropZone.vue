@@ -16,7 +16,14 @@
     @dragleave.prevent="onDragLeave"
     @dragover.prevent
     @drop.prevent="onDrop"
-  />
+  >
+    <component
+      :is="options.dropZoneComponent"
+      v-if="options.dropZoneComponent"
+      :dragging="treeModel.isDragging()"
+      :drag-over="dragOver"
+    />
+  </div>
 </template>
 
 <script>
