@@ -181,6 +181,18 @@ storiesOf("Finder", module)
       };
     }
   }))
+  .add("Custom drop zone component", () => ({
+    mixins: [filterMixin],
+    template: `<Finder :tree="tree" :drop-zone-component="dropZoneComponent" :drag-enabled="true" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
+      this.dropZoneComponent = {
+        props: ["item", "dragging", "dragOver"],
+        template:
+          '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>'
+      };
+    }
+  }))
   .add("Custom theme", () => ({
     mixins: [filterMixin],
     computed: {
