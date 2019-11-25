@@ -214,6 +214,7 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
+  border: dashed 3px transparent;
 
   &.expanded {
     background-color: $primaryColor;
@@ -229,7 +230,7 @@ export default {
   }
 
   &.drag-over {
-    border: dashed 3px $primaryColor;
+    border-color: $primaryColor;
     background-color: change-color($primaryColor, $alpha: 0.2);
   }
 
@@ -262,7 +263,7 @@ export default {
 
   .drag-handle {
     fill: #bbb;
-    padding: 10px 2px 10px 1px;
+    padding: 10px 1px 10px 0;
     width: 15px;
     height: 15px;
     cursor: move;
