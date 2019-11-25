@@ -19,21 +19,27 @@ exports[`FinderList should match snapshot 1`] = `
 
 exports[`FinderList should match snapshot if \`dragEnabled\` is true 1`] = `
 <div class="list">
-  <div class="drop-zone"></div>
+  <div class="drop-zone">
+    <!---->
+  </div>
   <div role="button" draggable="true" class="item draggable" tabindex="0">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 11</div>
     <div class="arrow"></div>
   </div>
-  <div class="drop-zone"></div>
+  <div class="drop-zone">
+    <!---->
+  </div>
   <div role="button" draggable="true" class="item draggable" tabindex="-1">
     <!---->
     <!---->
     <div item="[object Object]" class="inner-item">Test 12</div>
     <!---->
   </div>
-  <div class="drop-zone last"></div>
+  <div class="drop-zone last">
+    <!---->
+  </div>
 </div>
 `;
 
