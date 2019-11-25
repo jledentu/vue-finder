@@ -22,6 +22,7 @@
       v-if="options.dropZoneComponent"
       :dragging="treeModel.isDragging()"
       :drag-over="dragOver"
+      style="flex-grow: 1"
     />
   </div>
 </template>
@@ -101,6 +102,8 @@ export default {
   height: 0.5em;
   flex-shrink: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   &.drag-over {
     opacity: 0.5;

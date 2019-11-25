@@ -23,7 +23,7 @@ function renderTree(h, context, item) {
     sortBy: context.sortBy,
     itemComponent: context.itemComponent,
     dragImageComponent: context.dragImageComponent,
-    propZoneComponent: context.propZoneComponent,
+    dropZoneComponent: context.dropZoneComponent,
     theme: context.theme,
     hasDragHandle: context.hasDragHandle,
     canDrop: context.canDrop
@@ -185,7 +185,7 @@ export default {
     /**
      * Custom component to render drop zones.
      */
-    propZoneComponent: {
+    dropZoneComponent: {
       type: [String, Object],
       default: undefined
     },
