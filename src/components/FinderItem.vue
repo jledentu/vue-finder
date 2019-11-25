@@ -263,7 +263,7 @@ export default {
 
   .drag-handle {
     fill: #bbb;
-    padding: 10px 2px 10px 0;
+    padding: 10px 1px 10px 0;
     width: 15px;
     height: 15px;
     cursor: move;
