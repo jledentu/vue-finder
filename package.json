@@ -83,7 +83,7 @@
     "dot": "^1.1.2",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
-    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-import-resolver-webpack": "^0.12.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jest": "^23.0.0",
