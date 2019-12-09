@@ -44,7 +44,7 @@ describe("FinderListDropZone", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match if drag enter and is dragging", () => {
+  it("should match if drag enter and is dragging", async () => {
     treeModel.isDragging.mockReturnValue(true);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
@@ -54,10 +54,12 @@ describe("FinderListDropZone", () => {
       }
     });
     wrapper.trigger("dragenter");
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match if drag leave and is dragging", () => {
+  it("should match if drag leave and is dragging", async () => {
     treeModel.isDragging.mockReturnValue(true);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
@@ -68,10 +70,12 @@ describe("FinderListDropZone", () => {
     });
     wrapper.trigger("dragenter");
     wrapper.trigger("dragleave");
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match if drag enter and not dragging", () => {
+  it("should match if drag enter and not dragging", async () => {
     treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
@@ -80,10 +84,12 @@ describe("FinderListDropZone", () => {
       }
     });
     wrapper.trigger("dragenter");
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match if drag leave and not dragging", () => {
+  it("should match if drag leave and not dragging", async () => {
     treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
@@ -93,6 +99,8 @@ describe("FinderListDropZone", () => {
     });
     wrapper.trigger("dragenter");
     wrapper.trigger("dragleave");
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 

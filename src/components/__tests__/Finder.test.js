@@ -57,7 +57,7 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match snapshot with expanded item and emit event", () => {
+  it("should match snapshot with expanded item and emit event", async () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree
@@ -68,6 +68,7 @@ describe("Finder", () => {
       .findAll(".item")
       .at(0)
       .trigger("focus");
+    await wrapper.vm.$nextTick();
     expect(wrapper.emitted().expand).toEqual([
       [{ expanded: ["test1", "test11"] }]
     ]);
@@ -87,7 +88,7 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match snapshot with filter", () => {
+  it("should match snapshot with filter", async () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree
@@ -97,6 +98,8 @@ describe("Finder", () => {
     wrapper.setProps({
       filter: ({ id }) => id === "test12"
     });
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -123,7 +126,7 @@ describe("Finder", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should match snapshot with an updated tree", () => {
+  it("should match snapshot with an updated tree", async () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree
@@ -151,6 +154,8 @@ describe("Finder", () => {
         ]
       }
     });
+    await wrapper.vm.$nextTick();
+
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -183,7 +188,7 @@ describe("Finder", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should emit a `select` event", () => {
+    it("should emit a `select` event", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
@@ -195,6 +200,7 @@ describe("Finder", () => {
         .findAll(".item > input[type=checkbox]")
         .at(1)
         .trigger("click");
+      await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted().select).toEqual([
         [{ selected: ["test11", "test12"] }]
@@ -214,7 +220,7 @@ describe("Finder", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should emit a `move` event", () => {
+    it("should emit a `move` event", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
@@ -230,6 +236,9 @@ describe("Finder", () => {
             setData() {}
           }
         });
+
+      await wrapper.vm.$nextTick();
+
       wrapper
         .findAll(".item")
         .at(1)
@@ -243,7 +252,7 @@ describe("Finder", () => {
 
   describe("API", () => {
     describe("#expand", () => {
-      it("should expand the given item and emit the `expand` event", () => {
+      it("should expand the given item and emit the `expand` event", async () => {
         const wrapper = mount(Finder, {
           propsData: {
             tree,
@@ -252,6 +261,7 @@ describe("Finder", () => {
         });
 
         wrapper.vm.expand("test112");
+        await wrapper.vm.$nextTick();
 
         expect(wrapper).toMatchSnapshot();
         expect(wrapper.emitted().expand).toEqual([

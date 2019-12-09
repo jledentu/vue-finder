@@ -198,7 +198,7 @@ describe("FinderItem", () => {
         treeModel.isDragging.mockReturnValue(true);
       });
 
-      it("should call treeModel.expandNode", () => {
+      it("should call treeModel.expandNode", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -208,6 +208,7 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragenter");
+        await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");

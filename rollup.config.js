@@ -1,15 +1,14 @@
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import filesize from "rollup-plugin-filesize";
-import json from "rollup-plugin-json";
+import json from "@rollup/plugin-json";
 import license from "rollup-plugin-license";
-import alias from "rollup-plugin-alias";
-import resolve from "rollup-plugin-node-resolve";
-import replace from "rollup-plugin-replace";
-import { uglify } from "rollup-plugin-uglify";
+import alias from "@rollup/plugin-alias";
+import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import { terser } from "rollup-plugin-terser";
 import vue from "rollup-plugin-vue";
 import css from "rollup-plugin-css-only";
-import { minify } from "uglify-es";
 import path from "path";
 
 const projectName = "vue-finder";
@@ -101,7 +100,7 @@ function genConfig(name) {
 
     // minify on production targets
     if (opts.env === "production") {
-      config.plugins.push(uglify({}, minify));
+      config.plugins.push(terser());
     }
   }
 
