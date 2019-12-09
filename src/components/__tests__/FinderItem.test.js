@@ -214,7 +214,7 @@ describe("FinderItem", () => {
         expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
       });
 
-      it("should not call treeModel.expandNode if cannot drop", () => {
+      it("should not call treeModel.expandNode if cannot drop", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -227,12 +227,13 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragenter");
+        await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
 
-      it("should not call treeModel.expandNode if node is a leaf", () => {
+      it("should not call treeModel.expandNode if node is a leaf", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -245,12 +246,13 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragenter");
+        await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
 
-      it("should not call treeModel.expandNode if dragleave", () => {
+      it("should not call treeModel.expandNode if dragleave", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -260,13 +262,15 @@ describe("FinderItem", () => {
         });
 
         wrapper.trigger("dragenter");
+        await wrapper.vm.$nextTick();
         wrapper.trigger("dragleave");
+        await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
 
-      it("should not call treeModel.expandNode if node has changed in the interval", () => {
+      it("should not call treeModel.expandNode if node has changed in the interval", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -281,6 +285,7 @@ describe("FinderItem", () => {
             id: "test112"
           }
         });
+        await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
