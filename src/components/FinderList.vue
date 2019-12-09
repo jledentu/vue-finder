@@ -18,6 +18,7 @@ function renderItems(h, { props, expandedItemIndex }) {
           node={props.parent}
           treeModel={props.treeModel}
           dragEnabled={props.dragEnabled}
+          index={index}
           options={props.options}
         />
       )
@@ -129,6 +130,7 @@ export default {
                 treeModel={props.treeModel}
                 node={props.parent}
                 dragEnabled={props.dragEnabled}
+                index={props.items.length}
                 options={props.options}
               />
             )

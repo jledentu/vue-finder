@@ -171,7 +171,7 @@ storiesOf("Finder", module)
   }))
   .add("Custom item component", () => ({
     mixins: [filterMixin],
-    template: `<Finder :tree="tree" :item-component="itemComponent" :selectable="true" :drag-enabled="true" style="height: 100%"></Finder>`,
+    template: `<Finder :tree="tree" :item-component="itemComponent" :selectable="true" :drag-enabled="true" :has-drag-handle="true" style="height: 100%"></Finder>`,
     created() {
       this.tree = data;
       this.itemComponent = {

@@ -45,6 +45,10 @@ export default {
       type: Boolean,
       default: false
     },
+    index: {
+      type: Number,
+      default: undefined
+    },
     options: {
       type: Object,
       default: () => ({})
@@ -88,7 +92,7 @@ export default {
         return;
       }
       this.dragCounter = 0;
-      this.treeModel.dropOnNode(this.node.id);
+      this.treeModel.dropOnNode(this.node.id, this.index);
     }
   }
 };
