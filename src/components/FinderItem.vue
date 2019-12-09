@@ -111,7 +111,7 @@ export default {
       }
     },
     dragOver(newValue) {
-      if (newValue && (this.canDrop && !this.node.isLeaf)) {
+      if (newValue && this.canDrop && !this.node.isLeaf) {
         this.dragOverTimeout = setTimeout(
           () => this.treeModel.expandNode(this.node.id),
           500
