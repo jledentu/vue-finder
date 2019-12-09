@@ -152,7 +152,7 @@ export default {
   overflow: auto;
   flex-shrink: 0;
 
-  .draggable {
+  [draggable="true"] {
     cursor: move;
     cursor: grab;
   }

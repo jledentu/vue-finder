@@ -4,7 +4,7 @@
     role="button"
     :class="{
       expanded,
-      draggable: dragEnabled && draggable,
+      draggable: dragEnabled && !options.hasDragHandle,
       dragged,
       'has-drag-handle': dragEnabled && options.hasDragHandle,
       'drag-over': dragOver,
@@ -26,7 +26,7 @@
       ...(dragOver &&
         theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
     }"
-    :draggable="dragEnabled && draggable"
+    :draggable="dragEnabled && !options.hasDragHandle"
     :aria-expanded="node.isLeaf ? undefined : expanded"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
@@ -39,8 +39,8 @@
     <div
       v-if="dragEnabled && options.hasDragHandle"
       class="drag-handle"
-      @mousedown="draggable = true"
-      @mouseup="draggable = false"
+      @mousedown="$el.setAttribute('draggable', 'true')"
+      @mouseup="$el.setAttribute('draggable', 'false')"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path
@@ -84,11 +84,6 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      draggable: false
-    };
-  },
   computed: {
     expanded() {
       return this.treeModel.isNodeExpanded(this.node.id);
@@ -104,12 +99,6 @@ export default {
     }
   },
   watch: {
-    "options.hasDragHandle": {
-      immediate: true,
-      handler(newValue) {
-        this.draggable = !newValue;
-      }
-    },
     dragOver(newValue) {
       if (newValue && this.canDrop && !this.node.isLeaf) {
         this.dragOverTimeout = setTimeout(
@@ -171,7 +160,7 @@ export default {
       }
 
       if (this.options.hasDragHandle) {
-        this.draggable = false;
+        this.$el.setAttribute("draggable", "false");
       }
 
       this.treeModel.stopDrag();

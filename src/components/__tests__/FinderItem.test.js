@@ -391,10 +391,10 @@ describe("FinderItem", () => {
         });
 
         wrapper.find(".drag-handle").trigger("mousedown");
-        expect(wrapper.vm.draggable).toBe(true);
+        expect(wrapper.vm.$el.getAttribute("draggable")).toBe("true");
 
         wrapper.trigger("dragend");
-        expect(wrapper.vm.draggable).toBe(false);
+        expect(wrapper.vm.$el.getAttribute("draggable")).toBe("false");
       });
 
       it("should remove ghost element if `dragImageComponent` is defined", () => {
