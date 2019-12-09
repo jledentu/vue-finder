@@ -295,16 +295,17 @@ export default {
         selected
       });
     });
-    this.treeModel.on("move", ({ moved, to }) => {
+    this.treeModel.on("move", ({ moved, to, index }) => {
       /**
        * This event is triggered when an item has been moved by drag and drop.
+       * When an item is dropped on a dropzone between two elements, a `index` is also provided.
        *
        * ```html
        * <Finder :tree="tree" @move="onMove"/>
        * ```
        *
        * ```js
-       * onMove({ moved, to }) {
+       * onMove({ moved, to, index }) {
        *   console.log(
        *     `Item with ${moved} ID has been moved
        *     to its new parent with ${to} ID`
@@ -316,10 +317,12 @@ export default {
        * @type {object}
        * @property {string} moved ID of the moved item
        * @property {string} to    ID of the parent on which the item has been moved to
+       * @property {number} index Index of the dropzone
        */
       this.$emit("move", {
         moved,
-        to
+        to,
+        index
       });
     });
   },

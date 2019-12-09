@@ -348,7 +348,54 @@ describe("TreeModel", () => {
           "test112",
           "test12"
         ]);
-        expect(onMove).toHaveBeenCalled();
+        expect(onMove).toHaveBeenCalledWith({
+          moved: "test12",
+          to: "test112",
+          index: undefined
+        });
+      });
+
+      it("should move the dragged node at a given index", () => {
+        model.startDrag("test12");
+        model.dropOnNode("test11", 1);
+        expect(model.visibleTree).toEqual({
+          id: "test1",
+          children: [
+            {
+              id: "test11",
+              selected: true,
+              children: [
+                {
+                  id: "test111",
+                  children: [],
+                  isLeaf: true,
+                  parent: "test11"
+                },
+                {
+                  id: "test12",
+                  children: [],
+                  isLeaf: true,
+                  parent: "test11"
+                },
+                {
+                  id: "test112",
+                  children: [],
+                  isLeaf: true,
+                  parent: "test11"
+                }
+              ],
+              isLeaf: false,
+              parent: "test1"
+            }
+          ],
+          isLeaf: false
+        });
+        expect(onExpand).toHaveBeenCalledWith(["test1", "test11", "test12"]);
+        expect(onMove).toHaveBeenCalledWith({
+          moved: "test12",
+          to: "test11",
+          index: 1
+        });
       });
     });
   });

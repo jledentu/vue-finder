@@ -1,4 +1,4 @@
-import { union, unionBy, difference, differenceBy } from "lodash-es";
+import { isNil, union, difference, differenceBy } from "lodash-es";
 import {
   buildNodesMap,
   contains,
@@ -66,16 +66,21 @@ export default class extends EventManager {
     }
   }
 
-  _attachNodeToParent(node, parentId) {
+  _attachNodeToParent(node, parentId, index) {
     this._detachNodeFromParent(node);
     const parent = this._getNode(parentId);
     if (parent) {
       node.parent = parent.id;
-      parent.children = unionBy(
-        parent.children || [],
-        [{ ...node }],
-        ({ id }) => id
-      );
+
+      if (isNil(index)) {
+        parent.children = [...(parent.children || []), { ...node }];
+      } else {
+        parent.children = [
+          ...(parent.children || []).slice(0, index),
+          { ...node },
+          ...(parent.children || []).slice(index)
+        ];
+      }
     }
   }
 
@@ -144,7 +149,7 @@ export default class extends EventManager {
     return !!parentNode && contains(parentNode, nodeId);
   }
 
-  dropOnNode(nodeId) {
+  dropOnNode(nodeId, index) {
     if (!this.isDragging() || this.isNodeDragged(nodeId)) {
       return;
     }
@@ -155,7 +160,7 @@ export default class extends EventManager {
       return;
     }
 
-    this._attachNodeToParent(draggedNode, nodeId);
+    this._attachNodeToParent(draggedNode, nodeId, index);
 
     // Expand the dragged node
     this.expandNode(this.draggedNodeId);
@@ -164,7 +169,8 @@ export default class extends EventManager {
     this._updateVisibleTree();
     this.trigger("move", {
       moved: draggedNode.id,
-      to: nodeId
+      to: nodeId,
+      index
     });
   }
 

@@ -107,7 +107,21 @@ describe("FinderListDropZone", () => {
         }
       });
       wrapper.trigger("drop");
-      expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111");
+      expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", undefined);
+    });
+
+    it("should call `treeModel.dropOnNode` with index", () => {
+      treeModel.isDragging.mockReturnValue(true);
+      const wrapper = mount(FinderListDropZone, {
+        propsData: {
+          treeModel,
+          node,
+          dragEnabled: true,
+          index: 5
+        }
+      });
+      wrapper.trigger("drop");
+      expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", 5);
     });
 
     it("should not call `treeModel.dropOnNode` if not dragging", () => {
