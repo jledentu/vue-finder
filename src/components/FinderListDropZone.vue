@@ -59,7 +59,9 @@ export default {
   }),
   computed: {
     dragOver() {
-      return this.dragCounter > 0;
+      return (
+        this.treeModel.isDragging() && this.canDrop && this.dragCounter > 0
+      );
     },
     theme() {
       return get(this, "options.theme", {});
@@ -77,21 +79,17 @@ export default {
   },
   methods: {
     onDragEnter() {
-      if (this.canDrop && this.treeModel.isDragging()) {
-        this.dragCounter++;
-      }
+      this.dragCounter++;
     },
     onDragLeave() {
-      if (this.canDrop && this.treeModel.isDragging()) {
-        this.dragCounter--;
-      }
+      this.dragCounter--;
     },
     onDrop(event) {
       event.preventDefault();
+      this.dragCounter = 0;
       if (!this.canDrop || !this.treeModel.isDragging()) {
         return;
       }
-      this.dragCounter = 0;
       this.treeModel.dropOnNode(this.node.id, this.index);
     }
   }
