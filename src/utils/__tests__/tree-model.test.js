@@ -74,7 +74,7 @@ describe("TreeModel", () => {
     it("should return `true` if node is selected", () => {
       model.expandNode("test11");
       expect(model.isNodeExpanded("test11")).toBe(true);
-      expect(onExpand).toHaveBeenCalledWith(["test1", "test11"]);
+      expect(onExpand).toHaveBeenCalledWith(["test1", "test11"], undefined);
       expect(model.visibleTree).toEqual({
         id: "test1",
         children: [
@@ -342,12 +342,10 @@ describe("TreeModel", () => {
           ],
           isLeaf: false
         });
-        expect(onExpand).toHaveBeenCalledWith([
-          "test1",
-          "test11",
-          "test112",
-          "test12"
-        ]);
+        expect(onExpand).toHaveBeenCalledWith(
+          ["test1", "test11", "test112", "test12"],
+          "drop"
+        );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
           to: "test112",
@@ -390,7 +388,10 @@ describe("TreeModel", () => {
           ],
           isLeaf: false
         });
-        expect(onExpand).toHaveBeenCalledWith(["test1", "test11", "test12"]);
+        expect(onExpand).toHaveBeenCalledWith(
+          ["test1", "test11", "test12"],
+          "drop"
+        );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
           to: "test11",

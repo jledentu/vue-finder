@@ -66,7 +66,19 @@ describe("FinderItem", () => {
       });
 
       wrapper.trigger("focus");
-      expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
+      expect(treeModel.expandNode).toHaveBeenCalledWith("test111", "focus");
+    });
+
+    it("should call treeModel.expandNode on click", () => {
+      const wrapper = mount(FinderItem, {
+        propsData: {
+          treeModel,
+          node
+        }
+      });
+
+      wrapper.trigger("click");
+      expect(treeModel.expandNode).toHaveBeenCalledWith("test111", "click");
     });
   });
 
@@ -211,7 +223,10 @@ describe("FinderItem", () => {
         await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
-        expect(treeModel.expandNode).toHaveBeenCalledWith("test111");
+        expect(treeModel.expandNode).toHaveBeenCalledWith(
+          "test111",
+          "dragover"
+        );
       });
 
       it("should not call treeModel.expandNode if cannot drop", async () => {
