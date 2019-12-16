@@ -80,6 +80,19 @@ describe("FinderItem", () => {
       wrapper.trigger("click");
       expect(treeModel.expandNode).toHaveBeenCalledWith("test111", "click");
     });
+
+    it("should not call treeModel.expandNode on mousedown", () => {
+      const wrapper = mount(FinderItem, {
+        propsData: {
+          treeModel,
+          node
+        }
+      });
+
+      wrapper.trigger("mousedown");
+      wrapper.trigger("focus");
+      expect(treeModel.expandNode).not.toHaveBeenCalled();
+    });
   });
 
   describe("Selection", () => {
