@@ -175,9 +175,9 @@ storiesOf("Finder", module)
     created() {
       this.tree = data;
       this.itemComponent = {
-        props: ["item"],
+        props: ["item", "dragged", "expanded"],
         template:
-          '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+          '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
       };
     }
   }))
