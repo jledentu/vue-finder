@@ -70,7 +70,7 @@ describe("Finder", () => {
       .trigger("focus");
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted().expand).toEqual([
-      [{ expanded: ["test1", "test11"] }]
+      [{ expanded: ["test1", "test11"], sourceEvent: "focus" }]
     ]);
     expect(wrapper).toMatchSnapshot();
   });

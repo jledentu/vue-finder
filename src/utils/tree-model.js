@@ -110,11 +110,17 @@ export default class extends EventManager {
     return this.nodesMap[nodeId];
   }
 
-  expandNode(nodeId) {
+  /**
+   * Expand a node.
+   *
+   * @param {string} nodeId      ID of the node to expand
+   * @param {string} sourceEvent Name of the event that triggered the expand
+   */
+  expandNode(nodeId, sourceEvent) {
     this.expanded = path(nodeId, this.nodesMap);
     this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
-    this.trigger("expand", this.expanded);
+    this.trigger("expand", this.expanded, sourceEvent);
   }
 
   isNodeExpanded(nodeId) {
@@ -163,7 +169,7 @@ export default class extends EventManager {
     this._attachNodeToParent(draggedNode, nodeId, index);
 
     // Expand the dragged node
-    this.expandNode(this.draggedNodeId);
+    this.expandNode(this.draggedNodeId, "drop");
 
     this.draggedNodeId = undefined;
     this._updateVisibleTree();

@@ -28,6 +28,8 @@
     }"
     :draggable="dragEnabled && !options.hasDragHandle"
     :aria-expanded="node.isLeaf ? undefined : expanded"
+    @mousedown="onMouseDown"
+    @click="onClick"
     @dragenter="onDragEnter"
     @dragleave="onDragLeave"
     @dragstart="onDragStart"
@@ -102,7 +104,7 @@ export default {
     dragOver(newValue) {
       if (newValue && this.canDrop && !this.node.isLeaf) {
         this.dragOverTimeout = setTimeout(
-          () => this.treeModel.expandNode(this.node.id),
+          () => this.treeModel.expandNode(this.node.id, "dragover"),
           500
         );
       } else {
@@ -118,8 +120,20 @@ export default {
     }
   },
   methods: {
+    onMouseDown() {
+      this.mousedown = true;
+
+      setTimeout(() => {
+        this.mousedown = false;
+      }, 100);
+    },
+    onClick() {
+      this.treeModel.expandNode(this.node.id, "click");
+    },
     onFocus() {
-      this.treeModel.expandNode(this.node.id);
+      if (!this.mousedown) {
+        this.treeModel.expandNode(this.node.id, "focus");
+      }
     },
     onSelect(event) {
       this.treeModel.selectNode(this.node.id, event.target.checked);

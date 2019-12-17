@@ -243,10 +243,12 @@ export default {
       defaultExpanded: this.defaultExpanded
     });
 
-    this.treeModel.on("expand", expanded => {
-      this.$nextTick(() => {
-        this._scrollToRight(this.scrollAnimationDuration);
-      });
+    this.treeModel.on("expand", (expanded, sourceEvent) => {
+      if (sourceEvent !== "dragover") {
+        this.$nextTick(() => {
+          this._scrollToRight(this.scrollAnimationDuration);
+        });
+      }
 
       /**
        * This event is triggered when an item has been expanded.
@@ -256,7 +258,7 @@ export default {
        * ```
        *
        * ```js
-       * onExpand({ expanded }) {
+       * onExpand({ expanded, sourceEvent }) {
        *   console.log(
        *     `Items with ${expanded.join()} IDs are now expanded`
        *   );
@@ -265,10 +267,13 @@ export default {
        *
        * @event expand
        * @type {object}
-       * @property {Array<string>} expanded IDs of expanded items
+       * @property {Array<string>} expanded    IDs of expanded items
+       * @property {string}        sourceEvent Name of the event that triggered the action
+       *                                       (`"click"`, `"focus"`, `"drop"`, `"dragover"` or `undefined`)
        */
       this.$emit("expand", {
-        expanded
+        expanded,
+        sourceEvent
       });
     });
     this.treeModel.on("select", selected => {
