@@ -59,7 +59,13 @@
       @click.stop
       @change="onSelect"
     />
-    <component :is="itemComponent" class="inner-item" :item="node">
+    <component
+      :is="itemComponent"
+      class="inner-item"
+      :item="node"
+      :expanded="expanded"
+      :dragged="dragged"
+    >
       <slot />
     </component>
     <div

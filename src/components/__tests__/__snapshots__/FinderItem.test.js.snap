@@ -13,7 +13,7 @@ exports[`FinderItem Expand should match snapshot if expanded 1`] = `
 <div role="button" draggable="false" aria-expanded="true" class="item expanded">
   <!---->
   <!---->
-  <div item="[object Object]" class="inner-item"></div>
+  <div item="[object Object]" expanded="true" class="inner-item"></div>
   <div class="arrow"></div>
 </div>
 `;

@@ -6,7 +6,7 @@ exports[`Finder API #expand should expand the given item and emit the \`expand\`
     <div class="list">
       <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
         <!----> <input type="checkbox" aria-label="Test 11">
-        <div item="[object Object]" class="inner-item">Test 11</div>
+        <div item="[object Object]" class="inner-item" expanded="true">Test 11</div>
         <div class="arrow"></div>
       </div>
       <div role="button" draggable="false" class="item" tabindex="-1">
@@ -24,7 +24,7 @@ exports[`Finder API #expand should expand the given item and emit the \`expand\`
         </div>
         <div role="button" draggable="false" class="item expanded" tabindex="0">
           <!----> <input type="checkbox" aria-label="Test 112">
-          <div item="[object Object]" class="inner-item">Test 112</div>
+          <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
           <!---->
         </div>
       </div>
@@ -165,7 +165,7 @@ exports[`Finder should match snapshot with default expanded 1`] = `
       <div role="button" draggable="false" aria-expanded="true" class="item expanded" tabindex="0">
         <!---->
         <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+        <div item="[object Object]" expanded="true" class="inner-item">Test 11</div>
         <div class="arrow"></div>
       </div>
       <div role="button" draggable="false" class="item" tabindex="-1">
@@ -186,7 +186,7 @@ exports[`Finder should match snapshot with default expanded 1`] = `
         <div role="button" draggable="false" class="item expanded" tabindex="0">
           <!---->
           <!---->
-          <div item="[object Object]" class="inner-item">Test 112</div>
+          <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
           <!---->
         </div>
       </div>
@@ -202,7 +202,7 @@ exports[`Finder should match snapshot with expanded item and emit event 1`] = `
       <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
         <!---->
         <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+        <div item="[object Object]" class="inner-item" expanded="true">Test 11</div>
         <div class="arrow"></div>
       </div>
       <div role="button" draggable="false" class="item" tabindex="-1">
