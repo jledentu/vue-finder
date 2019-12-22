@@ -14557,12 +14557,11 @@ rollup-plugin-commonjs@^10.0.0:
     resolve "^1.11.0"
     rollup-pluginutils "^2.8.1"
 
-rollup-plugin-css-only@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-1.0.0.tgz#dc027d657d02e7706b855d856dcb0fdd49935135"
-  integrity sha512-WY8bISLKzWCnUmHMOhsgbQ/bZz1J1eigwMROixTWZb4yPrMCA4vbfQog6n3bsOQMfq39Kih6jWY9Xn9rYjiqXw==
+rollup-plugin-css-only@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-2.0.0.tgz#696a0d0bc8072f3cb67eb830ebb579e3bad7ecf6"
+  integrity sha512-RdzeDgrKHrvixVF001fbK/G1C6wZYSs49lBon4dqeW4awgVhPWaaogXtVnVUBbtIeAF5kxaZQI1tJ+UYL0nswg==
   dependencies:
-    mkdirp "^0.5.1"
     rollup-pluginutils "^2.3.3"
 
 rollup-plugin-filesize@^6.2.1:
