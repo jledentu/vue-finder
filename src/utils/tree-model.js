@@ -196,10 +196,7 @@ export default class extends EventManager {
     this._root = newRoot;
     this.nodesMap = buildNodesMap(newRoot);
 
-    if (
-      !this.expanded.length ||
-      this.expanded.some(({ id }) => !this.nodesMap[id])
-    ) {
+    if (!this.expanded.length || this.expanded.some(id => !this.nodesMap[id])) {
       // Initialize the expanded since not compatible with the new tree
       this._initExpanded();
     }
