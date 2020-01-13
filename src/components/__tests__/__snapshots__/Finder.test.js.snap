@@ -22,7 +22,7 @@ exports[`Finder API #expand should expand the given item and emit the \`expand\`
           <div item="[object Object]" class="inner-item">Test 111</div>
           <!---->
         </div>
-        <div role="button" draggable="false" class="item expanded" tabindex="0">
+        <div role="button" draggable="false" class="item custom-class expanded" tabindex="0">
           <!----> <input type="checkbox" aria-label="Test 112">
           <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
           <!---->
@@ -183,7 +183,7 @@ exports[`Finder should match snapshot with default expanded 1`] = `
           <div item="[object Object]" class="inner-item">Test 111</div>
           <!---->
         </div>
-        <div role="button" draggable="false" class="item expanded" tabindex="0">
+        <div role="button" draggable="false" class="item custom-class expanded" tabindex="0">
           <!---->
           <!---->
           <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
@@ -220,7 +220,7 @@ exports[`Finder should match snapshot with expanded item and emit event 1`] = `
           <div item="[object Object]" class="inner-item">Test 111</div>
           <!---->
         </div>
-        <div role="button" draggable="false" class="item" tabindex="-1">
+        <div role="button" draggable="false" class="item custom-class" tabindex="-1">
           <!---->
           <!---->
           <div item="[object Object]" class="inner-item">Test 112</div>

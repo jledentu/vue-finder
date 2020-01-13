@@ -2,14 +2,17 @@
   <div
     class="item"
     role="button"
-    :class="{
-      expanded,
-      draggable: dragEnabled && !options.hasDragHandle,
-      dragged,
-      'has-drag-handle': dragEnabled && options.hasDragHandle,
-      'drag-over': dragOver,
-      'no-drop': treeModel.isDragging() && !canDrop
-    }"
+    :class="[
+      node.cssClass || '',
+      {
+        expanded,
+        draggable: dragEnabled && !options.hasDragHandle,
+        dragged,
+        'has-drag-handle': dragEnabled && options.hasDragHandle,
+        'drag-over': dragOver,
+        'no-drop': treeModel.isDragging() && !canDrop
+      }
+    ]"
     :style="{
       ...(expanded &&
         theme.primaryColor && { backgroundColor: theme.primaryColor }),
