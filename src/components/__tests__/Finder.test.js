@@ -16,7 +16,8 @@ describe("Finder", () => {
           },
           {
             id: "test112",
-            label: "Test 112"
+            label: "Test 112",
+            cssClass: "custom-class"
           }
         ]
       },

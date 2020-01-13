@@ -2,6 +2,40 @@
 
 Vue Finder provides some options to customize its look.
 
+## CSS classes
+
+You can pass CSS classes to each item component by setting `cssClass`:
+
+```html
+<Finder :tree="tree" />
+```
+
+```js
+const tree = {
+  id: "root",
+  children: [
+    {
+      id: "fruits",
+      label: "Fruits",
+      cssClass: "my-item fruits",
+      children: [
+        { id: "apple", label: "Apple" }
+        // ...
+      ]
+    },
+    {
+      id: "vegetables",
+      label: "Vegetables",
+      cssClass: "my-item vegetables",
+      children: [
+        { id: "bean", label: "Beans" }
+        // ...
+      ]
+    }
+  ]
+};
+```
+
 ## Theming
 
 The `Finder` component accepts a `theme` prop that allows to customize some CSS properties:
