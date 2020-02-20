@@ -179,6 +179,53 @@ describe("TreeModel", () => {
         isLeaf: false
       });
     });
+
+    it("should update the visible tree if root is changed", () => {
+      model.filter = ({ id }) => id.includes("test11");
+      model.root = {
+        id: "test1",
+        children: [
+          {
+            id: "test11",
+            selected: true,
+            children: [
+              {
+                id: "test111"
+              },
+              {
+                id: "test112"
+              },
+              {
+                id: "test113"
+              }
+            ]
+          },
+          {
+            id: "test12"
+          }
+        ]
+      };
+      expect(sortBy(model.filtered)).toEqual([
+        "test1",
+        "test11",
+        "test111",
+        "test112",
+        "test113"
+      ]);
+      expect(model.visibleTree).toEqual({
+        id: "test1",
+        children: [
+          {
+            id: "test11",
+            selected: true,
+            children: [],
+            isLeaf: false,
+            parent: "test1"
+          }
+        ],
+        isLeaf: false
+      });
+    });
   });
 
   describe("Drag & Drop", () => {

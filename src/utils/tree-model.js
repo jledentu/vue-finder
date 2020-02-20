@@ -201,6 +201,7 @@ export default class extends EventManager {
       this._initExpanded();
     }
 
+    this._applyFilter();
     this._updateVisibleTree();
   }
 
@@ -212,6 +213,11 @@ export default class extends EventManager {
   set filter(newFilter) {
     this._filter = newFilter;
 
+    this._applyFilter();
+    this._updateVisibleTree();
+  }
+
+  _applyFilter() {
     if (!this._filter) {
       this.filtered = [];
     } else {
@@ -238,6 +244,5 @@ export default class extends EventManager {
         this.nodesMap
       );
     }
-    this._updateVisibleTree();
   }
 }
