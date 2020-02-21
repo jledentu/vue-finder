@@ -82,7 +82,8 @@ describe("FinderList", () => {
       propsData: {
         treeModel,
         items: tree.children
-      }
+      },
+      attachToDocument: true
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -110,7 +111,8 @@ describe("FinderList", () => {
         treeModel,
         items: tree.children,
         dragEnabled: true
-      }
+      },
+      attachToDocument: true
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
