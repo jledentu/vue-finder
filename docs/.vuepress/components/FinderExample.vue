@@ -1,5 +1,10 @@
 <template>
-  <Finder :tree="tree" :itemComponent="itemComponent" v-bind="$props" />
+  <Finder
+    :tree="tree"
+    :item-component="itemComponent"
+    :arrow-component="arrowComponent"
+    v-bind="$props"
+  />
 </template>
 <script>
 import { Finder } from "../../../dist/vue-finder.esm.js";
@@ -15,6 +20,7 @@ export default {
     "dragEnabled",
     "hasDragHandle",
     "useCustomItemComponent",
+    "useCustomArrowComponent",
     "defaultExpanded"
   ],
   data() {
@@ -92,6 +98,16 @@ export default {
           props: ["item"],
           template:
             '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+        };
+      } else {
+        return undefined;
+      }
+    },
+    arrowComponent() {
+      if (this.useCustomArrowComponent) {
+        return {
+          props: ["expanded"],
+          template: "<div>{{ expanded ? '↪' : '→' }}</div>"
         };
       } else {
         return undefined;
