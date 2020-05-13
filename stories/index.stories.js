@@ -181,6 +181,16 @@ storiesOf("Finder", module)
       };
     }
   }))
+  .add("Custom arrow component", () => ({
+    mixins: [filterMixin],
+    template: `<Finder :tree="tree" :arrow-component="arrowComponent" style="height: 100%"></Finder>`,
+    created() {
+      this.tree = data;
+      this.arrowComponent = {
+        template: "<div>-></div>"
+      };
+    }
+  }))
   .add("Custom drop zone component", () => ({
     mixins: [filterMixin],
     template: `<Finder :tree="tree" :drop-zone-component="dropZoneComponent" :drag-enabled="true" style="height: 100%"></Finder>`,
