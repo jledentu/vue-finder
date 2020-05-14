@@ -278,7 +278,30 @@ describe("Finder", () => {
         expect(wrapper.emitted().expand).toEqual([
           [
             {
-              expanded: ["test1", "test11", "test112"]
+              expanded: ["test1", "test11", "test112"],
+              sourceEvent: "api"
+            }
+          ]
+        ]);
+      });
+
+      it("should accept a `sourceEvent` argument", async () => {
+        const wrapper = mount(Finder, {
+          propsData: {
+            tree,
+            selectable: true
+          }
+        });
+
+        wrapper.vm.expand("test112", "custom-event");
+        await wrapper.vm.$nextTick();
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.emitted().expand).toEqual([
+          [
+            {
+              expanded: ["test1", "test11", "test112"],
+              sourceEvent: "custom-event"
             }
           ]
         ]);

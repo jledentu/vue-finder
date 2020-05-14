@@ -351,12 +351,14 @@ export default {
      * this.$refs.myFinder.expand('item111');
      * ```
      *
-     * @param {string} itemId ID of the item to expand
+     * @param {string} itemId      ID of the item to expand
+     * @param {string} sourceEvent Source event that will appear in `expand` event
+     *                             (`api` by default)
      * @public
      * @since 1.6.0
      */
-    expand(itemId) {
-      this.treeModel.expandNode(itemId);
+    expand(itemId, sourceEvent = "api") {
+      this.treeModel.expandNode(itemId, sourceEvent);
     },
     _scrollToRight(scrollDuration) {
       const { scrollLeft, scrollWidth, offsetWidth } = this.$el;
