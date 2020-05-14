@@ -71,13 +71,17 @@ Here are the available properties:
 | `dropZoneBgColor`    | Background color of drop zones (visible when Drag & Drop)    |
 | `draggedItemBgColor` | Background color of dragged items (visible when Drag & Drop) |
 
-## Item component
+## Custom components
+
+You can pass your own components in order to customize some parts of the UI.
+
+### Item component
 
 You can define a component to render items with the `itemComponent` prop. This component requires a `item` prop, that will
 receive the data of the rendered item.
 
 ```html
-<Finder :tree="tree" :itemComponent="itemComponent" />
+<Finder :tree="tree" :item-component="itemComponent" />
 ```
 
 ```js
@@ -93,7 +97,7 @@ data() {
 }
 ```
 
-<FinderExample :useCustomItemComponent="true"/>
+<FinderExample :use-custom-item-component="true"/>
 
 ::: warning
 
@@ -112,3 +116,27 @@ itemComponent: {
 ```
 
 :::
+
+### Arrow component
+
+You can define a component to render arrows with the `arrowComponent` prop. This component accepts a `expanded` prop, that will
+receive the expanded state of the item.
+
+```html
+<Finder :tree="tree" :arrow-component="arrowComponent" />
+```
+
+```js
+// ...
+data() {
+  return {
+    arrowComponent: {
+      props: ["expanded"],
+      template:
+        "<div>{{ expanded ? '↪' : '→' }}</div>"
+    }
+  }
+}
+```
+
+<FinderExample :use-custom-arrow-component="true" />

@@ -22,6 +22,7 @@ function renderTree(h, context, item) {
   const options = {
     sortBy: context.sortBy,
     itemComponent: context.itemComponent,
+    arrowComponent: context.arrowComponent,
     dragImageComponent: context.dragImageComponent,
     dropZoneComponent: context.dropZoneComponent,
     theme: context.theme,
@@ -172,6 +173,13 @@ export default {
      * Custom component to render items.
      */
     itemComponent: {
+      type: [String, Object],
+      default: undefined
+    },
+    /**
+     * Custom component to render arrows (on items with children).
+     */
+    arrowComponent: {
       type: [String, Object],
       default: undefined
     },

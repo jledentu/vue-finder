@@ -71,12 +71,11 @@
     >
       <slot />
     </component>
-    <div
+    <component
+      :is="arrowComponent"
       v-if="!node.isLeaf"
-      class="arrow"
-      :style="{
-        ...(theme.arrowColor && { borderColor: theme.arrowColor })
-      }"
+      :theme="theme"
+      :expanded="expanded"
     />
   </div>
 </template>
@@ -84,6 +83,7 @@
 <script>
 import Vue from "vue";
 import { css } from "@/utils/dom-utils";
+import FinderItemArrow from "./FinderItemArrow";
 import FinderListDropZone from "./FinderListDropZone";
 
 export default {
@@ -107,6 +107,9 @@ export default {
     },
     itemComponent() {
       return this.options.itemComponent || "div";
+    },
+    arrowComponent() {
+      return this.options.arrowComponent || FinderItemArrow;
     }
   },
   watch: {
@@ -231,10 +234,6 @@ export default {
   &.expanded {
     background-color: $primaryColor;
     color: white;
-
-    .arrow {
-      border-color: white;
-    }
   }
 
   &.dragged {
@@ -258,15 +257,6 @@ export default {
     flex: 1;
     min-width: 0;
     padding: 10px;
-  }
-
-  .arrow {
-    display: inline-block;
-    border-right: 3px solid black;
-    border-bottom: 3px solid black;
-    width: 6px;
-    height: 6px;
-    transform: rotate(-45deg);
   }
 
   &:focus {

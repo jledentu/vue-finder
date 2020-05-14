@@ -1,7 +1,7 @@
 {
   "name": "@jledentu/vue-finder",
   "description": "A Vue.js component to display hierarchical data",
-  "version": "1.17.1",
+  "version": "1.18.0",
   "license": "MIT",
   "main": "dist/vue-finder.common.js",
   "module": "dist/vue-finder.esm.js",
@@ -105,7 +105,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-css-only": "^2.0.0",
-    "rollup-plugin-filesize": "^6.2.1",
+    "rollup-plugin-filesize": "^7.0.0",
     "rollup-plugin-license": "^0.14.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-vue": "^5.1.6",
