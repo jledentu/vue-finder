@@ -76,6 +76,7 @@
       v-if="!node.isLeaf"
       :theme="theme"
       :expanded="expanded"
+      :item="node"
     />
   </div>
 </template>

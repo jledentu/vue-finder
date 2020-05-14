@@ -103,6 +103,26 @@ exports[`Finder should match snapshot 1`] = `
 </div>
 `;
 
+exports[`Finder should match snapshot with a custom arrow component 1`] = `
+<div class="tree-container">
+  <div class="list-container">
+    <div class="list">
+      <div role="button" draggable="false" class="item" tabindex="0">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 11</div> <span theme="[object Object]" item="[object Object]"></span>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 12</div>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Finder should match snapshot with a custom item component 1`] = `
 <div class="tree-container">
   <div class="list-container">

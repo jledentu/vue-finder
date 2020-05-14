@@ -119,8 +119,11 @@ itemComponent: {
 
 ### Arrow component
 
-You can define a component to render arrows with the `arrowComponent` prop. This component accepts a `expanded` prop, that will
-receive the expanded state of the item.
+You can define a component to render arrows with the `arrowComponent` prop. This component accepts the following props:
+
+- `expanded`: the expanded state of the item
+- `item`: the data of the item
+- `theme`: the theme applied on the `Finder`
 
 ```html
 <Finder :tree="tree" :arrow-component="arrowComponent" />
@@ -131,7 +134,7 @@ receive the expanded state of the item.
 data() {
   return {
     arrowComponent: {
-      props: ["expanded"],
+      props: ["expanded", "item", "theme"],
       template:
         "<div>{{ expanded ? '↪' : '→' }}</div>"
     }
