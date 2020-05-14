@@ -72,3 +72,18 @@ var YourComponent = Vue.extend({
 ## Changelog
 
 See the GitHub [release history](https://github.com/jledentu/vue-finder/releases).
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+### Development scripts
+
+- `yarn build` to build the library
+- `yarn test` to run the unit tests
+- `yarn storybook` to run the [Storybook](https://github.com/storybookjs/storybook) in watch mode
+- `yarn docs:dev` to run the [Vuepress](https://github.com/vuejs/vuepress) documentation in watch mode
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
