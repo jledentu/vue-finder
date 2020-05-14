@@ -19,6 +19,10 @@ export default {
     theme: {
       type: Object,
       default: () => {}
+    },
+    item: {
+      type: Object,
+      default: () => {}
     }
   }
 };
