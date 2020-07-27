@@ -14,59 +14,197 @@
 
 </div>
 
-## Installation
+## Documentation
 
-```
+The documentation is available on the [website](https://vue-treeselect.js.org/).
+
+## Getting Started
+
+```sh
 npm install --save @jledentu/vue-finder
 ```
 
-vue-finder can be used as a module in both CommonJS and ES module environments.
-When in non-modular environment, vue-finder will register all the components to vue by itself.
+An example of Vue Single File component:
 
-### ES6
+```html
+<template>
+  <Finder :tree="tree" />
+</template>
+<script>
+  import { Finder } from "@jledentu/vue-finder";
 
-```js
-import { Finder } from '@jledentu/vue-finder';
+  export default {
+    components: {
+      Finder
+    },
+    data() {
+      return {
+        tree: {
+          id: "root",
+          children: [
+            {
+              id: "fruits",
+              label: "Fruits",
+              children: [
+                {
+                  id: "apple",
+                  label: "Apple",
+                  selectable: false
+                },
+                {
+                  id: "banana",
+                  label: "Banana"
+                },
+                {
+                  id: "grape",
+                  label: "Grape",
+                  selected: true
+                },
+                {
+                  id: "lemon",
+                  label: "Lemon",
+                  selectable: false
+                },
+                {
+                  id: "orange",
+                  label: "Orange",
+                  selected: true
+                }
+              ]
+            },
+            {
+              id: "vegetables",
+              label: "Vegetables",
+              children: [
+                {
+                  id: "bean",
+                  label: "Beans"
+                },
+                {
+                  id: "carrot",
+                  label: "Carrot",
+                  selected: true
+                },
+                {
+                  id: "eggplant",
+                  label: "Eggplant",
+                  selectable: false
+                },
+                {
+                  id: "parsnip",
+                  label: "Parsnip"
+                },
+                {
+                  id: "tomato",
+                  label: "Tomato",
+                  selectable: false
+                }
+              ]
+            }
+          ]
+        }
+      };
+    }
+  };
+</script>
 
-export default {
-  ...
-  components: {
-    Finder
-  },
-  ...
-};
-```
-
-### CommonJS
-
-```js
-//
-// You can register a component manually
-//
-var Vue = require('vue');
-var VueFinder = require('@jledentu/vue-finder');
-
-var YourComponent = Vue.extend({
-  ...
-  components: {
-    'vue-finder': VueFinder.Finder
-  },
-  ...
-});
+<style src="@jledentu/vue-finder/dist/vue-finder.css" />
 ```
 
 ### Browser
 
-```html
-<script src="path/to/vue/vue.min.js"></script>
-<script src="path/to/@jledentu/vue-finder/dist/vue-finder.min.js"></script>
-<!-- Components are registered globally -->
-```
-
-### After that, you can use it in your templates:
+You can also include the standalone UMD build in your page from the jsdeliver CDN. Make sure to import Vue as a dependency before vue-finder.
 
 ```html
-<vue-finder></vue-finder>
+<html>
+  <head>
+    <!-- Include Vue 2.x -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2"></script>
+    <!-- Include vue-finder & its styles -->
+    <script src="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@1.20.0/dist/vue-finder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@1.20.0/dist/vue-finder.css"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <finder :tree="tree" />
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        tree: {
+          id: "root",
+          children: [
+            {
+              id: "fruits",
+              label: "Fruits",
+              children: [
+                {
+                  id: "apple",
+                  label: "Apple",
+                  selectable: false
+                },
+                {
+                  id: "banana",
+                  label: "Banana"
+                },
+                {
+                  id: "grape",
+                  label: "Grape",
+                  selected: true
+                },
+                {
+                  id: "lemon",
+                  label: "Lemon",
+                  selectable: false
+                },
+                {
+                  id: "orange",
+                  label: "Orange",
+                  selected: true
+                }
+              ]
+            },
+            {
+              id: "vegetables",
+              label: "Vegetables",
+              children: [
+                {
+                  id: "bean",
+                  label: "Beans"
+                },
+                {
+                  id: "carrot",
+                  label: "Carrot",
+                  selected: true
+                },
+                {
+                  id: "eggplant",
+                  label: "Eggplant",
+                  selectable: false
+                },
+                {
+                  id: "parsnip",
+                  label: "Parsnip"
+                },
+                {
+                  id: "tomato",
+                  label: "Tomato",
+                  selectable: false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    });
+  </script>
+</html>
 ```
 
 ## Changelog
