@@ -207,12 +207,6 @@ You can also include the standalone UMD build in your page from the jsdeliver CD
 </html>
 ```
 
-After that, you can use it in your templates:
-
-```html
-<vue-finder :tree="tree"></vue-finder>
-```
-
 ## Changelog
 
 See the GitHub [release history](https://github.com/jledentu/vue-finder/releases).
