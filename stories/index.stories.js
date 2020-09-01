@@ -62,7 +62,23 @@ const data = {
     {
       id: "vegetables",
       label: "Vegetables",
+      selectable: false,
       children: [
+        {
+          id: "chili",
+          label: "Chilli Peppers",
+          children: [
+            {
+              id: "chilli dutch red",
+              label: "Dutch red"
+            },
+            {
+              id: "chilli south american yellow",
+              label: "South American yellow",
+              selected: true
+            }
+          ]
+        },
         {
           id: "carrot",
           label: "Carrot",
@@ -85,6 +101,27 @@ const data = {
         {
           id: "bean",
           label: "Beans"
+        }
+      ]
+    },
+    {
+      id: "meat",
+      label: "Meats",
+      selectable: true,
+      children: [
+        {
+          id: "pork",
+          label: "Pork"
+        },
+        {
+          id: "seafood",
+          label: "Seafood",
+          selectable: false
+        },
+        {
+          id: "chicken",
+          label: "Chicken",
+          selected: true
         }
       ]
     }

@@ -209,7 +209,7 @@ describe("Finder", () => {
 
       wrapper
         .findAll(".item > input[type=checkbox]")
-        .at(1)
+        .at(0)
         .trigger("click");
       await wrapper.vm.$nextTick();
 

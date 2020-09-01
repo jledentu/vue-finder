@@ -155,6 +155,12 @@ export default class extends EventManager {
     return !!parentNode && contains(parentNode, nodeId);
   }
 
+  hasChildren(nodeId) {
+    return this._getNode(nodeId).children
+      ? this._getNode(nodeId).children.length
+      : false;
+  }
+
   dropOnNode(nodeId, index) {
     if (!this.isDragging() || this.isNodeDragged(nodeId)) {
       return;
