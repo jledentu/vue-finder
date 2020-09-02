@@ -32,6 +32,9 @@ export default class extends EventManager {
       this.filter = options.filter;
     }
 
+    this.autoSelectDescendants = options.autoSelectDescendants;
+    this.autoDeselectDescendants = options.autoDeselectDescendants;
+
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
@@ -128,7 +131,20 @@ export default class extends EventManager {
   }
 
   selectNode(nodeId, isSelected) {
-    this.selected = (isSelected ? union : difference)(this.selected, [nodeId]);
+    const changeChildren = isSelected
+      ? this.autoSelectDescendants
+      : this.autoDeselectDescendants;
+    const nodeIdsToSelect = changeChildren
+      ? getFilteredNodes(
+          node => node.selectable !== false,
+          nodeId,
+          this.nodesMap
+        )
+      : [nodeId];
+    this.selected = (isSelected ? union : difference)(
+      this.selected,
+      nodeIdsToSelect
+    );
     this.trigger("select", this.selected);
   }
 

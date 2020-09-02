@@ -108,7 +108,10 @@ storiesOf("Finder", module)
         return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
       }
     },
-    template: `<Finder :tree="tree" style="height: 100%" :filter="filterFunction"></Finder>`,
+    template: `<Finder
+      :tree="tree"
+      style="height: 100%"
+      :filter="filterFunction" />`,
     created() {
       this.tree = {
         id: "test",
@@ -121,6 +124,12 @@ storiesOf("Finder", module)
     props: {
       filter: {
         default: text("Filter", "")
+      },
+      autoSelectDescendants: {
+        default: boolean("Auto select descendants", false)
+      },
+      autoDeselectDescendants: {
+        default: boolean("Auto deselect descendants", false)
       }
     },
     computed: {
@@ -135,7 +144,14 @@ storiesOf("Finder", module)
         return (item1, item2) => item1.label.localeCompare(item2.label);
       }
     },
-    template: `<Finder :tree="tree" :selectable="true" style="height: 100%" :filter="filterFunction" :sortBy="sortBy"></Finder>`,
+    template: `<Finder
+      :tree="tree"
+      :selectable="true"
+      :autoSelectDescendants="autoSelectDescendants"
+      :autoDeselectDescendants="autoDeselectDescendants"
+      style="height: 100%"
+      :filter="filterFunction"
+      :sortBy="sortBy" />`,
     created() {
       this.tree = data;
     }

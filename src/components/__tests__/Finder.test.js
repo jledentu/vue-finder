@@ -24,6 +24,59 @@ describe("Finder", () => {
       {
         id: "test12",
         label: "Test 12"
+      },
+      {
+        id: "test13",
+        label: "Test 13",
+        children: [
+          {
+            id: "test131",
+            label: "Test 131",
+            children: [
+              {
+                id: "test1311",
+                label: "Test 1311"
+              },
+              {
+                id: "test1312",
+                label: "Test 1312"
+              }
+            ]
+          },
+          {
+            id: "test132",
+            label: "Test 132"
+          }
+        ]
+      },
+      {
+        id: "test14",
+        label: "Test 14",
+        selected: true,
+        children: [
+          {
+            id: "test141",
+            label: "Test 141",
+            selected: true,
+            children: [
+              {
+                id: "test1411",
+                label: "Test 1411",
+                selected: true
+              },
+              {
+                id: "test1412",
+                label: "Test 1412",
+                selected: true
+              }
+            ]
+          },
+          {
+            id: "test142",
+            label: "Test 142",
+            selected: true
+          }
+        ]
       }
     ]
   };
@@ -214,8 +267,74 @@ describe("Finder", () => {
       await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted().select).toEqual([
-        [{ selected: ["test11", "test12"] }]
+        [
+          {
+            selected: [
+              "test11",
+              "test14",
+              "test141",
+              "test1411",
+              "test1412",
+              "test142",
+              "test12"
+            ]
+          }
+        ]
       ]);
+    });
+
+    it("should select descendants if `autoSelectDescendants` is true", async () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          selectable: true,
+          autoSelectDescendants: true
+        }
+      });
+
+      wrapper
+        .findAll(".item > input[type=checkbox]")
+        .at(2)
+        .trigger("click");
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().select).toEqual([
+        [
+          {
+            selected: [
+              "test11",
+              "test14",
+              "test141",
+              "test1411",
+              "test1412",
+              "test142",
+              "test1311",
+              "test1312",
+              "test131",
+              "test132",
+              "test13"
+            ]
+          }
+        ]
+      ]);
+    });
+
+    it("should deselect descendants if `autoDeselectDescendants` is true", async () => {
+      const wrapper = mount(Finder, {
+        propsData: {
+          tree,
+          selectable: true,
+          autoDeselectDescendants: true
+        }
+      });
+
+      wrapper
+        .findAll(".item > input[type=checkbox]")
+        .at(3)
+        .trigger("click");
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted().select).toEqual([[{ selected: ["test11"] }]]);
     });
   });
 
