@@ -110,6 +110,14 @@ export default {
       default: false
     },
     /**
+     * Whether all children should be recursively selected/unselected when their
+     * parent is respectively selected/unselected.
+     */
+    autoSelectChildren: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * Enable the drag & drop of items.
      */
     dragEnabled: {
@@ -238,6 +246,9 @@ export default {
     },
     filter(newFilter) {
       this.treeModel.filter = newFilter;
+    },
+    autoSelectChildren(newValue) {
+      this.treeModel.autoSelectChildren = newValue;
     }
   },
   beforeCreate() {

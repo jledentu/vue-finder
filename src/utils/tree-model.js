@@ -128,7 +128,17 @@ export default class extends EventManager {
   }
 
   selectNode(nodeId, isSelected) {
-    this.selected = (isSelected ? union : difference)(this.selected, [nodeId]);
+    const nodeIdsToSelect = this.autoSelectChildren
+      ? getFilteredNodes(
+          node => node.selectable !== false,
+          nodeId,
+          this.nodesMap
+        )
+      : [nodeId];
+    this.selected = (isSelected ? union : difference)(
+      this.selected,
+      nodeIdsToSelect
+    );
     this.trigger("select", this.selected);
   }
 
