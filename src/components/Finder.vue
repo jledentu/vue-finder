@@ -110,10 +110,16 @@ export default {
       default: false
     },
     /**
-     * Whether all children should be recursively selected/unselected when their
-     * parent is respectively selected/unselected.
+     * Whether all its descendants should be automatically selected when an item is selected.
      */
-    autoSelectChildren: {
+    autoSelectDescendants: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Whether all its descendants should be automatically deselected when an item is deselected.
+     */
+    autoDeselectDescendants: {
       type: Boolean,
       default: false
     },
@@ -247,8 +253,11 @@ export default {
     filter(newFilter) {
       this.treeModel.filter = newFilter;
     },
-    autoSelectChildren(newValue) {
-      this.treeModel.autoSelectChildren = newValue;
+    autoSelectDescendants(autoSelectDescendants) {
+      this.treeModel.autoSelectDescendants = autoSelectDescendants;
+    },
+    autoDeselectDescendants(autoDeselectDescendants) {
+      this.treeModel.autoDeselectDescendants = autoDeselectDescendants;
     }
   },
   beforeCreate() {
@@ -259,7 +268,9 @@ export default {
   created() {
     this.treeModel = new TreeModel(this.tree, {
       filter: this.filter,
-      defaultExpanded: this.defaultExpanded
+      defaultExpanded: this.defaultExpanded,
+      autoSelectDescendants: this.autoSelectDescendants,
+      autoDeselectDescendants: this.autoDeselectDescendants
     });
 
     this.treeModel.on("expand", (expanded, sourceEvent) => {

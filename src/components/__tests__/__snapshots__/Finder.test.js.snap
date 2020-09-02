@@ -14,6 +14,16 @@ exports[`Finder API #expand should accept a \`sourceEvent\` argument 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 13">
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 14">
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
     </div>
     <div class="list-container">
       <div class="list">
@@ -46,6 +56,16 @@ exports[`Finder API #expand should expand the given item and emit the \`expand\`
         <!----> <input type="checkbox" aria-label="Test 12">
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 13">
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 14">
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
       </div>
     </div>
     <div class="list-container">
@@ -88,6 +108,24 @@ exports[`Finder Drag & Drop should match snapshot 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div class="drop-zone">
+        <!---->
+      </div>
+      <div role="button" draggable="true" class="item draggable" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div class="drop-zone">
+        <!---->
+      </div>
+      <div role="button" draggable="true" class="item draggable" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
       <div class="drop-zone last">
         <!---->
       </div>
@@ -110,6 +148,16 @@ exports[`Finder Selection should match snapshot 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 13">
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!----> <input type="checkbox" aria-label="Test 14">
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -131,6 +179,18 @@ exports[`Finder should match snapshot 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -151,6 +211,16 @@ exports[`Finder should match snapshot with a custom arrow component 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div> <span theme="[object Object]" item="[object Object]"></span>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div> <span theme="[object Object]" item="[object Object]"></span>
+      </div>
     </div>
   </div>
 </div>
@@ -169,6 +239,16 @@ exports[`Finder should match snapshot with a custom item component 1`] = `
         <!---->
         <!----> <span item="[object Object]" class="inner-item">Test 12</span>
         <!---->
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!----> <span item="[object Object]" class="inner-item">Test 13</span>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!----> <span item="[object Object]" class="inner-item">Test 14</span>
+        <div class="arrow"></div>
       </div>
     </div>
   </div>
@@ -206,6 +286,18 @@ exports[`Finder should match snapshot with custom theme 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow" style="border-color: #555;"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow" style="border-color: #555;"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -226,6 +318,18 @@ exports[`Finder should match snapshot with default expanded 1`] = `
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
       </div>
     </div>
     <div class="list-container">
@@ -263,6 +367,18 @@ exports[`Finder should match snapshot with expanded item and emit event 1`] = `
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
       </div>
     </div>
     <div class="list-container">
@@ -316,6 +432,18 @@ exports[`Finder should match snapshot with initial filter 1`] = `
         <div item="[object Object]" class="inner-item">Test 12</div>
         <!---->
       </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -328,6 +456,18 @@ exports[`Finder should match snapshot with sort 1`] = `
   <div class="list-container">
     <div class="list">
       <div role="button" draggable="false" class="item" tabindex="0">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 14</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
+        <!---->
+        <!---->
+        <div item="[object Object]" class="inner-item">Test 13</div>
+        <div class="arrow"></div>
+      </div>
+      <div role="button" draggable="false" class="item" tabindex="-1">
         <!---->
         <!---->
         <div item="[object Object]" class="inner-item">Test 12</div>

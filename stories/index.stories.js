@@ -125,8 +125,11 @@ storiesOf("Finder", module)
       filter: {
         default: text("Filter", "")
       },
-      autoSelectChildren: {
-        default: boolean("Auto select children", false)
+      autoSelectDescendants: {
+        default: boolean("Auto select descendants", false)
+      },
+      autoDeselectDescendants: {
+        default: boolean("Auto deselect descendants", false)
       }
     },
     computed: {
@@ -144,7 +147,8 @@ storiesOf("Finder", module)
     template: `<Finder
       :tree="tree"
       :selectable="true"
-      :autoSelectChildren="autoSelectChildren"
+      :autoSelectDescendants="autoSelectDescendants"
+      :autoDeselectDescendants="autoDeselectDescendants"
       style="height: 100%"
       :filter="filterFunction"
       :sortBy="sortBy" />`,

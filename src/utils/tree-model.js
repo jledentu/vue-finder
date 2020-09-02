@@ -32,6 +32,9 @@ export default class extends EventManager {
       this.filter = options.filter;
     }
 
+    this.autoSelectDescendants = options.autoSelectDescendants;
+    this.autoDeselectDescendants = options.autoDeselectDescendants;
+
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
   }
@@ -128,7 +131,10 @@ export default class extends EventManager {
   }
 
   selectNode(nodeId, isSelected) {
-    const nodeIdsToSelect = this.autoSelectChildren
+    const changeChildren = isSelected
+      ? this.autoSelectDescendants
+      : this.autoDeselectDescendants;
+    const nodeIdsToSelect = changeChildren
       ? getFilteredNodes(
           node => node.selectable !== false,
           nodeId,
