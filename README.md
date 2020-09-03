@@ -16,7 +16,7 @@
 
 ## Documentation
 
-The documentation is available on the [website](https://vue-treeselect.js.org/).
+The documentation is available on the [website](https://vue-finder.netlify.app/).
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ An example of Vue Single File component:
 
   export default {
     components: {
-      Finder
+      Finder,
     },
     data() {
       return {
@@ -49,28 +49,28 @@ An example of Vue Single File component:
                 {
                   id: "apple",
                   label: "Apple",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "banana",
-                  label: "Banana"
+                  label: "Banana",
                 },
                 {
                   id: "grape",
                   label: "Grape",
-                  selected: true
+                  selected: true,
                 },
                 {
                   id: "lemon",
                   label: "Lemon",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "orange",
                   label: "Orange",
-                  selected: true
-                }
-              ]
+                  selected: true,
+                },
+              ],
             },
             {
               id: "vegetables",
@@ -78,33 +78,33 @@ An example of Vue Single File component:
               children: [
                 {
                   id: "bean",
-                  label: "Beans"
+                  label: "Beans",
                 },
                 {
                   id: "carrot",
                   label: "Carrot",
-                  selected: true
+                  selected: true,
                 },
                 {
                   id: "eggplant",
                   label: "Eggplant",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "parsnip",
-                  label: "Parsnip"
+                  label: "Parsnip",
                 },
                 {
                   id: "tomato",
                   label: "Tomato",
-                  selectable: false
-                }
-              ]
-            }
-          ]
-        }
+                  selectable: false,
+                },
+              ],
+            },
+          ],
+        },
       };
-    }
+    },
   };
 </script>
 
@@ -147,28 +147,28 @@ You can also include the standalone UMD build in your page from the jsdeliver CD
                 {
                   id: "apple",
                   label: "Apple",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "banana",
-                  label: "Banana"
+                  label: "Banana",
                 },
                 {
                   id: "grape",
                   label: "Grape",
-                  selected: true
+                  selected: true,
                 },
                 {
                   id: "lemon",
                   label: "Lemon",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "orange",
                   label: "Orange",
-                  selected: true
-                }
-              ]
+                  selected: true,
+                },
+              ],
             },
             {
               id: "vegetables",
@@ -176,32 +176,32 @@ You can also include the standalone UMD build in your page from the jsdeliver CD
               children: [
                 {
                   id: "bean",
-                  label: "Beans"
+                  label: "Beans",
                 },
                 {
                   id: "carrot",
                   label: "Carrot",
-                  selected: true
+                  selected: true,
                 },
                 {
                   id: "eggplant",
                   label: "Eggplant",
-                  selectable: false
+                  selectable: false,
                 },
                 {
                   id: "parsnip",
-                  label: "Parsnip"
+                  label: "Parsnip",
                 },
                 {
                   id: "tomato",
                   label: "Tomato",
-                  selectable: false
-                }
-              ]
-            }
-          ]
-        }
-      }
+                  selectable: false,
+                },
+              ],
+            },
+          ],
+        },
+      },
     });
   </script>
 </html>
@@ -221,6 +221,11 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 - `yarn test` to run the unit tests
 - `yarn storybook` to run the [Storybook](https://github.com/storybookjs/storybook) in watch mode
 - `yarn docs:dev` to run the [Vuepress](https://github.com/vuejs/vuepress) documentation in watch mode
+
+## Credits
+
+- [Lodash](https://lodash.com/) for some utility functions
+- [Vue-treeselect](https://vue-treeselect.js.org/), [Vue-data-tables](https://www.njleonzhang.com/vue-data-tables) and [Vue-multiselect](https://vue-multiselect.js.org) as inspiration for naming and documentation
 
 ## License
 
