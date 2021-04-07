@@ -29,6 +29,6 @@ jobs:
       - name: semantic-release
         if: success() && github.ref == 'refs/heads/master'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn semantic-release
