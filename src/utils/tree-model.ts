@@ -1,14 +1,35 @@
 import { isNil, union, difference, differenceBy } from "lodash-es";
 import {
+  Node,
+  NodeMap,
   buildNodesMap,
   contains,
   path,
   getFilteredNodes
-} from "@/utils/tree-utils";
+} from "./tree-utils";
 import EventManager from "./event-manager";
 
+interface Options {
+  defaultExpanded: string;
+  autoSelectDescendants: boolean;
+  autoDeselectDescendants: boolean;
+  filter: (Node) => boolean;
+}
+
 export default class extends EventManager {
-  constructor(root = {}, options = {}) {
+  private _root: Node;
+  private nodesMap: NodeMap;
+  private selected: string[];
+  private expanded: string[];
+  private expandedWithoutFilter: string[];
+  private filtered: string[];
+  private autoSelectDescendants: boolean;
+  private autoDeselectDescendants: boolean;
+  private draggedNodeId: string;
+  private visibleTree: Node;
+  private _filter?: (Node) => boolean;
+
+  constructor(root: Node, options: Options) {
     super();
     Object.defineProperty(this, "_root", {
       value: root,
@@ -39,11 +60,11 @@ export default class extends EventManager {
     this.draggedNodeId = undefined;
   }
 
-  _initExpanded(defaultExpanded) {
+  _initExpanded(defaultExpanded?: string): void {
     if (defaultExpanded) {
       this.expandNode(defaultExpanded);
-    } else if (this.root && this.root.id) {
-      this.expanded = [this.root.id];
+    } else if (this.root?.id) {
+      this.expanded = [this.root?.id];
       this.expandedWithoutFilter = this.expanded;
     } else {
       this.expanded = [];
@@ -51,13 +72,13 @@ export default class extends EventManager {
     }
   }
 
-  _updateVisibleTree() {
+  _updateVisibleTree(): void {
     this.visibleTree = this._computeVisibleTree(this.root.id, {
       expanded: this.expanded
     });
   }
 
-  _detachNodeFromParent(node) {
+  _detachNodeFromParent(node: Node) {
     const parent = this._getNode(node.parent);
     node.parent = undefined;
     if (parent) {
@@ -69,7 +90,7 @@ export default class extends EventManager {
     }
   }
 
-  _attachNodeToParent(node, parentId, index) {
+  _attachNodeToParent(node: Node, parentId: string, index?: number) {
     this._detachNodeFromParent(node);
     const parent = this._getNode(parentId);
     if (parent) {
@@ -87,7 +108,7 @@ export default class extends EventManager {
     }
   }
 
-  _computeVisibleTree(nodeId, { expanded }) {
+  _computeVisibleTree(nodeId: string, { expanded }) {
     const node = this._getNode(nodeId);
 
     if (!node) {
@@ -119,7 +140,7 @@ export default class extends EventManager {
    * @param {string} nodeId      ID of the node to expand
    * @param {string} sourceEvent Name of the event that triggered the expand
    */
-  expandNode(nodeId, sourceEvent) {
+  expandNode(nodeId, sourceEvent?) {
     this.expanded = path(nodeId, this.nodesMap);
     this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
@@ -208,7 +229,7 @@ export default class extends EventManager {
     return this._root;
   }
 
-  set root(newRoot = {}) {
+  set root(newRoot) {
     this._root = newRoot;
     this.nodesMap = buildNodesMap(newRoot);
 
@@ -226,7 +247,7 @@ export default class extends EventManager {
    *
    * @param {Function} newFilter
    */
-  set filter(newFilter) {
+  set filter(newFilter: (Node) => boolean) {
     this._filter = newFilter;
 
     this._applyFilter();
@@ -248,7 +269,7 @@ export default class extends EventManager {
       ) {
         // If the expanded nodes do not match the filter,
         // Expand the first node matching
-        this.expanded = [this.root.id];
+        this.expanded = [(this.root as Node).id];
       } else {
         // The previously expanded nodes match, re-expanded
         this.expanded = this.expandedWithoutFilter;

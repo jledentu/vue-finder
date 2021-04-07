@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es2016", "dom"],
+    "outDir": "bin",
+    "module": "commonjs",
+    "removeComments": true,
+    "moduleResolution": "node",
+    "typeRoots": ["node_modules/@types/"],
+    "types": ["node"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"],
+  "paths": {
+    "@/*": ["src/*"]
+  }
+}
