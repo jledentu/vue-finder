@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es2016", "dom"],
+    "lib": ["es2020", "dom"],
     "outDir": "bin",
-    "module": "commonjs",
+    "module": "esnext",
+    "importHelpers": true,
     "removeComments": true,
     "moduleResolution": "node",
     "typeRoots": ["node_modules/@types/"],

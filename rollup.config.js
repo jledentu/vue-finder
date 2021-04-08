@@ -9,6 +9,7 @@ import replace from "@rollup/plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import vue from "rollup-plugin-vue";
 import css from "rollup-plugin-css-only";
+import typescript from "@rollup/plugin-typescript";
 import path from "path";
 
 const projectName = "vue-finder";
@@ -73,6 +74,7 @@ function genConfig(name) {
         extensions: [".js", ".json", ".vue"]
       }),
       json(),
+      typescript(),
       babel({
         exclude: "node_modules/**",
         sourceMap: true,
