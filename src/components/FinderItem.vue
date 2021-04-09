@@ -54,7 +54,7 @@
       </svg>
     </div>
     <input
-      v-if="selectable"
+      v-if="(selectable && !treeModel.hasChildren(node.id)) || node.selectable"
       type="checkbox"
       :checked="selected"
       :disabled="node.selectable === false"
