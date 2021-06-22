@@ -141,7 +141,11 @@ export default {
       }, 100);
     },
     onClick() {
-      this.treeModel.expandNode(this.node.id, "click");
+      if (this.node.isLeaf) {
+        this.treeModel.selectNode(this.node.id, event.target.checked);
+      } else {
+        this.treeModel.expandNode(this.node.id, "click");
+      }
     },
     onFocus() {
       if (!this.mousedown) {
