@@ -81,13 +81,14 @@
   </div>
 </template>
 
-<script>
+<script lang="tsx">
 import Vue from "vue";
+import mixins from "vue-typed-mixins";
 import { css } from "@/utils/dom-utils";
-import FinderItemArrow from "./FinderItemArrow";
-import FinderListDropZone from "./FinderListDropZone";
+import FinderItemArrow from "./FinderItemArrow.vue";
+import FinderListDropZone from "./FinderListDropZone.vue";
 
-export default {
+export default mixins(FinderListDropZone).extend({
   name: "FinderItem",
   mixins: [FinderListDropZone],
   props: {
@@ -97,13 +98,13 @@ export default {
     }
   },
   computed: {
-    expanded() {
+    expanded(): boolean {
       return this.treeModel.isNodeExpanded(this.node.id);
     },
-    selected() {
+    selected(): boolean {
       return this.treeModel.isNodeSelected(this.node.id);
     },
-    dragged() {
+    dragged(): boolean {
       return this.treeModel.isNodeDragged(this.node.id);
     },
     itemComponent() {
@@ -219,7 +220,7 @@ export default {
       this.$el.ownerDocument.body.appendChild(this.ghost);
     }
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>

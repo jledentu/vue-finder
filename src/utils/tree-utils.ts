@@ -5,6 +5,7 @@ export interface Node {
   // ID of the parent node
   parent?: string;
   selected?: boolean;
+  selectable?: boolean;
 }
 
 export interface NodeMap {
@@ -32,7 +33,7 @@ export function contains(item: Readonly<Node>, id: string): boolean {
  * @return Built map
  */
 export function buildNodesMap(tree: Readonly<Node>): NodeMap {
-  const nodesMap = {};
+  const nodesMap: NodeMap = {};
 
   function buildChildrenMap(node: Node, parentId?: string): void {
     if (!node || !node.id) {
@@ -67,14 +68,14 @@ export function buildNodesMap(tree: Readonly<Node>): NodeMap {
  * @return List of node IDs composing a path to a given node
  */
 export function path(id: string, nodesMap: Readonly<NodeMap>): string[] {
-  function parentPath(id: string) {
+  function parentPath(id: string): string[] {
     const node = nodesMap[id];
 
     if (!node) {
       return [];
     }
 
-    return [...parentPath(node.parent), id];
+    return [...(node.parent ? parentPath(node.parent) : []), id];
   }
 
   return parentPath(id);
@@ -93,7 +94,7 @@ export function getFilteredNodes(
   rootNodeId: string,
   nodesMap: NodeMap
 ): string[] {
-  const filteredNodes = [];
+  const filteredNodes: string[] = [];
 
   function filter(nodeId: string): Node & { toHide?: boolean } {
     const node = nodesMap[nodeId];

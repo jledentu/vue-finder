@@ -1,6 +1,8 @@
-<script>
+<script lang="tsx">
+import Vue from "vue";
+import { Node } from "@/utils/tree-utils";
 import TreeModel from "@/utils/tree-model";
-import FinderList from "./FinderList";
+import FinderList from "./FinderList.vue";
 
 /**
  * Render the tree of an item and its selected children.
@@ -10,12 +12,12 @@ import FinderList from "./FinderList";
  * @param {Object} item       Item to render
  * @return Rendering object
  */
-function renderTree(h, context, item) {
+function renderTree(h: Vue.CreateElement, context: any, item: Node) {
   if (!item || !item.children || item.children.length === 0) {
     return null;
   }
 
-  const expandedChild = item.children.find(child =>
+  const expandedChild = item.children.find((child: Node) =>
     context.treeModel.isNodeExpanded(child.id)
   );
 
@@ -54,11 +56,16 @@ function renderTree(h, context, item) {
 /**
  * Get a value animated by a ease out Bezier curve.
  */
-function easeOutQuad(elapsedTime, start, end, duration) {
+function easeOutQuad(
+  elapsedTime: number,
+  start: number,
+  end: number,
+  duration: number
+) {
   return -end * (elapsedTime /= duration) * (elapsedTime - 2) + start;
 }
 
-export default {
+export default Vue.extend({
   name: "Finder",
   components: {
     FinderList
@@ -241,7 +248,9 @@ export default {
       default: 200
     }
   },
-  data() {
+  data(): {
+    treeModel: TreeModel;
+  } {
     return {
       treeModel: {}
     };
@@ -273,7 +282,7 @@ export default {
       autoDeselectDescendants: this.autoDeselectDescendants
     });
 
-    this.treeModel.on("expand", (expanded, sourceEvent) => {
+    this.treeModel.on("expand", (expanded: string[], sourceEvent: string) => {
       if (sourceEvent !== "dragover") {
         this.$nextTick(() => {
           this._scrollToRight(this.scrollAnimationDuration);
@@ -306,7 +315,7 @@ export default {
         sourceEvent
       });
     });
-    this.treeModel.on("select", selected => {
+    this.treeModel.on("select", (selected: string[]) => {
       /**
        * This event is triggered when an item has been selected.
        *
@@ -330,36 +339,39 @@ export default {
         selected
       });
     });
-    this.treeModel.on("move", ({ moved, to, index }) => {
-      /**
-       * This event is triggered when an item has been moved by drag and drop.
-       * When an item is dropped on a dropzone between two elements, a `index` is also provided.
-       *
-       * ```html
-       * <Finder :tree="tree" @move="onMove"/>
-       * ```
-       *
-       * ```js
-       * onMove({ moved, to, index }) {
-       *   console.log(
-       *     `Item with ${moved} ID has been moved
-       *     to its new parent with ${to} ID`
-       *   );
-       * }
-       * ```
-       *
-       * @event move
-       * @type {object}
-       * @property {string} moved ID of the moved item
-       * @property {string} to    ID of the parent on which the item has been moved to
-       * @property {number} index Index of the dropzone
-       */
-      this.$emit("move", {
-        moved,
-        to,
-        index
-      });
-    });
+    this.treeModel.on(
+      "move",
+      ({ moved, to, index }: { moved: string; to: string; index: number }) => {
+        /**
+         * This event is triggered when an item has been moved by drag and drop.
+         * When an item is dropped on a dropzone between two elements, a `index` is also provided.
+         *
+         * ```html
+         * <Finder :tree="tree" @move="onMove"/>
+         * ```
+         *
+         * ```js
+         * onMove({ moved, to, index }) {
+         *   console.log(
+         *     `Item with ${moved} ID has been moved
+         *     to its new parent with ${to} ID`
+         *   );
+         * }
+         * ```
+         *
+         * @event move
+         * @type {object}
+         * @property {string} moved ID of the moved item
+         * @property {string} to    ID of the parent on which the item has been moved to
+         * @property {number} index Index of the dropzone
+         */
+        this.$emit("move", {
+          moved,
+          to,
+          index
+        });
+      }
+    );
   },
   methods: {
     /**
@@ -379,10 +391,10 @@ export default {
      * @public
      * @since 1.6.0
      */
-    expand(itemId, sourceEvent = "api") {
+    expand(itemId: string, sourceEvent: string = "api"): void {
       this.treeModel.expandNode(itemId, sourceEvent);
     },
-    _scrollToRight(scrollDuration) {
+    _scrollToRight(scrollDuration: number): void {
       const { scrollLeft, scrollWidth, offsetWidth } = this.$el;
 
       if (scrollDuration === 0) {
@@ -397,7 +409,7 @@ export default {
 
       let oldTimestamp = performance.now();
       let duration = 0;
-      const step = newTimestamp => {
+      const step = (newTimestamp: number) => {
         const stepDuration = newTimestamp - oldTimestamp;
         duration += stepDuration;
 
@@ -426,7 +438,7 @@ export default {
       </div>
     );
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>

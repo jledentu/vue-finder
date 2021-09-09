@@ -9,7 +9,7 @@ import replace from "@rollup/plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import vue from "rollup-plugin-vue";
 import css from "rollup-plugin-css-only";
-import typescript from "@rollup/plugin-typescript";
+import typescript from "rollup-plugin-typescript2";
 import path from "path";
 
 const projectName = "vue-finder";
@@ -71,7 +71,7 @@ function genConfig(name) {
       resolve({
         browser: true,
         preferBuiltins: false,
-        extensions: [".js", ".json", ".vue"]
+        extensions: [".ts", ".tsx", ".js", ".json", ".vue"]
       }),
       json(),
       typescript(),
@@ -79,7 +79,7 @@ function genConfig(name) {
         exclude: "node_modules/**",
         sourceMap: true,
         runtimeHelpers: true,
-        extensions: [".js", ".jsx", ".vue"]
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".vue"]
       }),
       commonjs(),
       filesize()

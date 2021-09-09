@@ -1,7 +1,7 @@
-<script>
+<script lang="tsx">
 import { get } from "lodash-es";
-import FinderItem from "./FinderItem";
-import FinderListDropZone from "./FinderListDropZone";
+import FinderItem from "./FinderItem.vue";
+import FinderListDropZone from "./FinderListDropZone.vue";
 
 function renderItems(h, { props, expandedItemIndex }) {
   let { items, options } = props;
@@ -60,7 +60,7 @@ function getNextItemElement(element) {
   }
 }
 
-export default {
+export default Vue.extend({
   name: "FinderList",
   functional: true,
   props: {
@@ -139,7 +139,7 @@ export default {
       </div>
     ];
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>

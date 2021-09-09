@@ -27,14 +27,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { get } from "lodash-es";
+import Vue, { PropType } from "vue";
+import TreeModel from "@/utils/tree-model";
 
 export default {
   name: "FinderListDropZone",
   props: {
     treeModel: {
-      type: Object,
+      type: Object as PropType<TreeModel>,
       required: true
     },
     node: {
@@ -58,15 +60,15 @@ export default {
     dragCounter: 0
   }),
   computed: {
-    dragOver() {
+    dragOver(): boolean {
       return (
         this.treeModel.isDragging() && this.canDrop && this.dragCounter > 0
       );
     },
-    theme() {
+    theme(): Object {
       return get(this, "options.theme", {});
     },
-    canDrop() {
+    canDrop(): boolean {
       // Cannot drop on a descendant of itself
       if (this.treeModel.isParent(this.treeModel.draggedNodeId, this.node.id)) {
         return false;
@@ -78,13 +80,13 @@ export default {
     }
   },
   methods: {
-    onDragEnter() {
+    onDragEnter(): void {
       this.dragCounter++;
     },
-    onDragLeave() {
+    onDragLeave(): void {
       this.dragCounter--;
     },
-    onDrop(event) {
+    onDrop(event: DragEvent): void {
       event.preventDefault();
       this.dragCounter = 0;
       if (!this.canDrop || !this.treeModel.isDragging()) {

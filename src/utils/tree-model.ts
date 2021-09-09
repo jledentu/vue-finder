@@ -13,21 +13,22 @@ interface Options {
   defaultExpanded: string;
   autoSelectDescendants: boolean;
   autoDeselectDescendants: boolean;
-  filter: (Node) => boolean;
+  filter: (node: Node) => boolean;
 }
 
 export default class extends EventManager {
+  public autoSelectDescendants: boolean;
+  public autoDeselectDescendants: boolean;
+  public visibleTree: Node;
+  public draggedNodeId: string;
+
   private _root: Node;
   private nodesMap: NodeMap;
   private selected: string[];
   private expanded: string[];
   private expandedWithoutFilter: string[];
   private filtered: string[];
-  private autoSelectDescendants: boolean;
-  private autoDeselectDescendants: boolean;
-  private draggedNodeId: string;
-  private visibleTree: Node;
-  private _filter?: (Node) => boolean;
+  private _filter?: (node: Node) => boolean;
 
   constructor(root: Node, options: Options) {
     super();
@@ -108,7 +109,10 @@ export default class extends EventManager {
     }
   }
 
-  _computeVisibleTree(nodeId: string, { expanded }) {
+  _computeVisibleTree(
+    nodeId: string,
+    { expanded }: { expanded: string[] }
+  ): Node & { isLeaf?: boolean } {
     const node = this._getNode(nodeId);
 
     if (!node) {
@@ -130,34 +134,34 @@ export default class extends EventManager {
     };
   }
 
-  _getNode(nodeId) {
+  _getNode(nodeId: string) {
     return this.nodesMap[nodeId];
   }
 
   /**
    * Expand a node.
    *
-   * @param {string} nodeId      ID of the node to expand
-   * @param {string} sourceEvent Name of the event that triggered the expand
+   * @param nodeId      ID of the node to expand
+   * @param sourceEvent Name of the event that triggered the expand
    */
-  expandNode(nodeId, sourceEvent?) {
+  expandNode(nodeId: string, sourceEvent?: string): void {
     this.expanded = path(nodeId, this.nodesMap);
     this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
     this.trigger("expand", this.expanded, sourceEvent);
   }
 
-  isNodeExpanded(nodeId) {
+  isNodeExpanded(nodeId: string): boolean {
     return this.expanded.includes(nodeId);
   }
 
-  selectNode(nodeId, isSelected) {
+  selectNode(nodeId: string, isSelected: boolean): void {
     const changeChildren = isSelected
       ? this.autoSelectDescendants
       : this.autoDeselectDescendants;
     const nodeIdsToSelect = changeChildren
       ? getFilteredNodes(
-          node => node.selectable !== false,
+          (node: Node) => node.selectable !== false,
           nodeId,
           this.nodesMap
         )
@@ -169,15 +173,15 @@ export default class extends EventManager {
     this.trigger("select", this.selected);
   }
 
-  isNodeSelected(nodeId) {
+  isNodeSelected(nodeId: string) {
     return this.selected.includes(nodeId);
   }
 
-  isNodeFiltered(nodeId) {
+  isNodeFiltered(nodeId: string) {
     return !this._filter || this.filtered.includes(nodeId);
   }
 
-  startDrag(nodeId) {
+  startDrag(nodeId: string) {
     if (Object.prototype.hasOwnProperty.call(this.nodesMap, nodeId)) {
       this.draggedNodeId = nodeId;
     }
@@ -187,12 +191,12 @@ export default class extends EventManager {
     this.draggedNodeId = undefined;
   }
 
-  isParent(parentNodeId, nodeId) {
+  isParent(parentNodeId: string, nodeId: string) {
     const parentNode = this._getNode(parentNodeId);
     return !!parentNode && contains(parentNode, nodeId);
   }
 
-  dropOnNode(nodeId, index) {
+  dropOnNode(nodeId: string, index: number) {
     if (!this.isDragging() || this.isNodeDragged(nodeId)) {
       return;
     }
@@ -217,7 +221,7 @@ export default class extends EventManager {
     });
   }
 
-  isNodeDragged(nodeId) {
+  isNodeDragged(nodeId: string) {
     return this.draggedNodeId === nodeId;
   }
 
@@ -247,7 +251,7 @@ export default class extends EventManager {
    *
    * @param {Function} newFilter
    */
-  set filter(newFilter: (Node) => boolean) {
+  set filter(newFilter: (node: Node) => boolean) {
     this._filter = newFilter;
 
     this._applyFilter();

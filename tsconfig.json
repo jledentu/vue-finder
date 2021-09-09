@@ -1,18 +1,28 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "target": "es5",
-    "lib": ["es2020", "dom"],
+    "lib": ["esnext", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
     "outDir": "bin",
     "module": "esnext",
     "importHelpers": true,
     "removeComments": true,
     "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types/"],
-    "types": ["node"]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "sourceRoot": "./src",
+    "sourceMap": true,
+    "typeRoots": ["node_modules/@types/", "types"],
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "jsxFactory": "h"
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"],
-  "paths": {
-    "@/*": ["src/*"]
-  }
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.js"],
+  "exclude": ["node_modules"]
 }

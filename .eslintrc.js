@@ -3,14 +3,20 @@ const path = require("path");
 
 module.exports = {
   root: true,
+  parser: "vue-eslint-parser",
   parserOptions: {
-    parser: "babel-eslint",
-    ecmaVersion: 2017,
-    sourceType: "module"
+    parser: "@typescript-eslint/parser",
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname,
+    extraFileExtensions: [".vue"],
+    ecmaFeatures: {
+      jsx: true
+    }
   },
-  plugins: ["html", "vue"],
+  plugins: ["@typescript-eslint", "html", "vue"],
   extends: [
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:prettier/recommended",
     "plugin:vue/recommended",
     "plugin:import/errors",
@@ -39,20 +45,29 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "vue/html-indent": "off",
     "vue/html-self-closing": "off",
-    "vue/max-attributes-per-line": "off"
+    "vue/max-attributes-per-line": "off",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+        vue: "never"
+      }
+    ]
   },
   settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+      "vue-eslint-parser": [".vue"]
+    },
     "import/resolver": {
-      webpack: {
-        config: {
-          resolve: {
-            extensions: [".js", ".vue", ".json"],
-            alias: {
-              "@": path.resolve("src")
-            }
-          }
-        }
+      typescript: {
+        alwaysTryTypes: true
       }
-    }
+    },
+    "import/extensions": [".js", ".ts", ".tsx", ".vue"]
   }
 };
