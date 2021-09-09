@@ -432,11 +432,13 @@ export default {
 <style lang="scss" scoped>
 .tree-container {
   overflow-x: auto;
-  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: stretch;
 
   .list-container {
     display: flex;
-    height: 100%;
+    align-items: stretch;
   }
 }
 </style>
