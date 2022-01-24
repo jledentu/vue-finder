@@ -1,5 +1,4 @@
-import { storiesOf } from "@storybook/vue";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
+import Finder from "../src/components/Finder";
 
 const MAX_DEPTH = 4;
 const CHILDREN_NUMBER = 10;
@@ -91,150 +90,131 @@ const data = {
   ]
 };
 
-const filterMixin = {};
+export default {
+  title: "Finder",
+  component: Finder,
+  argTypes: {
+    filter: { control: "text" }
+  }
+};
 
-// Add more stories here to live develop your components
-storiesOf("Finder", module)
-  .addDecorator(withKnobs)
-  .add("With a lot of items", () => ({
-    props: {
-      filter: {
-        default: text("Filter", "")
+const Template = (args, { argTypes, loaded: { loadedTree } }) => ({
+  components: { Finder },
+  props: Object.keys(argTypes),
+  template: `<Finder
+    style="height: 100%"
+    v-bind="$props"
+    :filter="filterFunction" />`,
+  computed: {
+    filterFunction() {
+      if (!this.filter) {
+        return undefined;
       }
-    },
-    computed: {
-      filterFunction() {
-        const filterString = this.filter;
-        return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
-      }
-    },
-    template: `<Finder
-      :tree="tree"
-      style="height: 100%"
-      :filter="filterFunction" />`,
-    created() {
-      this.tree = {
-        id: "test",
-        label: "Test",
-        children: createChildren("test", "Test", 0, 0)
-      };
+      const filterString = this.filter;
+      return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
     }
-  }))
-  .add("Selectable items", () => ({
-    props: {
-      filter: {
-        default: text("Filter", "")
-      },
-      autoSelectDescendants: {
-        default: boolean("Auto select descendants", false)
-      },
-      autoDeselectDescendants: {
-        default: boolean("Auto deselect descendants", false)
-      }
-    },
-    computed: {
-      filterFunction() {
-        if (!this.filter) {
-          return undefined;
-        }
-        const filterString = this.filter;
-        return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
-      },
-      sortBy() {
-        return (item1, item2) => item1.label.localeCompare(item2.label);
-      }
-    },
-    template: `<Finder
-      :tree="tree"
-      :selectable="true"
-      :autoSelectDescendants="autoSelectDescendants"
-      :autoDeselectDescendants="autoDeselectDescendants"
-      style="height: 100%"
-      :filter="filterFunction"
-      :sortBy="sortBy" />`,
-    created() {
-      this.tree = data;
+  },
+  created() {
+    if (loadedTree) {
+      this.tree = loadedTree;
     }
-  }))
-  .add("Drag and drop", () => ({
-    props: {
-      hasDragHandle: {
-        type: Boolean,
-        default: boolean("Show drag handle", false)
-      }
-    },
-    mixins: [filterMixin],
-    template: `<Finder :tree="tree" :drag-enabled="true" :can-drop="canDrop" :has-drag-handle="hasDragHandle" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-      this.canDrop = target => {
-        return target !== "tomato";
-      };
+  }
+});
+
+const defaultArgs = {
+  tree: data,
+  selectable: false,
+  autoSelectDescendants: false,
+  autoDeselectDescendants: false,
+  dragEnabled: false,
+  hasDragHandle: false,
+  filter: "",
+  defaultExpanded: ""
+};
+
+export const LotOfItems = Template.bind({});
+LotOfItems.args = {
+  ...defaultArgs,
+  tree: null
+};
+LotOfItems.loaders = [
+  async () => ({
+    loadedTree: {
+      id: "test",
+      label: "Test",
+      children: createChildren("test", "Test", 0, 0)
     }
-  }))
-  .add("Custom drag image component", () => ({
-    mixins: [filterMixin],
-    template: `<Finder :tree="tree" :drag-enabled="true" :drag-image-component="dragImageComponent" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-      this.dragImageComponent = {
-        props: ["item"],
-        template: `<div style="background-color: white; display: flex; align-items: center; padding: 10px; border: solid 1px #ddd">
-            Dragging {{ item.label }}
-          </div>`
-      };
-    }
-  }))
-  .add("Custom item component", () => ({
-    mixins: [filterMixin],
-    template: `<Finder :tree="tree" :item-component="itemComponent" :selectable="true" :drag-enabled="true" :has-drag-handle="true" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-      this.itemComponent = {
-        props: ["item", "dragged", "expanded"],
-        template:
-          '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
-      };
-    }
-  }))
-  .add("Custom arrow component", () => ({
-    mixins: [filterMixin],
-    template: `<Finder :tree="tree" :arrow-component="arrowComponent" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-      this.arrowComponent = {
-        template: "<div>-></div>"
-      };
-    }
-  }))
-  .add("Custom drop zone component", () => ({
-    mixins: [filterMixin],
-    template: `<Finder :tree="tree" :drop-zone-component="dropZoneComponent" :drag-enabled="true" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-      this.dropZoneComponent = {
-        props: ["item", "dragging", "dragOver"],
-        template:
-          '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>'
-      };
-    }
-  }))
-  .add("Custom theme", () => ({
-    mixins: [filterMixin],
-    computed: {
-      theme() {
-        return {
-          primaryColor: "#41b883",
-          arrowColor: "#555",
-          separatorColor: "#eee",
-          separatorWidth: "3px",
-          dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
-          draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
-        };
-      }
-    },
-    template: `<Finder :tree="tree" :theme="theme" :selectable="true" :drag-enabled="true" style="height: 100%"></Finder>`,
-    created() {
-      this.tree = data;
-    }
-  }));
+  })
+];
+LotOfItems.storyName = "With a lot of items";
+
+export const Selectable = Template.bind({});
+Selectable.args = {
+  ...defaultArgs,
+  selectable: true
+};
+Selectable.storyName = "Selectable items";
+
+export const DragAndDrop = Template.bind({});
+DragAndDrop.args = {
+  ...defaultArgs,
+  dragEnabled: true,
+  dragImageComponent: {
+    props: ["item"],
+    template: `<div style="background-color: white; display: flex; align-items: center; padding: 10px; border: solid 1px #ddd">
+        Dragging {{ item.label }}
+      </div>`
+  }
+};
+DragAndDrop.storyName = "Drag and Drop";
+
+export const CustomItemComponent = Template.bind({});
+CustomItemComponent.args = {
+  ...defaultArgs,
+  selectable: true,
+  dragEnabled: true,
+  hasDragHandle: true,
+  itemComponent: {
+    props: ["item", "dragged", "expanded"],
+    template:
+      '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+  }
+};
+CustomItemComponent.storyName = "Custom item component";
+
+export const CustomArrowComponent = Template.bind({});
+CustomArrowComponent.args = {
+  ...defaultArgs,
+  arrowComponent: {
+    template: "<div>-></div>"
+  }
+};
+CustomArrowComponent.storyName = "Custom arrow component";
+
+export const CustomDropZoneComponent = Template.bind({});
+CustomDropZoneComponent.args = {
+  ...defaultArgs,
+  dragEnabled: true,
+  dropZoneComponent: {
+    props: ["item", "dragging", "dragOver"],
+    template:
+      '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>'
+  }
+};
+CustomDropZoneComponent.storyName = "Custom drop zone component";
+
+export const CustomTheme = Template.bind({});
+CustomTheme.args = {
+  ...defaultArgs,
+  selectable: true,
+  dragEnabled: true,
+  theme: {
+    primaryColor: "#41b883",
+    arrowColor: "#555",
+    separatorColor: "#eee",
+    separatorWidth: "3px",
+    dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
+    draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
+  }
+};
+CustomTheme.storyName = "Custom theme";
