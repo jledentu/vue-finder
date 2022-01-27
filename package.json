@@ -26,7 +26,7 @@
     "vue-library"
   ],
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=14.17.0"
   },
   "scripts": {
     "build": "$npm_execpath run build:cjs && $npm_execpath run build:es && $npm_execpath run build:umd:dev && $npm_execpath run build:umd:prod",
