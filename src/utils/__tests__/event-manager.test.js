@@ -20,7 +20,7 @@ describe("EventManager", () => {
       eventManager.on("myEvent", handler1);
       eventManager.on("myEvent", handler2);
       expect(eventManager.listeners).toEqual({
-        myEvent: [handler1, handler2]
+        myEvent: [handler1, handler2],
       });
     });
   });
@@ -34,7 +34,7 @@ describe("EventManager", () => {
       eventManager.off("myEvent", handler1);
       eventManager.off("anotherEvent", handler1);
       expect(eventManager.listeners).toEqual({
-        myEvent: [handler1]
+        myEvent: [handler1],
       });
     });
   });

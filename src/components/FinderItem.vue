@@ -10,24 +10,24 @@
         dragged,
         'has-drag-handle': dragEnabled && options.hasDragHandle,
         'drag-over': dragOver,
-        'no-drop': treeModel.isDragging() && !canDrop
-      }
+        'no-drop': treeModel.isDragging() && !canDrop,
+      },
     ]"
     :style="{
       ...(expanded &&
         theme.primaryColor && { backgroundColor: theme.primaryColor }),
       ...(dragged &&
         theme.draggedItemBgColor && {
-          backgroundColor: theme.draggedItemBgColor
+          backgroundColor: theme.draggedItemBgColor,
         }),
       ...(dragged &&
         theme.draggedItemBoxShadow && {
-          'box-shadow': theme.draggedItemBoxShadow
+          'box-shadow': theme.draggedItemBoxShadow,
         }),
       ...(dragOver &&
         theme.primaryColor && { borderColor: theme.primaryColor }),
       ...(dragOver &&
-        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
+        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor }),
     }"
     :draggable="dragEnabled && !options.hasDragHandle"
     :aria-expanded="node.isLeaf ? undefined : expanded"
@@ -93,8 +93,8 @@ export default {
   props: {
     selectable: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     expanded() {
@@ -111,7 +111,7 @@ export default {
     },
     arrowComponent() {
       return this.options.arrowComponent || FinderItemArrow;
-    }
+    },
   },
   watch: {
     dragOver(newValue) {
@@ -130,7 +130,7 @@ export default {
       if (this.dragOverTimeout) {
         clearTimeout(this.dragOverTimeout);
       }
-    }
+    },
   },
   methods: {
     onMouseDown() {
@@ -196,29 +196,29 @@ export default {
       this.ghost = document.createElement("div");
       const ghostContent = document.createElement("div");
       const vm = new Vue({
-        render: createElement => {
+        render: (createElement) => {
           return createElement(this.options.dragImageComponent, {
             props: {
-              item: this.node
-            }
+              item: this.node,
+            },
           });
-        }
+        },
       }).$mount(ghostContent);
 
       this.ghost.appendChild(vm.$el);
       css(vm.$el, {
-        boxShadow: "0 3px 4px rgba(116, 116, 116, 0.3)"
+        boxShadow: "0 3px 4px rgba(116, 116, 116, 0.3)",
       });
       css(this.ghost, {
         position: "absolute",
         padding: "10px",
         top: "-1000px",
         boxSizing: "border-box",
-        pointerEvents: "none"
+        pointerEvents: "none",
       });
       this.$el.ownerDocument.body.appendChild(this.ghost);
-    }
-  }
+    },
+  },
 };
 </script>
 

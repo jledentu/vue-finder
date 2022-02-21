@@ -3,7 +3,7 @@
     class="arrow"
     :style="{
       expanded: props.expanded,
-      ...(props.theme.arrowColor && { borderColor: props.theme.arrowColor })
+      ...(props.theme.arrowColor && { borderColor: props.theme.arrowColor }),
     }"
   ></div>
 </template>
@@ -14,17 +14,17 @@ export default {
   props: {
     expanded: {
       type: Boolean,
-      default: false
+      default: false,
     },
     theme: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     item: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 };
 </script>
 

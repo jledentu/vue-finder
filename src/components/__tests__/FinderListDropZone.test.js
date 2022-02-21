@@ -15,22 +15,22 @@ describe("FinderListDropZone", () => {
         selected: true,
         children: [
           {
-            id: "test111"
+            id: "test111",
           },
           {
-            id: "test112"
-          }
-        ]
+            id: "test112",
+          },
+        ],
       },
       {
-        id: "test12"
-      }
-    ]
+        id: "test12",
+      },
+    ],
   };
   beforeEach(() => {
     treeModel = new TreeModel(tree);
     node = {
-      id: "test111"
+      id: "test111",
     };
   });
 
@@ -38,8 +38,8 @@ describe("FinderListDropZone", () => {
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
-        node
-      }
+        node,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -50,8 +50,8 @@ describe("FinderListDropZone", () => {
       propsData: {
         treeModel,
         node,
-        dragEnabled: true
-      }
+        dragEnabled: true,
+      },
     });
     await wrapper.trigger("dragenter");
 
@@ -64,8 +64,8 @@ describe("FinderListDropZone", () => {
       propsData: {
         treeModel,
         node,
-        dragEnabled: true
-      }
+        dragEnabled: true,
+      },
     });
     await wrapper.trigger("dragenter");
     await wrapper.trigger("dragleave");
@@ -78,8 +78,8 @@ describe("FinderListDropZone", () => {
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
-        node
-      }
+        node,
+      },
     });
     await wrapper.trigger("dragenter");
 
@@ -91,8 +91,8 @@ describe("FinderListDropZone", () => {
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
-        node
-      }
+        node,
+      },
     });
     await wrapper.trigger("dragenter");
     await wrapper.trigger("dragleave");
@@ -107,8 +107,8 @@ describe("FinderListDropZone", () => {
         propsData: {
           treeModel,
           node,
-          dragEnabled: true
-        }
+          dragEnabled: true,
+        },
       });
       await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", undefined);
@@ -121,8 +121,8 @@ describe("FinderListDropZone", () => {
           treeModel,
           node,
           dragEnabled: true,
-          index: 5
-        }
+          index: 5,
+        },
       });
       await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", 5);
@@ -134,8 +134,8 @@ describe("FinderListDropZone", () => {
         propsData: {
           treeModel,
           node,
-          dragEnabled: true
-        }
+          dragEnabled: true,
+        },
       });
       await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).not.toHaveBeenCalled();

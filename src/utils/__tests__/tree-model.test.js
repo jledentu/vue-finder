@@ -10,17 +10,17 @@ describe("TreeModel", () => {
         selected: true,
         children: [
           {
-            id: "test111"
+            id: "test111",
           },
           {
-            id: "test112"
-          }
-        ]
+            id: "test112",
+          },
+        ],
       },
       {
-        id: "test12"
-      }
-    ]
+        id: "test12",
+      },
+    ],
   };
 
   let model;
@@ -50,16 +50,16 @@ describe("TreeModel", () => {
             selected: true,
             children: [],
             isLeaf: false,
-            parent: "test1"
+            parent: "test1",
           },
           {
             id: "test12",
             children: [],
             isLeaf: true,
-            parent: "test1"
-          }
+            parent: "test1",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       });
     });
 
@@ -86,26 +86,26 @@ describe("TreeModel", () => {
                 id: "test111",
                 children: [],
                 isLeaf: true,
-                parent: "test11"
+                parent: "test11",
               },
               {
                 id: "test112",
                 children: [],
                 isLeaf: true,
-                parent: "test11"
-              }
+                parent: "test11",
+              },
             ],
             isLeaf: false,
-            parent: "test1"
+            parent: "test1",
           },
           {
             id: "test12",
             children: [],
             isLeaf: true,
-            parent: "test1"
-          }
+            parent: "test1",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       });
     });
   });
@@ -147,10 +147,10 @@ describe("TreeModel", () => {
             selected: true,
             children: [],
             isLeaf: false,
-            parent: "test1"
-          }
+            parent: "test1",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       });
     });
 
@@ -167,16 +167,16 @@ describe("TreeModel", () => {
             selected: true,
             children: [],
             isLeaf: false,
-            parent: "test1"
+            parent: "test1",
           },
           {
             id: "test12",
             children: [],
             isLeaf: true,
-            parent: "test1"
-          }
+            parent: "test1",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       });
     });
 
@@ -190,27 +190,27 @@ describe("TreeModel", () => {
             selected: true,
             children: [
               {
-                id: "test111"
+                id: "test111",
               },
               {
-                id: "test112"
+                id: "test112",
               },
               {
-                id: "test113"
-              }
-            ]
+                id: "test113",
+              },
+            ],
           },
           {
-            id: "test12"
-          }
-        ]
+            id: "test12",
+          },
+        ],
       };
       expect(sortBy(model.filtered)).toEqual([
         "test1",
         "test11",
         "test111",
         "test112",
-        "test113"
+        "test113",
       ]);
       expect(model.visibleTree).toEqual({
         id: "test1",
@@ -220,10 +220,10 @@ describe("TreeModel", () => {
             selected: true,
             children: [],
             isLeaf: false,
-            parent: "test1"
-          }
+            parent: "test1",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       });
     });
   });
@@ -289,16 +289,16 @@ describe("TreeModel", () => {
               selected: true,
               children: [],
               isLeaf: false,
-              parent: "test1"
+              parent: "test1",
             },
             {
               id: "test12",
               children: [],
               isLeaf: true,
-              parent: "test1"
-            }
+              parent: "test1",
+            },
           ],
-          isLeaf: false
+          isLeaf: false,
         });
         expect(onMove).not.toHaveBeenCalled();
       });
@@ -314,16 +314,16 @@ describe("TreeModel", () => {
               selected: true,
               children: [],
               isLeaf: false,
-              parent: "test1"
+              parent: "test1",
             },
             {
               id: "test12",
               children: [],
               isLeaf: true,
-              parent: "test1"
-            }
+              parent: "test1",
+            },
           ],
-          isLeaf: false
+          isLeaf: false,
         });
         expect(onMove).not.toHaveBeenCalled();
       });
@@ -339,16 +339,16 @@ describe("TreeModel", () => {
               selected: true,
               children: [],
               isLeaf: false,
-              parent: "test1"
+              parent: "test1",
             },
             {
               id: "test12",
               children: [],
               isLeaf: true,
-              parent: "test1"
-            }
+              parent: "test1",
+            },
           ],
-          isLeaf: false
+          isLeaf: false,
         });
         expect(onMove).not.toHaveBeenCalled();
       });
@@ -367,7 +367,7 @@ describe("TreeModel", () => {
                   id: "test111",
                   children: [],
                   isLeaf: true,
-                  parent: "test11"
+                  parent: "test11",
                 },
                 {
                   id: "test112",
@@ -376,18 +376,18 @@ describe("TreeModel", () => {
                       id: "test12",
                       children: [],
                       isLeaf: true,
-                      parent: "test112"
-                    }
+                      parent: "test112",
+                    },
                   ],
                   isLeaf: false,
-                  parent: "test11"
-                }
+                  parent: "test11",
+                },
               ],
               isLeaf: false,
-              parent: "test1"
-            }
+              parent: "test1",
+            },
           ],
-          isLeaf: false
+          isLeaf: false,
         });
         expect(onExpand).toHaveBeenCalledWith(
           ["test1", "test11", "test112", "test12"],
@@ -396,7 +396,7 @@ describe("TreeModel", () => {
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
           to: "test112",
-          index: undefined
+          index: undefined,
         });
       });
 
@@ -414,26 +414,26 @@ describe("TreeModel", () => {
                   id: "test111",
                   children: [],
                   isLeaf: true,
-                  parent: "test11"
+                  parent: "test11",
                 },
                 {
                   id: "test12",
                   children: [],
                   isLeaf: true,
-                  parent: "test11"
+                  parent: "test11",
                 },
                 {
                   id: "test112",
                   children: [],
                   isLeaf: true,
-                  parent: "test11"
-                }
+                  parent: "test11",
+                },
               ],
               isLeaf: false,
-              parent: "test1"
-            }
+              parent: "test1",
+            },
           ],
-          isLeaf: false
+          isLeaf: false,
         });
         expect(onExpand).toHaveBeenCalledWith(
           ["test1", "test11", "test12"],
@@ -442,7 +442,7 @@ describe("TreeModel", () => {
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
           to: "test11",
-          index: 1
+          index: 1,
         });
       });
     });

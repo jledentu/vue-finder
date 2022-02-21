@@ -7,12 +7,12 @@ describe("Tree Utils", () => {
       id: "test1",
       children: [
         {
-          id: "test11"
+          id: "test11",
         },
         {
-          id: "test12"
-        }
-      ]
+          id: "test12",
+        },
+      ],
     };
 
     it("should return false if node is empty", () => {
@@ -44,12 +44,12 @@ describe("Tree Utils", () => {
           children: [
             {
               id: "test11",
-              selected: true
+              selected: true,
             },
             {
-              id: "test12"
-            }
-          ]
+              id: "test12",
+            },
+          ],
         })
       ).toEqual({
         test1: {
@@ -57,22 +57,22 @@ describe("Tree Utils", () => {
           children: [
             {
               id: "test11",
-              selected: true
+              selected: true,
             },
             {
-              id: "test12"
-            }
-          ]
+              id: "test12",
+            },
+          ],
         },
         test11: {
           parent: "test1",
           id: "test11",
-          selected: true
+          selected: true,
         },
         test12: {
           parent: "test1",
-          id: "test12"
-        }
+          id: "test12",
+        },
       });
     });
   });
@@ -81,11 +81,11 @@ describe("Tree Utils", () => {
     const nodesMap = {
       test1: {},
       test11: {
-        parent: "test1"
+        parent: "test1",
       },
       test12: {
-        parent: "test1"
-      }
+        parent: "test1",
+      },
     };
 
     it("should return [] if node not found", () => {
@@ -105,50 +105,50 @@ describe("Tree Utils", () => {
         id: "test1",
         children: [
           {
-            id: "test11"
+            id: "test11",
           },
           {
-            id: "test12"
-          }
-        ]
+            id: "test12",
+          },
+        ],
       },
       test11: {
         parent: "test1",
         id: "test11",
         children: [
           {
-            id: "test111"
+            id: "test111",
           },
           {
-            id: "test112"
-          }
-        ]
+            id: "test112",
+          },
+        ],
       },
       test12: {
         parent: "test1",
         id: "test12",
-        keep: true
+        keep: true,
       },
       test111: {
         parent: "test11",
-        id: "test11"
+        id: "test11",
       },
       test112: {
         parent: "test11",
         id: "test112",
-        keep: true
-      }
+        keep: true,
+      },
     };
 
     it("should return the filtered nodes", () => {
       expect(
-        sortBy(getFilteredNodes(node => node.keep, "test1", nodesMap))
+        sortBy(getFilteredNodes((node) => node.keep, "test1", nodesMap))
       ).toEqual(["test1", "test11", "test112", "test12"]);
     });
 
     it("should return [] if no node matches", () => {
       expect(
-        getFilteredNodes(node => node.id === "notfound", "test1", nodesMap)
+        getFilteredNodes((node) => node.id === "notfound", "test1", nodesMap)
       ).toEqual([]);
     });
   });

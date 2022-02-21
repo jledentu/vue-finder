@@ -18,14 +18,14 @@ const builds = {
   cjs: {
     entry: "src/index.js",
     dest: `dist/${projectName}.common.js`,
-    format: "cjs"
+    format: "cjs",
   },
   // (ES Modules). Used by bundlers that support ES Modules,
   // e.g. Rollup & Webpack 2
   esm: {
     entry: "src/index.js",
     dest: `dist/${projectName}.esm.js`,
-    format: "es"
+    format: "es",
   },
   // build (Browser)
   "umd-dev": {
@@ -34,8 +34,8 @@ const builds = {
     format: "umd",
     env: "development",
     globals: {
-      vue: "Vue"
-    }
+      vue: "Vue",
+    },
   },
   // production build (Browser)
   "umd-prod": {
@@ -44,9 +44,9 @@ const builds = {
     format: "umd",
     env: "production",
     globals: {
-      vue: "Vue"
-    }
-  }
+      vue: "Vue",
+    },
+  },
 };
 
 function genConfig(name) {
@@ -56,45 +56,45 @@ function genConfig(name) {
     external: ["vue"],
     plugins: [
       css({
-        output: "dist/vue-finder.css"
+        output: "dist/vue-finder.css",
       }),
       vue({ compileTemplate: true, css: false }),
       alias({
         entries: [
           {
             find: "@",
-            replacement: path.resolve("src")
-          }
-        ]
+            replacement: path.resolve("src"),
+          },
+        ],
       }),
       resolve({
         browser: true,
         preferBuiltins: false,
-        extensions: [".js", ".json", ".vue"]
+        extensions: [".js", ".json", ".vue"],
       }),
       json(),
       babel({
         exclude: "node_modules/**",
         sourceMap: true,
         runtimeHelpers: true,
-        extensions: [".js", ".jsx", ".vue"]
+        extensions: [".js", ".jsx", ".vue"],
       }),
       commonjs(),
-      filesize()
+      filesize(),
     ].concat(opts.plugins || []),
     output: {
       exports: "named",
       file: opts.dest,
       format: opts.format,
       name: opts.moduleName || projectName,
-      globals: opts.globals
-    }
+      globals: opts.globals,
+    },
   };
 
   if (opts.env) {
     config.plugins.push(
       replace({
-        "process.env.NODE_ENV": JSON.stringify(opts.env)
+        "process.env.NODE_ENV": JSON.stringify(opts.env),
       })
     );
 
@@ -110,15 +110,15 @@ function genConfig(name) {
       sourcemap: true,
       banner: {
         content: {
-          file: path.resolve("LICENSE")
-        }
-      }
+          file: path.resolve("LICENSE"),
+        },
+      },
     })
   );
 
   Object.defineProperty(config, "_name", {
     enumerable: false,
-    value: name
+    value: name,
   });
 
   return config;

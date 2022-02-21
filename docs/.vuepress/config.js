@@ -6,7 +6,7 @@ module.exports = {
     nav: [{ text: "GitHub", link: "https://github.com/jledentu/vue-finder" }],
     sidebar: ["/getting-started", "/examples", "/customization", "/api"],
     displayAllHeaders: true,
-    logo: "/logo.svg"
+    logo: "/logo.svg",
   },
   configureWebpack: (config, isServer) => {
     if (!isServer) {
@@ -18,5 +18,5 @@ module.exports = {
 
       config.resolve.alias.vue = "vue/dist/vue.common.js";
     }
-  }
+  },
 };

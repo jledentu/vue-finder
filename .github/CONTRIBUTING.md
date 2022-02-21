@@ -6,7 +6,7 @@
 # Install dependencies
 npm install
 
-# Build 
+# Build
 npm run build
 
 # Run development server with storybook
@@ -30,6 +30,7 @@ npm run lint:fix
 # Commit files with commitizen (use this instead of git commit)
 npm run cz
 ```
+
 ## Workflow
 
 - Create a component in the src/components folder
