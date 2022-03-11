@@ -125,14 +125,15 @@ describe("Finder", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree
-      }
+      },
+      attachTo: document.body
     });
 
-    wrapper
+    await wrapper
       .findAll(".item")
       .at(0)
       .trigger("focus");
-    await wrapper.vm.$nextTick();
+
     expect(wrapper.emitted().expand).toEqual([
       [{ expanded: ["test1", "test11"], sourceEvent: "focus" }]
     ]);
@@ -252,19 +253,19 @@ describe("Finder", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should emit a `select` event", async () => {
+    it("should emit a 'select' event", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
           selectable: true
-        }
+        },
+        attachTo: document.body
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(1)
         .trigger("click");
-      await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -283,20 +284,20 @@ describe("Finder", () => {
       ]);
     });
 
-    it("should select descendants if `autoSelectDescendants` is true", async () => {
+    it("should select descendants if 'autoSelectDescendants' is true", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
           selectable: true,
           autoSelectDescendants: true
-        }
+        },
+        attachTo: document.body
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(2)
         .trigger("click");
-      await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -319,20 +320,20 @@ describe("Finder", () => {
       ]);
     });
 
-    it("should deselect descendants if `autoDeselectDescendants` is true", async () => {
+    it("should deselect descendants if 'autoDeselectDescendants' is true", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
           selectable: true,
           autoDeselectDescendants: true
-        }
+        },
+        attachTo: document.body
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(3)
         .trigger("click");
-      await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted().select).toEqual([[{ selected: ["test11"] }]]);
     });
@@ -350,7 +351,7 @@ describe("Finder", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should emit a `move` event", async () => {
+    it("should emit a 'move' event", async () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
@@ -358,7 +359,7 @@ describe("Finder", () => {
         }
       });
 
-      wrapper
+      await wrapper
         .findAll(".item")
         .at(0)
         .trigger("dragstart", {
@@ -367,9 +368,7 @@ describe("Finder", () => {
           }
         });
 
-      await wrapper.vm.$nextTick();
-
-      wrapper
+      await wrapper
         .findAll(".item")
         .at(1)
         .trigger("drop");
@@ -382,7 +381,7 @@ describe("Finder", () => {
 
   describe("API", () => {
     describe("#expand", () => {
-      it("should expand the given item and emit the `expand` event", async () => {
+      it("should expand the given item and emit the 'expand' event", async () => {
         const wrapper = mount(Finder, {
           propsData: {
             tree,
@@ -404,7 +403,7 @@ describe("Finder", () => {
         ]);
       });
 
-      it("should accept a `sourceEvent` argument", async () => {
+      it("should accept a 'sourceEvent' argument", async () => {
         const wrapper = mount(Finder, {
           propsData: {
             tree,

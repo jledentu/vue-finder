@@ -19,5 +19,6 @@ module.exports = {
     "!src/index.js",
     "!src/index.umd.js",
     "!**/node_modules/**"
-  ]
+  ],
+  testEnvironment: "jsdom"
 };

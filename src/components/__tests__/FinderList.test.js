@@ -77,13 +77,13 @@ describe("FinderList", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should handle focus with arrows up/down", () => {
+  it("should handle focus with arrows up/down", async () => {
     const wrapper = mount(FinderList, {
       propsData: {
         treeModel,
         items: tree.children
       },
-      attachToDocument: true
+      attachTo: document.body
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -93,26 +93,26 @@ describe("FinderList", () => {
     expect(document.activeElement).toBe(firstItem.element);
 
     // Up doesn't have any effect since the first item is focused
-    firstItem.trigger("keydown", { key: "ArrowUp" });
+    await firstItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
 
     // Down navigates to the second item
-    firstItem.trigger("keydown", { key: "ArrowDown" });
+    await firstItem.trigger("keydown", { key: "ArrowDown" });
     expect(document.activeElement).toBe(secondItem.element);
 
     // Up navigates back to the first item
-    secondItem.trigger("keydown", { key: "ArrowUp" });
+    await secondItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
   });
 
-  it("should handle focus with arrows up/down when drag enabled", () => {
+  it("should handle focus with arrows up/down when drag enabled", async () => {
     const wrapper = mount(FinderList, {
       propsData: {
         treeModel,
         items: tree.children,
         dragEnabled: true
       },
-      attachToDocument: true
+      attachTo: document.body
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -122,15 +122,15 @@ describe("FinderList", () => {
     expect(document.activeElement).toBe(firstItem.element);
 
     // Up doesn't have any effect since the first item is focused
-    firstItem.trigger("keydown", { key: "ArrowUp" });
+    await firstItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
 
     // Down navigates to the second item
-    firstItem.trigger("keydown", { key: "ArrowDown" });
+    await firstItem.trigger("keydown", { key: "ArrowDown" });
     expect(document.activeElement).toBe(secondItem.element);
 
     // Up navigates back to the first item
-    secondItem.trigger("keydown", { key: "ArrowUp" });
+    await secondItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
   });
 });

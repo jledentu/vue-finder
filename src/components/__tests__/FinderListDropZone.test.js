@@ -53,8 +53,7 @@ describe("FinderListDropZone", () => {
         dragEnabled: true
       }
     });
-    wrapper.trigger("dragenter");
-    await wrapper.vm.$nextTick();
+    await wrapper.trigger("dragenter");
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -68,9 +67,8 @@ describe("FinderListDropZone", () => {
         dragEnabled: true
       }
     });
-    wrapper.trigger("dragenter");
-    wrapper.trigger("dragleave");
-    await wrapper.vm.$nextTick();
+    await wrapper.trigger("dragenter");
+    await wrapper.trigger("dragleave");
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -83,8 +81,7 @@ describe("FinderListDropZone", () => {
         node
       }
     });
-    wrapper.trigger("dragenter");
-    await wrapper.vm.$nextTick();
+    await wrapper.trigger("dragenter");
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -97,15 +94,14 @@ describe("FinderListDropZone", () => {
         node
       }
     });
-    wrapper.trigger("dragenter");
-    wrapper.trigger("dragleave");
-    await wrapper.vm.$nextTick();
+    await wrapper.trigger("dragenter");
+    await wrapper.trigger("dragleave");
 
     expect(wrapper).toMatchSnapshot();
   });
 
   describe("#onDrop", () => {
-    it("should call `treeModel.dropOnNode`", () => {
+    it("should call `treeModel.dropOnNode`", async () => {
       treeModel.isDragging.mockReturnValue(true);
       const wrapper = mount(FinderListDropZone, {
         propsData: {
@@ -114,11 +110,11 @@ describe("FinderListDropZone", () => {
           dragEnabled: true
         }
       });
-      wrapper.trigger("drop");
+      await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", undefined);
     });
 
-    it("should call `treeModel.dropOnNode` with index", () => {
+    it("should call `treeModel.dropOnNode` with index", async () => {
       treeModel.isDragging.mockReturnValue(true);
       const wrapper = mount(FinderListDropZone, {
         propsData: {
@@ -128,11 +124,11 @@ describe("FinderListDropZone", () => {
           index: 5
         }
       });
-      wrapper.trigger("drop");
+      await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", 5);
     });
 
-    it("should not call `treeModel.dropOnNode` if not dragging", () => {
+    it("should not call `treeModel.dropOnNode` if not dragging", async () => {
       treeModel.isDragging.mockReturnValue(false);
       const wrapper = mount(FinderListDropZone, {
         propsData: {
@@ -141,7 +137,7 @@ describe("FinderListDropZone", () => {
           dragEnabled: true
         }
       });
-      wrapper.trigger("drop");
+      await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).not.toHaveBeenCalled();
     });
   });
