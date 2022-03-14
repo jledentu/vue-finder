@@ -21,7 +21,7 @@ function renderItems(h, { props, expandedItemIndex }) {
           index={index}
           options={props.options}
         />
-      )
+      ),
     ],
 
     <FinderItem
@@ -34,7 +34,7 @@ function renderItems(h, { props, expandedItemIndex }) {
       tabindex={index === expandedItemIndex ? "0" : "-1"}
     >
       {item.label}
-    </FinderItem>
+    </FinderItem>,
   ]);
 }
 
@@ -66,44 +66,44 @@ export default {
   props: {
     parent: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     treeModel: {
       type: Object,
-      required: true
+      required: true,
     },
     selectable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     dragEnabled: {
       type: Boolean,
-      default: Boolean
+      default: Boolean,
     },
     options: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     hasExpandedItem: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   render(h, { props, listeners }) {
     const separatorColor = get(props, "options.theme.separatorColor", "");
     const separatorWidth = get(props, "options.theme.separatorWidth", "");
     const style = {
       ...(separatorColor && { borderColor: separatorColor }),
-      ...(separatorWidth && { borderWidth: separatorWidth })
+      ...(separatorWidth && { borderWidth: separatorWidth }),
     };
 
     const expandedItemIndex = Math.max(
       0,
-      props.items.findIndex(item => props.treeModel.isNodeExpanded(item.id))
+      props.items.findIndex((item) => props.treeModel.isNodeExpanded(item.id))
     );
 
     function navigate(event) {
@@ -133,12 +133,12 @@ export default {
                 index={props.items.length}
                 options={props.options}
               />
-            )
-          ]
+            ),
+          ],
         ]}
-      </div>
+      </div>,
     ];
-  }
+  },
 };
 </script>
 

@@ -11,7 +11,7 @@ export default class {
     let handlers = this.listeners[eventName];
 
     if (handlers) {
-      this.listeners[eventName] = handlers.filter(fn => fn === handler);
+      this.listeners[eventName] = handlers.filter((fn) => fn === handler);
     }
   }
 
@@ -19,7 +19,7 @@ export default class {
     const handlers = this.listeners[eventName];
 
     if (handlers) {
-      handlers.forEach(handler => handler.apply(null, args));
+      handlers.forEach((handler) => handler.apply(null, args));
     }
   }
 }

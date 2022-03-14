@@ -4,13 +4,13 @@
     :class="{
       'drag-over': dragOver,
       dragging: treeModel.isDragging(),
-      'no-drop': treeModel.isDragging() && !canDrop
+      'no-drop': treeModel.isDragging() && !canDrop,
     }"
     :style="{
       ...(dragOver &&
         theme.primaryColor && { borderColor: theme.primaryColor }),
       ...(dragOver &&
-        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor })
+        theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor }),
     }"
     @dragenter.prevent="onDragEnter"
     @dragleave.prevent="onDragLeave"
@@ -35,27 +35,27 @@ export default {
   props: {
     treeModel: {
       type: Object,
-      required: true
+      required: true,
     },
     node: {
       type: Object,
-      required: true
+      required: true,
     },
     dragEnabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     index: {
       type: Number,
-      default: undefined
+      default: undefined,
     },
     options: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data: () => ({
-    dragCounter: 0
+    dragCounter: 0,
   }),
   computed: {
     dragOver() {
@@ -75,7 +75,7 @@ export default {
         !this.options.canDrop ||
         this.options.canDrop(this.node.id, this.treeModel.draggedNodeId)
       );
-    }
+    },
   },
   methods: {
     onDragEnter() {
@@ -91,8 +91,8 @@ export default {
         return;
       }
       this.treeModel.dropOnNode(this.node.id, this.index);
-    }
-  }
+    },
+  },
 };
 </script>
 

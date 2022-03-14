@@ -12,7 +12,7 @@ import { Finder } from "../../../dist/vue-finder.esm.js";
 export default {
   name: "FinderExample",
   components: {
-    Finder
+    Finder,
   },
   props: [
     "selectable",
@@ -21,7 +21,7 @@ export default {
     "hasDragHandle",
     "useCustomItemComponent",
     "useCustomArrowComponent",
-    "defaultExpanded"
+    "defaultExpanded",
   ],
   data() {
     return {
@@ -35,28 +35,28 @@ export default {
               {
                 id: "apple",
                 label: "Apple",
-                selectable: false
+                selectable: false,
               },
               {
                 id: "banana",
-                label: "Banana"
+                label: "Banana",
               },
               {
                 id: "grape",
                 label: "Grape",
-                selected: true
+                selected: true,
               },
               {
                 id: "lemon",
                 label: "Lemon",
-                selectable: false
+                selectable: false,
               },
               {
                 id: "orange",
                 label: "Orange",
-                selected: true
-              }
-            ]
+                selected: true,
+              },
+            ],
           },
           {
             id: "vegetables",
@@ -64,31 +64,31 @@ export default {
             children: [
               {
                 id: "bean",
-                label: "Beans"
+                label: "Beans",
               },
               {
                 id: "carrot",
                 label: "Carrot",
-                selected: true
+                selected: true,
               },
               {
                 id: "eggplant",
                 label: "Eggplant",
-                selectable: false
+                selectable: false,
               },
               {
                 id: "parsnip",
-                label: "Parsnip"
+                label: "Parsnip",
               },
               {
                 id: "tomato",
                 label: "Tomato",
-                selectable: false
-              }
-            ]
-          }
-        ]
-      }
+                selectable: false,
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -97,7 +97,7 @@ export default {
         return {
           props: ["item"],
           template:
-            '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
+            '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>',
         };
       } else {
         return undefined;
@@ -107,13 +107,13 @@ export default {
       if (this.useCustomArrowComponent) {
         return {
           props: ["expanded"],
-          template: "<div>{{ expanded ? '↪' : '→' }}</div>"
+          template: "<div>{{ expanded ? '↪' : '→' }}</div>",
         };
       } else {
         return undefined;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

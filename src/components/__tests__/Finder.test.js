@@ -12,18 +12,18 @@ describe("Finder", () => {
         children: [
           {
             id: "test111",
-            label: "Test 111"
+            label: "Test 111",
           },
           {
             id: "test112",
             label: "Test 112",
-            cssClass: "custom-class"
-          }
-        ]
+            cssClass: "custom-class",
+          },
+        ],
       },
       {
         id: "test12",
-        label: "Test 12"
+        label: "Test 12",
       },
       {
         id: "test13",
@@ -35,19 +35,19 @@ describe("Finder", () => {
             children: [
               {
                 id: "test1311",
-                label: "Test 1311"
+                label: "Test 1311",
               },
               {
                 id: "test1312",
-                label: "Test 1312"
-              }
-            ]
+                label: "Test 1312",
+              },
+            ],
           },
           {
             id: "test132",
-            label: "Test 132"
-          }
-        ]
+            label: "Test 132",
+          },
+        ],
       },
       {
         id: "test14",
@@ -62,30 +62,30 @@ describe("Finder", () => {
               {
                 id: "test1411",
                 label: "Test 1411",
-                selected: true
+                selected: true,
               },
               {
                 id: "test1412",
                 label: "Test 1412",
-                selected: true
-              }
-            ]
+                selected: true,
+              },
+            ],
           },
           {
             id: "test142",
             label: "Test 142",
-            selected: true
-          }
-        ]
-      }
-    ]
+            selected: true,
+          },
+        ],
+      },
+    ],
   };
 
   it("should match snapshot", () => {
     const wrapper = mount(Finder, {
       propsData: {
-        tree
-      }
+        tree,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -94,9 +94,9 @@ describe("Finder", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree: {
-          id: "root"
-        }
-      }
+          id: "root",
+        },
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -105,8 +105,8 @@ describe("Finder", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree,
-        itemComponent: "span"
-      }
+        itemComponent: "span",
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -115,8 +115,8 @@ describe("Finder", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree,
-        arrowComponent: "span"
-      }
+        arrowComponent: "span",
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -124,18 +124,15 @@ describe("Finder", () => {
   it("should match snapshot with expanded item and emit event", async () => {
     const wrapper = mount(Finder, {
       propsData: {
-        tree
+        tree,
       },
-      attachTo: document.body
+      attachTo: document.body,
     });
 
-    await wrapper
-      .findAll(".item")
-      .at(0)
-      .trigger("focus");
+    await wrapper.findAll(".item").at(0).trigger("focus");
 
     expect(wrapper.emitted().expand).toEqual([
-      [{ expanded: ["test1", "test11"], sourceEvent: "focus" }]
+      [{ expanded: ["test1", "test11"], sourceEvent: "focus" }],
     ]);
     expect(wrapper).toMatchSnapshot();
   });
@@ -146,8 +143,8 @@ describe("Finder", () => {
         tree,
         filter() {
           return ({ id }) => id === "test12";
-        }
-      }
+        },
+      },
     });
 
     expect(wrapper).toMatchSnapshot();
@@ -156,12 +153,12 @@ describe("Finder", () => {
   it("should match snapshot with filter", async () => {
     const wrapper = mount(Finder, {
       propsData: {
-        tree
-      }
+        tree,
+      },
     });
 
     wrapper.setProps({
-      filter: ({ id }) => id === "test12"
+      filter: ({ id }) => id === "test12",
     });
     await wrapper.vm.$nextTick();
 
@@ -173,8 +170,8 @@ describe("Finder", () => {
       propsData: {
         tree,
         sortBy: (item1, item2) =>
-          item1.id > item2.id ? -1 : item1.id < item2.id ? 1 : 0
-      }
+          item1.id > item2.id ? -1 : item1.id < item2.id ? 1 : 0,
+      },
     });
 
     expect(wrapper).toMatchSnapshot();
@@ -184,8 +181,8 @@ describe("Finder", () => {
     const wrapper = mount(Finder, {
       propsData: {
         tree,
-        defaultExpanded: "test112"
-      }
+        defaultExpanded: "test112",
+      },
     });
 
     expect(wrapper).toMatchSnapshot();
@@ -194,8 +191,8 @@ describe("Finder", () => {
   it("should match snapshot with an updated tree", async () => {
     const wrapper = mount(Finder, {
       propsData: {
-        tree
-      }
+        tree,
+      },
     });
     wrapper.setProps({
       tree: {
@@ -207,17 +204,17 @@ describe("Finder", () => {
             children: [
               {
                 id: "test311",
-                label: "Test 311"
+                label: "Test 311",
               },
               {
                 id: "test312",
                 label: "Test 312",
-                selected: true
-              }
-            ]
-          }
-        ]
-      }
+                selected: true,
+              },
+            ],
+          },
+        ],
+      },
     });
     await wrapper.vm.$nextTick();
 
@@ -234,9 +231,9 @@ describe("Finder", () => {
           separatorColor: "#eee",
           separatorWidth: "3px",
           dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
-          draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
-        }
-      }
+          draggedItemBgColor: "rgba(112, 195, 112, 0.6)",
+        },
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -246,8 +243,8 @@ describe("Finder", () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
-          selectable: true
-        }
+          selectable: true,
+        },
       });
 
       expect(wrapper).toMatchSnapshot();
@@ -257,9 +254,9 @@ describe("Finder", () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
-          selectable: true
+          selectable: true,
         },
-        attachTo: document.body
+        attachTo: document.body,
       });
 
       await wrapper
@@ -277,10 +274,10 @@ describe("Finder", () => {
               "test1411",
               "test1412",
               "test142",
-              "test12"
-            ]
-          }
-        ]
+              "test12",
+            ],
+          },
+        ],
       ]);
     });
 
@@ -289,9 +286,9 @@ describe("Finder", () => {
         propsData: {
           tree,
           selectable: true,
-          autoSelectDescendants: true
+          autoSelectDescendants: true,
         },
-        attachTo: document.body
+        attachTo: document.body,
       });
 
       await wrapper
@@ -313,10 +310,10 @@ describe("Finder", () => {
               "test1312",
               "test131",
               "test132",
-              "test13"
-            ]
-          }
-        ]
+              "test13",
+            ],
+          },
+        ],
       ]);
     });
 
@@ -325,9 +322,9 @@ describe("Finder", () => {
         propsData: {
           tree,
           selectable: true,
-          autoDeselectDescendants: true
+          autoDeselectDescendants: true,
         },
-        attachTo: document.body
+        attachTo: document.body,
       });
 
       await wrapper
@@ -344,8 +341,8 @@ describe("Finder", () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
-          dragEnabled: true
-        }
+          dragEnabled: true,
+        },
       });
 
       expect(wrapper).toMatchSnapshot();
@@ -355,8 +352,8 @@ describe("Finder", () => {
       const wrapper = mount(Finder, {
         propsData: {
           tree,
-          dragEnabled: true
-        }
+          dragEnabled: true,
+        },
       });
 
       await wrapper
@@ -364,17 +361,14 @@ describe("Finder", () => {
         .at(0)
         .trigger("dragstart", {
           dataTransfer: {
-            setData() {}
-          }
+            setData() {},
+          },
         });
 
-      await wrapper
-        .findAll(".item")
-        .at(1)
-        .trigger("drop");
+      await wrapper.findAll(".item").at(1).trigger("drop");
 
       expect(wrapper.emitted().move).toEqual([
-        [{ moved: "test11", to: "test12" }]
+        [{ moved: "test11", to: "test12" }],
       ]);
     });
   });
@@ -385,8 +379,8 @@ describe("Finder", () => {
         const wrapper = mount(Finder, {
           propsData: {
             tree,
-            selectable: true
-          }
+            selectable: true,
+          },
         });
 
         wrapper.vm.expand("test112");
@@ -397,9 +391,9 @@ describe("Finder", () => {
           [
             {
               expanded: ["test1", "test11", "test112"],
-              sourceEvent: "api"
-            }
-          ]
+              sourceEvent: "api",
+            },
+          ],
         ]);
       });
 
@@ -407,8 +401,8 @@ describe("Finder", () => {
         const wrapper = mount(Finder, {
           propsData: {
             tree,
-            selectable: true
-          }
+            selectable: true,
+          },
         });
 
         wrapper.vm.expand("test112", "custom-event");
@@ -419,9 +413,9 @@ describe("Finder", () => {
           [
             {
               expanded: ["test1", "test11", "test112"],
-              sourceEvent: "custom-event"
-            }
-          ]
+              sourceEvent: "custom-event",
+            },
+          ],
         ]);
       });
     });

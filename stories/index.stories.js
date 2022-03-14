@@ -17,7 +17,7 @@ function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
               index,
               parentDepth + 1
             )
-          : []
+          : [],
     });
   }
 
@@ -35,28 +35,28 @@ const data = {
         {
           id: "orange",
           label: "Orange",
-          selected: true
+          selected: true,
         },
         {
           id: "apple",
           label: "Apple",
-          selectable: false
+          selectable: false,
         },
         {
           id: "grape",
           label: "Grape",
-          selected: true
+          selected: true,
         },
         {
           id: "banana",
-          label: "Banana"
+          label: "Banana",
         },
         {
           id: "lemon",
           label: "Lemon",
-          selectable: false
-        }
-      ]
+          selectable: false,
+        },
+      ],
     },
     {
       id: "vegetables",
@@ -65,37 +65,37 @@ const data = {
         {
           id: "carrot",
           label: "Carrot",
-          selected: true
+          selected: true,
         },
         {
           id: "eggplant",
           label: "Eggplant",
-          selectable: false
+          selectable: false,
         },
         {
           id: "parsnip",
-          label: "Parsnip"
+          label: "Parsnip",
         },
         {
           id: "tomato",
           label: "Tomato",
-          selectable: false
+          selectable: false,
         },
         {
           id: "bean",
-          label: "Beans"
-        }
-      ]
-    }
-  ]
+          label: "Beans",
+        },
+      ],
+    },
+  ],
 };
 
 export default {
   title: "Finder",
   component: Finder,
   argTypes: {
-    filter: { control: "text" }
-  }
+    filter: { control: "text" },
+  },
 };
 
 const Template = (args, { argTypes, loaded: { loadedTree } }) => ({
@@ -111,14 +111,14 @@ const Template = (args, { argTypes, loaded: { loadedTree } }) => ({
         return undefined;
       }
       const filterString = this.filter;
-      return item => RegExp(`^${filterString}.*`, "gi").test(item.label);
-    }
+      return (item) => RegExp(`^${filterString}.*`, "gi").test(item.label);
+    },
   },
   created() {
     if (loadedTree) {
       this.tree = loadedTree;
     }
-  }
+  },
 });
 
 const defaultArgs = {
@@ -129,29 +129,29 @@ const defaultArgs = {
   dragEnabled: false,
   hasDragHandle: false,
   filter: "",
-  defaultExpanded: ""
+  defaultExpanded: "",
 };
 
 export const LotOfItems = Template.bind({});
 LotOfItems.args = {
   ...defaultArgs,
-  tree: null
+  tree: null,
 };
 LotOfItems.loaders = [
   async () => ({
     loadedTree: {
       id: "test",
       label: "Test",
-      children: createChildren("test", "Test", 0, 0)
-    }
-  })
+      children: createChildren("test", "Test", 0, 0),
+    },
+  }),
 ];
 LotOfItems.storyName = "With a lot of items";
 
 export const Selectable = Template.bind({});
 Selectable.args = {
   ...defaultArgs,
-  selectable: true
+  selectable: true,
 };
 Selectable.storyName = "Selectable items";
 
@@ -163,8 +163,8 @@ DragAndDrop.args = {
     props: ["item"],
     template: `<div style="background-color: white; display: flex; align-items: center; padding: 10px; border: solid 1px #ddd">
         Dragging {{ item.label }}
-      </div>`
-  }
+      </div>`,
+  },
 };
 DragAndDrop.storyName = "Drag and Drop";
 
@@ -177,8 +177,8 @@ CustomItemComponent.args = {
   itemComponent: {
     props: ["item", "dragged", "expanded"],
     template:
-      '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>'
-  }
+      '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>',
+  },
 };
 CustomItemComponent.storyName = "Custom item component";
 
@@ -186,8 +186,8 @@ export const CustomArrowComponent = Template.bind({});
 CustomArrowComponent.args = {
   ...defaultArgs,
   arrowComponent: {
-    template: "<div>-></div>"
-  }
+    template: "<div>-></div>",
+  },
 };
 CustomArrowComponent.storyName = "Custom arrow component";
 
@@ -198,8 +198,8 @@ CustomDropZoneComponent.args = {
   dropZoneComponent: {
     props: ["item", "dragging", "dragOver"],
     template:
-      '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>'
-  }
+      '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>',
+  },
 };
 CustomDropZoneComponent.storyName = "Custom drop zone component";
 
@@ -214,7 +214,7 @@ CustomTheme.args = {
     separatorColor: "#eee",
     separatorWidth: "3px",
     dropZoneBgColor: "rgba(112, 195, 112, 0.3)",
-    draggedItemBgColor: "rgba(112, 195, 112, 0.6)"
-  }
+    draggedItemBgColor: "rgba(112, 195, 112, 0.6)",
+  },
 };
 CustomTheme.storyName = "Custom theme";

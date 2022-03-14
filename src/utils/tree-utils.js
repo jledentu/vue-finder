@@ -8,7 +8,7 @@
 export function contains(item, id) {
   return (
     item.id === id ||
-    (item.children ? item.children.some(child => contains(child, id)) : false)
+    (item.children ? item.children.some((child) => contains(child, id)) : false)
   );
 }
 
@@ -28,7 +28,7 @@ export function buildNodesMap(tree) {
 
     nodesMap[node.id] = {
       ...node,
-      ...(parentId ? { parent: parentId } : {})
+      ...(parentId ? { parent: parentId } : {}),
     };
 
     if (node.children) {
@@ -80,19 +80,19 @@ export function getFilteredNodes(filterFunction, rootNodeId, nodesMap) {
   function filter(nodeId) {
     const node = nodesMap[nodeId];
     const filteredChildren = (node.children || [])
-      .map(child => filter(child.id))
+      .map((child) => filter(child.id))
       .filter(({ toHide }) => !toHide);
 
     if (filteredChildren.length === 0 && !filterFunction(node)) {
       return {
         ...node,
-        toHide: true
+        toHide: true,
       };
     } else {
       filteredNodes.push(nodeId);
       return {
         ...node,
-        children: filteredChildren
+        children: filteredChildren,
       };
     }
   }

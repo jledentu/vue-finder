@@ -16,21 +16,21 @@ describe("FinderList", () => {
         children: [
           {
             id: "test111",
-            label: "Test 111"
+            label: "Test 111",
           },
           {
             id: "test112",
-            label: "Test 112"
-          }
+            label: "Test 112",
+          },
         ],
-        isLeaf: false
+        isLeaf: false,
       },
       {
         id: "test12",
         label: "Test 12",
-        isLeaf: true
-      }
-    ]
+        isLeaf: true,
+      },
+    ],
   };
   beforeEach(() => {
     treeModel = new TreeModel(tree);
@@ -40,8 +40,8 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       propsData: {
         treeModel,
-        items: tree.children
-      }
+        items: tree.children,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -49,8 +49,8 @@ describe("FinderList", () => {
   it("should match snapshot if no item", () => {
     const wrapper = mount(FinderList, {
       propsData: {
-        treeModel
-      }
+        treeModel,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -60,8 +60,8 @@ describe("FinderList", () => {
       propsData: {
         treeModel,
         items: tree.children,
-        dragEnabled: true
-      }
+        dragEnabled: true,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -71,8 +71,8 @@ describe("FinderList", () => {
       propsData: {
         treeModel,
         items: tree.children,
-        selectable: true
-      }
+        selectable: true,
+      },
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -81,9 +81,9 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       propsData: {
         treeModel,
-        items: tree.children
+        items: tree.children,
       },
-      attachTo: document.body
+      attachTo: document.body,
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -110,9 +110,9 @@ describe("FinderList", () => {
       propsData: {
         treeModel,
         items: tree.children,
-        dragEnabled: true
+        dragEnabled: true,
       },
-      attachTo: document.body
+      attachTo: document.body,
     });
 
     const firstItem = wrapper.findAll(".item").at(0);

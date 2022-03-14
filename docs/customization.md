@@ -19,20 +19,20 @@ const tree = {
       label: "Fruits",
       cssClass: "my-item fruits",
       children: [
-        { id: "apple", label: "Apple" }
+        { id: "apple", label: "Apple" },
         // ...
-      ]
+      ],
     },
     {
       id: "vegetables",
       label: "Vegetables",
       cssClass: "my-item vegetables",
       children: [
-        { id: "bean", label: "Beans" }
+        { id: "bean", label: "Beans" },
         // ...
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 };
 ```
 

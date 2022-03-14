@@ -3,7 +3,7 @@ import {
   buildNodesMap,
   contains,
   path,
-  getFilteredNodes
+  getFilteredNodes,
 } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
 
@@ -13,12 +13,12 @@ export default class extends EventManager {
     Object.defineProperty(this, "_root", {
       value: root,
       configurable: false,
-      writable: true
+      writable: true,
     });
     Object.defineProperty(this, "nodesMap", {
       value: buildNodesMap(root),
       configurable: false,
-      writable: true
+      writable: true,
     });
 
     this._initExpanded(options.defaultExpanded);
@@ -53,7 +53,7 @@ export default class extends EventManager {
 
   _updateVisibleTree() {
     this.visibleTree = this._computeVisibleTree(this.root.id, {
-      expanded: this.expanded
+      expanded: this.expanded,
     });
   }
 
@@ -81,7 +81,7 @@ export default class extends EventManager {
         parent.children = [
           ...(parent.children || []).slice(0, index),
           { ...node },
-          ...(parent.children || []).slice(index)
+          ...(parent.children || []).slice(index),
         ];
       }
     }
@@ -98,14 +98,14 @@ export default class extends EventManager {
       ...node,
       children: expanded.includes(node.id)
         ? children
-            .filter(child => this.isNodeFiltered(child.id))
-            .map(child =>
+            .filter((child) => this.isNodeFiltered(child.id))
+            .map((child) =>
               this._computeVisibleTree(child.id, {
-                expanded
+                expanded,
               })
             )
         : [],
-      isLeaf: children.length === 0
+      isLeaf: children.length === 0,
     };
   }
 
@@ -136,7 +136,7 @@ export default class extends EventManager {
       : this.autoDeselectDescendants;
     const nodeIdsToSelect = changeChildren
       ? getFilteredNodes(
-          node => node.selectable !== false,
+          (node) => node.selectable !== false,
           nodeId,
           this.nodesMap
         )
@@ -192,7 +192,7 @@ export default class extends EventManager {
     this.trigger("move", {
       moved: draggedNode.id,
       to: nodeId,
-      index
+      index,
     });
   }
 
@@ -212,7 +212,10 @@ export default class extends EventManager {
     this._root = newRoot;
     this.nodesMap = buildNodesMap(newRoot);
 
-    if (!this.expanded.length || this.expanded.some(id => !this.nodesMap[id])) {
+    if (
+      !this.expanded.length ||
+      this.expanded.some((id) => !this.nodesMap[id])
+    ) {
       // Initialize the expanded since not compatible with the new tree
       this._initExpanded();
     }
@@ -238,7 +241,7 @@ export default class extends EventManager {
       this.filtered = [];
     } else {
       if (
-        !this.expandedWithoutFilter.some(nodeId => {
+        !this.expandedWithoutFilter.some((nodeId) => {
           const node = this._getNode(nodeId);
           return (
             this._filter(node) ||

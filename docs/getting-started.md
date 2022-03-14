@@ -28,7 +28,7 @@ Then, import and use the component:
   import { Finder } from "@jledentu/vue-finder";
   export default {
     components: {
-      Finder
+      Finder,
     },
     data() {
       return {
@@ -37,16 +37,16 @@ Then, import and use the component:
           children: [
             {
               id: "child1",
-              label: "Child 1"
+              label: "Child 1",
             },
             {
               id: "child2",
-              label: "Child 2"
-            }
-          ]
-        }
+              label: "Child 2",
+            },
+          ],
+        },
       };
-    }
+    },
   };
 </script>
 ```

@@ -15,7 +15,7 @@ function renderTree(h, context, item) {
     return null;
   }
 
-  const expandedChild = item.children.find(child =>
+  const expandedChild = item.children.find((child) =>
     context.treeModel.isNodeExpanded(child.id)
   );
 
@@ -27,7 +27,7 @@ function renderTree(h, context, item) {
     dropZoneComponent: context.dropZoneComponent,
     theme: context.theme,
     hasDragHandle: context.hasDragHandle,
-    canDrop: context.canDrop
+    canDrop: context.canDrop,
   };
 
   const itemList = (
@@ -61,7 +61,7 @@ function easeOutQuad(elapsedTime, start, end, duration) {
 export default {
   name: "Finder",
   components: {
-    FinderList
+    FinderList,
   },
   props: {
     /**
@@ -92,7 +92,7 @@ export default {
      */
     tree: {
       type: Object,
-      required: true
+      required: true,
     },
     /**
      * Enable the selection of items.
@@ -107,35 +107,35 @@ export default {
      */
     selectable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * Whether all its descendants should be automatically selected when an item is selected.
      */
     autoSelectDescendants: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * Whether all its descendants should be automatically deselected when an item is deselected.
      */
     autoDeselectDescendants: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * Enable the drag & drop of items.
      */
     dragEnabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * Whether a drag handle is displayed to drag items.
      */
     hasDragHandle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * Function that indicates if a dragged item can be dropped on another.
@@ -152,7 +152,7 @@ export default {
      */
     canDrop: {
       type: Function,
-      default: undefined
+      default: undefined,
     },
     /**
      * Function to filter displayed items.
@@ -163,7 +163,7 @@ export default {
      */
     filter: {
       type: Function,
-      default: undefined
+      default: undefined,
     },
     /**
      * Function to sort displayed items.
@@ -174,42 +174,42 @@ export default {
      */
     sortBy: {
       type: Function,
-      default: undefined
+      default: undefined,
     },
     /**
      * ID of the item expanded when loaded.
      */
     defaultExpanded: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     /**
      * Custom component to render items.
      */
     itemComponent: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
     },
     /**
      * Custom component to render arrows (on items with children).
      */
     arrowComponent: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
     },
     /**
      * Custom component to render drag image.
      */
     dragImageComponent: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
     },
     /**
      * Custom component to render drop zones.
      */
     dropZoneComponent: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
     },
     /**
      * Styling options.
@@ -227,7 +227,7 @@ export default {
      */
     theme: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     /**
      * Duration of the scroll animation (in milliseconds).
@@ -238,12 +238,12 @@ export default {
      */
     scrollAnimationDuration: {
       type: Number,
-      default: 200
-    }
+      default: 200,
+    },
   },
   data() {
     return {
-      treeModel: {}
+      treeModel: {},
     };
   },
   watch: {
@@ -258,11 +258,11 @@ export default {
     },
     autoDeselectDescendants(autoDeselectDescendants) {
       this.treeModel.autoDeselectDescendants = autoDeselectDescendants;
-    }
+    },
   },
   beforeCreate() {
     Object.defineProperty(this.$options.propsData, "tree", {
-      configurable: false
+      configurable: false,
     });
   },
   created() {
@@ -270,7 +270,7 @@ export default {
       filter: this.filter,
       defaultExpanded: this.defaultExpanded,
       autoSelectDescendants: this.autoSelectDescendants,
-      autoDeselectDescendants: this.autoDeselectDescendants
+      autoDeselectDescendants: this.autoDeselectDescendants,
     });
 
     this.treeModel.on("expand", (expanded, sourceEvent) => {
@@ -303,10 +303,10 @@ export default {
        */
       this.$emit("expand", {
         expanded,
-        sourceEvent
+        sourceEvent,
       });
     });
-    this.treeModel.on("select", selected => {
+    this.treeModel.on("select", (selected) => {
       /**
        * This event is triggered when an item has been selected.
        *
@@ -327,7 +327,7 @@ export default {
        * @property {Array<string>} selected IDs of selected items
        */
       this.$emit("select", {
-        selected
+        selected,
       });
     });
     this.treeModel.on("move", ({ moved, to, index }) => {
@@ -357,7 +357,7 @@ export default {
       this.$emit("move", {
         moved,
         to,
-        index
+        index,
       });
     });
   },
@@ -397,7 +397,7 @@ export default {
 
       let oldTimestamp = performance.now();
       let duration = 0;
-      const step = newTimestamp => {
+      const step = (newTimestamp) => {
         const stepDuration = newTimestamp - oldTimestamp;
         duration += stepDuration;
 
@@ -417,7 +417,7 @@ export default {
         window.requestAnimationFrame(step);
       };
       window.requestAnimationFrame(step);
-    }
+    },
   },
   render(h) {
     return (
@@ -425,7 +425,7 @@ export default {
         {this.treeModel && renderTree(h, this, this.treeModel.visibleTree)}
       </div>
     );
-  }
+  },
 };
 </script>
 

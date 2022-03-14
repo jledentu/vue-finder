@@ -12,19 +12,19 @@ const tree = {
       id: "fruits",
       label: "Fruits",
       children: [
-        { id: "apple", label: "Apple" }
+        { id: "apple", label: "Apple" },
         // ...
-      ]
+      ],
     },
     {
       id: "vegetables",
       label: "Vegetables",
       children: [
-        { id: "bean", label: "Beans" }
+        { id: "bean", label: "Beans" },
         // ...
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 };
 ```
 
@@ -61,7 +61,7 @@ You can filter displayed items by defining the `filter` prop:
 Where `filter` is a `Function` that takes an item as argument, and should return `true` if this item must be displayed.
 
 ```js
-const filter = item => item.id === "apple";
+const filter = (item) => item.id === "apple";
 ```
 
 <FinderExample :filter="item => item.id === 'apple'"></FinderExample>
