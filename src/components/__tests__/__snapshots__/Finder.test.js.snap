@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Finder API #expand should accept a \`sourceEvent\` argument 1`] = `
+exports[`Finder API #expand should accept a 'sourceEvent' argument 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
@@ -43,7 +43,7 @@ exports[`Finder API #expand should accept a \`sourceEvent\` argument 1`] = `
 </div>
 `;
 
-exports[`Finder API #expand should expand the given item and emit the \`expand\` event 1`] = `
+exports[`Finder API #expand should expand the given item and emit the 'expand' event 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
