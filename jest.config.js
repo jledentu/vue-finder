@@ -4,11 +4,11 @@ module.exports = {
   rootDir: path.resolve(__dirname, "./"),
   moduleFileExtensions: ["js", "json", "vue"],
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1"
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
   transform: {
     ".*\\.js$": require.resolve("babel-jest"),
-    ".*\\.vue$": require.resolve("vue-jest")
+    ".*\\.vue$": require.resolve("vue-jest"),
   },
   transformIgnorePatterns: ["/node_modules/(?!lodash-es)/"],
   snapshotSerializers: [require.resolve("jest-serializer-vue")],
@@ -18,7 +18,7 @@ module.exports = {
     "src/**/*.{js,vue}",
     "!src/index.js",
     "!src/index.umd.js",
-    "!**/node_modules/**"
+    "!**/node_modules/**",
   ],
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
 };
