@@ -264,7 +264,7 @@ describe("Finder", () => {
 
       await wrapper
         .findAll(".item > input[type=checkbox]")
-        .at(1)
+        .at(0)
         .trigger("click");
 
       expect(wrapper.emitted().select).toEqual([
