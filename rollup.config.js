@@ -4,7 +4,7 @@ import filesize from "rollup-plugin-filesize";
 import json from "@rollup/plugin-json";
 import license from "rollup-plugin-license";
 import alias from "@rollup/plugin-alias";
-import resolve from "@rollup/plugin-node-resolve";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import vue from "rollup-plugin-vue";
@@ -67,7 +67,7 @@ function genConfig(name) {
           },
         ],
       }),
-      resolve({
+      nodeResolve({
         browser: true,
         preferBuiltins: false,
         extensions: [".js", ".json", ".vue"],
@@ -95,6 +95,7 @@ function genConfig(name) {
     config.plugins.push(
       replace({
         "process.env.NODE_ENV": JSON.stringify(opts.env),
+        preventAssignment: true,
       })
     );
 
