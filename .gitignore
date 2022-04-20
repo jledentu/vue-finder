@@ -72,3 +72,5 @@ dist/
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
 docs/api.md
+docs/.vuepress/.cache
+docs/.vuepress/.temp

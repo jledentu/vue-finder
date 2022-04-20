@@ -1,4 +1,5 @@
-const path = require("path");
+const { path } = require("@vuepress/utils");
+
 module.exports = {
   title: "Vue Finder",
   description: "A Vue.js component to display hierarchical data",
@@ -8,15 +9,12 @@ module.exports = {
     displayAllHeaders: true,
     logo: "/logo.svg",
   },
-  configureWebpack: (config, isServer) => {
-    if (!isServer) {
-      const babelRule = config.module.rules.find(({ use }) =>
-        use.some(({ loader }) => loader === "babel-loader")
-      );
-      const exclude = babelRule.exclude;
-      babelRule.exclude.push(/node_modules/);
-
-      config.resolve.alias.vue = "vue/dist/vue.common.js";
-    }
-  },
+  plugins: [
+    [
+      "@vuepress/register-components",
+      {
+        componentsDir: path.resolve(__dirname, "./components"),
+      },
+    ],
+  ],
 };

@@ -15,6 +15,7 @@ module.exports = {
     "plugin:vue/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:storybook/recommended",
   ],
   env: {
     browser: true,

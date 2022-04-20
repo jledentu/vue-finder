@@ -1,6 +1,7 @@
-<script>
+<script lang="tsx">
+import { toRaw } from "vue";
 import TreeModel from "@/utils/tree-model";
-import FinderList from "./FinderList";
+import FinderList from "./FinderList.vue";
 
 /**
  * Render the tree of an item and its selected children.
@@ -248,7 +249,7 @@ export default {
   },
   watch: {
     tree(newTree) {
-      this.treeModel.root = newTree;
+      this.treeModel.root = toRaw(newTree);
     },
     filter(newFilter) {
       this.treeModel.filter = newFilter;
@@ -260,13 +261,8 @@ export default {
       this.treeModel.autoDeselectDescendants = autoDeselectDescendants;
     },
   },
-  beforeCreate() {
-    Object.defineProperty(this.$options.propsData, "tree", {
-      configurable: false,
-    });
-  },
   created() {
-    this.treeModel = new TreeModel(this.tree, {
+    this.treeModel = new TreeModel(toRaw(this.tree), {
       filter: this.filter,
       defaultExpanded: this.defaultExpanded,
       autoSelectDescendants: this.autoSelectDescendants,

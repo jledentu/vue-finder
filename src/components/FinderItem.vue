@@ -82,10 +82,10 @@
 </template>
 
 <script>
-import Vue from "vue";
+//import { createApp } from "vue";
 import { css } from "@/utils/dom-utils";
-import FinderItemArrow from "./FinderItemArrow";
-import FinderListDropZone from "./FinderListDropZone";
+import FinderItemArrow from "./FinderItemArrow.vue";
+import FinderListDropZone from "./FinderListDropZone.vue";
 
 export default {
   name: "FinderItem",
@@ -195,7 +195,7 @@ export default {
     appendGhost() {
       this.ghost = document.createElement("div");
       const ghostContent = document.createElement("div");
-      const vm = new Vue({
+      /*const vm = new Vue({
         render: (createElement) => {
           return createElement(this.options.dragImageComponent, {
             props: {
@@ -216,7 +216,7 @@ export default {
         boxSizing: "border-box",
         pointerEvents: "none",
       });
-      this.$el.ownerDocument.body.appendChild(this.ghost);
+      this.$el.ownerDocument.body.appendChild(this.ghost);*/
     },
   },
 };
