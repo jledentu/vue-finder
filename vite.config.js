@@ -7,22 +7,10 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 export default defineConfig({
   resolve: {
     alias: {
-      //vue: "@vue/compat",
       "@": path.resolve("src"),
     },
   },
-  plugins: [
-    vue({
-      /*template: {
-        compilerOptions: {
-          compatConfig: {
-            MODE: 2,
-          },
-        },
-      },*/
-    }),
-    vueJsx(),
-  ],
+  plugins: [vue(), vueJsx()],
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),

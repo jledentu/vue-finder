@@ -1,4 +1,4 @@
-import Finder from "../src/components/Finder";
+import Finder from "../src/components/Finder.vue";
 
 const MAX_DEPTH = 4;
 const CHILDREN_NUMBER = 10;
@@ -98,13 +98,14 @@ export default {
   },
 };
 
-const Template = (args, { argTypes, loaded: { loadedTree } }) => ({
+const Template = (args, { loaded: { loadedTree } }) => ({
   components: { Finder },
-  props: Object.keys(argTypes),
+  setup() {
+    return { args };
+  },
   template: `<Finder
     style="height: 100%"
-    v-bind="$props"
-    :filter="filterFunction" />`,
+    v-bind="{ ...args, filter: filterFunction }" />`,
   computed: {
     filterFunction() {
       if (!this.filter) {
@@ -114,7 +115,8 @@ const Template = (args, { argTypes, loaded: { loadedTree } }) => ({
       return (item) => RegExp(`^${filterString}.*`, "gi").test(item.label);
     },
   },
-  created() {
+  mounted() {
+    console.log(this.$props);
     if (loadedTree) {
       this.tree = loadedTree;
     }

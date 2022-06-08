@@ -12,7 +12,7 @@ module.exports = {
   },
   transformIgnorePatterns: ["/node_modules/(?!lodash-es)/"],
   snapshotSerializers: [require.resolve("jest-serializer-vue")],
-  setupFiles: ["<rootDir>/jest.setup"],
+  //setupFiles: ["<rootDir>/jest.setup"],
   coverageDirectory: "<rootDir>/coverage",
   collectCoverageFrom: [
     "src/**/*.{js,vue}",

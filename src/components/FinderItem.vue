@@ -6,7 +6,7 @@
       node.cssClass || '',
       {
         expanded,
-        draggable: dragEnabled && !options.hasDragHandle,
+        draggable: dragEnabled && (!options.hasDragHandle || dragHandleOver),
         dragged,
         'has-drag-handle': dragEnabled && options.hasDragHandle,
         'drag-over': dragOver,
@@ -44,8 +44,8 @@
     <div
       v-if="dragEnabled && options.hasDragHandle"
       class="drag-handle"
-      @mousedown="$el.setAttribute('draggable', 'true')"
-      @mouseup="$el.setAttribute('draggable', 'false')"
+      @mousedown="dragHandleOver = true"
+      @mouseup="dragHandleOver = false"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path
@@ -79,11 +79,27 @@
       :item="node"
     />
   </div>
+
+  <Teleport to="body">
+    <component
+      :is="options.dragImageComponent"
+      v-if="options.dragImageComponent"
+      v-show="showGhost"
+      ref="ghost"
+      :item="node"
+      style="
+        box-shadow: 0 3px 4px rgba(116, 116, 116, 0.3);
+        position: absolute;
+        padding: 10px;
+        top: -1000px;
+        box-sizing: border-box;
+        pointer-events: none;
+      "
+    />
+  </Teleport>
 </template>
 
 <script>
-//import { createApp } from "vue";
-import { css } from "@/utils/dom-utils";
 import FinderItemArrow from "./FinderItemArrow.vue";
 import FinderListDropZone from "./FinderListDropZone.vue";
 
@@ -95,6 +111,12 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      showGhost: false,
+      dragHandleOver: false,
+    };
   },
   computed: {
     expanded() {
@@ -151,14 +173,16 @@ export default {
     onSelect(event) {
       this.treeModel.selectNode(this.node.id, event.target.checked);
     },
-    onDragStart(event) {
+    async onDragStart(event) {
       if (!this.dragEnabled) {
         return;
       }
 
       if (this.options.dragImageComponent) {
-        this.appendGhost();
-        event.dataTransfer.setDragImage(this.ghost, 0, 0);
+        this.showGhost = true;
+        await this.$nextTick();
+        console.log(this.$refs.ghost);
+        event.dataTransfer.setDragImage(this.$refs.ghost.$el, 0, 0);
       }
 
       event.dataTransfer.setData("text/plain", this.node.id);
@@ -178,10 +202,7 @@ export default {
       }
     },
     onDragEnd() {
-      if (this.ghost) {
-        this.ghost.parentNode.removeChild(this.ghost);
-        this.ghost = null;
-      }
+      this.showGhost = false;
       if (!this.dragEnabled) {
         return;
       }
@@ -191,32 +212,6 @@ export default {
       }
 
       this.treeModel.stopDrag();
-    },
-    appendGhost() {
-      this.ghost = document.createElement("div");
-      const ghostContent = document.createElement("div");
-      /*const vm = new Vue({
-        render: (createElement) => {
-          return createElement(this.options.dragImageComponent, {
-            props: {
-              item: this.node,
-            },
-          });
-        },
-      }).$mount(ghostContent);
-
-      this.ghost.appendChild(vm.$el);
-      css(vm.$el, {
-        boxShadow: "0 3px 4px rgba(116, 116, 116, 0.3)",
-      });
-      css(this.ghost, {
-        position: "absolute",
-        padding: "10px",
-        top: "-1000px",
-        boxSizing: "border-box",
-        pointerEvents: "none",
-      });
-      this.$el.ownerDocument.body.appendChild(this.ghost);*/
     },
   },
 };

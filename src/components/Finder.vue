@@ -1,4 +1,4 @@
-<script lang="tsx">
+<script lang="jsx">
 import { toRaw } from "vue";
 import TreeModel from "@/utils/tree-model";
 import FinderList from "./FinderList.vue";

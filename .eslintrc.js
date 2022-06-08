@@ -5,14 +5,22 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: "@babel/eslint-parser",
+    babelOptions: {
+      parserOpts: {
+        plugins: ["jsx"],
+      },
+    },
     ecmaVersion: 2017,
+    ecmaFeatures: {
+      jsx: true,
+    },
     sourceType: "module",
   },
   plugins: ["html", "vue"],
   extends: [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:vue/recommended",
+    "plugin:vue/vue3-recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:storybook/recommended",
@@ -33,7 +41,6 @@ module.exports = {
       "always",
       {
         js: "never",
-        vue: "never",
       },
     ],
     // allow debugger during development
