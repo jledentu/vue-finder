@@ -6,7 +6,7 @@
       node.cssClass || '',
       {
         expanded,
-        draggable: dragEnabled && (!options.hasDragHandle || dragHandleOver),
+        draggable: dragEnabled && !options.hasDragHandle,
         dragged,
         'has-drag-handle': dragEnabled && options.hasDragHandle,
         'drag-over': dragOver,
@@ -29,7 +29,7 @@
       ...(dragOver &&
         theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor }),
     }"
-    :draggable="dragEnabled && !options.hasDragHandle"
+    :draggable="dragEnabled"
     :aria-expanded="node.isLeaf ? undefined : expanded"
     @mousedown="onMouseDown"
     @click="onClick"
@@ -178,6 +178,10 @@ export default {
         return;
       }
 
+      if (this.options.hasDragHandle && !this.dragHandleOver) {
+        return;
+      }
+
       if (this.options.dragImageComponent) {
         this.showGhost = true;
         await this.$nextTick();
@@ -205,10 +209,6 @@ export default {
       this.showGhost = false;
       if (!this.dragEnabled) {
         return;
-      }
-
-      if (this.options.hasDragHandle) {
-        this.$el.setAttribute("draggable", "false");
       }
 
       this.treeModel.stopDrag();
