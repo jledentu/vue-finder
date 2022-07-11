@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
-import FinderList from "../FinderList";
+import FinderList from "../FinderList.vue";
 
 jest.mock("@/utils/tree-model");
 
@@ -38,56 +38,56 @@ describe("FinderList", () => {
 
   it("should match snapshot", () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
         items: tree.children,
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot if no item", () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot if `dragEnabled` is true", () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
         items: tree.children,
         dragEnabled: true,
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot if `selectable` is true", () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
         items: tree.children,
         selectable: true,
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should handle focus with arrows up/down", async () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
         items: tree.children,
       },
       attachTo: document.body,
     });
 
-    const firstItem = wrapper.findAll(".item").at(0);
-    const secondItem = wrapper.findAll(".item").at(1);
+    const firstItem = wrapper.findAll(".item")[0];
+    const secondItem = wrapper.findAll(".item")[1];
 
     firstItem.element.focus();
     expect(document.activeElement).toBe(firstItem.element);
@@ -107,7 +107,7 @@ describe("FinderList", () => {
 
   it("should handle focus with arrows up/down when drag enabled", async () => {
     const wrapper = mount(FinderList, {
-      propsData: {
+      props: {
         treeModel,
         items: tree.children,
         dragEnabled: true,
@@ -115,8 +115,8 @@ describe("FinderList", () => {
       attachTo: document.body,
     });
 
-    const firstItem = wrapper.findAll(".item").at(0);
-    const secondItem = wrapper.findAll(".item").at(1);
+    const firstItem = wrapper.findAll(".item")[0];
+    const secondItem = wrapper.findAll(".item")[1];
 
     firstItem.element.focus();
     expect(document.activeElement).toBe(firstItem.element);

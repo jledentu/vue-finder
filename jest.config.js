@@ -8,7 +8,7 @@ module.exports = {
   },
   transform: {
     ".*\\.js$": require.resolve("babel-jest"),
-    ".*\\.vue$": require.resolve("vue-jest"),
+    ".*\\.vue$": require.resolve("@vue/vue3-jest"),
   },
   transformIgnorePatterns: ["/node_modules/(?!lodash-es)/"],
   snapshotSerializers: [require.resolve("jest-serializer-vue")],
@@ -17,7 +17,6 @@ module.exports = {
   collectCoverageFrom: [
     "src/**/*.{js,vue}",
     "!src/index.js",
-    "!src/index.umd.js",
     "!**/node_modules/**",
   ],
   testEnvironment: "jsdom",

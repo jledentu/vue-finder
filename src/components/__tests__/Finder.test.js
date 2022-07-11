@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import Finder from "../Finder";
+import Finder from "../Finder.vue";
 
 describe("Finder", () => {
   const tree = {
@@ -83,63 +83,63 @@ describe("Finder", () => {
 
   it("should match snapshot", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with no children", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree: {
           id: "root",
         },
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with a custom item component", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         itemComponent: "span",
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with a custom arrow component", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         arrowComponent: "span",
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with expanded item and emit event", async () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
       },
       attachTo: document.body,
     });
 
-    await wrapper.findAll(".item").at(0).trigger("focus");
+    await wrapper.findAll(".item")[0].trigger("focus");
 
     expect(wrapper.emitted().expand).toEqual([
       [{ expanded: ["test1", "test11"], sourceEvent: "focus" }],
     ]);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with initial filter", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         filter() {
           return ({ id }) => id === "test12";
@@ -147,12 +147,12 @@ describe("Finder", () => {
       },
     });
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with filter", async () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
       },
     });
@@ -162,35 +162,35 @@ describe("Finder", () => {
     });
     await wrapper.vm.$nextTick();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with sort", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         sortBy: (item1, item2) =>
           item1.id > item2.id ? -1 : item1.id < item2.id ? 1 : 0,
       },
     });
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with default expanded", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         defaultExpanded: "test112",
       },
     });
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with an updated tree", async () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
       },
     });
@@ -218,12 +218,12 @@ describe("Finder", () => {
     });
     await wrapper.vm.$nextTick();
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should match snapshot with custom theme", () => {
     const wrapper = mount(Finder, {
-      propsData: {
+      props: {
         tree,
         theme: {
           primaryColor: "#41b883",
@@ -235,34 +235,31 @@ describe("Finder", () => {
         },
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   describe("Selection", () => {
     it("should match snapshot", () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           selectable: true,
         },
       });
 
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.html()).toMatchSnapshot();
     });
 
     it("should emit a 'select' event", async () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           selectable: true,
         },
         attachTo: document.body,
       });
 
-      await wrapper
-        .findAll(".item > input[type=checkbox]")
-        .at(1)
-        .trigger("click");
+      await wrapper.findAll(".item > input[type=checkbox]")[1].trigger("click");
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -283,7 +280,7 @@ describe("Finder", () => {
 
     it("should select descendants if 'autoSelectDescendants' is true", async () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           selectable: true,
           autoSelectDescendants: true,
@@ -291,10 +288,7 @@ describe("Finder", () => {
         attachTo: document.body,
       });
 
-      await wrapper
-        .findAll(".item > input[type=checkbox]")
-        .at(2)
-        .trigger("click");
+      await wrapper.findAll(".item > input[type=checkbox]")[2].trigger("click");
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -319,7 +313,7 @@ describe("Finder", () => {
 
     it("should deselect descendants if 'autoDeselectDescendants' is true", async () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           selectable: true,
           autoDeselectDescendants: true,
@@ -327,10 +321,7 @@ describe("Finder", () => {
         attachTo: document.body,
       });
 
-      await wrapper
-        .findAll(".item > input[type=checkbox]")
-        .at(3)
-        .trigger("click");
+      await wrapper.findAll(".item > input[type=checkbox]")[3].trigger("click");
 
       expect(wrapper.emitted().select).toEqual([[{ selected: ["test11"] }]]);
     });
@@ -339,33 +330,30 @@ describe("Finder", () => {
   describe("Drag & Drop", () => {
     it("should match snapshot", () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           dragEnabled: true,
         },
       });
 
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.html()).toMatchSnapshot();
     });
 
     it("should emit a 'move' event", async () => {
       const wrapper = mount(Finder, {
-        propsData: {
+        props: {
           tree,
           dragEnabled: true,
         },
       });
 
-      await wrapper
-        .findAll(".item")
-        .at(0)
-        .trigger("dragstart", {
-          dataTransfer: {
-            setData() {},
-          },
-        });
+      await wrapper.findAll(".item")[0].trigger("dragstart", {
+        dataTransfer: {
+          setData() {},
+        },
+      });
 
-      await wrapper.findAll(".item").at(1).trigger("drop");
+      await wrapper.findAll(".item")[1].trigger("drop");
 
       expect(wrapper.emitted().move).toEqual([
         [{ moved: "test11", to: "test12" }],
@@ -377,7 +365,7 @@ describe("Finder", () => {
     describe("#expand", () => {
       it("should expand the given item and emit the 'expand' event", async () => {
         const wrapper = mount(Finder, {
-          propsData: {
+          props: {
             tree,
             selectable: true,
           },
@@ -386,7 +374,7 @@ describe("Finder", () => {
         wrapper.vm.expand("test112");
         await wrapper.vm.$nextTick();
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.html()).toMatchSnapshot();
         expect(wrapper.emitted().expand).toEqual([
           [
             {
@@ -399,7 +387,7 @@ describe("Finder", () => {
 
       it("should accept a 'sourceEvent' argument", async () => {
         const wrapper = mount(Finder, {
-          propsData: {
+          props: {
             tree,
             selectable: true,
           },
@@ -408,7 +396,7 @@ describe("Finder", () => {
         wrapper.vm.expand("test112", "custom-event");
         await wrapper.vm.$nextTick();
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.html()).toMatchSnapshot();
         expect(wrapper.emitted().expand).toEqual([
           [
             {

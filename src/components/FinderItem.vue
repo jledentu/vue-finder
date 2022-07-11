@@ -31,6 +31,7 @@
     }"
     :draggable="dragEnabled && !options.hasDragHandle"
     :aria-expanded="node.isLeaf ? undefined : expanded"
+    v-bind="$attrs"
     @mousedown="onMouseDown"
     @click="onClick"
     @dragenter="onDragEnter"
@@ -181,7 +182,6 @@ export default {
       if (this.options.dragImageComponent) {
         this.showGhost = true;
         await this.$nextTick();
-        console.log(this.$refs.ghost);
         event.dataTransfer.setDragImage(this.$refs.ghost.$el, 0, 0);
       }
 
