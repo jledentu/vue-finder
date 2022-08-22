@@ -430,10 +430,10 @@ describe("FinderItem", () => {
         });
 
         await wrapper.find(".drag-handle").trigger("mousedown");
-        expect(wrapper.find(".item").classes()).toContain("draggable");
+        expect(wrapper.find(".item").attributes("draggable")).toBe("true");
 
         await wrapper.find(".drag-handle").trigger("mouseup");
-        expect(wrapper.find(".item").classes()).not.toContain("draggable");
+        expect(wrapper.find(".item").attributes("draggable")).toBe("false");
       });
 
       it("should remove ghost element if 'dragImageComponent' is defined", async () => {

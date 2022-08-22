@@ -17,8 +17,6 @@ module.exports = {
       path.resolve(__dirname, "../vite.config.js")
     );
 
-    console.log(JSON.stringify(config));
-
     return {
       ...config,
       define: {

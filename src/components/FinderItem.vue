@@ -6,7 +6,7 @@
       node.cssClass || '',
       {
         expanded,
-        draggable: dragEnabled && (!options.hasDragHandle || dragHandleOver),
+        draggable: dragEnabled && !options.hasDragHandle,
         dragged,
         'has-drag-handle': dragEnabled && options.hasDragHandle,
         'drag-over': dragOver,
@@ -29,7 +29,7 @@
       ...(dragOver &&
         theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor }),
     }"
-    :draggable="dragEnabled && !options.hasDragHandle"
+    :draggable="dragEnabled && (!options.hasDragHandle || dragHandleOver)"
     :aria-expanded="node.isLeaf ? undefined : expanded"
     v-bind="$attrs"
     @mousedown="onMouseDown"
@@ -207,9 +207,7 @@ export default {
         return;
       }
 
-      if (this.options.hasDragHandle) {
-        this.$el.setAttribute("draggable", "false");
-      }
+      this.dragHandleOver = false;
 
       this.treeModel.stopDrag();
     },
