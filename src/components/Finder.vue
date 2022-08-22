@@ -242,6 +242,7 @@ export default {
       default: 200,
     },
   },
+  emits: ["expand", "select", "move"],
   data() {
     return {
       treeModel: {},

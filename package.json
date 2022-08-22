@@ -1,7 +1,7 @@
 {
   "name": "@jledentu/vue-finder",
   "description": "A Vue.js component to display hierarchical data",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "main": "dist/vue-finder.umd.js",
   "module": "dist/vue-finder.es.js",
@@ -75,7 +75,8 @@
     "@vue/babel-preset-jsx": "^1.2.4",
     "@vue/compat": "^3.2.37",
     "@vue/compiler-sfc": "^3.2.37",
-    "@vue/test-utils": "2.0.0-rc.21",
+    "@vue/test-utils": "2.0.2",
+    "@vue/vue3-jest": "27",
     "@vuepress/plugin-register-components": "^2.0.0-beta.36",
     "babel-core": "^7.0.0-bridge.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -121,7 +122,6 @@
     "vite": "^2.9.10",
     "vue": "^3.2.37",
     "vue-docgen-cli": "^4.44.29",
-    "vue-jest": "^3.0.7",
     "vuepress": "^2.0.0-beta.36"
   },
   "config": {
@@ -150,7 +150,7 @@
     "lodash-es": "^4.17.20"
   },
   "peerDependencies": {
-    "vue": "2.x"
+    "vue": "3.x"
   },
   "publishConfig": {
     "access": "public"
