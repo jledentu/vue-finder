@@ -14,6 +14,10 @@
     ".": {
       "import": "./dist/vue-finder.es.js",
       "require": "./dist/vue-finder.umd.js"
+    },
+    "./dist/vue-finder.css": {
+      "import": "./dist/vue-finder.css",
+      "require": "./dist/vue-finder.css"
     }
   },
   "author": "Jérémie Ledentu <jledentu@gmail.com>",
