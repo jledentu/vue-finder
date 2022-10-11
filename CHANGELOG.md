@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/jledentu/vue-finder/compare/v3.0.0...v3.0.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* update package.json to support CSS export / import ([#188](https://github.com/jledentu/vue-finder/issues/188)) ([e5394ea](https://github.com/jledentu/vue-finder/commit/e5394ea7840a2f9b828da7be8743505d41c0c366))
+
 # [3.0.0](https://github.com/jledentu/vue-finder/compare/v2.0.2...v3.0.0) (2022-08-22)
 
 
