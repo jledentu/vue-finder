@@ -101,11 +101,12 @@ export default {
 const Template = (args, { loaded: { loadedTree } }) => ({
   components: { Finder },
   setup() {
-    return { args };
+    return { args, loadedTree };
   },
   template: `<Finder
+    v-if="args.tree || loadedTree"
     style="height: 100%"
-    v-bind="{ ...args, filter: filterFunction }" />`,
+    v-bind="{ ...args, tree: args.tree || loadedTree, filter: filterFunction }" />`,
   computed: {
     filterFunction() {
       if (!this.filter) {
@@ -114,12 +115,6 @@ const Template = (args, { loaded: { loadedTree } }) => ({
       const filterString = this.filter;
       return (item) => RegExp(`^${filterString}.*`, "gi").test(item.label);
     },
-  },
-  mounted() {
-    console.log(this.$props);
-    if (loadedTree) {
-      this.tree = loadedTree;
-    }
   },
 });
 
