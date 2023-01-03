@@ -132,7 +132,18 @@ describe("Finder", () => {
     await wrapper.findAll(".item")[0].trigger("focus");
 
     expect(wrapper.emitted().expand).toEqual([
-      [{ expanded: ["test1", "test11"], sourceEvent: "focus" }],
+      [
+        {
+          expanded: ["test1", "test11"],
+          sourceEvent: "focus",
+          expandedItems: [
+            {
+              id: "test1",
+            },
+            { id: "test11", label: "Test 11" },
+          ],
+        },
+      ],
     ]);
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -273,6 +284,33 @@ describe("Finder", () => {
               "test142",
               "test12",
             ],
+            selectedItems: [
+              {
+                id: "test11",
+                label: "Test 11",
+              },
+              {
+                id: "test14",
+                label: "Test 14",
+              },
+              {
+                id: "test141",
+                label: "Test 141",
+              },
+              {
+                id: "test1411",
+                label: "Test 1411",
+              },
+              {
+                id: "test1412",
+                label: "Test 1412",
+              },
+              {
+                id: "test142",
+                label: "Test 142",
+              },
+              { id: "test12", label: "Test 12" },
+            ],
           },
         ],
       ]);
@@ -306,6 +344,49 @@ describe("Finder", () => {
               "test132",
               "test13",
             ],
+            selectedItems: [
+              {
+                id: "test11",
+                label: "Test 11",
+              },
+              {
+                id: "test14",
+                label: "Test 14",
+              },
+              {
+                id: "test141",
+                label: "Test 141",
+              },
+              {
+                id: "test1411",
+                label: "Test 1411",
+              },
+              {
+                id: "test1412",
+                label: "Test 1412",
+              },
+              {
+                id: "test142",
+                label: "Test 142",
+              },
+              {
+                id: "test1311",
+                label: "Test 1311",
+              },
+              {
+                id: "test1312",
+                label: "Test 1312",
+              },
+              {
+                id: "test131",
+                label: "Test 131",
+              },
+              {
+                id: "test132",
+                label: "Test 132",
+              },
+              { id: "test13", label: "Test 13" },
+            ],
           },
         ],
       ]);
@@ -323,7 +404,19 @@ describe("Finder", () => {
 
       await wrapper.findAll(".item > input[type=checkbox]")[3].trigger("click");
 
-      expect(wrapper.emitted().select).toEqual([[{ selected: ["test11"] }]]);
+      expect(wrapper.emitted().select).toEqual([
+        [
+          {
+            selected: ["test11"],
+            selectedItems: [
+              {
+                id: "test11",
+                label: "Test 11",
+              },
+            ],
+          },
+        ],
+      ]);
     });
   });
 
@@ -380,6 +473,20 @@ describe("Finder", () => {
             {
               expanded: ["test1", "test11", "test112"],
               sourceEvent: "api",
+              expandedItems: [
+                {
+                  id: "test1",
+                },
+                {
+                  id: "test11",
+                  label: "Test 11",
+                },
+                {
+                  id: "test112",
+                  label: "Test 112",
+                  cssClass: "custom-class",
+                },
+              ],
             },
           ],
         ]);
@@ -402,6 +509,20 @@ describe("Finder", () => {
             {
               expanded: ["test1", "test11", "test112"],
               sourceEvent: "custom-event",
+              expandedItems: [
+                {
+                  id: "test1",
+                },
+                {
+                  id: "test11",
+                  label: "Test 11",
+                },
+                {
+                  id: "test112",
+                  label: "Test 112",
+                  cssClass: "custom-class",
+                },
+              ],
             },
           ],
         ]);

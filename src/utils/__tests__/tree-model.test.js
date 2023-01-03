@@ -74,7 +74,14 @@ describe("TreeModel", () => {
     it("should return `true` if node is selected", () => {
       model.expandNode("test11");
       expect(model.isNodeExpanded("test11")).toBe(true);
-      expect(onExpand).toHaveBeenCalledWith(["test1", "test11"], undefined);
+      expect(onExpand).toHaveBeenCalledWith(["test1", "test11"], undefined, [
+        {
+          id: "test1",
+        },
+        {
+          id: "test11",
+        },
+      ]);
       expect(model.visibleTree).toEqual({
         id: "test1",
         children: [
@@ -124,13 +131,23 @@ describe("TreeModel", () => {
   describe("#selectNode", () => {
     it("should select node and trigger an event", () => {
       model.selectNode("test12", true);
-      expect(onSelect).toHaveBeenCalledWith(["test11", "test12"]);
+      expect(onSelect).toHaveBeenCalledWith(
+        ["test11", "test12"],
+        [
+          {
+            id: "test11",
+          },
+          {
+            id: "test12",
+          },
+        ]
+      );
       expect(model.isNodeSelected("test12")).toBe(true);
     });
 
     it("should unselect a node and trigger an event", () => {
       model.selectNode("test11", false);
-      expect(onSelect).toHaveBeenCalledWith([]);
+      expect(onSelect).toHaveBeenCalledWith([], []);
       expect(model.isNodeSelected("test11")).toBe(false);
     });
   });
@@ -391,7 +408,13 @@ describe("TreeModel", () => {
         });
         expect(onExpand).toHaveBeenCalledWith(
           ["test1", "test11", "test112", "test12"],
-          "drop"
+          "drop",
+          [
+            { id: "test1" },
+            { id: "test11" },
+            { id: "test112" },
+            { id: "test12" },
+          ]
         );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
@@ -437,7 +460,8 @@ describe("TreeModel", () => {
         });
         expect(onExpand).toHaveBeenCalledWith(
           ["test1", "test11", "test12"],
-          "drop"
+          "drop",
+          [{ id: "test1" }, { id: "test11" }, { id: "test12" }]
         );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",

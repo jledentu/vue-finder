@@ -113,6 +113,11 @@ export default class extends EventManager {
     return this.nodesMap[nodeId];
   }
 
+  _getNodeData(nodeId) {
+    const { children, parent, selected, ...data } = this.nodesMap[nodeId];
+    return data;
+  }
+
   /**
    * Expand a node.
    *
@@ -127,7 +132,7 @@ export default class extends EventManager {
       "expand",
       this.expanded,
       sourceEvent,
-      this.expanded.map((id) => this.nodesMap[id])
+      this.expanded.map((id) => this._getNodeData(id))
     );
   }
 
@@ -153,7 +158,7 @@ export default class extends EventManager {
     this.trigger(
       "select",
       this.selected,
-      this.selected.map((id) => this.nodesMap[id])
+      this.selected.map((id) => this._getNodeData(id))
     );
   }
 
