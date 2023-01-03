@@ -270,7 +270,7 @@ export default {
       autoDeselectDescendants: this.autoDeselectDescendants,
     });
 
-    this.treeModel.on("expand", (expanded, sourceEvent) => {
+    this.treeModel.on("expand", (expanded, sourceEvent, expandedItems) => {
       if (sourceEvent !== "dragover") {
         this.$nextTick(() => {
           this._scrollToRight(this.scrollAnimationDuration);
@@ -285,7 +285,7 @@ export default {
        * ```
        *
        * ```js
-       * onExpand({ expanded, sourceEvent }) {
+       * onExpand({ expanded, sourceEvent, expandedItems }) {
        *   console.log(
        *     `Items with ${expanded.join()} IDs are now expanded`
        *   );
@@ -294,16 +294,17 @@ export default {
        *
        * @event expand
        * @type {object}
-       * @property {Array<string>} expanded    IDs of expanded items
-       * @property {string}        sourceEvent Name of the event that triggered the action
-       *                                       (`"click"`, `"focus"`, `"drop"`, `"dragover"` or `undefined`)
+       * @property {Array<string>} expanded      IDs of expanded items
+       * @property {string}        sourceEvent   Name of the event that triggered the action (`"click"`, `"focus"`, `"drop"`, `"dragover"` or `undefined`)
+       * @property {Array<Object>} expandedItems List of expanded items
        */
       this.$emit("expand", {
         expanded,
         sourceEvent,
+        expandedItems,
       });
     });
-    this.treeModel.on("select", (selected) => {
+    this.treeModel.on("select", (selected, selectedItems) => {
       /**
        * This event is triggered when an item has been selected.
        *
@@ -312,7 +313,7 @@ export default {
        * ```
        *
        * ```js
-       * onSelect({ selected }) {
+       * onSelect({ selected, selectedItems }) {
        *   console.log(
        *     `Items with ${selected.join()} IDs are now selected`
        *   );
@@ -321,10 +322,12 @@ export default {
        *
        * @event select
        * @type {object}
-       * @property {Array<string>} selected IDs of selected items
+       * @property {Array<string>} selected      IDs of selected items
+       * @property {Array<Object>} selectedItems List of selected items
        */
       this.$emit("select", {
         selected,
+        selectedItems,
       });
     });
     this.treeModel.on("move", ({ moved, to, index }) => {

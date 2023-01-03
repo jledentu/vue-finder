@@ -95,6 +95,9 @@ export default {
   component: Finder,
   argTypes: {
     filter: { control: "text" },
+    onExpand: { action: "expand" },
+    onMove: { action: "move" },
+    onSelect: { action: "select" },
   },
 };
 
