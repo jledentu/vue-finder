@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/jledentu/vue-finder/compare/v3.0.1...v3.1.0) (2023-01-04)
+
+
+### Features
+
+* **events:** pass items in events ([#195](https://github.com/jledentu/vue-finder/issues/195)) ([08681a0](https://github.com/jledentu/vue-finder/commit/08681a04dd3388b61174d44b6fb4dc24ad78245a))
+
 ## [3.0.1](https://github.com/jledentu/vue-finder/compare/v3.0.0...v3.0.1) (2022-10-11)
 
 
