@@ -9,6 +9,24 @@ exports[`FinderItem Drag & drop should match snapshot if dragEnabled is \`true\`
 </div>
 `;
 
+exports[`FinderItem Drag & drop should match snapshot if dragEnabled is a function returning \`false\` 1`] = `
+<div role="button" draggable="true" class="item draggable">
+  <!---->
+  <!---->
+  <div item="[object Object]" class="inner-item"></div>
+  <div class="arrow"></div>
+</div>
+`;
+
+exports[`FinderItem Drag & drop should match snapshot if dragEnabled is a function returning \`true\` 1`] = `
+<div role="button" draggable="false" class="item">
+  <!---->
+  <!---->
+  <div item="[object Object]" class="inner-item"></div>
+  <div class="arrow"></div>
+</div>
+`;
+
 exports[`FinderItem Expand should match snapshot if expanded 1`] = `
 <div role="button" draggable="false" aria-expanded="true" class="item expanded">
   <!---->

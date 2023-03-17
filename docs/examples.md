@@ -79,3 +79,11 @@ You can enable the drag and drop of items with `dragEnabled`:
 You can show handles to drag items with `hasDragHandle`:
 
 <FinderExample :dragEnabled="true" :has-drag-handle="true"></FinderExample>
+
+If you want to enable the drag of only some items, you can set a function as `dragEnabled` prop:
+
+```js
+const dragEnabled = item => item.movable;
+```
+
+<FinderExample :dragEnabled="item => item.movable" :has-drag-handle="true"></FinderExample>

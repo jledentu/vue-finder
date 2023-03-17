@@ -125,9 +125,10 @@ export default {
     },
     /**
      * Enable the drag & drop of items.
+     * Can be a `boolean`, to enable the behaviour globally, or a `function` that indicates if an item can be dragged.
      */
     dragEnabled: {
-      type: Boolean,
+      type: [Boolean, Function],
       default: false
     },
     /**
