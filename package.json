@@ -35,7 +35,7 @@
     "vue-library"
   ],
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">=16.00.0"
   },
   "scripts": {
     "build": "vite build",
@@ -81,7 +81,7 @@
     "@vue/compiler-sfc": "^3.2.37",
     "@vue/test-utils": "2.0.2",
     "@vue/vue3-jest": "27",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.36",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.61",
     "babel-core": "^7.0.0-bridge.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-jest": "^27.5.1",
@@ -126,7 +126,7 @@
     "vite": "^2.9.10",
     "vue": "^3.2.37",
     "vue-docgen-cli": "^4.44.29",
-    "vuepress": "^2.0.0-beta.36"
+    "vuepress": "2.0.0-beta.61"
   },
   "config": {
     "commitizen": {
