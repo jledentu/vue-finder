@@ -35,7 +35,7 @@
     "vue-library"
   ],
   "engines": {
-    "node": ">=16.00.0"
+    "node": ">=14.17.0"
   },
   "scripts": {
     "build": "vite build",
