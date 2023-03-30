@@ -7,7 +7,7 @@
   />
 </template>
 <script>
-import { Finder } from "../../../dist/vue-finder.esm.js";
+import { Finder } from "../../../dist/vue-finder.es.js";
 
 export default {
   name: "FinderExample",

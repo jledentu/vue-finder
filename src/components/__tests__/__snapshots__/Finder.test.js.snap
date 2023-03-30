@@ -4,40 +4,61 @@ exports[`Finder API #expand should accept a 'sourceEvent' argument 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
-        <!----> <input type="checkbox" aria-label="Test 11">
-        <div item="[object Object]" class="inner-item" expanded="true">Test 11</div>
+      <!--v-if-->
+      <div class="item expanded" role="button" draggable="false" aria-expanded="true" tabindex="0">
+        <!--v-if--><input type="checkbox" aria-label="Test 11">
+        <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 12">
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 12">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 13">
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 13">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 14">
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 14">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
     <div class="list-container">
       <div class="list">
-        <div role="button" draggable="false" class="item" tabindex="-1">
-          <!----> <input type="checkbox" aria-label="Test 111">
-          <div item="[object Object]" class="inner-item">Test 111</div>
-          <!---->
+        <!--v-if-->
+        <div class="item" role="button" draggable="false" tabindex="-1">
+          <!--v-if--><input type="checkbox" aria-label="Test 111">
+          <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <!--v-if-->
         </div>
-        <div role="button" draggable="false" class="item custom-class expanded" tabindex="0">
-          <!----> <input type="checkbox" aria-label="Test 112">
-          <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
-          <!---->
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
+        <div class="item custom-class expanded" role="button" draggable="false" tabindex="0">
+          <!--v-if--><input type="checkbox" aria-label="Test 112">
+          <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <!--v-if-->
         </div>
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
       </div>
+      <!---->
     </div>
   </div>
 </div>
@@ -47,40 +68,61 @@ exports[`Finder API #expand should expand the given item and emit the 'expand' e
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
-        <!----> <input type="checkbox" aria-label="Test 11">
-        <div item="[object Object]" class="inner-item" expanded="true">Test 11</div>
+      <!--v-if-->
+      <div class="item expanded" role="button" draggable="false" aria-expanded="true" tabindex="0">
+        <!--v-if--><input type="checkbox" aria-label="Test 11">
+        <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 12">
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 12">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 13">
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 13">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 14">
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 14">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
     <div class="list-container">
       <div class="list">
-        <div role="button" draggable="false" class="item" tabindex="-1">
-          <!----> <input type="checkbox" aria-label="Test 111">
-          <div item="[object Object]" class="inner-item">Test 111</div>
-          <!---->
+        <!--v-if-->
+        <div class="item" role="button" draggable="false" tabindex="-1">
+          <!--v-if--><input type="checkbox" aria-label="Test 111">
+          <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <!--v-if-->
         </div>
-        <div role="button" draggable="false" class="item custom-class expanded" tabindex="0">
-          <!----> <input type="checkbox" aria-label="Test 112">
-          <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
-          <!---->
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
+        <div class="item custom-class expanded" role="button" draggable="false" tabindex="0">
+          <!--v-if--><input type="checkbox" aria-label="Test 112">
+          <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <!--v-if-->
         </div>
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
       </div>
+      <!---->
     </div>
   </div>
 </div>
@@ -91,45 +133,54 @@ exports[`Finder Drag & Drop should match snapshot 1`] = `
   <div class="list-container">
     <div class="list">
       <div class="drop-zone">
-        <!---->
+        <!--v-if-->
       </div>
-      <div role="button" draggable="true" class="item draggable" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <div class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
       <div class="drop-zone">
-        <!---->
+        <!--v-if-->
       </div>
-      <div role="button" draggable="true" class="item draggable" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <div class="item draggable" role="button" draggable="true" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
       <div class="drop-zone">
-        <!---->
+        <!--v-if-->
       </div>
-      <div role="button" draggable="true" class="item draggable" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <div class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
       <div class="drop-zone">
-        <!---->
+        <!--v-if-->
       </div>
-      <div role="button" draggable="true" class="item draggable" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <div class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
       <div class="drop-zone last">
-        <!---->
+        <!--v-if-->
       </div>
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -138,27 +189,41 @@ exports[`Finder Selection should match snapshot 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!----> <input type="checkbox" aria-label="Test 11">
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if--><input type="checkbox" aria-label="Test 11">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 12">
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 12">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 13">
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 13">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!----> <input type="checkbox" aria-label="Test 14">
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if--><input type="checkbox" aria-label="Test 14">
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -167,31 +232,45 @@ exports[`Finder should match snapshot 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -200,28 +279,42 @@ exports[`Finder should match snapshot with a custom arrow component 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div> <span theme="[object Object]" item="[object Object]"></span>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div><span theme="[object Object]" expanded="false" item="[object Object]"></span>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div> <span theme="[object Object]" item="[object Object]"></span>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div><span theme="[object Object]" expanded="false" item="[object Object]"></span>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div> <span theme="[object Object]" item="[object Object]"></span>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div><span theme="[object Object]" expanded="false" item="[object Object]"></span>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -230,27 +323,41 @@ exports[`Finder should match snapshot with a custom item component 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!----> <span item="[object Object]" class="inner-item">Test 11</span>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if--><span class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</span>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!----> <span item="[object Object]" class="inner-item">Test 12</span>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if--><span class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</span>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!----> <span item="[object Object]" class="inner-item">Test 13</span>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if--><span class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</span>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!----> <span item="[object Object]" class="inner-item">Test 14</span>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if--><span class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</span>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -259,13 +366,18 @@ exports[`Finder should match snapshot with an updated tree 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 31</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 31</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -274,31 +386,45 @@ exports[`Finder should match snapshot with custom theme 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list" style="border-color: #eee; border-width: 3px;">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow" style="border-color: #555;"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow" style="border-color: #555;"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow" style="border-color: #555;"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -307,46 +433,67 @@ exports[`Finder should match snapshot with default expanded 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" aria-expanded="true" class="item expanded" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" expanded="true" class="inner-item">Test 11</div>
+      <!--v-if-->
+      <div class="item expanded" role="button" draggable="false" aria-expanded="true" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
     <div class="list-container">
       <div class="list">
-        <div role="button" draggable="false" class="item" tabindex="-1">
-          <!---->
-          <!---->
-          <div item="[object Object]" class="inner-item">Test 111</div>
-          <!---->
+        <!--v-if-->
+        <div class="item" role="button" draggable="false" tabindex="-1">
+          <!--v-if-->
+          <!--v-if-->
+          <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <!--v-if-->
         </div>
-        <div role="button" draggable="false" class="item custom-class expanded" tabindex="0">
-          <!---->
-          <!---->
-          <div item="[object Object]" expanded="true" class="inner-item">Test 112</div>
-          <!---->
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
+        <div class="item custom-class expanded" role="button" draggable="false" tabindex="0">
+          <!--v-if-->
+          <!--v-if-->
+          <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <!--v-if-->
         </div>
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
       </div>
+      <!---->
     </div>
   </div>
 </div>
@@ -356,46 +503,67 @@ exports[`Finder should match snapshot with expanded item and emit event 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item expanded" tabindex="0" aria-expanded="true">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item" expanded="true">Test 11</div>
+      <!--v-if-->
+      <div class="item expanded" role="button" draggable="false" aria-expanded="true" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
     <div class="list-container">
       <div class="list">
-        <div role="button" draggable="false" class="item" tabindex="0">
-          <!---->
-          <!---->
-          <div item="[object Object]" class="inner-item">Test 111</div>
-          <!---->
+        <!--v-if-->
+        <div class="item" role="button" draggable="false" tabindex="0">
+          <!--v-if-->
+          <!--v-if-->
+          <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <!--v-if-->
         </div>
-        <div role="button" draggable="false" class="item custom-class" tabindex="-1">
-          <!---->
-          <!---->
-          <div item="[object Object]" class="inner-item">Test 112</div>
-          <!---->
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
+        <div class="item custom-class" role="button" draggable="false" tabindex="-1">
+          <!--v-if-->
+          <!--v-if-->
+          <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 112</div>
+          <!--v-if-->
         </div>
+        <!--teleport start-->
+        <!--teleport end-->
+        <!--v-if-->
       </div>
+      <!---->
     </div>
   </div>
 </div>
@@ -405,13 +573,18 @@ exports[`Finder should match snapshot with filter 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
@@ -420,66 +593,98 @@ exports[`Finder should match snapshot with initial filter 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;
 
-exports[`Finder should match snapshot with no children 1`] = `<div class="tree-container"></div>`;
+exports[`Finder should match snapshot with no children 1`] = `
+<div class="tree-container">
+  <!---->
+</div>
+`;
 
 exports[`Finder should match snapshot with sort 1`] = `
 <div class="tree-container">
   <div class="list-container">
     <div class="list">
-      <div role="button" draggable="false" class="item" tabindex="0">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 14</div>
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 13</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
         <div class="arrow"></div>
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 12</div>
-        <!---->
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <!--v-if-->
       </div>
-      <div role="button" draggable="false" class="item" tabindex="-1">
-        <!---->
-        <!---->
-        <div item="[object Object]" class="inner-item">Test 11</div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
+      <div class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
+        <!--v-if-->
+        <!--v-if-->
+        <div class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div class="arrow"></div>
       </div>
+      <!--teleport start-->
+      <!--teleport end-->
+      <!--v-if-->
     </div>
+    <!---->
   </div>
 </div>
 `;

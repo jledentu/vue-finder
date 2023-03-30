@@ -1,9 +1,9 @@
-<template functional>
+<template>
   <div
     class="arrow"
     :style="{
-      expanded: props.expanded,
-      ...(props.theme.arrowColor && { borderColor: props.theme.arrowColor }),
+      expanded: expanded,
+      ...(theme.arrowColor && { borderColor: theme.arrowColor }),
     }"
   ></div>
 </template>

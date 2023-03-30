@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [["@babel/preset-env"], "@vue/babel-preset-jsx"],
+  presets: [["@babel/preset-env"]],
   env: {
     test: {
       presets: [
@@ -12,7 +12,7 @@ module.exports = {
           },
         ],
       ],
-      plugins: ["transform-es2015-modules-commonjs"],
+      plugins: ["transform-es2015-modules-commonjs", "@vue/babel-plugin-jsx"],
     },
   },
 };

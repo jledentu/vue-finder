@@ -5,16 +5,25 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: "@babel/eslint-parser",
+    babelOptions: {
+      parserOpts: {
+        plugins: ["jsx"],
+      },
+    },
     ecmaVersion: 2017,
+    ecmaFeatures: {
+      jsx: true,
+    },
     sourceType: "module",
   },
   plugins: ["html", "vue"],
   extends: [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:vue/recommended",
+    "plugin:vue/vue3-recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:storybook/recommended",
   ],
   env: {
     browser: true,
@@ -32,9 +41,9 @@ module.exports = {
       "always",
       {
         js: "never",
-        vue: "never",
       },
     ],
+    "no-unused-vars": ["error", { ignoreRestSiblings: true }],
     // allow debugger during development
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "vue/html-indent": "off",

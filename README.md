@@ -2,7 +2,7 @@
 
 ![Vue Finder](./logo.svg)
 
-**A Vue.js component to display hierarchical data (like the MacOS X finder)**
+**A Vue 3 component to display hierarchical data (like the MacOS X finder)**
 
 [![Build Status](https://travis-ci.org/jledentu/vue-finder.svg?branch=master)](https://travis-ci.org/jledentu/vue-finder)
 [![Npm badge](https://img.shields.io/npm/v/@jledentu/vue-finder.svg)](https://www.npmjs.com/package/@jledentu/vue-finder)
@@ -118,91 +118,97 @@ You can also include the standalone UMD build in your page from the jsdeliver CD
 ```html
 <html>
   <head>
-    <!-- Include Vue 2.x -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@^2"></script>
+    <!-- Include Vue 3.x -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@^3"></script>
     <!-- Include vue-finder & its styles -->
-    <script src="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@1.20.0/dist/vue-finder.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@next/dist/vue-finder.umd.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@1.20.0/dist/vue-finder.css"
+      href="https://cdn.jsdelivr.net/npm/@jledentu/vue-finder@next/dist/vue-finder.css"
     />
   </head>
 
   <body>
     <div id="app">
-      <finder :tree="tree" />
+      <Finder :tree="tree" />
     </div>
   </body>
   <script>
-    new Vue({
-      el: "#app",
-      data: {
-        tree: {
-          id: "root",
-          children: [
-            {
-              id: "fruits",
-              label: "Fruits",
-              children: [
-                {
-                  id: "apple",
-                  label: "Apple",
-                  selectable: false,
-                },
-                {
-                  id: "banana",
-                  label: "Banana",
-                },
-                {
-                  id: "grape",
-                  label: "Grape",
-                  selected: true,
-                },
-                {
-                  id: "lemon",
-                  label: "Lemon",
-                  selectable: false,
-                },
-                {
-                  id: "orange",
-                  label: "Orange",
-                  selected: true,
-                },
-              ],
-            },
-            {
-              id: "vegetables",
-              label: "Vegetables",
-              children: [
-                {
-                  id: "bean",
-                  label: "Beans",
-                },
-                {
-                  id: "carrot",
-                  label: "Carrot",
-                  selected: true,
-                },
-                {
-                  id: "eggplant",
-                  label: "Eggplant",
-                  selectable: false,
-                },
-                {
-                  id: "parsnip",
-                  label: "Parsnip",
-                },
-                {
-                  id: "tomato",
-                  label: "Tomato",
-                  selectable: false,
-                },
-              ],
-            },
-          ],
-        },
+    const { createApp } = Vue;
+
+    createApp({
+      components: {
+        Finder: Finder.Finder,
       },
-    });
+      data() {
+        return {
+          tree: {
+            id: "root",
+            children: [
+              {
+                id: "fruits",
+                label: "Fruits",
+                children: [
+                  {
+                    id: "apple",
+                    label: "Apple",
+                    selectable: false,
+                  },
+                  {
+                    id: "banana",
+                    label: "Banana",
+                  },
+                  {
+                    id: "grape",
+                    label: "Grape",
+                    selected: true,
+                  },
+                  {
+                    id: "lemon",
+                    label: "Lemon",
+                    selectable: false,
+                  },
+                  {
+                    id: "orange",
+                    label: "Orange",
+                    selected: true,
+                  },
+                ],
+              },
+              {
+                id: "vegetables",
+                label: "Vegetables",
+                children: [
+                  {
+                    id: "bean",
+                    label: "Beans",
+                  },
+                  {
+                    id: "carrot",
+                    label: "Carrot",
+                    selected: true,
+                  },
+                  {
+                    id: "eggplant",
+                    label: "Eggplant",
+                    selectable: false,
+                  },
+                  {
+                    id: "parsnip",
+                    label: "Parsnip",
+                  },
+                  {
+                    id: "tomato",
+                    label: "Tomato",
+                    selectable: false,
+                  },
+                ],
+              },
+            ],
+          },
+        };
+      },
+    }).mount("#app");
   </script>
 </html>
 ```

@@ -27,7 +27,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
       - run: yarn build
       - name: semantic-release
-        if: success() && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

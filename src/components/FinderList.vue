@@ -1,42 +1,40 @@
+<template>
+  <div class="list" :style="style" @keydown="navigate">
+    <template v-for="(item, index) in sortedItems" :key="`item-${item.id}`">
+      <FinderListDropZone
+        v-if="dragEnabled"
+        :node="parent"
+        :tree-model="treeModel"
+        :drag-enabled="dragEnabled"
+        :index="index"
+        :options="options"
+      />
+      <FinderItem
+        :node="item"
+        :tree-model="treeModel"
+        :selectable="selectable"
+        :drag-enabled="dragEnabled"
+        :options="options"
+        :tabindex="index === expandedItemIndex ? '0' : '-1'"
+      >
+        {{ item.label }}
+      </FinderItem>
+    </template>
+    <FinderListDropZone
+      v-if="dragEnabled"
+      class="last"
+      :tree-model="treeModel"
+      :node="parent"
+      :drag-enabled="dragEnabled"
+      :index="items.length"
+      :options="options"
+    />
+  </div>
+</template>
 <script>
 import { get } from "lodash-es";
-import FinderItem from "./FinderItem";
-import FinderListDropZone from "./FinderListDropZone";
-
-function renderItems(h, { props, expandedItemIndex }) {
-  let { items, options } = props;
-
-  if (options.sortBy) {
-    items = [...items].sort(options.sortBy);
-  }
-
-  return items.map((item, index) => [
-    ...[
-      props.dragEnabled && (
-        <FinderListDropZone
-          key={`drop-zone-${item.id}`}
-          node={props.parent}
-          treeModel={props.treeModel}
-          dragEnabled={props.dragEnabled}
-          index={index}
-          options={props.options}
-        />
-      ),
-    ],
-
-    <FinderItem
-      key={`item-${item.id}`}
-      node={item}
-      treeModel={props.treeModel}
-      selectable={props.selectable}
-      dragEnabled={props.dragEnabled}
-      options={props.options}
-      tabindex={index === expandedItemIndex ? "0" : "-1"}
-    >
-      {item.label}
-    </FinderItem>,
-  ]);
-}
+import FinderItem from "./FinderItem.vue";
+import FinderListDropZone from "./FinderListDropZone.vue";
 
 function getPreviousItemElement(element) {
   let sibling = element.previousSibling;
@@ -62,7 +60,10 @@ function getNextItemElement(element) {
 
 export default {
   name: "FinderList",
-  functional: true,
+  components: {
+    FinderItem,
+    FinderListDropZone,
+  },
   props: {
     parent: {
       type: Object,
@@ -93,20 +94,29 @@ export default {
       default: false,
     },
   },
-  render(h, { props, listeners }) {
-    const separatorColor = get(props, "options.theme.separatorColor", "");
-    const separatorWidth = get(props, "options.theme.separatorWidth", "");
-    const style = {
-      ...(separatorColor && { borderColor: separatorColor }),
-      ...(separatorWidth && { borderWidth: separatorWidth }),
-    };
-
-    const expandedItemIndex = Math.max(
-      0,
-      props.items.findIndex((item) => props.treeModel.isNodeExpanded(item.id))
-    );
-
-    function navigate(event) {
+  computed: {
+    sortedItems() {
+      return this.options.sortBy
+        ? [...this.items].sort(this.options.sortBy)
+        : this.items;
+    },
+    style() {
+      const separatorColor = get(this.options, "theme.separatorColor", "");
+      const separatorWidth = get(this.options, "theme.separatorWidth", "");
+      return {
+        ...(separatorColor && { borderColor: separatorColor }),
+        ...(separatorWidth && { borderWidth: separatorWidth }),
+      };
+    },
+    expandedItemIndex() {
+      return Math.max(
+        0,
+        this.items.findIndex((item) => this.treeModel.isNodeExpanded(item.id))
+      );
+    },
+  },
+  methods: {
+    navigate(event) {
       let sibling;
       if (event.key === "ArrowDown") {
         sibling = getNextItemElement(event.target);
@@ -117,27 +127,7 @@ export default {
       if (sibling) {
         sibling.focus();
       }
-    }
-
-    return [
-      <div class="list" style={style} vOn:keydown={navigate}>
-        {[
-          ...renderItems(h, { props, listeners, expandedItemIndex }),
-          ...[
-            props.dragEnabled && (
-              <FinderListDropZone
-                class="last"
-                treeModel={props.treeModel}
-                node={props.parent}
-                dragEnabled={props.dragEnabled}
-                index={props.items.length}
-                options={props.options}
-              />
-            ),
-          ],
-        ]}
-      </div>,
-    ];
+    },
   },
 };
 </script>

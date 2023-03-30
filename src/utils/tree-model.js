@@ -113,6 +113,11 @@ export default class extends EventManager {
     return this.nodesMap[nodeId];
   }
 
+  _getNodeData(nodeId) {
+    const { children, parent, selected, ...data } = this.nodesMap[nodeId];
+    return data;
+  }
+
   /**
    * Expand a node.
    *
@@ -123,7 +128,12 @@ export default class extends EventManager {
     this.expanded = path(nodeId, this.nodesMap);
     this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
-    this.trigger("expand", this.expanded, sourceEvent);
+    this.trigger(
+      "expand",
+      this.expanded,
+      sourceEvent,
+      this.expanded.map((id) => this._getNodeData(id))
+    );
   }
 
   isNodeExpanded(nodeId) {
@@ -145,7 +155,11 @@ export default class extends EventManager {
       this.selected,
       nodeIdsToSelect
     );
-    this.trigger("select", this.selected);
+    this.trigger(
+      "select",
+      this.selected,
+      this.selected.map((id) => this._getNodeData(id))
+    );
   }
 
   isNodeSelected(nodeId) {

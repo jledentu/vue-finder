@@ -1,7 +1,10 @@
 ---
 home: true
 heroImage: /logo.svg
-actionText: Get Started →
-actionLink: /getting-started/
+heroHeight: 45
+actions:
+  - text: Get Started →
+    link: /getting-started/
+    type: primary
 footer: MIT Licensed | Copyright © 2018-present Jérémie Ledentu
 ---
