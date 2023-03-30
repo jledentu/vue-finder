@@ -1,6 +1,7 @@
 ---
 home: true
 heroImage: /logo.svg
+heroHeight: 45
 actions:
   - text: Get Started →
     link: /getting-started/
