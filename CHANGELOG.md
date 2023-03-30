@@ -1,3 +1,29 @@
+# [4.0.0](https://github.com/jledentu/vue-finder/compare/v3.1.0...v4.0.0) (2023-03-30)
+
+
+* Merge next branch in master (#201) ([1f24b1c](https://github.com/jledentu/vue-finder/commit/1f24b1c20f127cd5a8f9ebecdc3be8bc680fd241)), closes [#201](https://github.com/jledentu/vue-finder/issues/201) [#188](https://github.com/jledentu/vue-finder/issues/188) [#188](https://github.com/jledentu/vue-finder/issues/188) [#194](https://github.com/jledentu/vue-finder/issues/194) [#195](https://github.com/jledentu/vue-finder/issues/195) [#195](https://github.com/jledentu/vue-finder/issues/195) [#203](https://github.com/jledentu/vue-finder/issues/203)
+
+
+### BREAKING CHANGES
+
+* do not support Vue 2
+
+* chore(release): 3.0.0 [skip ci]
+
+# [3.0.0](https://github.com/jledentu/vue-finder/compare/v2.0.2...v3.0.0) (2022-08-22)
+
+### Bug Fixes
+
+* drag handle ([db1f740](https://github.com/jledentu/vue-finder/commit/db1f7406c7b98793db7b3eda65220930ab583d25))
+
+### Features
+
+* support Vue 3 ([d6e9559](https://github.com/jledentu/vue-finder/commit/d6e955943f41b67f8b5b21d0e9df0ff02c616d2d))
+
+### BREAKING CHANGES
+
+* do not support Vue 2
+
 # [3.1.0](https://github.com/jledentu/vue-finder/compare/v3.0.1...v3.1.0) (2023-01-04)
 
 
