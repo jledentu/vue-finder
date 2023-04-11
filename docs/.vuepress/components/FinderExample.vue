@@ -36,10 +36,12 @@ export default {
                 id: "apple",
                 label: "Apple",
                 selectable: false,
+                movable: true,
               },
               {
                 id: "banana",
                 label: "Banana",
+                movable: true,
               },
               {
                 id: "grape",
@@ -65,11 +67,13 @@ export default {
               {
                 id: "bean",
                 label: "Beans",
+                movable: true,
               },
               {
                 id: "carrot",
                 label: "Carrot",
                 selected: true,
+                movable: true,
               },
               {
                 id: "eggplant",

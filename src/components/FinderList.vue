@@ -82,8 +82,8 @@ export default {
       default: false,
     },
     dragEnabled: {
-      type: Boolean,
-      default: Boolean,
+      type: [Boolean, Function],
+      default: true,
     },
     options: {
       type: Object,

@@ -6,9 +6,9 @@
       node.cssClass || '',
       {
         expanded,
-        draggable: dragEnabled && !options.hasDragHandle,
+        draggable: canDrag && !options.hasDragHandle,
         dragged,
-        'has-drag-handle': dragEnabled && options.hasDragHandle,
+        'has-drag-handle': canDrag && options.hasDragHandle,
         'drag-over': dragOver,
         'no-drop': treeModel.isDragging() && !canDrop,
       },
@@ -29,7 +29,7 @@
       ...(dragOver &&
         theme.dropZoneBgColor && { backgroundColor: theme.dropZoneBgColor }),
     }"
-    :draggable="dragEnabled && (!options.hasDragHandle || dragHandleOver)"
+    :draggable="canDrag && (!options.hasDragHandle || dragHandleOver)"
     :aria-expanded="node.isLeaf ? undefined : expanded"
     v-bind="$attrs"
     @mousedown="onMouseDown"
@@ -43,7 +43,7 @@
     @focus="onFocus"
   >
     <div
-      v-if="dragEnabled && options.hasDragHandle"
+      v-if="canDrag && options.hasDragHandle"
       class="drag-handle"
       @mousedown="dragHandleOver = true"
       @mouseup="dragHandleOver = false"
@@ -175,7 +175,7 @@ export default {
       this.treeModel.selectNode(this.node.id, event.target.checked);
     },
     async onDragStart(event) {
-      if (!this.dragEnabled) {
+      if (!this.canDrag) {
         return;
       }
 
@@ -189,7 +189,7 @@ export default {
       this.treeModel.startDrag(this.node.id);
     },
     onDragOver(event) {
-      if (!this.dragEnabled) {
+      if (!this.canDrag) {
         return;
       }
 
@@ -203,7 +203,7 @@ export default {
     },
     onDragEnd() {
       this.showGhost = false;
-      if (!this.dragEnabled) {
+      if (!this.canDrag) {
         return;
       }
 

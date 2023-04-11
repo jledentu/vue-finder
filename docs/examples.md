@@ -12,19 +12,19 @@ const tree = {
       id: "fruits",
       label: "Fruits",
       children: [
-        { id: "apple", label: "Apple" },
+        { id: "apple", label: "Apple" }
         // ...
-      ],
+      ]
     },
     {
       id: "vegetables",
       label: "Vegetables",
       children: [
-        { id: "bean", label: "Beans" },
+        { id: "bean", label: "Beans" }
         // ...
-      ],
-    },
-  ],
+      ]
+    }
+  ]
 };
 ```
 
@@ -61,7 +61,7 @@ You can filter displayed items by defining the `filter` prop:
 Where `filter` is a `Function` that takes an item as argument, and should return `true` if this item must be displayed.
 
 ```js
-const filter = (item) => item.id === "apple";
+const filter = item => item.id === "apple";
 ```
 
 <FinderExample :filter="item => item.id === 'apple'"></FinderExample>
@@ -79,3 +79,11 @@ You can enable the drag and drop of items with `dragEnabled`:
 You can show handles to drag items with `hasDragHandle`:
 
 <FinderExample :dragEnabled="true" :has-drag-handle="true"></FinderExample>
+
+If you want to enable the drag of only some items, you can set a function as `dragEnabled` prop:
+
+```js
+const dragEnabled = item => item.movable;
+```
+
+<FinderExample :dragEnabled="item => item.movable" :has-drag-handle="true"></FinderExample>
