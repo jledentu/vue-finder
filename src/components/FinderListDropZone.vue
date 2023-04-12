@@ -42,7 +42,7 @@ export default {
       required: true,
     },
     dragEnabled: {
-      type: Boolean,
+      type: [Boolean, Function],
       default: false,
     },
     index: {
@@ -65,6 +65,13 @@ export default {
     },
     theme() {
       return get(this, "options.theme", {});
+    },
+    canDrag() {
+      if (typeof this.dragEnabled === "function") {
+        return this.dragEnabled(this.node);
+      }
+
+      return this.dragEnabled;
     },
     canDrop() {
       // Cannot drop on a descendant of itself

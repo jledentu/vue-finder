@@ -160,6 +160,28 @@ describe("FinderItem", () => {
       expect(wrapper.html()).toMatchSnapshot();
     });
 
+    it("should match snapshot if dragEnabled is a function returning `false`", () => {
+      const wrapper = mount(FinderItem, {
+        props: {
+          treeModel,
+          node,
+          dragEnabled: (node) => node.id === "test111",
+        },
+      });
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should match snapshot if dragEnabled is a function returning `true`", () => {
+      const wrapper = mount(FinderItem, {
+        props: {
+          treeModel,
+          node,
+          dragEnabled: (node) => node.id === "test",
+        },
+      });
+      expect(wrapper).toMatchSnapshot();
+    });
+
     describe("dragstart", () => {
       it("should call treeModel.startDrag", async () => {
         const dataTransfer = {
@@ -186,12 +208,50 @@ describe("FinderItem", () => {
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
 
+      it("should call treeModel.startDrag if `dragEnabled` is a function returning `true`", async () => {
+        const dataTransfer = {
+          setDragImage: jest.fn(),
+          setData: jest.fn(),
+        };
+        const wrapper = mount(FinderItem, {
+          props: {
+            treeModel,
+            node,
+            dragEnabled: (node) => node.id === "test111",
+          },
+        });
+
+        await wrapper.find(".item").trigger("dragstart", {
+          dataTransfer,
+        });
+
+        expect(dataTransfer.setDragImage).not.toHaveBeenCalled();
+        expect(dataTransfer.setData).toHaveBeenCalledWith(
+          "text/plain",
+          "test111"
+        );
+        expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
+      });
+
       it("should not call treeModel.startDrag if `dragEnabled` is false", async () => {
         const wrapper = mount(FinderItem, {
           props: {
             treeModel,
             node,
             dragEnabled: false,
+          },
+        });
+
+        await wrapper.find(".item").trigger("dragstart");
+        expect(treeModel.startDrag).not.toHaveBeenCalled();
+      });
+
+      it("should not call treeModel.startDrag if `dragEnabled` is a function returning `false`", async () => {
+        const wrapper = mount(FinderItem, {
+          props: {
+            treeModel,
+            node,
+            dragEnabled: (node) => node.is === "test",
           },
         });
 
