@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/jledentu/vue-finder/compare/v4.0.0...v4.1.0) (2023-04-12)
+
+
+### Features
+
+* accept dragEnabled as function ([#206](https://github.com/jledentu/vue-finder/issues/206)) ([19700fa](https://github.com/jledentu/vue-finder/commit/19700fa2cd9bcd5eb193c10729d03775263455a5))
+
 # [4.0.0](https://github.com/jledentu/vue-finder/compare/v3.1.0...v4.0.0) (2023-03-30)
 
 
