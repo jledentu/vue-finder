@@ -1,3 +1,11 @@
+## [4.1.1](https://github.com/jledentu/vue-finder/compare/v4.1.0...v4.1.1) (2023-05-05)
+
+
+### Performance Improvements
+
+* do not refresh when expanding already selected  node ([#208](https://github.com/jledentu/vue-finder/issues/208)) ([58f018c](https://github.com/jledentu/vue-finder/commit/58f018c1e027d036f8431f3868b4e3774ac71c51))
+* do not refresh when expanding already selected  node ([#208](https://github.com/jledentu/vue-finder/issues/208)) ([f2d55f3](https://github.com/jledentu/vue-finder/commit/f2d55f3373b1842d5d0fcddb8b434a8342748c9b))
+
 # [4.1.0](https://github.com/jledentu/vue-finder/compare/v4.0.0...v4.1.0) (2023-04-12)
 
 
