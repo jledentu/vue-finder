@@ -425,6 +425,19 @@ describe("Finder", () => {
           ]
         ]);
       });
+
+      it("should not emit the `expand` event when expanding the already expanded node", async () => {
+        const wrapper = mount(Finder, {
+          propsData: {
+            tree,
+            selectable: true,
+            defaultExpanded: "test112"
+          }
+        });
+
+        wrapper.vm.expand("test112");
+        expect(wrapper.emitted().expand).toBeFalsy();
+      });
     });
   });
 });
