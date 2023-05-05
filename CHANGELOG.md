@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/jledentu/vue-finder/compare/v2.1.1...v2.1.2) (2023-05-05)
+
+
+### Performance Improvements
+
+* avoid update when expanding same node ([#207](https://github.com/jledentu/vue-finder/issues/207)) ([87b859e](https://github.com/jledentu/vue-finder/commit/87b859e99ffef1434724d9a2a206e1a02ee5fb90))
+
 ## [2.1.1](https://github.com/jledentu/vue-finder/compare/v2.1.0...v2.1.1) (2023-03-31)
 
 
