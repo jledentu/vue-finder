@@ -125,6 +125,9 @@ export default class extends EventManager {
    * @param {string} sourceEvent Name of the event that triggered the expand
    */
   expandNode(nodeId, sourceEvent) {
+    if (this.expanded && nodeId === this.expanded[this.expanded.length - 1]) {
+      return;
+    }
     this.expanded = path(nodeId, this.nodesMap);
     this.expandedWithoutFilter = this.expanded;
     this._updateVisibleTree();
