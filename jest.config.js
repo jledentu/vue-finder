@@ -1,14 +1,11 @@
-const path = require("path");
-
 module.exports = {
-  rootDir: path.resolve(__dirname, "./"),
   moduleFileExtensions: ["js", "json", "vue"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1"
   },
   transform: {
-    ".*\\.js$": require.resolve("babel-jest"),
-    ".*\\.vue$": require.resolve("vue-jest")
+    "^.+\\.js$": "babel-jest",
+    "^.+\\.vue$": "@vue/vue2-jest"
   },
   transformIgnorePatterns: ["/node_modules/(?!lodash-es)/"],
   snapshotSerializers: [require.resolve("jest-serializer-vue")],
@@ -19,5 +16,7 @@ module.exports = {
     "!src/index.js",
     "!src/index.umd.js",
     "!**/node_modules/**"
-  ]
+  ],
+  coverageProvider: "v8",
+  testEnvironment: "jsdom"
 };

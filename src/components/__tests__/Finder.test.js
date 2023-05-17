@@ -131,8 +131,9 @@ describe("Finder", () => {
     wrapper
       .findAll(".item")
       .at(0)
-      .trigger("focus");
+      .element.dispatchEvent(new FocusEvent("focus"));
     await wrapper.vm.$nextTick();
+
     expect(wrapper.emitted().expand).toEqual([
       [{ expanded: ["test1", "test11"], sourceEvent: "focus" }]
     ]);
@@ -260,11 +261,10 @@ describe("Finder", () => {
         }
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(1)
-        .trigger("click");
-      await wrapper.vm.$nextTick();
+        .setChecked(true);
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -292,11 +292,10 @@ describe("Finder", () => {
         }
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(2)
-        .trigger("click");
-      await wrapper.vm.$nextTick();
+        .setChecked(true);
 
       expect(wrapper.emitted().select).toEqual([
         [
@@ -328,11 +327,10 @@ describe("Finder", () => {
         }
       });
 
-      wrapper
+      await wrapper
         .findAll(".item > input[type=checkbox]")
         .at(3)
-        .trigger("click");
-      await wrapper.vm.$nextTick();
+        .setChecked(false);
 
       expect(wrapper.emitted().select).toEqual([[{ selected: ["test11"] }]]);
     });
@@ -358,7 +356,7 @@ describe("Finder", () => {
         }
       });
 
-      wrapper
+      await wrapper
         .findAll(".item")
         .at(0)
         .trigger("dragstart", {
@@ -369,7 +367,7 @@ describe("Finder", () => {
 
       await wrapper.vm.$nextTick();
 
-      wrapper
+      await wrapper
         .findAll(".item")
         .at(1)
         .trigger("drop");
