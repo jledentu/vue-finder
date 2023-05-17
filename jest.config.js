@@ -17,5 +17,6 @@ module.exports = {
     "!src/index.umd.js",
     "!**/node_modules/**"
   ],
+  coverageProvider: "v8",
   testEnvironment: "jsdom"
 };
