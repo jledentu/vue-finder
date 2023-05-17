@@ -57,19 +57,21 @@ describe("FinderItem", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should call treeModel.expandNode on focus", () => {
+    it("should call treeModel.expandNode on focus", async () => {
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
           node
-        }
+        },
+        attachTo: document.body
       });
 
-      wrapper.trigger("focus");
+      wrapper.find(".item").element.dispatchEvent(new FocusEvent("focus"));
+
       expect(treeModel.expandNode).toHaveBeenCalledWith("test111", "focus");
     });
 
-    it("should call treeModel.expandNode on click", () => {
+    it("should call treeModel.expandNode on click", async () => {
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -77,11 +79,11 @@ describe("FinderItem", () => {
         }
       });
 
-      wrapper.trigger("click");
+      await wrapper.trigger("click");
       expect(treeModel.expandNode).toHaveBeenCalledWith("test111", "click");
     });
 
-    it("should not call treeModel.expandNode on mousedown", () => {
+    it("should not call treeModel.expandNode on mousedown", async () => {
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -89,8 +91,9 @@ describe("FinderItem", () => {
         }
       });
 
-      wrapper.trigger("mousedown");
-      wrapper.trigger("focus");
+      await wrapper.trigger("mousedown");
+      wrapper.element.focus();
+
       expect(treeModel.expandNode).not.toHaveBeenCalled();
     });
   });
@@ -107,7 +110,7 @@ describe("FinderItem", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should call treeModel.selectNode on click on checkbox", () => {
+    it("should call treeModel.selectNode on click on checkbox", async () => {
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -116,11 +119,11 @@ describe("FinderItem", () => {
         }
       });
 
-      wrapper.find('input[type="checkbox"]').trigger("click");
+      await wrapper.find('input[type="checkbox"]').setChecked(true);
       expect(treeModel.selectNode).toHaveBeenCalledWith("test111", true);
     });
 
-    it("should call treeModel.selectNode on click on checked checkbox", () => {
+    it("should call treeModel.selectNode on click on checked checkbox", async () => {
       treeModel.isNodeSelected.mockReturnValue(true);
       const wrapper = mount(FinderItem, {
         propsData: {
@@ -130,7 +133,7 @@ describe("FinderItem", () => {
         }
       });
 
-      wrapper.find('input[type="checkbox"]').trigger("click");
+      await wrapper.find('input[type="checkbox"]').setChecked(false);
       expect(treeModel.selectNode).toHaveBeenCalledWith("test111", false);
     });
   });
@@ -195,7 +198,7 @@ describe("FinderItem", () => {
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
 
-      it("should call treeModel.startDrag if `dragEnabled` is a function returning `true`", () => {
+      it("should call treeModel.startDrag if `dragEnabled` is a function returning `true`", async () => {
         const dataTransfer = {
           setDragImage: jest.fn(),
           setData: jest.fn()
@@ -208,7 +211,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart", {
+        await wrapper.trigger("dragstart", {
           dataTransfer
         });
 
@@ -220,7 +223,7 @@ describe("FinderItem", () => {
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
 
-      it("should not call treeModel.startDrag if `dragEnabled` is false", () => {
+      it("should not call treeModel.startDrag if `dragEnabled` is false", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -229,11 +232,11 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart");
+        await wrapper.trigger("dragstart");
         expect(treeModel.startDrag).not.toHaveBeenCalled();
       });
 
-      it("should not call treeModel.startDrag if `dragEnabled` is a function returning `false`", () => {
+      it("should not call treeModel.startDrag if `dragEnabled` is a function returning `false`", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -242,11 +245,11 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart");
+        await wrapper.trigger("dragstart");
         expect(treeModel.startDrag).not.toHaveBeenCalled();
       });
 
-      it("should initialize drag image element if `dragImageComponent` is defined", () => {
+      it("should initialize drag image element if `dragImageComponent` is defined", async () => {
         const dataTransfer = {
           setDragImage: jest.fn(),
           setData: jest.fn()
@@ -266,7 +269,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart", {
+        await wrapper.trigger("dragstart", {
           dataTransfer
         });
 
@@ -292,7 +295,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragenter");
+        await wrapper.trigger("dragenter");
         await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
@@ -314,7 +317,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragenter");
+        await wrapper.trigger("dragenter");
         await wrapper.vm.$nextTick();
         jest.runAllTimers();
 
@@ -333,9 +336,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragenter");
-        await wrapper.vm.$nextTick();
-        jest.runAllTimers();
+        await wrapper.trigger("dragenter");
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -349,11 +350,8 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragenter");
-        await wrapper.vm.$nextTick();
-        wrapper.trigger("dragleave");
-        await wrapper.vm.$nextTick();
-        jest.runAllTimers();
+        await wrapper.trigger("dragenter");
+        await wrapper.trigger("dragleave");
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -367,21 +365,19 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragenter");
+        await wrapper.trigger("dragenter");
         wrapper.setProps({
           node: {
             id: "test112"
           }
         });
-        await wrapper.vm.$nextTick();
-        jest.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
     });
 
     describe("dragover", () => {
-      it("should set dataTransfer.dropEffect = `all` if can drop", () => {
+      it("should set dataTransfer.dropEffect = `all` if can drop", async () => {
         const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
@@ -394,14 +390,14 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover", {
+        await wrapper.trigger("dragover", {
           dataTransfer
         });
 
         expect(dataTransfer.dropEffect).toBe("move");
       });
 
-      it("should set dataTransfer.dropEffect = `none` if can not drop", () => {
+      it("should set dataTransfer.dropEffect = `none` if can not drop", async () => {
         const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
@@ -414,14 +410,14 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover", {
+        await wrapper.trigger("dragover", {
           dataTransfer
         });
 
         expect(dataTransfer.dropEffect).toBe("none");
       });
 
-      it("should do nothing if drag not enabled", () => {
+      it("should do nothing if drag not enabled", async () => {
         const dataTransfer = {};
         const wrapper = mount(FinderItem, {
           propsData: {
@@ -431,7 +427,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragover", {
+        await wrapper.trigger("dragover", {
           dataTransfer
         });
 
@@ -440,7 +436,7 @@ describe("FinderItem", () => {
     });
 
     describe("dragend", () => {
-      it("should call treeModel.stopDrag", () => {
+      it("should call treeModel.stopDrag", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -449,11 +445,11 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragend");
+        await wrapper.trigger("dragend");
         expect(treeModel.stopDrag).toHaveBeenCalled();
       });
 
-      it("should not call treeModel.stopDrag if `dragEnabled` is false", () => {
+      it("should not call treeModel.stopDrag if `dragEnabled` is false", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -462,11 +458,11 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragend");
+        await wrapper.trigger("dragend");
         expect(treeModel.stopDrag).not.toHaveBeenCalled();
       });
 
-      it("should set `draggable = false` if `options.hasDragHandle` is true", () => {
+      it("should set `draggable = false` if `options.hasDragHandle` is true", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {
             treeModel,
@@ -478,14 +474,14 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.find(".drag-handle").trigger("mousedown");
+        await wrapper.find(".drag-handle").trigger("mousedown");
         expect(wrapper.vm.$el.getAttribute("draggable")).toBe("true");
 
-        wrapper.trigger("dragend");
+        await wrapper.trigger("dragend");
         expect(wrapper.vm.$el.getAttribute("draggable")).toBe("false");
       });
 
-      it("should remove ghost element if `dragImageComponent` is defined", () => {
+      it("should remove ghost element if `dragImageComponent` is defined", async () => {
         const dataTransfer = {
           setDragImage: jest.fn(),
           setData: jest.fn()
@@ -505,13 +501,13 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart", {
+        await wrapper.trigger("dragstart", {
           dataTransfer
         });
 
         const ghost = wrapper.vm.ghost;
 
-        wrapper.trigger("dragend", {
+        await wrapper.trigger("dragend", {
           dataTransfer
         });
 
