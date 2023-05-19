@@ -2,7 +2,6 @@ import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
 import FinderItem from "../FinderItem";
 
-jest.mock("@/utils/tree-model");
 jest.useFakeTimers();
 
 describe("FinderItem", () => {
@@ -46,8 +45,12 @@ describe("FinderItem", () => {
   });
 
   describe("Expand", () => {
+    beforeEach(() => {
+      jest.spyOn(treeModel, "expandNode");
+    });
+
     it("should match snapshot if expanded", () => {
-      treeModel.isNodeExpanded.mockReturnValue(true);
+      treeModel.expandNode("test111");
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -99,6 +102,10 @@ describe("FinderItem", () => {
   });
 
   describe("Selection", () => {
+    beforeEach(() => {
+      jest.spyOn(treeModel, "selectNode");
+    });
+
     it("should match snapshot if selectable", () => {
       const wrapper = mount(FinderItem, {
         propsData: {
@@ -124,7 +131,7 @@ describe("FinderItem", () => {
     });
 
     it("should call treeModel.selectNode on click on checked checkbox", async () => {
-      treeModel.isNodeSelected.mockReturnValue(true);
+      treeModel.selectNode("test111", true);
       const wrapper = mount(FinderItem, {
         propsData: {
           treeModel,
@@ -173,7 +180,11 @@ describe("FinderItem", () => {
     });
 
     describe("dragstart", () => {
-      it("should call treeModel.startDrag", () => {
+      beforeEach(() => {
+        jest.spyOn(treeModel, "startDrag");
+      });
+
+      it("should call treeModel.startDrag", async () => {
         const dataTransfer = {
           setDragImage: jest.fn(),
           setData: jest.fn()
@@ -186,7 +197,7 @@ describe("FinderItem", () => {
           }
         });
 
-        wrapper.trigger("dragstart", {
+        await wrapper.trigger("dragstart", {
           dataTransfer
         });
 
@@ -283,7 +294,8 @@ describe("FinderItem", () => {
 
     describe("dragenter", () => {
       beforeEach(() => {
-        treeModel.isDragging.mockReturnValue(true);
+        treeModel.startDrag("test12");
+        jest.spyOn(treeModel, "expandNode");
       });
 
       it("should call treeModel.expandNode", async () => {
@@ -436,6 +448,10 @@ describe("FinderItem", () => {
     });
 
     describe("dragend", () => {
+      beforeEach(() => {
+        jest.spyOn(treeModel, "stopDrag");
+      });
+
       it("should call treeModel.stopDrag", async () => {
         const wrapper = mount(FinderItem, {
           propsData: {

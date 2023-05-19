@@ -218,3 +218,22 @@ CustomTheme.args = {
   }
 };
 CustomTheme.storyName = "Custom theme";
+
+export const Virtualization = Template.bind({});
+Virtualization.args = {
+  ...defaultArgs,
+  tree: null,
+  dragEnabled: true,
+  virtualize: true,
+  itemHeight: 44
+};
+Virtualization.loaders = [
+  async () => ({
+    loadedTree: {
+      id: "test",
+      label: "Test",
+      children: createChildren("test", "Test", 0, 0)
+    }
+  })
+];
+Virtualization.storyName = "With virtualization";

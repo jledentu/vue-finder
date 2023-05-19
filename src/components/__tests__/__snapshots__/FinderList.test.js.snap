@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FinderList should handle virtualize option 1`] = `
+<div class="list">
+  <div style="flex-shrink: 0; height: 0px;"></div>
+  <div class="drop-zone">
+    <!---->
+  </div>
+  <div role="button" draggable="true" class="item draggable" tabindex="0">
+    <!---->
+    <!---->
+    <div item="[object Object]" class="inner-item">Test 11</div>
+    <div class="arrow"></div>
+  </div>
+  <div class="drop-zone last">
+    <!---->
+  </div>
+  <div style="flex-shrink: 0; height: 90px;"></div>
+</div>
+`;
+
 exports[`FinderList should match snapshot 1`] = `
 <div class="list">
   <div role="button" draggable="false" class="item" tabindex="0">

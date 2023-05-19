@@ -54,13 +54,12 @@ export default {
       default: () => ({})
     }
   },
-  data: () => ({
-    dragCounter: 0
-  }),
   computed: {
     dragOver() {
       return (
-        this.treeModel.isDragging() && this.canDrop && this.dragCounter > 0
+        this.treeModel.isDragging() &&
+        this.canDrop &&
+        this.treeModel.isDragOver(this.dropzoneId)
       );
     },
     theme() {
@@ -82,18 +81,23 @@ export default {
         !this.options.canDrop ||
         this.options.canDrop(this.node.id, this.treeModel.draggedNodeId)
       );
+    },
+    dropzoneId() {
+      return `drop-zone-${this.node.id}${
+        this.index ? `____i${this.index}` : ""
+      }`;
     }
   },
   methods: {
     onDragEnter() {
-      this.dragCounter++;
+      this.treeModel.onDragEnter(this.dropzoneId);
     },
     onDragLeave() {
-      this.dragCounter--;
+      this.treeModel.onDragLeave(this.dropzoneId);
     },
     onDrop(event) {
       event.preventDefault();
-      this.dragCounter = 0;
+      this.treeModel.dragReset();
       if (!this.canDrop || !this.treeModel.isDragging()) {
         return;
       }

@@ -240,7 +240,27 @@ export default {
     scrollAnimationDuration: {
       type: Number,
       default: 200
+    },
+    /**
+     * Enable list virtualization of the tree.
+     */
+    virtualize: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Height of items, used for calculating the height of the virtualized list.
+     */
+    itemHeight: {
+      type: Number,
+      default: 44
     }
+  },
+  provide() {
+    return {
+      virtualize: this.virtualize,
+      itemHeight: this.itemHeight
+    };
   },
   data() {
     return {
