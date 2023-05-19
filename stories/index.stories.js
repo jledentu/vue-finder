@@ -1,7 +1,7 @@
 import Finder from "../src/components/Finder";
 
-const MAX_DEPTH = 1;
-const CHILDREN_NUMBER = 50;
+const MAX_DEPTH = 4;
+const CHILDREN_NUMBER = 10;
 
 function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
   const children = [];
@@ -135,10 +135,7 @@ const defaultArgs = {
 export const LotOfItems = Template.bind({});
 LotOfItems.args = {
   ...defaultArgs,
-  tree: null,
-  dragEnabled: true,
-  virtualize: true,
-  itemHeight: 44
+  tree: null
 };
 LotOfItems.loaders = [
   async () => ({
@@ -226,6 +223,7 @@ export const Virtualization = Template.bind({});
 Virtualization.args = {
   ...defaultArgs,
   tree: null,
+  dragEnabled: true,
   virtualize: true,
   itemHeight: 44
 };
