@@ -6,6 +6,7 @@ jest.mock("@/utils/tree-model");
 
 describe("FinderList", () => {
   let treeModel;
+  let provide;
   const tree = {
     id: "test1",
     children: [
@@ -34,6 +35,10 @@ describe("FinderList", () => {
   };
   beforeEach(() => {
     treeModel = new TreeModel(tree);
+    provide = {
+      virtualize: false,
+      itemHeight: 45
+    };
   });
 
   it("should match snapshot", () => {
@@ -41,7 +46,8 @@ describe("FinderList", () => {
       propsData: {
         treeModel,
         items: tree.children
-      }
+      },
+      provide
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -50,7 +56,8 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       propsData: {
         treeModel
-      }
+      },
+      provide
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -61,7 +68,8 @@ describe("FinderList", () => {
         treeModel,
         items: tree.children,
         dragEnabled: true
-      }
+      },
+      provide
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -72,7 +80,8 @@ describe("FinderList", () => {
         treeModel,
         items: tree.children,
         selectable: true
-      }
+      },
+      provide
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -83,7 +92,8 @@ describe("FinderList", () => {
         treeModel,
         items: tree.children
       },
-      attachTo: document.body
+      attachTo: document.body,
+      provide
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -112,7 +122,8 @@ describe("FinderList", () => {
         items: tree.children,
         dragEnabled: true
       },
-      attachTo: document.body
+      attachTo: document.body,
+      provide
     });
 
     const firstItem = wrapper.findAll(".item").at(0);
@@ -132,5 +143,22 @@ describe("FinderList", () => {
     // Up navigates back to the first item
     secondItem.trigger("keydown", { key: "ArrowUp" });
     expect(document.activeElement).toBe(firstItem.element);
+  });
+
+  it("should handle virtualize option", async () => {
+    provide.virtualize = true;
+    const wrapper = mount(FinderList, {
+      propsData: {
+        treeModel,
+        items: tree.children,
+        dragEnabled: true
+      },
+      attachTo: document.body,
+      provide
+    });
+
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.vm.visibleStart).toBe(0);
+    expect(wrapper.vm.visibleEnd).toBe(2);
   });
 });

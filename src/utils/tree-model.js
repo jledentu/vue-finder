@@ -6,6 +6,7 @@ import {
   getFilteredNodes
 } from "@/utils/tree-utils";
 import EventManager from "./event-manager";
+import DragCounter from "./drag-counter";
 
 export default class extends EventManager {
   constructor(root = {}, options = {}) {
@@ -37,6 +38,7 @@ export default class extends EventManager {
 
     this._updateVisibleTree();
     this.draggedNodeId = undefined;
+    this.dragCounter = new DragCounter();
   }
 
   _initExpanded(defaultExpanded) {
@@ -53,7 +55,7 @@ export default class extends EventManager {
 
   _updateVisibleTree() {
     this.visibleTree = this._computeVisibleTree(this.root.id, {
-      expanded: this.expanded
+      expanded: this.expandedMap
     });
   }
 
@@ -96,7 +98,7 @@ export default class extends EventManager {
     const children = node.children || [];
     return {
       ...node,
-      children: expanded.includes(node.id)
+      children: expanded[node.id]
         ? children
             .filter(child => this.isNodeFiltered(child.id))
             .map(child =>
@@ -111,6 +113,20 @@ export default class extends EventManager {
 
   _getNode(nodeId) {
     return this.nodesMap[nodeId];
+  }
+
+  get expanded() {
+    return this._expanded;
+  }
+
+  set expanded(newExpanded) {
+    this._expanded = newExpanded;
+    this.expandedMap = newExpanded.reduce((map, node) => {
+      map[node] = true;
+      return map;
+    }, {});
+
+    this.focusedNodeId = newExpanded[newExpanded.length - 1];
   }
 
   /**
@@ -130,7 +146,7 @@ export default class extends EventManager {
   }
 
   isNodeExpanded(nodeId) {
-    return this.expanded.includes(nodeId);
+    return this.expandedMap[nodeId];
   }
 
   selectNode(nodeId, isSelected) {
@@ -263,5 +279,21 @@ export default class extends EventManager {
         this.nodesMap
       );
     }
+  }
+
+  onDragEnter(dropzoneId) {
+    this.dragCounter.onDragEnter(dropzoneId);
+  }
+
+  onDragLeave(dropzoneId) {
+    this.dragCounter.onDragLeave(dropzoneId);
+  }
+
+  dragReset() {
+    this.dragCounter.reset();
+  }
+
+  isDragOver(dropzoneId) {
+    return this.dragCounter.enteredDropzoneId === dropzoneId;
   }
 }

@@ -2,8 +2,6 @@ import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
 import FinderListDropZone from "../FinderListDropZone";
 
-jest.mock("@/utils/tree-model");
-
 describe("FinderListDropZone", () => {
   let treeModel;
   let node;
@@ -45,7 +43,7 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag enter and is dragging", async () => {
-    treeModel.isDragging.mockReturnValue(true);
+    treeModel.startDrag("test12");
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
@@ -53,14 +51,22 @@ describe("FinderListDropZone", () => {
         dragEnabled: true
       }
     });
+
     wrapper.trigger("dragenter");
+    expect(treeModel.dragCounter.counter).toBe(1);
+    expect(treeModel.dragCounter.enteredDropzoneId).toBe("drop-zone-test111");
+    expect(wrapper.vm.dropzoneId).toBe("drop-zone-test111");
+    expect(treeModel.isDragging()).toBe(true);
+    expect(wrapper.vm.canDrop).toBe(true);
+    expect(wrapper.vm.dragOver).toBe(true);
+
     await wrapper.vm.$nextTick();
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should match if drag leave and is dragging", async () => {
-    treeModel.isDragging.mockReturnValue(true);
+    treeModel.startDrag("test12");
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
@@ -68,6 +74,7 @@ describe("FinderListDropZone", () => {
         dragEnabled: true
       }
     });
+
     wrapper.trigger("dragenter");
     wrapper.trigger("dragleave");
     await wrapper.vm.$nextTick();
@@ -76,7 +83,6 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag enter and not dragging", async () => {
-    treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
@@ -90,7 +96,6 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag leave and not dragging", async () => {
-    treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       propsData: {
         treeModel,
@@ -105,8 +110,11 @@ describe("FinderListDropZone", () => {
   });
 
   describe("#onDrop", () => {
+    beforeEach(() => {
+      jest.spyOn(treeModel, "dropOnNode");
+    });
     it("should call `treeModel.dropOnNode`", () => {
-      treeModel.isDragging.mockReturnValue(true);
+      treeModel.startDrag("test12");
       const wrapper = mount(FinderListDropZone, {
         propsData: {
           treeModel,
@@ -119,7 +127,8 @@ describe("FinderListDropZone", () => {
     });
 
     it("should call `treeModel.dropOnNode` with index", () => {
-      treeModel.isDragging.mockReturnValue(true);
+      treeModel.startDrag("test12");
+
       const wrapper = mount(FinderListDropZone, {
         propsData: {
           treeModel,
@@ -132,8 +141,7 @@ describe("FinderListDropZone", () => {
       expect(treeModel.dropOnNode).toHaveBeenCalledWith("test111", 5);
     });
 
-    it("should not call `treeModel.dropOnNode` if not dragging", () => {
-      treeModel.isDragging.mockReturnValue(false);
+    it("should not call `treeModel.dropOnNode` if not dragging", async () => {
       const wrapper = mount(FinderListDropZone, {
         propsData: {
           treeModel,
@@ -141,7 +149,7 @@ describe("FinderListDropZone", () => {
           dragEnabled: true
         }
       });
-      wrapper.trigger("drop");
+      await wrapper.trigger("drop");
       expect(treeModel.dropOnNode).not.toHaveBeenCalled();
     });
   });

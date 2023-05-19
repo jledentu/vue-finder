@@ -1,7 +1,7 @@
 import Finder from "../src/components/Finder";
 
-const MAX_DEPTH = 4;
-const CHILDREN_NUMBER = 10;
+const MAX_DEPTH = 1;
+const CHILDREN_NUMBER = 50;
 
 function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
   const children = [];
@@ -135,7 +135,10 @@ const defaultArgs = {
 export const LotOfItems = Template.bind({});
 LotOfItems.args = {
   ...defaultArgs,
-  tree: null
+  tree: null,
+  dragEnabled: true,
+  virtualize: true,
+  itemHeight: 44
 };
 LotOfItems.loaders = [
   async () => ({
@@ -218,3 +221,21 @@ CustomTheme.args = {
   }
 };
 CustomTheme.storyName = "Custom theme";
+
+export const Virtualization = Template.bind({});
+Virtualization.args = {
+  ...defaultArgs,
+  tree: null,
+  virtualize: true,
+  itemHeight: 44
+};
+Virtualization.loaders = [
+  async () => ({
+    loadedTree: {
+      id: "test",
+      label: "Test",
+      children: createChildren("test", "Test", 0, 0)
+    }
+  })
+];
+Virtualization.storyName = "With virtualization";
