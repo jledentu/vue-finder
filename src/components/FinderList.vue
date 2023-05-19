@@ -116,7 +116,8 @@ export default {
       const separatorWidth = get(this.options, "theme.separatorWidth", "");
       return {
         ...(separatorColor && { borderColor: separatorColor }),
-        ...(separatorWidth && { borderWidth: separatorWidth })
+        ...(separatorWidth && { borderWidth: separatorWidth }),
+        ...(this.listWidth && { width: `${this.listWidth}px` })
       };
     },
     expandedItemIndex() {
@@ -133,6 +134,7 @@ export default {
       immediate: true,
       handler(newParent, oldParent) {
         if (newParent.id !== oldParent?.id && this.$el) {
+          this.listWidth = null;
           this.$el.scrollTop = 0;
           this.updateVisibleRange();
         }
@@ -200,17 +202,26 @@ export default {
       return { start, end };
     },
     async updateVisibleRange() {
+      if (!this.virtualize) {
+        return;
+      }
+
       const { start, end } = this.getVirtualRange();
 
-      if (start !== this.visibleStart) {
-        this.visibleStart = start;
+      if (start === this.visibleStart && end === this.visibleEnd) {
+        return;
       }
 
-      if (end !== this.visibleEnd) {
-        this.visibleEnd = end;
-      }
+      this.visibleStart = start;
+      this.visibleEnd = end;
 
+      // Wait for re-rendering
       await this.$nextTick();
+
+      // Set initial list width to avoid horizontal jumping when scrolling
+      if (!this.listWidth) {
+        this.listWidth = this.$el.clientWidth;
+      }
 
       // We could have lost focus on focused item while updating the visible range
       // so we need to refocus it
