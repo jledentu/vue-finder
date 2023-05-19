@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/jledentu/vue-finder/compare/v2.1.2...v2.2.0) (2023-05-19)
+
+
+### Features
+
+* **virtualization:** add virtualize prop ([#210](https://github.com/jledentu/vue-finder/issues/210)) ([fad3f78](https://github.com/jledentu/vue-finder/commit/fad3f78117742ae1b384cd7dc9a7cc7b2b0a822e))
+
 ## [2.1.2](https://github.com/jledentu/vue-finder/compare/v2.1.1...v2.1.2) (2023-05-05)
 
 
