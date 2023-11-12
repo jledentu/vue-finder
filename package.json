@@ -95,6 +95,7 @@
     "dot": "^1.1.3",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-custom-alias": "^1.3.2",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.25.4",

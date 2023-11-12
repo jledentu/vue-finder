@@ -58,14 +58,10 @@ module.exports = {
   },
   settings: {
     "import/resolver": {
-      webpack: {
-        config: {
-          resolve: {
-            extensions: [".js", ".vue", ".json"],
-            alias: {
-              "@": path.resolve("src"),
-            },
-          },
+      "eslint-import-resolver-custom-alias": {
+        extensions: [".js", ".vue", ".json"],
+        alias: {
+          "@": path.resolve("src"),
         },
       },
     },
