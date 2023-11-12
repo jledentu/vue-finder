@@ -3,15 +3,17 @@ const { loadConfigFromFile, mergeConfig } = require("vite");
 const vueJsx = require("@vitejs/plugin-vue-jsx");
 
 module.exports = {
-  core: {
-    builder: "@storybook/builder-vite",
-  },
   stories: [
     "../stories/**/*.stories.mdx",
     "../stories/**/*.stories.@(js|jsx|ts|tsx)",
   ],
+
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
-  framework: "@storybook/vue3",
+  framework: {
+    name: "@storybook/vue3-vite",
+    options: {},
+  },
+
   async viteFinal(config) {
     const { config: userConfig } = await loadConfigFromFile(
       path.resolve(__dirname, "../vite.config.js")
@@ -32,5 +34,9 @@ module.exports = {
       },
       plugins: [...config.plugins, vueJsx()],
     };
+  },
+
+  docs: {
+    autodocs: true,
   },
 };
