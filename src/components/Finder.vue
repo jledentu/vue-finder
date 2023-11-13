@@ -17,7 +17,7 @@ function renderTree(h, context, item) {
   }
 
   const expandedChild = item.children.find((child) =>
-    context.treeModel.isNodeExpanded(child.id)
+    context.treeModel.isNodeExpanded(child.id),
   );
 
   const options = {
@@ -413,7 +413,7 @@ export default {
           duration,
           scrollLeft,
           scrollDistance,
-          scrollDuration
+          scrollDuration,
         );
         window.requestAnimationFrame(step);
       };

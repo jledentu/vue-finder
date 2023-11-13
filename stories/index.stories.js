@@ -15,7 +15,7 @@ function createChildren(parentId, parentLabel, parentIndex, parentDepth) {
               `${parentId}-${index + 1}`,
               `${parentLabel} > ${index + 1}`,
               index,
-              parentDepth + 1
+              parentDepth + 1,
             )
           : [],
     });

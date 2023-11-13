@@ -111,7 +111,7 @@ export default {
     expandedItemIndex() {
       return Math.max(
         0,
-        this.items.findIndex((item) => this.treeModel.isNodeExpanded(item.id))
+        this.items.findIndex((item) => this.treeModel.isNodeExpanded(item.id)),
       );
     },
   },

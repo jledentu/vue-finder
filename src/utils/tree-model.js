@@ -64,7 +64,7 @@ export default class extends EventManager {
       parent.children = differenceBy(
         parent.children || [],
         [node],
-        ({ id }) => id
+        ({ id }) => id,
       );
     }
   }
@@ -102,7 +102,7 @@ export default class extends EventManager {
             .map((child) =>
               this._computeVisibleTree(child.id, {
                 expanded,
-              })
+              }),
             )
         : [],
       isLeaf: children.length === 0,
@@ -135,7 +135,7 @@ export default class extends EventManager {
       "expand",
       this.expanded,
       sourceEvent,
-      this.expanded.map((id) => this._getNodeData(id))
+      this.expanded.map((id) => this._getNodeData(id)),
     );
   }
 
@@ -151,17 +151,17 @@ export default class extends EventManager {
       ? getFilteredNodes(
           (node) => node.selectable !== false,
           nodeId,
-          this.nodesMap
+          this.nodesMap,
         )
       : [nodeId];
     this.selected = (isSelected ? union : difference)(
       this.selected,
-      nodeIdsToSelect
+      nodeIdsToSelect,
     );
     this.trigger(
       "select",
       this.selected,
-      this.selected.map((id) => this._getNodeData(id))
+      this.selected.map((id) => this._getNodeData(id)),
     );
   }
 
@@ -277,7 +277,7 @@ export default class extends EventManager {
       this.filtered = getFilteredNodes(
         this._filter,
         this.root.id,
-        this.nodesMap
+        this.nodesMap,
       );
     }
   }
