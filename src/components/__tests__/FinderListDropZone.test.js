@@ -1,8 +1,9 @@
+import { vi, describe, it, beforeEach, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
 import FinderListDropZone from "../FinderListDropZone.vue";
 
-jest.mock("@/utils/tree-model");
+vi.mock("@/utils/tree-model");
 
 describe("FinderListDropZone", () => {
   let treeModel;

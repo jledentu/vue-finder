@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 const path = require("path");
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -36,5 +37,10 @@ export default defineConfig({
         },
       },
     },
+  },
+  test: {
+    clearMocks: true,
+    environment: "happy-dom",
+    setupFiles: ["./vitest.setup.js"],
   },
 });

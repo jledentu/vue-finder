@@ -1,31 +1,31 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FinderListDropZone should match if drag enter and is dragging 1`] = `
-<div class="drop-zone drag-over dragging">
+exports[`FinderListDropZone > should match if drag enter and is dragging 1`] = `
+<div data-v-94df34d0="" class="drop-zone drag-over dragging">
   <!--v-if-->
 </div>
 `;
 
-exports[`FinderListDropZone should match if drag enter and not dragging 1`] = `
-<div class="drop-zone">
+exports[`FinderListDropZone > should match if drag enter and not dragging 1`] = `
+<div data-v-94df34d0="" class="drop-zone">
   <!--v-if-->
 </div>
 `;
 
-exports[`FinderListDropZone should match if drag leave and is dragging 1`] = `
-<div class="drop-zone dragging">
+exports[`FinderListDropZone > should match if drag leave and is dragging 1`] = `
+<div data-v-94df34d0="" class="drop-zone dragging">
   <!--v-if-->
 </div>
 `;
 
-exports[`FinderListDropZone should match if drag leave and not dragging 1`] = `
-<div class="drop-zone">
+exports[`FinderListDropZone > should match if drag leave and not dragging 1`] = `
+<div data-v-94df34d0="" class="drop-zone">
   <!--v-if-->
 </div>
 `;
 
-exports[`FinderListDropZone should match snapshot 1`] = `
-<div class="drop-zone">
+exports[`FinderListDropZone > should match snapshot 1`] = `
+<div data-v-94df34d0="" class="drop-zone">
   <!--v-if-->
 </div>
 `;

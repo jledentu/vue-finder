@@ -12,7 +12,7 @@ npm run build
 # Run development server with storybook
 npm run storybook
 
-# Run all tests with lint/jest
+# Run all tests with lint/vitest
 npm run test
 
 # Run test in watch mode
