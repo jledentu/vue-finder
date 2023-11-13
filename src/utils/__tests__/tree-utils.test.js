@@ -51,7 +51,7 @@ describe("Tree Utils", () => {
               id: "test12",
             },
           ],
-        })
+        }),
       ).toEqual({
         test1: {
           id: "test1",
@@ -143,13 +143,13 @@ describe("Tree Utils", () => {
 
     it("should return the filtered nodes", () => {
       expect(
-        sortBy(getFilteredNodes((node) => node.keep, "test1", nodesMap))
+        sortBy(getFilteredNodes((node) => node.keep, "test1", nodesMap)),
       ).toEqual(["test1", "test11", "test112", "test12"]);
     });
 
     it("should return [] if no node matches", () => {
       expect(
-        getFilteredNodes((node) => node.id === "notfound", "test1", nodesMap)
+        getFilteredNodes((node) => node.id === "notfound", "test1", nodesMap),
       ).toEqual([]);
     });
   });

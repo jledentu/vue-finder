@@ -16,7 +16,7 @@ module.exports = {
 
   async viteFinal(config) {
     const { config: userConfig } = await loadConfigFromFile(
-      path.resolve(__dirname, "../vite.config.js")
+      path.resolve(__dirname, "../vite.config.js"),
     );
 
     return {

@@ -204,7 +204,7 @@ describe("FinderItem", () => {
         expect(dataTransfer.setDragImage).not.toHaveBeenCalled();
         expect(dataTransfer.setData).toHaveBeenCalledWith(
           "text/plain",
-          "test111"
+          "test111",
         );
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
@@ -229,7 +229,7 @@ describe("FinderItem", () => {
         expect(dataTransfer.setDragImage).not.toHaveBeenCalled();
         expect(dataTransfer.setData).toHaveBeenCalledWith(
           "text/plain",
-          "test111"
+          "test111",
         );
         expect(treeModel.startDrag).toHaveBeenCalledWith("test111");
       });
@@ -290,7 +290,7 @@ describe("FinderItem", () => {
         expect(dataTransfer.setDragImage).toHaveBeenCalledWith(
           ghost.vm.$el,
           0,
-          0
+          0,
         );
       });
     });
@@ -314,7 +314,7 @@ describe("FinderItem", () => {
 
         expect(treeModel.expandNode).toHaveBeenCalledWith(
           "test111",
-          "dragover"
+          "dragover",
         );
       });
 

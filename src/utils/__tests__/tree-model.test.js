@@ -141,7 +141,7 @@ describe("TreeModel", () => {
           {
             id: "test12",
           },
-        ]
+        ],
       );
       expect(model.isNodeSelected("test12")).toBe(true);
     });
@@ -415,7 +415,7 @@ describe("TreeModel", () => {
             { id: "test11" },
             { id: "test112" },
             { id: "test12" },
-          ]
+          ],
         );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
@@ -462,7 +462,7 @@ describe("TreeModel", () => {
         expect(onExpand).toHaveBeenCalledWith(
           ["test1", "test11", "test12"],
           "drop",
-          [{ id: "test1" }, { id: "test11" }, { id: "test12" }]
+          [{ id: "test1" }, { id: "test11" }, { id: "test12" }],
         );
         expect(onMove).toHaveBeenCalledWith({
           moved: "test12",
