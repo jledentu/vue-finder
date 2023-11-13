@@ -1,3 +1,4 @@
+import { vi, describe, it, beforeEach, expect } from "vitest";
 import { sortBy } from "lodash-es";
 import TreeModel from "../tree-model";
 
@@ -29,9 +30,9 @@ describe("TreeModel", () => {
   let onMove;
 
   beforeEach(() => {
-    onExpand = jest.fn();
-    onSelect = jest.fn();
-    onMove = jest.fn();
+    onExpand = vi.fn();
+    onSelect = vi.fn();
+    onMove = vi.fn();
 
     model = new TreeModel(node);
     model.on("expand", onExpand);

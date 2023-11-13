@@ -1,8 +1,9 @@
+import { vi, describe, it, beforeEach, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
 import FinderList from "../FinderList.vue";
 
-jest.mock("@/utils/tree-model");
+vi.mock("@/utils/tree-model");
 
 describe("FinderList", () => {
   let treeModel;

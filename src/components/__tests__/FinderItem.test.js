@@ -1,10 +1,11 @@
+import { vi, describe, it, beforeEach, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 import { h } from "vue";
 import TreeModel from "@/utils/tree-model";
 import FinderItem from "../FinderItem.vue";
 
-jest.mock("@/utils/tree-model");
-jest.useFakeTimers();
+vi.mock("@/utils/tree-model");
+vi.useFakeTimers();
 
 describe("FinderItem", () => {
   let treeModel;
@@ -185,8 +186,8 @@ describe("FinderItem", () => {
     describe("dragstart", () => {
       it("should call treeModel.startDrag", async () => {
         const dataTransfer = {
-          setDragImage: jest.fn(),
-          setData: jest.fn(),
+          setDragImage: vi.fn(),
+          setData: vi.fn(),
         };
         const wrapper = mount(FinderItem, {
           props: {
@@ -210,8 +211,8 @@ describe("FinderItem", () => {
 
       it("should call treeModel.startDrag if `dragEnabled` is a function returning `true`", async () => {
         const dataTransfer = {
-          setDragImage: jest.fn(),
-          setData: jest.fn(),
+          setDragImage: vi.fn(),
+          setData: vi.fn(),
         };
         const wrapper = mount(FinderItem, {
           props: {
@@ -261,8 +262,8 @@ describe("FinderItem", () => {
 
       it("should initialize drag image element if dragImageComponent is defined", async () => {
         const dataTransfer = {
-          setDragImage: jest.fn(),
-          setData: jest.fn(),
+          setDragImage: vi.fn(),
+          setData: vi.fn(),
         };
         const wrapper = mount(FinderItem, {
           props: {
@@ -309,7 +310,7 @@ describe("FinderItem", () => {
         });
 
         await wrapper.find(".item").trigger("dragenter");
-        jest.runAllTimers();
+        vi.runAllTimers();
 
         expect(treeModel.expandNode).toHaveBeenCalledWith(
           "test111",
@@ -330,7 +331,7 @@ describe("FinderItem", () => {
         });
 
         await wrapper.find(".item").trigger("dragenter");
-        jest.runAllTimers();
+        vi.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -348,7 +349,7 @@ describe("FinderItem", () => {
         });
 
         await wrapper.find(".item").trigger("dragenter");
-        jest.runAllTimers();
+        vi.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -364,7 +365,7 @@ describe("FinderItem", () => {
 
         await wrapper.find(".item").trigger("dragenter");
         await wrapper.find(".item").trigger("dragleave");
-        jest.runAllTimers();
+        vi.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -385,7 +386,7 @@ describe("FinderItem", () => {
           },
         });
         await wrapper.vm.$nextTick();
-        jest.runAllTimers();
+        vi.runAllTimers();
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
@@ -498,8 +499,8 @@ describe("FinderItem", () => {
 
       it("should remove ghost element if 'dragImageComponent' is defined", async () => {
         const dataTransfer = {
-          setDragImage: jest.fn(),
-          setData: jest.fn(),
+          setDragImage: vi.fn(),
+          setData: vi.fn(),
         };
         const wrapper = mount(FinderItem, {
           props: {
