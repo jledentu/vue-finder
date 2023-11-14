@@ -75,9 +75,9 @@
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vitest/coverage-v8": "^0.34.6",
     "@vue/babel-plugin-jsx": "^1.1.5",
-    "@vue/babel-preset-jsx": "^1.2.4",
-    "@vue/compat": "^3.2.37",
-    "@vue/compiler-sfc": "^3.2.37",
+    "@vue/babel-preset-jsx": "^1.4.0",
+    "@vue/compat": "^3.3.8",
+    "@vue/compiler-sfc": "^3.3.8",
     "@vue/test-utils": "2.0.2",
     "@vuepress/plugin-register-components": "^2.0.0-beta.61",
     "babel-core": "^7.0.0-bridge.0",
@@ -123,9 +123,9 @@
     "uglify-es": "^3.3.4",
     "vite": "^4.5.0",
     "vitest": "^0.34.6",
-    "vue": "^3.2.37",
+    "vue": "^3.3.8",
     "vue-docgen-cli": "^4.44.29",
-    "vuepress": "2.0.0-beta.61"
+    "vuepress": "2.0.0-beta.68"
   },
   "config": {
     "commitizen": {
