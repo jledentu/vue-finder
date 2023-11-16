@@ -11,4 +11,3 @@ node_modules/
 src/
 stories/
 jest.*.js
-rollup.config.js
