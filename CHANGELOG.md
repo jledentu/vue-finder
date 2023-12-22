@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/jledentu/vue-finder/compare/v2.2.0...v2.2.1) (2023-12-22)
+
+
+### Bug Fixes
+
+* do not trap focus when virtualize: true ([594f501](https://github.com/jledentu/vue-finder/commit/594f501c6b81cd1076c3990d787ab51f04dac9a4))
+
 # [2.2.0](https://github.com/jledentu/vue-finder/compare/v2.1.2...v2.2.0) (2023-05-19)
 
 
