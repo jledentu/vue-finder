@@ -190,6 +190,10 @@ export default {
     getOffset() {
       Math.floor(this.$el.scrollTop / this.itemHeight) + 1;
     },
+    getFocusedElement() {
+      const focusedItem = this.$refs[`item-${this.treeModel.focusedNodeId}`];
+      return focusedItem ? focusedItem.$el : null;
+    },
     getVirtualRange() {
       const overscan = 5;
       const start = Math.max(
@@ -212,6 +216,9 @@ export default {
         return;
       }
 
+      const mustRestoreFocus =
+        this.getFocusedElement() === document.activeElement;
+
       this.visibleStart = start;
       this.visibleEnd = end;
 
@@ -223,17 +230,16 @@ export default {
         this.listWidth = this.$el.clientWidth;
       }
 
-      // We could have lost focus on focused item while updating the visible range
-      // so we need to refocus it
-      const focusedItem = this.$refs[`item-${this.treeModel.focusedNodeId}`];
-      if (
-        focusedItem &&
-        focusedItem.$el &&
-        focusedItem.$el !== document.activeElement
-      ) {
-        focusedItem.$el.focus({
-          preventScroll: true
-        });
+      if (mustRestoreFocus) {
+        // We could have lost focus on focused item while updating the visible range
+        // so we need to refocus it
+        const focusedItem = this.getFocusedElement();
+
+        if (focusedItem && focusedItem !== document.activeElement) {
+          focusedItem.focus({
+            preventScroll: true
+          });
+        }
       }
     }
   },
