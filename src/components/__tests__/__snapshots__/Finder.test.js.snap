@@ -2,12 +2,12 @@
 
 exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
-        <div data-v-2a66825e="" class="inner-item" dragged="false" item="[object Object]" expanded="true">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -15,7 +15,7 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -23,7 +23,7 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 13">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -31,19 +31,19 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <div data-v-08e2b0ac="" class="list-container">
-      <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+    <div data-v-af535168="" class="list-container">
+      <div data-v-af535168="" class="list">
         <!--v-if-->
         <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
           <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 111">
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <div data-v-2a66825e="" class="inner-item">Test 111</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
@@ -51,14 +51,14 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
         <!--v-if-->
         <div data-v-2a66825e="" class="item custom-class expanded" role="button" draggable="false" tabindex="0">
           <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 112">
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <div data-v-2a66825e="" class="inner-item">Test 112</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
         <!--teleport end-->
         <!--v-if-->
       </div>
-      <!---->
+      <!--v-if-->
     </div>
   </div>
 </div>
@@ -66,12 +66,12 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
 
 exports[`Finder > API > #expand > should expand the given item and emit the 'expand' event 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
-        <div data-v-2a66825e="" class="inner-item" dragged="false" item="[object Object]" expanded="true">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -79,7 +79,7 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -87,7 +87,7 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 13">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -95,19 +95,19 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <div data-v-08e2b0ac="" class="list-container">
-      <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+    <div data-v-af535168="" class="list-container">
+      <div data-v-af535168="" class="list">
         <!--v-if-->
         <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
           <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 111">
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <div data-v-2a66825e="" class="inner-item">Test 111</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
@@ -115,14 +115,14 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
         <!--v-if-->
         <div data-v-2a66825e="" class="item custom-class expanded" role="button" draggable="false" tabindex="0">
           <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 112">
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <div data-v-2a66825e="" class="inner-item">Test 112</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
         <!--teleport end-->
         <!--v-if-->
       </div>
-      <!---->
+      <!--v-if-->
     </div>
   </div>
 </div>
@@ -130,69 +130,69 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
 
 exports[`Finder > Drag & Drop > should match snapshot 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-        <!--v-if-->
+        <div data-v-94df34d0="" style="flex-grow: 1;"></div>
       </div>
       <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-        <!--v-if-->
+        <div data-v-94df34d0="" style="flex-grow: 1;"></div>
       </div>
       <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-        <!--v-if-->
+        <div data-v-94df34d0="" style="flex-grow: 1;"></div>
       </div>
       <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-        <!--v-if-->
+        <div data-v-94df34d0="" style="flex-grow: 1;"></div>
       </div>
       <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
-        <!--v-if-->
+        <div data-v-94df34d0="" style="flex-grow: 1;"></div>
       </div>
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > Selection > should match snapshot 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -200,7 +200,7 @@ exports[`Finder > Selection > should match snapshot 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -208,7 +208,7 @@ exports[`Finder > Selection > should match snapshot 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 13">
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -216,27 +216,27 @@ exports[`Finder > Selection > should match snapshot 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -245,7 +245,7 @@ exports[`Finder > should match snapshot 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -254,7 +254,7 @@ exports[`Finder > should match snapshot 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -263,27 +263,27 @@ exports[`Finder > should match snapshot 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
-exports[`Finder > should match snapshot with a custom arrow component 1`] = `
+exports[`Finder > should match snapshot with a custom arrow slot 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div><span data-v-2a66825e="" theme="[object Object]" expanded="false" item="[object Object]"></span>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div><span></span>
       </div>
       <!--teleport start-->
       <!--teleport end-->
@@ -291,7 +291,7 @@ exports[`Finder > should match snapshot with a custom arrow component 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -300,7 +300,7 @@ exports[`Finder > should match snapshot with a custom arrow component 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div><span data-v-2a66825e="" theme="[object Object]" expanded="false" item="[object Object]"></span>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div><span></span>
       </div>
       <!--teleport start-->
       <!--teleport end-->
@@ -308,25 +308,26 @@ exports[`Finder > should match snapshot with a custom arrow component 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div><span data-v-2a66825e="" theme="[object Object]" expanded="false" item="[object Object]"></span>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div><span></span>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
-exports[`Finder > should match snapshot with a custom item component 1`] = `
+exports[`Finder > should match snapshot with a custom item slot 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
-        <!--v-if--><span data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</span>
+        <!--v-if-->
+        <div data-v-2a66825e="" class="inner-item"><span>Test 11</span></div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -334,7 +335,8 @@ exports[`Finder > should match snapshot with a custom item component 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
-        <!--v-if--><span data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</span>
+        <!--v-if-->
+        <div data-v-2a66825e="" class="inner-item"><span>Test 12</span></div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -342,7 +344,8 @@ exports[`Finder > should match snapshot with a custom item component 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
-        <!--v-if--><span data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</span>
+        <!--v-if-->
+        <div data-v-2a66825e="" class="inner-item"><span>Test 13</span></div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -350,47 +353,48 @@ exports[`Finder > should match snapshot with a custom item component 1`] = `
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
-        <!--v-if--><span data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</span>
+        <!--v-if-->
+        <div data-v-2a66825e="" class="inner-item"><span>Test 14</span></div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot with an updated tree 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 31</div>
+        <div data-v-2a66825e="" class="inner-item">Test 31</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot with custom theme 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list" style="border-color: #eee; border-width: 3px;">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list" style="border-color: #eee; border-width: 3px;">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow" style="border-color: #555;"></div>
       </div>
       <!--teleport start-->
@@ -399,7 +403,7 @@ exports[`Finder > should match snapshot with custom theme 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -408,7 +412,7 @@ exports[`Finder > should match snapshot with custom theme 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow" style="border-color: #555;"></div>
       </div>
       <!--teleport start-->
@@ -417,27 +421,27 @@ exports[`Finder > should match snapshot with custom theme 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow" style="border-color: #555;"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot with default expanded 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item expanded" role="button" draggable="false" aria-expanded="true" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -446,7 +450,7 @@ exports[`Finder > should match snapshot with default expanded 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -455,7 +459,7 @@ exports[`Finder > should match snapshot with default expanded 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -464,20 +468,20 @@ exports[`Finder > should match snapshot with default expanded 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <div data-v-08e2b0ac="" class="list-container">
-      <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+    <div data-v-af535168="" class="list-container">
+      <div data-v-af535168="" class="list">
         <!--v-if-->
         <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
           <!--v-if-->
           <!--v-if-->
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <div data-v-2a66825e="" class="inner-item">Test 111</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
@@ -486,14 +490,14 @@ exports[`Finder > should match snapshot with default expanded 1`] = `
         <div data-v-2a66825e="" class="item custom-class expanded" role="button" draggable="false" tabindex="0">
           <!--v-if-->
           <!--v-if-->
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="true" dragged="false">Test 112</div>
+          <div data-v-2a66825e="" class="inner-item">Test 112</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
         <!--teleport end-->
         <!--v-if-->
       </div>
-      <!---->
+      <!--v-if-->
     </div>
   </div>
 </div>
@@ -501,13 +505,13 @@ exports[`Finder > should match snapshot with default expanded 1`] = `
 
 exports[`Finder > should match snapshot with expanded item and emit event 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" dragged="false" item="[object Object]" expanded="true">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -516,7 +520,7 @@ exports[`Finder > should match snapshot with expanded item and emit event 1`] = 
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -525,7 +529,7 @@ exports[`Finder > should match snapshot with expanded item and emit event 1`] = 
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -534,20 +538,20 @@ exports[`Finder > should match snapshot with expanded item and emit event 1`] = 
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <div data-v-08e2b0ac="" class="list-container">
-      <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+    <div data-v-af535168="" class="list-container">
+      <div data-v-af535168="" class="list">
         <!--v-if-->
         <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="0">
           <!--v-if-->
           <!--v-if-->
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 111</div>
+          <div data-v-2a66825e="" class="inner-item">Test 111</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
@@ -556,14 +560,14 @@ exports[`Finder > should match snapshot with expanded item and emit event 1`] = 
         <div data-v-2a66825e="" class="item custom-class" role="button" draggable="false" tabindex="-1">
           <!--v-if-->
           <!--v-if-->
-          <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 112</div>
+          <div data-v-2a66825e="" class="inner-item">Test 112</div>
           <!--v-if-->
         </div>
         <!--teleport start-->
         <!--teleport end-->
         <!--v-if-->
       </div>
-      <!---->
+      <!--v-if-->
     </div>
   </div>
 </div>
@@ -571,33 +575,33 @@ exports[`Finder > should match snapshot with expanded item and emit event 1`] = 
 
 exports[`Finder > should match snapshot with filter 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot with initial filter 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -606,7 +610,7 @@ exports[`Finder > should match snapshot with initial filter 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -615,7 +619,7 @@ exports[`Finder > should match snapshot with initial filter 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -624,33 +628,33 @@ exports[`Finder > should match snapshot with initial filter 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;
 
 exports[`Finder > should match snapshot with no children 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <!---->
+  <!--v-if-->
 </div>
 `;
 
 exports[`Finder > should match snapshot with sort 1`] = `
 <div data-v-08e2b0ac="" class="tree-container">
-  <div data-v-08e2b0ac="" class="list-container">
-    <div data-v-af535168="" data-v-08e2b0ac="" class="list">
+  <div data-v-af535168="" data-v-08e2b0ac="" class="list-container">
+    <div data-v-af535168="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
+        <div data-v-2a66825e="" class="inner-item">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -659,7 +663,7 @@ exports[`Finder > should match snapshot with sort 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 13</div>
+        <div data-v-2a66825e="" class="inner-item">Test 13</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
@@ -668,7 +672,7 @@ exports[`Finder > should match snapshot with sort 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
+        <div data-v-2a66825e="" class="inner-item">Test 12</div>
         <!--v-if-->
       </div>
       <!--teleport start-->
@@ -677,14 +681,14 @@ exports[`Finder > should match snapshot with sort 1`] = `
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
         <!--v-if-->
         <!--v-if-->
-        <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
+        <div data-v-2a66825e="" class="inner-item">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
       <!--teleport start-->
       <!--teleport end-->
       <!--v-if-->
     </div>
-    <!---->
+    <!--v-if-->
   </div>
 </div>
 `;

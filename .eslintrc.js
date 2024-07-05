@@ -5,15 +5,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: "@babel/eslint-parser",
-    babelOptions: {
-      parserOpts: {
-        plugins: ["jsx"],
-      },
-    },
     ecmaVersion: 2017,
-    ecmaFeatures: {
-      jsx: true,
-    },
     sourceType: "module",
   },
   plugins: ["html", "vue"],

@@ -55,7 +55,6 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/plugin-syntax-jsx": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
@@ -72,10 +71,7 @@
     "@storybook/builder-vite": "^7.5.3",
     "@storybook/vue3-vite": "^7.5.3",
     "@vitejs/plugin-vue": "^5.0.5",
-    "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vitest/coverage-v8": "^1.6.0",
-    "@vue/babel-plugin-jsx": "^1.2.2",
-    "@vue/babel-preset-jsx": "^1.4.0",
     "@vue/compat": "^3.4.31",
     "@vue/test-utils": "2.4.6",
     "@vuepress/plugin-register-components": "^2.0.0-beta.61",

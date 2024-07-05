@@ -1,6 +1,5 @@
 const path = require("path");
-const { loadConfigFromFile, mergeConfig } = require("vite");
-const vueJsx = require("@vitejs/plugin-vue-jsx");
+const { loadConfigFromFile } = require("vite");
 
 module.exports = {
   stories: [
@@ -32,7 +31,7 @@ module.exports = {
           "@": path.resolve("src"),
         },
       },
-      plugins: [...config.plugins, vueJsx()],
+      plugins: [...config.plugins],
     };
   },
 

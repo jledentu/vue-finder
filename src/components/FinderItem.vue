@@ -63,31 +63,26 @@
       @click.stop
       @change="onSelect"
     />
-    <component
-      :is="itemComponent"
-      class="inner-item"
-      :item="node"
-      :expanded="expanded"
-      :dragged="dragged"
-    >
-      <slot />
-    </component>
-    <component
-      :is="arrowComponent"
+    <div class="inner-item">
+      <slot name="item" :item="node" :expanded="expanded" :dragged="dragged">
+        {{ node.label }}
+      </slot>
+    </div>
+    <slot
       v-if="!node.isLeaf"
+      name="arrow"
       :theme="theme"
       :expanded="expanded"
       :item="node"
-    />
+    >
+      <FinderItemArrow :theme="theme" :expanded="expanded" :item="node" />
+    </slot>
   </div>
 
   <Teleport to="body">
-    <component
-      :is="options.dragImageComponent"
-      v-if="options.dragImageComponent"
+    <div
       v-show="showGhost"
       ref="ghost"
-      :item="node"
       style="
         box-shadow: 0 3px 4px rgba(116, 116, 116, 0.3);
         position: absolute;
@@ -96,7 +91,9 @@
         box-sizing: border-box;
         pointer-events: none;
       "
-    />
+    >
+      <slot name="drag-image" :item="node" />
+    </div>
   </Teleport>
 </template>
 
@@ -106,6 +103,9 @@ import FinderListDropZone from "./FinderListDropZone.vue";
 
 export default {
   name: "FinderItem",
+  components: {
+    FinderItemArrow,
+  },
   mixins: [FinderListDropZone],
   props: {
     selectable: {
@@ -128,12 +128,6 @@ export default {
     },
     dragged() {
       return this.treeModel.isNodeDragged(this.node.id);
-    },
-    itemComponent() {
-      return this.options.itemComponent || "div";
-    },
-    arrowComponent() {
-      return this.options.arrowComponent || FinderItemArrow;
     },
   },
   watch: {
@@ -179,10 +173,13 @@ export default {
         return;
       }
 
-      if (this.options.dragImageComponent) {
+      if (
+        this.$slots["drag-image"] &&
+        this.$slots["drag-image"]({ item: this.node })[0]?.children.length
+      ) {
         this.showGhost = true;
         await this.$nextTick();
-        event.dataTransfer.setDragImage(this.$refs.ghost.$el, 0, 0);
+        event.dataTransfer.setDragImage(this.$refs.ghost, 0, 0);
       }
 
       event.dataTransfer.setData("text/plain", this.node.id);

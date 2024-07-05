@@ -1,56 +1,33 @@
-<script lang="jsx">
+<template>
+  <div class="tree-container">
+    <FinderList
+      v-if="treeModel"
+      ref="rootList"
+      :tree-model="treeModel"
+      :parent="treeModel.visibleTree"
+      :selectable="selectable"
+      :drag-enabled="dragEnabled"
+      :options="options"
+    >
+      <template #item="itemProps">
+        <slot name="item" v-bind="itemProps" />
+      </template>
+      <template #arrow="arrowProps">
+        <slot name="arrow" v-bind="arrowProps" />
+      </template>
+      <template #drop-zone="dropZoneProps">
+        <slot name="drop-zone" v-bind="dropZoneProps" />
+      </template>
+      <template #drag-image="dragImageProps">
+        <slot name="drag-image" v-bind="dragImageProps" />
+      </template>
+    </FinderList>
+  </div>
+</template>
+<script>
 import { toRaw } from "vue";
 import TreeModel from "@/utils/tree-model";
 import FinderList from "./FinderList.vue";
-
-/**
- * Render the tree of an item and its selected children.
- *
- * @param {Object} h          `createElement` object
- * @param {Object} context    Context component
- * @param {Object} item       Item to render
- * @return Rendering object
- */
-function renderTree(h, context, item) {
-  if (!item || !item.children || item.children.length === 0) {
-    return null;
-  }
-
-  const expandedChild = item.children.find((child) =>
-    context.treeModel.isNodeExpanded(child.id),
-  );
-
-  const options = {
-    sortBy: context.sortBy,
-    itemComponent: context.itemComponent,
-    arrowComponent: context.arrowComponent,
-    dragImageComponent: context.dragImageComponent,
-    dropZoneComponent: context.dropZoneComponent,
-    theme: context.theme,
-    hasDragHandle: context.hasDragHandle,
-    canDrop: context.canDrop,
-  };
-
-  const itemList = (
-    <FinderList
-      ref="rootList"
-      tree-model={context.treeModel}
-      parent={item}
-      items={item.children}
-      selectable={context.selectable}
-      drag-enabled={context.dragEnabled}
-      options={options}
-      has-expanded-item={!!expandedChild}
-    />
-  );
-
-  return (
-    <div class="list-container">
-      {itemList}
-      {expandedChild && renderTree(h, context, expandedChild)}
-    </div>
-  );
-}
 
 /**
  * Get a value animated by a ease out Bezier curve.
@@ -186,34 +163,6 @@ export default {
       default: undefined,
     },
     /**
-     * Custom component to render items.
-     */
-    itemComponent: {
-      type: [String, Object],
-      default: undefined,
-    },
-    /**
-     * Custom component to render arrows (on items with children).
-     */
-    arrowComponent: {
-      type: [String, Object],
-      default: undefined,
-    },
-    /**
-     * Custom component to render drag image.
-     */
-    dragImageComponent: {
-      type: [String, Object],
-      default: undefined,
-    },
-    /**
-     * Custom component to render drop zones.
-     */
-    dropZoneComponent: {
-      type: [String, Object],
-      default: undefined,
-    },
-    /**
      * Styling options.
      *
      * ```js
@@ -248,6 +197,16 @@ export default {
     return {
       treeModel: {},
     };
+  },
+  computed: {
+    options() {
+      return {
+        sortBy: this.sortBy,
+        theme: this.theme,
+        hasDragHandle: this.hasDragHandle,
+        canDrop: this.canDrop,
+      };
+    },
   },
   watch: {
     tree(newTree) {
@@ -420,13 +379,6 @@ export default {
       window.requestAnimationFrame(step);
     },
   },
-  render(h) {
-    return (
-      <div class="tree-container">
-        {this.treeModel && renderTree(h, this, this.treeModel.visibleTree)}
-      </div>
-    );
-  },
 };
 </script>
 
@@ -436,10 +388,5 @@ export default {
   position: relative;
   display: flex;
   align-items: stretch;
-
-  .list-container {
-    display: flex;
-    align-items: stretch;
-  }
 }
 </style>

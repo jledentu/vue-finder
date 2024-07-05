@@ -17,13 +17,9 @@
     @dragover.prevent
     @drop.prevent="onDrop"
   >
-    <component
-      :is="options.dropZoneComponent"
-      v-if="options.dropZoneComponent"
-      :dragging="treeModel.isDragging()"
-      :drag-over="dragOver"
-      style="flex-grow: 1"
-    />
+    <div style="flex-grow: 1">
+      <slot :dragging="treeModel.isDragging()" :drag-over="dragOver" />
+    </div>
   </div>
 </template>
 
