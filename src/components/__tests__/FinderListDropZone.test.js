@@ -3,8 +3,6 @@ import { mount } from "@vue/test-utils";
 import TreeModel from "@/utils/tree-model";
 import FinderListDropZone from "../FinderListDropZone.vue";
 
-vi.mock("@/utils/tree-model");
-
 describe("FinderListDropZone", () => {
   let treeModel;
   let node;
@@ -46,7 +44,7 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag enter and is dragging", async () => {
-    treeModel.isDragging.mockReturnValue(true);
+    treeModel.startDrag("test12");
     const wrapper = mount(FinderListDropZone, {
       props: {
         treeModel,
@@ -60,7 +58,8 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag leave and is dragging", async () => {
-    treeModel.isDragging.mockReturnValue(true);
+    treeModel.startDrag("test12");
+
     const wrapper = mount(FinderListDropZone, {
       props: {
         treeModel,
@@ -75,7 +74,6 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag enter and not dragging", async () => {
-    treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       props: {
         treeModel,
@@ -88,7 +86,6 @@ describe("FinderListDropZone", () => {
   });
 
   it("should match if drag leave and not dragging", async () => {
-    treeModel.isDragging.mockReturnValue(false);
     const wrapper = mount(FinderListDropZone, {
       props: {
         treeModel,
@@ -102,8 +99,13 @@ describe("FinderListDropZone", () => {
   });
 
   describe("#onDrop", () => {
+    beforeEach(() => {
+      vi.spyOn(treeModel, "dropOnNode");
+    });
+
     it("should call `treeModel.dropOnNode`", async () => {
-      treeModel.isDragging.mockReturnValue(true);
+      treeModel.startDrag("test12");
+
       const wrapper = mount(FinderListDropZone, {
         props: {
           treeModel,
@@ -116,7 +118,8 @@ describe("FinderListDropZone", () => {
     });
 
     it("should call `treeModel.dropOnNode` with index", async () => {
-      treeModel.isDragging.mockReturnValue(true);
+      treeModel.startDrag("test12");
+
       const wrapper = mount(FinderListDropZone, {
         props: {
           treeModel,
@@ -130,7 +133,6 @@ describe("FinderListDropZone", () => {
     });
 
     it("should not call `treeModel.dropOnNode` if not dragging", async () => {
-      treeModel.isDragging.mockReturnValue(false);
       const wrapper = mount(FinderListDropZone, {
         props: {
           treeModel,

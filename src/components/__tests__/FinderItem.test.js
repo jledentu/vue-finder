@@ -4,7 +4,6 @@ import { h } from "vue";
 import TreeModel from "@/utils/tree-model";
 import FinderItem from "../FinderItem.vue";
 
-vi.mock("@/utils/tree-model");
 vi.useFakeTimers();
 
 describe("FinderItem", () => {
@@ -49,17 +48,18 @@ describe("FinderItem", () => {
 
   describe("Expand", () => {
     it("should match snapshot if expanded", () => {
-      treeModel.isNodeExpanded.mockReturnValue(true);
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
           node,
         },
       });
+      treeModel.expandNode("test1");
       expect(wrapper.html()).toMatchSnapshot();
     });
 
     it("should call treeModel.expandNode on focus", async () => {
+      vi.spyOn(treeModel, "expandNode");
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
@@ -77,6 +77,7 @@ describe("FinderItem", () => {
     });
 
     it("should call treeModel.expandNode on click", async () => {
+      vi.spyOn(treeModel, "expandNode");
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
@@ -89,6 +90,7 @@ describe("FinderItem", () => {
     });
 
     it("should not call treeModel.expandNode on mousedown", async () => {
+      vi.spyOn(treeModel, "expandNode");
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
@@ -120,6 +122,7 @@ describe("FinderItem", () => {
     });
 
     it("should call treeModel.selectNode on click on checkbox", async () => {
+      vi.spyOn(treeModel, "selectNode");
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
@@ -134,7 +137,8 @@ describe("FinderItem", () => {
     });
 
     it("should call treeModel.selectNode on click on checked checkbox", async () => {
-      treeModel.isNodeSelected.mockReturnValue(true);
+      treeModel.selectNode("test111", true);
+      vi.spyOn(treeModel, "selectNode");
       const wrapper = mount(FinderItem, {
         props: {
           treeModel,
@@ -196,6 +200,7 @@ describe("FinderItem", () => {
             dragEnabled: true,
           },
         });
+        vi.spyOn(treeModel, "startDrag");
 
         await wrapper.find(".item").trigger("dragstart", {
           dataTransfer,
@@ -221,6 +226,7 @@ describe("FinderItem", () => {
             dragEnabled: (node) => node.id === "test111",
           },
         });
+        vi.spyOn(treeModel, "startDrag");
 
         await wrapper.find(".item").trigger("dragstart", {
           dataTransfer,
@@ -242,6 +248,7 @@ describe("FinderItem", () => {
             dragEnabled: false,
           },
         });
+        vi.spyOn(treeModel, "startDrag");
 
         await wrapper.find(".item").trigger("dragstart");
         expect(treeModel.startDrag).not.toHaveBeenCalled();
@@ -255,6 +262,7 @@ describe("FinderItem", () => {
             dragEnabled: (node) => node.is === "test",
           },
         });
+        vi.spyOn(treeModel, "startDrag");
 
         await wrapper.find(".item").trigger("dragstart");
         expect(treeModel.startDrag).not.toHaveBeenCalled();
@@ -297,7 +305,8 @@ describe("FinderItem", () => {
 
     describe("dragenter", () => {
       beforeEach(() => {
-        treeModel.isDragging.mockReturnValue(true);
+        treeModel.startDrag("test12");
+        vi.spyOn(treeModel, "expandNode");
       });
 
       it("should call treeModel.expandNode", async () => {
@@ -369,7 +378,6 @@ describe("FinderItem", () => {
 
         expect(treeModel.expandNode).not.toHaveBeenCalled();
       });
-
       it("should not call treeModel.expandNode if node has changed in the interval", async () => {
         const wrapper = mount(FinderItem, {
           props: {
@@ -452,6 +460,10 @@ describe("FinderItem", () => {
     });
 
     describe("dragend", () => {
+      beforeEach(() => {
+        vi.spyOn(treeModel, "stopDrag");
+      });
+
       it("should call treeModel.stopDrag", async () => {
         const wrapper = mount(FinderItem, {
           props: {
