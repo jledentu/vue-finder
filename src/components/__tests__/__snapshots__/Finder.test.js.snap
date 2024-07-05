@@ -6,7 +6,7 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
     <div data-v-af535168="" data-v-08e2b0ac="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 11">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
         <div data-v-2a66825e="" class="inner-item" dragged="false" item="[object Object]" expanded="true">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
@@ -30,7 +30,7 @@ exports[`Finder > API > #expand > should accept a 'sourceEvent' argument 1`] = `
       <!--teleport end-->
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 14">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
         <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
@@ -70,7 +70,7 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
     <div data-v-af535168="" data-v-08e2b0ac="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" role="button" draggable="false" tabindex="0" class="item expanded" aria-expanded="true">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 11">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
         <div data-v-2a66825e="" class="inner-item" dragged="false" item="[object Object]" expanded="true">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
@@ -94,7 +94,7 @@ exports[`Finder > API > #expand > should expand the given item and emit the 'exp
       <!--teleport end-->
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 14">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
         <div data-v-2a66825e="" class="inner-item" expanded="false" dragged="false" item="[object Object]">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
@@ -191,7 +191,7 @@ exports[`Finder > Selection > should match snapshot 1`] = `
     <div data-v-af535168="" data-v-08e2b0ac="" class="list">
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="0">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 11">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
         <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>
@@ -215,7 +215,7 @@ exports[`Finder > Selection > should match snapshot 1`] = `
       <!--teleport end-->
       <!--v-if-->
       <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false" tabindex="-1">
-        <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 14">
+        <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 14">
         <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 14</div>
         <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
       </div>

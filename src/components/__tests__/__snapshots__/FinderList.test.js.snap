@@ -5,10 +5,10 @@ exports[`FinderList > should match snapshot 1`] = `
   <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
     <!--v-if-->
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="0">
+  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
     <!--v-if-->
     <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 11</div>
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
     <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
   </div>
   <!--teleport start-->
@@ -19,7 +19,7 @@ exports[`FinderList > should match snapshot 1`] = `
   <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
     <!--v-if-->
     <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 12</div>
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
     <!--v-if-->
   </div>
   <!--teleport start-->
@@ -35,10 +35,10 @@ exports[`FinderList > should match snapshot if \`dragEnabled\` is true 1`] = `
   <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
     <!--v-if-->
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="0">
+  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
     <!--v-if-->
     <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 11</div>
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
     <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
   </div>
   <!--teleport start-->
@@ -49,7 +49,7 @@ exports[`FinderList > should match snapshot if \`dragEnabled\` is true 1`] = `
   <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
     <!--v-if-->
     <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 12</div>
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
     <!--v-if-->
   </div>
   <!--teleport start-->
@@ -65,9 +65,9 @@ exports[`FinderList > should match snapshot if \`selectable\` is true 1`] = `
   <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
     <!--v-if-->
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="0">
-    <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 11">
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 11</div>
+  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
+    <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
     <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
   </div>
   <!--teleport start-->
@@ -77,7 +77,7 @@ exports[`FinderList > should match snapshot if \`selectable\` is true 1`] = `
   </div>
   <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
     <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]">Test 12</div>
+    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
     <!--v-if-->
   </div>
   <!--teleport start-->
