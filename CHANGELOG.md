@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/jledentu/vue-finder/compare/v4.1.1...v5.0.0) (2024-07-05)
+
+
+* feat!: replace components by scoped slots for customization ([8c83e47](https://github.com/jledentu/vue-finder/commit/8c83e4764dd9a5628849a3a54278daa8926fd361))
+* feat!: replace components by scoped slots for customization ([1cc52e9](https://github.com/jledentu/vue-finder/commit/1cc52e9acae41719b2d92d7bb2c5aa2e7e68d180))
+
+
+### BREAKING CHANGES
+
+* custom components have been replaced by scoped slots
+* previous custom components have been removed
+
 ## [4.1.1](https://github.com/jledentu/vue-finder/compare/v4.1.0...v4.1.1) (2023-05-05)
 
 
