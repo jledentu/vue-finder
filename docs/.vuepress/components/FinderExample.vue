@@ -1,10 +1,14 @@
 <template>
-  <Finder
-    :tree="tree"
-    :item-component="itemComponent"
-    :arrow-component="arrowComponent"
-    v-bind="$props"
-  />
+  <Finder :tree="tree" v-bind="$props">
+    <template v-if="useCustomItemSlot" #item="{ item }">
+      <div style="color: blue">
+        <em>Name:</em> <strong>{{ item.label }}</strong>
+      </div>
+    </template>
+    <template v-if="useCustomArrowSlot" #arrow="{ expanded }">
+      <div>{{ expanded ? "↪" : "→" }}</div>
+    </template>
+  </Finder>
 </template>
 <script>
 import { Finder } from "../../../dist/vue-finder.es.js";
@@ -19,8 +23,8 @@ export default {
     "filter",
     "dragEnabled",
     "hasDragHandle",
-    "useCustomItemComponent",
-    "useCustomArrowComponent",
+    "useCustomItemSlot",
+    "useCustomArrowSlot",
     "defaultExpanded",
   ],
   data() {
@@ -94,29 +98,6 @@ export default {
         ],
       },
     };
-  },
-  computed: {
-    itemComponent() {
-      if (this.useCustomItemComponent) {
-        return {
-          props: ["item"],
-          template:
-            '<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>',
-        };
-      } else {
-        return undefined;
-      }
-    },
-    arrowComponent() {
-      if (this.useCustomArrowComponent) {
-        return {
-          props: ["expanded"],
-          template: "<div>{{ expanded ? '↪' : '→' }}</div>",
-        };
-      } else {
-        return undefined;
-      }
-    },
   },
 };
 </script>

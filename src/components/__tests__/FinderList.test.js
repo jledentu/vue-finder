@@ -39,7 +39,7 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
-        items: tree.children,
+        parent: tree,
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -49,6 +49,9 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
+        parent: {
+          children: [],
+        },
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -58,7 +61,7 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
-        items: tree.children,
+        parent: tree,
         dragEnabled: true,
       },
     });
@@ -69,7 +72,7 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
-        items: tree.children,
+        parent: tree,
         selectable: true,
       },
     });
@@ -80,7 +83,7 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
-        items: tree.children,
+        parent: tree,
       },
       attachTo: document.body,
     });
@@ -108,7 +111,7 @@ describe("FinderList", () => {
     const wrapper = mount(FinderList, {
       props: {
         treeModel,
-        items: tree.children,
+        parent: tree,
         dragEnabled: true,
       },
       attachTo: document.body,

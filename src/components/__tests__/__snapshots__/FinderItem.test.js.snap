@@ -4,7 +4,7 @@ exports[`FinderItem > Drag & drop > should match snapshot if dragEnabled is \`tr
 <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false">
   <!--v-if-->
   <!--v-if-->
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->
@@ -15,7 +15,7 @@ exports[`FinderItem > Drag & drop > should match snapshot if dragEnabled is a fu
 <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false">
   <!--v-if-->
   <!--v-if-->
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->
@@ -26,7 +26,7 @@ exports[`FinderItem > Drag & drop > should match snapshot if dragEnabled is a fu
 <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false">
   <!--v-if-->
   <!--v-if-->
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->
@@ -37,7 +37,7 @@ exports[`FinderItem > Expand > should match snapshot if expanded 1`] = `
 <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false">
   <!--v-if-->
   <!--v-if-->
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->
@@ -47,7 +47,7 @@ exports[`FinderItem > Expand > should match snapshot if expanded 1`] = `
 exports[`FinderItem > Selection > should match snapshot if selectable 1`] = `
 <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false">
   <!--v-if--><input data-v-2a66825e="" type="checkbox">
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->
@@ -58,7 +58,7 @@ exports[`FinderItem > should match snapshot 1`] = `
 <div data-v-2a66825e="" class="item" role="button" draggable="false" aria-expanded="false">
   <!--v-if-->
   <!--v-if-->
-  <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false"></div>
+  <div data-v-2a66825e="" class="inner-item"></div>
   <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
 </div>
 <!--teleport start-->

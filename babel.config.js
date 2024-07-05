@@ -12,7 +12,7 @@ module.exports = {
           },
         ],
       ],
-      plugins: ["transform-es2015-modules-commonjs", "@vue/babel-plugin-jsx"],
+      plugins: ["transform-es2015-modules-commonjs"],
     },
   },
 };

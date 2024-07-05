@@ -109,7 +109,22 @@ const Template = (args, { loaded: { loadedTree } }) => ({
   template: `<Finder
     v-if="args.tree || loadedTree"
     style="height: 100%"
-    v-bind="{ ...args, tree: args.tree || loadedTree, filter: filterFunction }" />`,
+    v-bind="{ ...args, tree: args.tree || loadedTree, filter: filterFunction }">
+      <template v-if="args.useItemSlot" #item="{ item, expanded }">
+        <div :style="{color: expanded ? 'white' : 'blue'}"><em>Name:</em> <strong>{{ item.label }}</strong></div>
+      </template>
+      <template v-if="args.useArrowSlot" #arrow="{ expanded }">
+        <div>
+          {{ expanded ? '-->' : '->' }}
+        </div>
+      </template>
+      <template v-if="args.useDropZoneSlot" #drop-zone="{ dragOver }">
+        <div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>
+      </template>
+      <template v-if="args.useDragImageSlot" #drag-image="{ item }">
+        <div>Dragging {{item.label}} </div>
+      </template>
+  </Finder>`,
   computed: {
     filterFunction() {
       if (!this.filter) {
@@ -159,49 +174,41 @@ export const DragAndDrop = Template.bind({});
 DragAndDrop.args = {
   ...defaultArgs,
   dragEnabled: true,
-  dragImageComponent: {
-    props: ["item"],
-    template: `<div style="background-color: white; display: flex; align-items: center; padding: 10px; border: solid 1px #ddd">
-        Dragging {{ item.label }}
-      </div>`,
-  },
 };
 DragAndDrop.storyName = "Drag and Drop";
 
-export const CustomItemComponent = Template.bind({});
-CustomItemComponent.args = {
+export const CustomItemSlot = Template.bind({});
+CustomItemSlot.args = {
   ...defaultArgs,
   selectable: true,
   dragEnabled: true,
   hasDragHandle: true,
-  itemComponent: {
-    props: ["item", "dragged", "expanded"],
-    template:
-      '<div :style="{color: expanded ? `white` : `blue`}"><em>Name:</em> <strong>{{ item.label }}</strong></div>',
-  },
+  useItemSlot: true,
 };
-CustomItemComponent.storyName = "Custom item component";
+CustomItemSlot.storyName = "Custom item slot";
 
-export const CustomArrowComponent = Template.bind({});
-CustomArrowComponent.args = {
+export const CustomArrowSlot = Template.bind({});
+CustomArrowSlot.args = {
   ...defaultArgs,
-  arrowComponent: {
-    template: "<div>-></div>",
-  },
+  useArrowSlot: true,
 };
-CustomArrowComponent.storyName = "Custom arrow component";
+CustomArrowSlot.storyName = "Custom arrow slot";
 
-export const CustomDropZoneComponent = Template.bind({});
-CustomDropZoneComponent.args = {
+export const CustomDropZoneSlot = Template.bind({});
+CustomDropZoneSlot.args = {
   ...defaultArgs,
   dragEnabled: true,
-  dropZoneComponent: {
-    props: ["item", "dragging", "dragOver"],
-    template:
-      '<div style="padding: 5px; color: blue; text-align: center"><span v-if="dragOver">Drop here</span></div>',
-  },
+  useDropZoneSlot: true,
 };
-CustomDropZoneComponent.storyName = "Custom drop zone component";
+CustomDropZoneSlot.storyName = "Custom drop zone slot";
+
+export const CustomDragImageSlot = Template.bind({});
+CustomDragImageSlot.args = {
+  ...defaultArgs,
+  dragEnabled: true,
+  useDragImageSlot: true,
+};
+CustomDragImageSlot.storyName = "Custom drag image slot";
 
 export const CustomTheme = Template.bind({});
 CustomTheme.args = {

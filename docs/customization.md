@@ -71,75 +71,44 @@ Here are the available properties:
 | `dropZoneBgColor`    | Background color of drop zones (visible when Drag & Drop)    |
 | `draggedItemBgColor` | Background color of dragged items (visible when Drag & Drop) |
 
-## Custom components
+## Custom slots
 
-You can pass your own components in order to customize some parts of the UI.
+You can pass scoped slots in order to customize some parts of the UI.
 
-### Item component
+### Item
 
-You can define a component to render items with the `itemComponent` prop. This component requires a `item` prop, that will
-receive the data of the rendered item.
+You can use the `item` scoped slot to render items. This slot accepts the following props:
+
+- `item`: the data of the item
+- `expanded`: the expanded state of the item
+- `dragged`: whether the item is currently dragged
 
 ```html
-<Finder :tree="tree" :item-component="itemComponent" />
+<Finder :tree="tree">
+  <template #item="{ item }">
+    <div style="color: blue">
+      <em>Name:</em> <strong>{{ item.label }}</strong>
+    </div>
+  </template>
+</Finder>
 ```
 
-```js
-// ...
-data() {
-  return {
-    itemComponent: {
-      props: ["item"],
-      template:
-        "<div style="color: blue"><em>Name:</em> <strong>{{ item.label }}</strong></div>"
-    }
-  }
-}
-```
+<FinderExample :use-custom-item-slot="true"/>
 
-<FinderExample :use-custom-item-component="true"/>
+### Arrow
 
-::: warning
-
-The example above uses the `template` option to define the rendering of the component, so
-the [runtime compiler](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only) is needed.
-
-You can also use a `render` function (in this case the runtime-only build is enough):
-
-```js
-itemComponent: {
-  props: ["item"],
-  render(h) {
-    return h("div", this.item)
-  }
-}
-```
-
-:::
-
-### Arrow component
-
-You can define a component to render arrows with the `arrowComponent` prop. This component accepts the following props:
+You can use the `arrow` scoped slot to render custom arrows. This slot accepts the following props:
 
 - `expanded`: the expanded state of the item
 - `item`: the data of the item
 - `theme`: the theme applied on the `Finder`
 
 ```html
-<Finder :tree="tree" :arrow-component="arrowComponent" />
+<Finder :tree="tree">
+  <template #arrow="{ expanded }">
+    <div>{{ expanded ? '↪' : '→' }}</div>
+  </template>
+</Finder>
 ```
 
-```js
-// ...
-data() {
-  return {
-    arrowComponent: {
-      props: ["expanded", "item", "theme"],
-      template:
-        "<div>{{ expanded ? '↪' : '→' }}</div>"
-    }
-  }
-}
-```
-
-<FinderExample :use-custom-arrow-component="true" />
+<FinderExample :use-custom-arrow-slot="true" />

@@ -1,6 +1,5 @@
 import { vi, describe, it, beforeEach, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import { h } from "vue";
 import TreeModel from "@/utils/tree-model";
 import FinderItem from "../FinderItem.vue";
 
@@ -278,13 +277,10 @@ describe("FinderItem", () => {
             treeModel,
             node,
             dragEnabled: true,
-            options: {
-              dragImageComponent: {
-                render() {
-                  return h("div", "Dragging 1 item...");
-                },
-              },
-            },
+            options: {},
+          },
+          slots: {
+            "drag-image": `<div>Dragging 1 item...</div>`,
           },
         });
 
@@ -292,11 +288,11 @@ describe("FinderItem", () => {
           dataTransfer,
         });
 
-        const ghost = wrapper.getComponent({ ref: "ghost" });
+        const ghost = wrapper.find({ ref: "ghost" });
 
         expect(ghost.isVisible()).toBe(true);
         expect(dataTransfer.setDragImage).toHaveBeenCalledWith(
-          ghost.vm.$el,
+          ghost.element,
           0,
           0,
         );
@@ -519,13 +515,10 @@ describe("FinderItem", () => {
             treeModel,
             node,
             dragEnabled: true,
-            options: {
-              dragImageComponent: {
-                render() {
-                  return h("div", "Dragging 1 item...");
-                },
-              },
-            },
+            options: {},
+          },
+          slots: {
+            "drag-image": `<div>Dragging 1 item...</div>`,
           },
         });
 
@@ -537,7 +530,7 @@ describe("FinderItem", () => {
           dataTransfer,
         });
 
-        expect(wrapper.findComponent({ ref: "ghost" }).isVisible()).toBe(false);
+        expect(wrapper.find({ ref: "ghost" }).isVisible()).toBe(false);
       });
     });
   });

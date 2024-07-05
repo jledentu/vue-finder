@@ -2,30 +2,30 @@
 
 exports[`FinderListDropZone > should match if drag enter and is dragging 1`] = `
 <div data-v-94df34d0="" class="drop-zone drag-over dragging">
-  <!--v-if-->
+  <div data-v-94df34d0="" style="flex-grow: 1;"></div>
 </div>
 `;
 
 exports[`FinderListDropZone > should match if drag enter and not dragging 1`] = `
 <div data-v-94df34d0="" class="drop-zone">
-  <!--v-if-->
+  <div data-v-94df34d0="" style="flex-grow: 1;"></div>
 </div>
 `;
 
 exports[`FinderListDropZone > should match if drag leave and is dragging 1`] = `
 <div data-v-94df34d0="" class="drop-zone dragging">
-  <!--v-if-->
+  <div data-v-94df34d0="" style="flex-grow: 1;"></div>
 </div>
 `;
 
 exports[`FinderListDropZone > should match if drag leave and not dragging 1`] = `
 <div data-v-94df34d0="" class="drop-zone">
-  <!--v-if-->
+  <div data-v-94df34d0="" style="flex-grow: 1;"></div>
 </div>
 `;
 
 exports[`FinderListDropZone > should match snapshot 1`] = `
 <div data-v-94df34d0="" class="drop-zone">
-  <!--v-if-->
+  <div data-v-94df34d0="" style="flex-grow: 1;"></div>
 </div>
 `;

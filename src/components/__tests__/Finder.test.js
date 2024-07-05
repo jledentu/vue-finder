@@ -102,21 +102,25 @@ describe("Finder", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("should match snapshot with a custom item component", () => {
+  it("should match snapshot with a custom item slot", () => {
     const wrapper = mount(Finder, {
       props: {
         tree,
-        itemComponent: "span",
+      },
+      slots: {
+        item: '<template #item="{ item }"><span>{{ item.label }}</span></template>',
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("should match snapshot with a custom arrow component", () => {
+  it("should match snapshot with a custom arrow slot", () => {
     const wrapper = mount(Finder, {
       props: {
         tree,
-        arrowComponent: "span",
+      },
+      slots: {
+        arrow: "<template #arrow><span></span></template>",
       },
     });
     expect(wrapper.html()).toMatchSnapshot();

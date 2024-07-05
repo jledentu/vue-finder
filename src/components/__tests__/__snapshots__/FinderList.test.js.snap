@@ -1,97 +1,100 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`FinderList > should match snapshot 1`] = `
-<div data-v-af535168="" class="list">
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
+<div data-v-af535168="" class="list-container">
+  <div data-v-af535168="" class="list">
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
+      <!--v-if-->
+      <!--v-if-->
+      <div data-v-2a66825e="" class="inner-item">Test 11</div>
+      <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
+      <!--v-if-->
+      <!--v-if-->
+      <div data-v-2a66825e="" class="inner-item">Test 12</div>
+      <!--v-if-->
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
-    <!--v-if-->
-    <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
-    <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
-  </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
-    <!--v-if-->
-    <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
-    <!--v-if-->
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
-    <!--v-if-->
-  </div>
+  <!--v-if-->
 </div>
 `;
 
 exports[`FinderList > should match snapshot if \`dragEnabled\` is true 1`] = `
-<div data-v-af535168="" class="list">
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
+<div data-v-af535168="" class="list-container">
+  <div data-v-af535168="" class="list">
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
+      <!--v-if-->
+      <!--v-if-->
+      <div data-v-2a66825e="" class="inner-item">Test 11</div>
+      <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
+      <!--v-if-->
+      <!--v-if-->
+      <div data-v-2a66825e="" class="inner-item">Test 12</div>
+      <!--v-if-->
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
-    <!--v-if-->
-    <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
-    <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
-  </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
-    <!--v-if-->
-    <!--v-if-->
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
-    <!--v-if-->
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
-    <!--v-if-->
-  </div>
+  <!--v-if-->
 </div>
 `;
 
 exports[`FinderList > should match snapshot if \`selectable\` is true 1`] = `
-<div data-v-af535168="" class="list">
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
+<div data-v-af535168="" class="list-container">
+  <div data-v-af535168="" class="list">
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
+      <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
+      <div data-v-2a66825e="" class="inner-item">Test 11</div>
+      <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
+    <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
+      <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
+      <div data-v-2a66825e="" class="inner-item">Test 12</div>
+      <!--v-if-->
+    </div>
+    <!--teleport start-->
+    <!--teleport end-->
+    <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
+      <div data-v-94df34d0="" style="flex-grow: 1;"></div>
+    </div>
   </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" aria-expanded="false" tabindex="0">
-    <!--v-if--><input data-v-2a66825e="" type="checkbox" checked="" aria-label="Test 11">
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 11</div>
-    <div data-v-25a3a149="" data-v-2a66825e="" class="arrow"></div>
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone">
-    <!--v-if-->
-  </div>
-  <div data-v-2a66825e="" class="item draggable" role="button" draggable="true" tabindex="-1">
-    <!--v-if--><input data-v-2a66825e="" type="checkbox" aria-label="Test 12">
-    <div data-v-2a66825e="" class="inner-item" item="[object Object]" expanded="false" dragged="false">Test 12</div>
-    <!--v-if-->
-  </div>
-  <!--teleport start-->
-  <!--teleport end-->
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
-    <!--v-if-->
-  </div>
+  <!--v-if-->
 </div>
 `;
 
-exports[`FinderList > should match snapshot if no item 1`] = `
-<div data-v-af535168="" class="list">
-  <div data-v-94df34d0="" data-v-af535168="" class="drop-zone last">
-    <!--v-if-->
-  </div>
-</div>
-`;
+exports[`FinderList > should match snapshot if no item 1`] = `<!--v-if-->`;

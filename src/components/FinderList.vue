@@ -1,34 +1,75 @@
 <template>
-  <div class="list" :style="style" @keydown="navigate">
-    <template v-for="(item, index) in sortedItems" :key="`item-${item.id}`">
+  <div v-if="parent && items?.length > 0" class="list-container">
+    <div class="list" :style="style" @keydown="navigate">
+      <template v-for="(item, index) in sortedItems" :key="`item-${item.id}`">
+        <FinderListDropZone
+          v-if="dragEnabled"
+          :node="parent"
+          :tree-model="treeModel"
+          :drag-enabled="dragEnabled"
+          :index="index"
+          :options="options"
+        >
+          <template #default="dropZoneProps">
+            <slot name="drop-zone" v-bind="dropZoneProps" />
+          </template>
+        </FinderListDropZone>
+        <FinderItem
+          :node="item"
+          :tree-model="treeModel"
+          :selectable="selectable"
+          :drag-enabled="dragEnabled"
+          :options="options"
+          :tabindex="index === expandedItemIndex ? '0' : '-1'"
+        >
+          {{ item.label }}
+          <template #item="itemProps">
+            <slot name="item" v-bind="itemProps" />
+          </template>
+          <template #arrow="arrowProps">
+            <slot name="arrow" v-bind="arrowProps" />
+          </template>
+          <template #drag-image="dragImageProps">
+            <slot name="drag-image" v-bind="dragImageProps" />
+          </template>
+        </FinderItem>
+      </template>
       <FinderListDropZone
         v-if="dragEnabled"
+        class="last"
+        :tree-model="treeModel"
         :node="parent"
-        :tree-model="treeModel"
         :drag-enabled="dragEnabled"
-        :index="index"
+        :index="items.length"
         :options="options"
-      />
-      <FinderItem
-        :node="item"
-        :tree-model="treeModel"
-        :selectable="selectable"
-        :drag-enabled="dragEnabled"
-        :options="options"
-        :tabindex="index === expandedItemIndex ? '0' : '-1'"
       >
-        {{ item.label }}
-      </FinderItem>
-    </template>
-    <FinderListDropZone
-      v-if="dragEnabled"
-      class="last"
+        <template #default="dropZoneProps">
+          <slot name="drop-zone" v-bind="dropZoneProps" />
+        </template>
+      </FinderListDropZone>
+    </div>
+
+    <FinderList
+      v-if="!!expandedChild"
+      :parent="expandedChild"
       :tree-model="treeModel"
-      :node="parent"
+      :selectable="selectable"
       :drag-enabled="dragEnabled"
-      :index="items.length"
       :options="options"
-    />
+    >
+      <template #item="itemProps">
+        <slot name="item" v-bind="itemProps" />
+      </template>
+      <template #arrow="arrowProps">
+        <slot name="arrow" v-bind="arrowProps" />
+      </template>
+      <template #drop-zone>
+        <slot name="drop-zone" />
+      </template>
+      <template #drag-image="dragImageProps">
+        <slot name="drag-image" v-bind="dragImageProps" />
+      </template>
+    </FinderList>
   </div>
 </template>
 <script>
@@ -69,10 +110,6 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    items: {
-      type: Array,
-      default: () => [],
-    },
     treeModel: {
       type: Object,
       required: true,
@@ -89,12 +126,16 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    hasExpandedItem: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
+    items() {
+      return this.parent?.children;
+    },
+    expandedChild() {
+      return this.items?.find((child) =>
+        this.treeModel.isNodeExpanded(child.id),
+      );
+    },
     sortedItems() {
       return this.options.sortBy
         ? [...this.items].sort(this.options.sortBy)
@@ -133,6 +174,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-container {
+  display: flex;
+  align-items: stretch;
+}
+
 .list {
   display: flex;
   flex-direction: column;
