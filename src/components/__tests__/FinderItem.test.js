@@ -445,6 +445,26 @@ describe("FinderItem", () => {
 
         expect(dataTransfer.dropEffect).toBeUndefined();
       });
+
+      it("should set dataTransfer.dropEffect = `all` if `dragEnabled` is a function returning `false`", async () => {
+        const dataTransfer = {};
+        const wrapper = mount(FinderItem, {
+          propsData: {
+            treeModel,
+            node,
+            dragEnabled: () => false,
+            options: {
+              canDrop: () => true
+            }
+          }
+        });
+
+        await wrapper.trigger("dragover", {
+          dataTransfer
+        });
+
+        expect(dataTransfer.dropEffect).toBe("move");
+      });
     });
 
     describe("dragend", () => {

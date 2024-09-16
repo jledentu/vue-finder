@@ -165,7 +165,7 @@ export default {
       this.treeModel.startDrag(this.node.id);
     },
     onDragOver(event) {
-      if (!this.canDrag) {
+      if (!this.dragEnabled) {
         return;
       }
 
@@ -182,7 +182,7 @@ export default {
         this.ghost.parentNode.removeChild(this.ghost);
         this.ghost = null;
       }
-      if (!this.canDrag) {
+      if (!this.dragEnabled) {
         return;
       }
 
