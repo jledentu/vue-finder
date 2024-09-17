@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/jledentu/vue-finder/compare/v2.2.1...v2.2.2) (2024-09-17)
+
+
+### Bug Fixes
+
+* allow to drop on items that cannot be dragged ([f5830cd](https://github.com/jledentu/vue-finder/commit/f5830cd9a64c9b6168f27b3c30fd7fa12c70f10c))
+* allow to drop on items that cannot be dragged ([52d8411](https://github.com/jledentu/vue-finder/commit/52d8411064571d1df5856e48b38ef2861352d0b9))
+
 ## [2.2.1](https://github.com/jledentu/vue-finder/compare/v2.2.0...v2.2.1) (2023-12-22)
 
 
